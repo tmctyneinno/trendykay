@@ -17,6 +17,7 @@ use App\Shipping;
 use App\Transaction;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Session;
 
 class HomeController extends Controller
 {
@@ -38,22 +39,27 @@ class HomeController extends Controller
      */
     public function index()
     {
-               $products = session()->get('products.recently_viewed');
-               if($products){
-                $datas = array_slice(array_unique($products), -5, 5, true);
-                $data['recents'] = Product::whereIn('id', $datas)->take(5)->get();
-               }else{
-                $data['recents']  = [];
-               }
-        return view('users.home', $data)
+        $products = session()->get('products.recently_viewed');
+            if($products){
+        $datas = array_slice(array_unique($products), -5, 5, true);
+            $data['recents'] = Product::whereIn('id', $datas)->take(5)->get();
+        }else{
+            $data['recents']  = [];
+        }
+        $cart =  \Cart::content()->take(4);
+        $prod = Product::take(10)->orderBy('created_at','desc')->get();
+        return view('users.home', $data )
             ->with('title', 'Index') 
+            ->with('prod', $prod)
+            ->with('cart', $cart) 
             ->with('products', Product::latest()->simplePaginate(50))
             ->with('sliders', Slider::get())
             ->with('categories', Category::take(4)->get());
-    }
+    } 
 
     public function productDetails($id){
         $id = decrypt($id);
+        $cart =  \Cart::content()->take(4);
         $product = Product::where('id', $id)->first();
         session()->push('products.recently_viewed', $product->getKey());
                 Product::where('id', $id)->update(['views' => $product->views + 1]);
@@ -66,6 +72,7 @@ class HomeController extends Controller
         return view('users.products.products', $data)
                 ->with('title', $product->name)
                 ->with('product', $product)
+                ->with('cart',$cart)
                 ->with('products', Product::latest()->take(5)->get())
                 ->with('breadcrumb', $product->name)
                 ->with('category', Category::latest()->get());
@@ -73,37 +80,40 @@ class HomeController extends Controller
 
         public function Account(){
           $title = "My Details";
+         $cart =  \Cart::content()->take(4);
           $addresses= DB::table('shippings')->where(['user_id'=> auth()->user()->id, 'is_default' => '1'])->get();
-          return view('users.accounts.index')->with('addresses', $addresses)->with('title',$title );  
+          return view('users.accounts.index')->with('cart',  $cart)->with('addresses', $addresses)->with('title',$title );  
         }
 
         public function UserAddress(){
             $title = "My Details";
+           $cart =  \Cart::content()->take(4);
             $addresses= DB::table('shippings')->where(['user_id'=> auth()->user()->id])->paginate(4);  
-            return view('users.accounts.address', compact('addresses', 'title'));
+            return view('users.accounts.address', compact('addresses', 'title', 'cart'));
         }
 
         public function myOrders(){
+           $cart =  \Cart::content()->take(4);
             $orders = DB::table('orders')
             ->join('order_items', 'orders.order_No', '=' ,'order_items.order_No')
             ->where('orders.user_id', auth()->user()->id)
             ->latest('orders.created_at')
             ->paginate(8);
-    return view('users.accounts.orders', compact('orders'));
+            return view('users.accounts.orders', compact('orders','cart'));
         }
 
 
     public function orderDetails($id){
-    
+        $cart =  \Cart::content()->take(4);
         $items= OrderItem::where(['order_No'=> decrypt($id)])->get();
         $orders = Order::where(['order_No' => decrypt($id)])->first();
-        return view('users.accounts.orderDetails', compact('orders', 'items'));
+        return view('users.accounts.orderDetails', compact('orders', 'items', 'cart'));
 
     }
 
 
     public function recentViews(){
-
+       $cart =  \Cart::content()->take(4);
         $products = session()->get('products.recently_viewed');
         if(is_array($products)){
         $data = array_unique($products);
@@ -112,12 +122,14 @@ class HomeController extends Controller
         }else{
             $products['recent'] = [];
         }
-           return view('users.accounts.recent-view', $products);
+           return view('users.accounts.recent-view', $products, compact('cart'));
         }
 
         
         public function myTransactions(){
+           $cart =  \Cart::content()->take(4);
             return view('users.accounts.transactions')
+            ->with('cart',  $cart)
             ->with('transactions', Transaction::where(['user_id' =>auth()->user()->id])->latest()->simplePaginate(10))
             ->with('user', User::where('id', auth()->user()->id)->first());
 
@@ -125,10 +137,12 @@ class HomeController extends Controller
 
 
         public function UserDetails(){
-            return view('users.accounts.profile');
+           $cart =  \Cart::content()->take(4);
+            return view('users.accounts.profile', compact('cart'));
         }
 
         public function updateDetails(Request $request){
+           $cart =  \Cart::content()->take(4);
             if($request->name){
              $update_user = [
                  'name' => $request->name,
@@ -140,7 +154,7 @@ class HomeController extends Controller
                ->update($update_user);
     
                if(!isset($request->password)){
-               return redirect()->back()->with('success', 'Details Updated Successfully');
+               return redirect()->back()->with('success', 'Details Updated Successfully')->with('cart', $cart);
             }
         }
     
@@ -172,7 +186,7 @@ class HomeController extends Controller
 
 
     public function createAddresss(){
-
+       $cart =  \Cart::content()->take(4);
         $addresses['addresses']= DB::table('shippings')->where(['user_id'=> auth()->user()->id])->get();
         return view('users.accounts.add-address',$addresses);
     }
@@ -242,10 +256,11 @@ class HomeController extends Controller
 
     public function Pages($id){
         $id = decrypt($id);
+       $cart =  \Cart::content()->take(4);
         $menu = Menu::where('id', $id)->first();
         $menus = preg_replace("/\s+/", "",$menu->name);
         $product = Product::where('id', 19)->first();
-        return view('users.pages'.".".$menus, compact('product'));
+        return view('users.pages'.".".$menus, compact('product', 'cart'));
     }
     
     public function search(Request $request)
@@ -272,11 +287,10 @@ class HomeController extends Controller
         $review->description = $request->description;
         
         if($review->save()){
-            
             return back();
-            
         }else{
-            
+           // Set a success message in the session
+            Session::flash('success', 'Review Successfully Submitted');
             return redirect('customer.product-details');
         }
     }

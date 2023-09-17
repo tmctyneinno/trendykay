@@ -1,6 +1,6 @@
     @extends('layouts.app2')
-        @section('content')
-            @section('title', $title)
+    @section('content')
+    @section('title', $title)
             <main class="main">
                 <div class="page-header breadcrumb-wrap">
                     <div class="container">
@@ -19,12 +19,12 @@
                                     <div class="row mb-50">
                                         <div class="col-md-6 col-sm-12 col-xs-12">
                                             <div class="detail-gallery">
-                                                <span class="zoom-icon"><i class="fi-rs-search"></i></span>
+                                              
                                                 <!-- MAIN SLIDES -->
                                                 <div class="product-image-slider">
                                                     @foreach (json_decode($product->gallery) as $key =>$imag )
                                                         @if($imag !=null)
-                                                            <figure class="border-radius-10">
+                                                            <figure class="border-radius-10" style="text-align:center">
                                                                 <img src="{{asset('images/products/'.$imag)}}" alt="product image">
                                                             </figure>
                                                         @endif
@@ -38,13 +38,6 @@
                                                           
                                                         @endif
                                                     @endforeach
-                                                    
-                                                    <div><img src="assets/imgs/shop/thumbnail-4.jpg" alt="product image"></div>
-                                                    <div><img src="assets/imgs/shop/thumbnail-5.jpg" alt="product image"></div>
-                                                    <div><img src="assets/imgs/shop/thumbnail-6.jpg" alt="product image"></div>
-                                                    <div><img src="assets/imgs/shop/thumbnail-7.jpg" alt="product image"></div>
-                                                    <div><img src="assets/imgs/shop/thumbnail-8.jpg" alt="product image"></div>
-                                                    <div><img src="assets/imgs/shop/thumbnail-9.jpg" alt="product image"></div>
                                                 </div>
                                             </div>
                                             <!-- End Gallery -->
@@ -52,10 +45,14 @@
                                                 
                                                 <ul class="text-grey-5 d-inline-block">
                                                     <li><strong class="mr-10">Share this:</strong></li>
-                                                    <li class="social-facebook"><a href="#"><img src="assets/imgs/theme/icons/icon-facebook.svg" alt=""></a></li>
-                                                    <li class="social-twitter"> <a href="#"><img src="assets/imgs/theme/icons/icon-twitter.svg" alt=""></a></li>
-                                                    <li class="social-instagram"><a href="#"><img src="assets/imgs/theme/icons/icon-instagram.svg" alt=""></a></li>
-                                                    <li class="social-linkedin"><a href="#"><img src="assets/imgs/theme/icons/icon-pinterest.svg" alt=""></a></li>
+                                                    <li class="social-facebook"><a href="#">
+                                                        <img src="{{asset('assets/imgs/theme/icons/icon-facebook.svg')}}" alt=""></a></li>
+                                                    <li class="social-twitter"> <a href="#">
+                                                        <img src="{{asset('assets/imgs/theme/icons/icon-twitter.svg')}}" alt=""></a></li>
+                                                    <li class="social-instagram"><a href="#">
+                                                        <img src="{{asset('assets/imgs/theme/icons/icon-instagram.svg')}}" alt=""></a></li>
+                                                    <li class="social-linkedin"><a href="#">
+                                                        <img src="{{asset('assets/imgs/theme/icons/icon-pinterest.svg')}}" alt=""></a></li>
                                                 </ul>
                                             </div>
                                         </div>
@@ -64,14 +61,14 @@
                                                 <h2 class="title-detail">{{$product->name}} </h2>
                                                 <div class="product-detail-rating">
                                                     <div class="pro-details-brand">
-                                                        <span> Brands: <a href="shop-grid-right.html">Bootstrap</a></span>
+                                                        <span> Availability <a href="#">&nbsp; In-Stock</a></span>
                                                     </div>
                                                     <div class="product-rate-cover text-end">
-                                                        <div class="product-rate d-inline-block">
+                                                        {{-- <div class="product-rate d-inline-block">
                                                             <div class="product-rating" style="width:90%">
                                                             </div>
-                                                        </div>
-                                                        <span class="font-small ml-5 text-muted"> (25 reviews)</span>
+                                                        </div> --}}
+                                                        {{-- <span class="font-small ml-5 text-muted"> (25 reviews)</span> --}}
                                                     </div>
                                                 </div>
                                                 <div class="clearfix product-price-cover">
@@ -83,11 +80,11 @@
                                                 </div>
                                                 <div class="bt-1 border-color-1 mt-15 mb-15"></div>
                                                 <div class="short-desc mb-30">
-                                                    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Aliquam rem officia, corrupti reiciendis minima nisi modi, quasi, odio minus dolore impedit fuga eum eligendi? Officia doloremque facere quia. Voluptatum, accusantium!</p>
+                                                    {{-- <p>{!!$product->description!!}</p> --}}
                                                 </div>
                                                 <div class="product_sort_info font-xs mb-30">
                                                     <ul>
-                                                        <li class="mb-10"><i class="fi-rs-crown mr-5"></i> 1 Year AL Jazeera Brand Warranty</li>
+                                                        <li class="mb-10"><i class="fi-rs-crown mr-5"></i> 1 Year Brand Warranty</li>
                                                         <li class="mb-10"><i class="fi-rs-refresh mr-5"></i> 30 Day Return Policy</li>
                                                         <li><i class="fi-rs-credit-card mr-5"></i> Cash on Delivery available</li>
                                                     </ul>
@@ -115,21 +112,47 @@
                                                     </ul>
                                                 </div>
                                                 <div class="bt-1 border-color-1 mt-30 mb-30"></div>
+                                                <style>
+                                                    
+                                                    input[type="number"]::-webkit-inner-spin-button,
+                                                    input[type="number"]::-webkit-outer-spin-button {
+                                                      -webkit-appearance: none;
+                                                      margin: 0;
+                                                      display: none;
+                                                    }
+                                                  </style>
                                                 <div class="detail-extralink">
-                                                    <div class="detail-qty border radius">
+                                                    {{-- <div class="col border radius">
+                                                        <input class="qty-val" 
+                                                        name="qty" id="qty2" type="number" value="1">
+                                                    </div> --}}
+
+                                                    <div class="col-auto pr-1">
+                                                        <div class="input-group">
+                                                            <div class="col  radius " style="margin-right:10px">
+                                                            <input style="width: 80px; height: 40px; text-align: center; " type="number" 
+                                                            class="qty-val " name="counter product-quantity" value="1" title="Qty" id="myNumberInput">
+                                                            </div>
+                                                            <div class="input-group-append">
+                                                                <button style="padding: 8px 10px;" class="js-plus btn btn-icon btn-xs btn-outline-secondary increment-btn">+</button>
+                                                                <button style="padding: 8px 10px;" class="js-minus btn btn-icon btn-xs btn-outline-secondary decrement-btn">-</button>
+                                                            </div>
+                                                        </div>
+                                                    </div>                                                    
+                                                    {{-- <div class="detail-qty border radius">
                                                         <a href="#" class="qty-down"><i class="fi-rs-angle-small-down"></i></a>
-                                                        <span class="qty-val">1</span>
+                                                        <span class="qty-val" id="qty2">1</span>
                                                         <a href="#" class="qty-up"><i class="fi-rs-angle-small-up"></i></a>
-                                                    </div>
-                                                    <div class="product-extra-link2">
-                                                        <button type="submit" class="button button-add-to-cart">Add to cart</button>
-                                                        <a aria-label="Add To Wishlist" class="action-btn hover-up" href="shop-wishlist.html"><i class="fi-rs-heart"></i></a>
-                                                        <a aria-label="Compare" class="action-btn hover-up" href="shop-compare.html"><i class="fi-rs-shuffle"></i></a>
+                                                    </div> --}}
+                                                    <div class="product-extra-link2" style="height: 40px;">
+                                                        <button class="button button-add-to-cart " id="add2cart">Add to cart</button>
                                                     </div>
                                                 </div>
+                                                <span class="badge-success p-2 border-radius-5" hidden id="alerts"> Item added to cart successfully</span>
+                                    
                                                 <ul class="product-meta font-xs color-grey mt-50">
-                                                    <li class="mb-5">SKU: <a href="#">FWM15VKT</a></li>
-                                                    <li class="mb-5">Tags: <a href="#" rel="tag">Cloth</a>, <a href="#" rel="tag">Women</a>, <a href="#" rel="tag">Dress</a> </li>
+                                                    {{-- <li class="mb-5">SKU: <a href="#">FWM15VKT</a></li> --}}
+                                                    {{-- <li class="mb-5">Tags: <a href="#" rel="tag">Cloth</a>, <a href="#" rel="tag">Women</a>, <a href="#" rel="tag">Dress</a> </li> --}}
                                                     <li>Availability:<span class="in-stock text-success ml-5">8 Items In Stock</span></li>
                                                 </ul>
                                             </div>
@@ -156,10 +179,10 @@
                                                 </div>
                                             </div>
                                             <div class="tab-pane fade" id="Additional-info">
-                                                @if(isset($product->specification))
+                                                {{-- @if(isset($product->specification))
                                                 <iframe src="{{asset('images/pdf/'.$product->specification)}}" width="800px" height="500px"> </iframe>
-                                                @endif
-                                                {{-- <table class="font-md">
+                                                @endif --}}
+                                                <table class="font-md">
                                                     <tbody>
                                                         <tr class="stand-up">
                                                             <th>Stand Up</th>
@@ -246,12 +269,147 @@
                                                             </td>
                                                         </tr>
                                                     </tbody>
-                                                </table> --}}
+                                                </table>
+                                            </div>
+                                            <div class="tab-pane fade active show" id="Reviews">
+                                                <!--Comments-->
+                                                <div class="comments-area">
+                                                    <div class="row">
+                                                        <div class="col-lg-6">
+                                                            <h4 class="mb-30">Customers Review</h4>
+                                                            <hr>
+                                                            <div class="comment-list">
+                                                                @if(count($rating)>0)
+                                                                    @foreach($rating as $reviews)
+                                                                        <!--single-comment -->
+                                                                        <div class="single-comment justify-content-between d-flex">
+                                                                            <div class="user justify-content-between d-flex">
+                                                                                <div class="thumb text-center">
+                                                                                    <img src="assets/imgs/page/avatar-7.jpg" alt="">
+                                                                                    <h6><a href="#">{{$reviews->name}}</a></h6>
+                                                                                    <p class="font-xxs">{{$reviews->created_at->format('d/m/yy')}}</p>
+                                                                                </div>
+                                                                                <div class="desc">
+                                                                                    
+                                                                                    <div class="product-rate d-inline-block">
+                                                                                        @if($reviews->rating == 1)
+                                                                                            <div class="product-rating" style="width:20%">
+                                                                                            </div>
+                                                                                        @endif
+                                                                                        @if($reviews->rating == 2)
+                                                                                            <div class="product-rating" style="width:40%">
+                                                                                            </div>
+                                                                                        @endif
+                                                                                        @if($reviews->rating == 3)
+                                                                                            <div class="product-rating" style="width:60%">
+                                                                                            </div>
+                                                                                        @endif
+                                                                                        @if($reviews->rating == 4)
+                                                                                            <div class="product-rating" style="width:80%">
+                                                                                            </div>
+                                                                                        @endif
+                                                                                        @if($reviews->rating == 5)
+                                                                                            <div class="product-rating" style="width:100%">
+                                                                                            </div>
+                                                                                        @endif
+                                                                                        
+                                                                                        {{-- <?php $xx = 0?> 
+                                                                                            @while($xx < $reviews->rated)
+                                                                                                <small class="fas fa-star"></small>
+                                                                                                <?php $xx++ ?>
+                                                                                                @endwhile
+                                                                                                @if($reviews->rating == 1)
+                                                                                                <div class="product-rating" style="width:20%">
+                                                                                                </div>
+                                                                                                @elseif($reviews->rated == 2)
+                                                                                                <div class="product-rating" style="width:40%">
+                                                                                                </div>
+                                                                                                @elseif($reviews->rated == 3)
+                                                                                                <div class="product-rating" style="width:60%">
+                                                                                                </div>
+                                                                                                @elseif($reviews->rated == 4)
+                                                                                                <div class="product-rating" style="width:80%">
+                                                                                                </div>
+                                                                                                @elseif( $reviews->rated == 5 )
+                                                                                                <div class="product-rating" style="width:100%">
+                                                                                                </div>
+                                                                                        @endif --}}
+                                                                                    </div>
+                                                                                    <p>{{$reviews->description}}</p>
+                                                                                    <div class="d-flex justify-content-between">
+                                                                                        <div class="d-flex align-items-center">
+                                                                                            <p class="font-xs mr-30">{{$reviews->email}} </p>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    @endforeach
+                                                                @else
+                                                                    <h6 style="color:gray">There is no Review yet for this product, be the first to say a review</h6>
+                                                                   
+                                                                @endif
+                                                                
+                                                                
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-lg-6">
+                                                            <h4 class="mb-30">Add a review</h4>
+                                                            <!--comment form-->
+                                                            <div class="comment-form">
+                                                                {{-- <div class="product-rate d-inline-block mb-30">
+                                                                </div> --}}
+                                                                <div class="row">
+                                                                    <div class="">
+                                                                        {{Form::open(['action' => ['HomeController@Addreview',$product->id], 'id'=>'commentForm', 'method'=>'POST', 'class'=>'form-contact comment_form' ])}}
+                                                                        
+                                                                            <div class="row">
+                                                                                <div class="col-12">
+                                                                                    <div class="form-group">
+                                                                                        <label for="rating" class="form-label mb-0">Rate</label>
+                                                                                        <select name="rated" id="rating" class="form-control focus-shadow-0">
+                                                                                            <option value="5">★★★★★ (5/5)</option>
+                                                                                            <option value="4">★★★★☆ (4/5)</option>
+                                                                                            <option value="3">★★★☆☆ (3/5)</option>
+                                                                                            <option value="2">★★☆☆☆ (2/5)</option>
+                                                                                            <option value="1">★☆☆☆☆ (1/5)</option>
+                                                                                        </select>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="col-12">
+                                                                                    <div class="form-group">
+                                                                                        <textarea data-msg="Please enter your message." data-error-class="u-has-error"
+                                                                                        data-success-class="u-has-success" class="form-control w-100" name="description" id="comment" cols="30" rows="9" placeholder="Your Review"></textarea>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="col-12">
+                                                                                    <div class="form-group">
+                                                                                        <input class="form-control" name="name" id="name" type="text" placeholder="Name">
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="col-12">
+                                                                                    <div class="form-group">
+                                                                                        <input class="form-control" name="email" id="email" type="email" placeholder="Email">
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="form-group">
+                                                                                <button type="submit" class="button button-contactForm">Submit Review</button>
+                                                                            </div>
+
+                                                                        {{Form::close()}}
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                
                                             </div>
                                             
                                         </div>
                                     </div>
-                                    <div class="row mt-60">
+                                    <div class="row mt-10">
                                         <div class="col-12">
                                             <h3 class="section-title style-1 mb-30">Related Products</h3>
                                         </div>
@@ -291,13 +449,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="banner-img banner-big wow fadeIn f-none animated mt-50">
-                                        <img class="border-radius-10" src="assets/imgs/banner/banner-4.png" alt="">
-                                        <div class="banner-text">
-                                            <h4 class="mb-15 mt-40">Repair Services</h4>
-                                            <h2 class="fw-600 mb-20">We're an Apple <br>Authorised Service Provider</h2>
-                                        </div>
-                                    </div>
+                                    
                                 </div>
                             </div>
                             <div class="col-lg-3 primary-sidebar sticky-sidebar">
@@ -312,50 +464,7 @@
                                     @endforeach
                                     
                                 </div>
-                                <!-- Fillter By Price -->
-                                <div class="sidebar-widget price_range range mb-30">
-                                    <div class="widget-header position-relative mb-20 pb-10">
-                                        <h5 class="widget-title mb-10">Fill by price</h5>
-                                        <div class="bt-1 border-color-1"></div>
-                                    </div>
-                                    <div class="price-filter">
-                                        <div class="price-filter-inner">
-                                            <div id="slider-range"></div>
-                                            <div class="price_slider_amount">
-                                                <div class="label-input">
-                                                    <span>Range:</span><input type="text" id="amount" name="price" placeholder="Add Your Price" />
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="list-group">
-                                        <div class="list-group-item mb-10 mt-10">
-                                            <label class="fw-900">Color</label>
-                                            <div class="custome-checkbox">
-                                                <input class="form-check-input" type="checkbox" name="checkbox" id="exampleCheckbox1" value="">
-                                                <label class="form-check-label" for="exampleCheckbox1"><span>Red (56)</span></label>
-                                                <br>
-                                                <input class="form-check-input" type="checkbox" name="checkbox" id="exampleCheckbox2" value="">
-                                                <label class="form-check-label" for="exampleCheckbox2"><span>Green (78)</span></label>
-                                                <br>
-                                                <input class="form-check-input" type="checkbox" name="checkbox" id="exampleCheckbox3" value="">
-                                                <label class="form-check-label" for="exampleCheckbox3"><span>Blue (54)</span></label>
-                                            </div>
-                                            <label class="fw-900 mt-15">Item Condition</label>
-                                            <div class="custome-checkbox">
-                                                <input class="form-check-input" type="checkbox" name="checkbox" id="exampleCheckbox11" value="">
-                                                <label class="form-check-label" for="exampleCheckbox11"><span>New (1506)</span></label>
-                                                <br>
-                                                <input class="form-check-input" type="checkbox" name="checkbox" id="exampleCheckbox21" value="">
-                                                <label class="form-check-label" for="exampleCheckbox21"><span>Refurbished (27)</span></label>
-                                                <br>
-                                                <input class="form-check-input" type="checkbox" name="checkbox" id="exampleCheckbox31" value="">
-                                                <label class="form-check-label" for="exampleCheckbox31"><span>Used (45)</span></label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <a href="shop-grid-right.html" class="btn btn-sm btn-default"><i class="fi-rs-filter mr-5"></i> Fillter</a>
-                                </div>
+                                <br>
                                 <!-- Product sidebar Widget -->
                                 <div class="sidebar-widget product-sidebar  mb-30 p-30 bg-grey border-radius-10">
                                     <div class="widget-header position-relative mb-20 pb-10">
@@ -370,9 +479,9 @@
                                         <div class="content pt-10">
                                             <h5><a href="{{route('product-details',encrypt($prods->id))}}">{{$prods->name}}</a></h5>
                                             <p class="price mb-0 mt-5">C${{number_format($prods->price)}}</p>
-                                            <div class="product-rate">
+                                            {{-- <div class="product-rate">
                                                 <div class="product-rating" style="width:90%"></div>
-                                            </div>
+                                            </div> --}}
                                         </div>
                                     </div>
                                     @endforeach
@@ -383,64 +492,99 @@
                     </div>
                 </section>
             </main>
-
+            
         
-        @endsection
-
+            
+    @endsection
     @section('scripts')
 
+    <script>
+        $(document).ready(function() {
+            var myNumberInput = $('#myNumberInput');
+            var incrementBtn = $('.increment-btn');
+            var decrementBtn = $('.decrement-btn');
+            var addToCartButton = $('#add2cart');
+            // var counter = $('.counter');
+            incrementBtn.on('click', function() {
+                myNumberInput.val(parseInt(myNumberInput.val()) + 1);
+            });
+
+            decrementBtn.on('click', function() {
+                var currentValue = parseInt(myNumberInput.val());
+                if (currentValue > 1) {
+                    myNumberInput.val(currentValue - 1);
+                }
+            });
+            
+
+            addToCartButton.on('click', function() {
+                cartId = {!! json_encode($product->id) !!}
+                $.ajaxSetup({
+                    headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    }
+                });
+                //alert('success'+myNumberInput.val());
+                $.ajax({
+                    url: "{{route('carts.add','')}}"+"/"+cartId,
+                    type: "get",
+                    data:{ 
+                    qty:myNumberInput.val()
+                    },
+                    dataType: "json",
+                    success:function(response){
+                        if(response){
+                            $('.cartReload').html(response.qty); 
+                            console.log(response);
+                            $('.cartReloads').html('C$' + thousands_separators(response.subtotal));
+                            $('#alerts').attr('hidden', false); 
+                            setTimeout(function() {
+                                $('#alerts').hide();
+                                location.reload();
+                            }, 5);
+                            toastr.success('Cart item quantity updated successfully');
+                            //alert('success');
+                        }
+                    }
+                });
+            });
+        });
+        function thousands_separators(num)
+        {
+            var num_parts = num.toString().split(".");
+            num_parts[0] = num_parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+            return num_parts.join(".");
+        }
+
+    </script>
+    @if(session('success'))
+        <script>
+            // Display Toastr success notification
+            toastr.success('{{ session('success') }}');
+        </script>
+    @endif
    
-<script type="text/javascript">
-var $button = document.querySelector('.increment-btn');
-var $counter = document.querySelector('.counter');
+    <script type="text/javascript">
+       toastr.options = {
+            "closeButton": true,
+            "debug": false,
+            "newestOnTop": false,
+            "progressBar": true,
+            "positionClass": "toast-top-right",
+            "preventDuplicates": true,
+            "onclick": null,
+            "showDuration": "300",
+            "hideDuration": "1000",
+            "timeOut": "5000",
+            "extendedTimeOut": "1000",
+            "showEasing": "swing",
+            "hideEasing": "linear",
+            "showMethod": "fadeIn",
+            "hideMethod": "fadeOut"
+        };
+        
+    </script>
+   
 
-$button.addEventListener('click', function(){
-$counter.value = parseInt($counter.value) + 1; // `parseInt` converts the `value` from a string to a number
-}, false);
 
-   var $bu = document.querySelector('.decrement-btn');
-var $counter = document.querySelector('.counter');
-
-$bu.addEventListener('click', function(){
-$counter.value = parseInt($counter.value) - 1; // `parseInt` converts the `value` from a string to a number
-}, false);
-</script>
-
-<script>	
-	$('#add2cart').on('click', function(){	
-	  cartId = {!! json_encode($product->id) !!}
-	  qty = $('#qty2').val();
-		  $.ajaxSetup({
-			headers: {
-			  'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-			}
-			  });
-	  $.ajax({
-		url: "{{route('carts.add','')}}"+"/"+cartId,
-		type: "get",
-		data:{ 
-		  qty:qty
-		},
-		 dataType: "json",
-		success:function(response){
-		  if(response){
-			 $('.cartReload').html(response.qty); 
-             console.log(response);
-             $('.cartReloads').html('₦' + thousands_separators(response.subtotal));
-             $('#alerts').attr('hidden', false); 
-             setTimeout(function() {
-                $('#alerts').hide();
-             }, 3000);
-		   }
-		}
-	  });
-	});
-
-function thousands_separators(num)
-  {
-    var num_parts = num.toString().split(".");
-    num_parts[0] = num_parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-    return num_parts.join(".");
-  }
-</script>
 @endsection

@@ -1,271 +1,165 @@
-@extends('layouts.app')
+@extends('layouts.app2')
 @section('content')
-
-   <main id="content" role="main" class="checkout-page">
-            <!-- breadcrumb -->
-            <div class="bg-gray-13 bg-md-transparent">
-                <div class="container">
-                    <!-- breadcrumb -->
-                    <div class="my-md-3">
-                        <nav aria-label="breadcrumb">
-                            <ol class="breadcrumb mb-3 flex-nowrap flex-xl-wrap overflow-auto overflow-xl-visble">
-                                <li class="breadcrumb-item flex-shrink-0 flex-xl-shrink-1"><a href="">Checkout</a></li>
-                                <li class="breadcrumb-item flex-shrink-0 flex-xl-shrink-1 active" aria-current="page">Payment</li>
-                            </ol>
-                        </nav>
-                    </div>
-                    <!-- End breadcrumb -->
-                </div>
+<main class="main">
+    <div class="page-header breadcrumb-wrap mb-20">
+        <div class="container">
+            <div class="breadcrumb">
+                <a href="{{route('checkout.index')}}" rel="nofollow">Checkout</a>
+                <span></span> Payment
             </div>
-            <!-- End breadcrumb -->
-
-            <div class="container">
-                <div class="mb-5">
-                    <h4 class="text-center ">Payment</h4>
-					@include('includes.message') 
-                </div>
-                <!-- Accordion -->
-                <!-- End Accordion -->
-
-                    <div class="row">
-                   
-                        <div class="col-lg-4 order-lg-2 mb-7 mb-lg-0">
-                            <div class="pl-lg-3 ">
-                                <div class="bg-gray-1 rounded-lg">
-                                    <!-- Order Summary -->
-                                    
-                                    <div class="p-4 mb-4 checkout-table">
-                                        <!-- Title -->
-                                        <div class="border-bottom border-color-1 mb-5">
-                                            <h6 class="section-title mb-0 "><strong>Your order ({{count($cart)}} items)</strong></h6>
-                                        </div>
-                                      <!-- Product Content -->
-                                        <table class="table">
-                                            <thead>
-                                                <tr>
-                                                    <th class="product-name"></th>
-                                                    <th class="product-name">Product</th>
-                                                    <th class="product-total">Total</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                            @foreach($cart as $carts)
-                                                <tr class="cart_item">
-                                                    <td><img width="40px" height="40px"src="{{asset('/images/products/'.$carts->model->image )}}"></td>
-                                                    <td style="font-size:12px">{{$carts->model->name}}<strong class="product-quantity"><br>QTY:{{$carts->qty}}</strong></td>
-                                                    <td style="font-size:12px">₦{{number_format($carts->price * $carts->qty, 2)}}</td>
-                                                </tr>
-                                                @endforeach
-                                            </tbody>
-                                            <tfoot>
-                                             <tr>
-                                                    <th></th>
-													<th></th>
-                                                    
-                                                </tr>
-                                                @php
-                                                $cart = \Cart::priceTotalFloat();
-                                                $total = \Cart::priceTotalFloat();
-                                                @endphp
-                                                <tr>
-                                                    <th>Total</th>
-													<td></td>
-                                                    <td><strong>₦{{number_format($total, 2)}}</strong></td>
-                                                </tr>
-                                                
-                                            </tfoot>
-                                        </table>
-                                        
-                                        <script src="https://checkout.flutterwave.com/v3.js"></script>
-                                        <form>
-                                        <button type="button" onClick="makePayment()" id="btnsubmit2" class="btn btn-primary btn-block  btn-sm ">Pay Now</button>
-                                    </form>
-                                    </div>
-                                    <!-- End Order Summary -->
+        </div>
+    </div>
+    <hr>
+    <section class="mt-20 mb-50">
+        <div class="container">
+            <div class="mb-30">
+                <h4 class="text-center">Payment</h4>
+                @include('includes.message')
+            </div>
+            <div class="row mt-20">
+                <div class="col-md-6">
+                    <div class="order_review">
+                        <div class="row">
+                            <div class="col-lg-6 mb-sm-15">
+                                <div class="mb-10">
+                                    <h4>Shipping Address</h4>
                                 </div>
                             </div>
                         </div>
-
-                        <div class="col-lg-8 order-lg-1">
-                          
-               <div class="row">
-                      <div class="mb-6 col-xl-12">
-                       <table class="table table-bordered" cellspacing="0">
-                            <thead>
-                            <tr>
-                            <th class="defaults mb-0">Shipping Address </th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <tr>
-                        
-                            <td> 
-                            
-                            
-                            Receiver:{{$address->name}} <br>
-                            Address: {{$address->address}} <br>
-                            City: {{$address->city . $address->state}} <br>
-                            Email: {{$address->email}} <br>
-                            Phone: {{$address->phone}} <br>
-
-                           
-                            </td>
-                            </tr>
-                         
-                           <tr><td>
-                                </td>
-                                </tr>
-                              
-                                </tr>
-                                  </tbody>
-                                </table>
-                 
-             </div>
-                        </div>
-                        
-                        <div class="row">
-                      <div class="mb-6 col-xl-12">
-                       <table class="table table-bordered" cellspacing="0">
-                            <thead>
-                            <tr>
-                            <th class=" mb-0">Payment Method</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <tr>
-                            <td> 
-                   <div class="border-top border-width-3 border-color-1 pt-3 mb-3">
-                                        
-                                                <div class="border-bottom border-color-1 border-dotted-bottom">
-                                                    <div class="p-3" id="basicsHeadingFour">
-                                                        <div class="custom-control custom-radio">
-                                                            <input type="radio" class="custom-control-input" id="FourstylishRadio1" value="card" name="payment_method" checked>
-                                                            <label class="custom-control-label form-label" for="FourstylishRadio1"
-                                                                data-toggle="collapse"
-                                                                data-target="#basicsCollapseFour"
-                                                                aria-expanded="false"
-                                                                aria-controls="basicsCollapseFour">
-                                                                Pay with Debit Card
-                                                            </label>
-                                                        </div>
-                                                    </div>
-                                                    <div id="basicsCollapseFour" class="collapse border-top border-color-1 border-dotted-top bg-dark-lighter"
-                                                        aria-labelledby="basicsHeadingFour"
-                                                        data-parent="#basicsAccordion1">
-                                                        <div class="p-4">
-                                                            You can pay with your VISA, MasterCard, Verve Cards on our secured platform
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                              
-                                                <!-- End Card -->
-                                            </div>
-                                            <!-- End Basics Accordion -->
-                                        </div>
-                            </td>
-                            </tr>
-                            </tbody>
+                        <div class="table-responsive order_table text-center">
+                            <table class="table">
+                                <tbody>
+                                    <tr>
+                                        <td class="flex">
+                                            <h5><a href="#">Receiver:</a><span class="product-qty" style="font-weight: bold">{{$address->receiver_name}}</span></h5>
+                                            <br>
+                                            <h5><a href="#">Address:</a><span class="product-qty" style="font-weight: bold">{{$address->address}}</span></h5>
+                                            <br>
+                                            <h5><a href="#">City:</a><span class="product-qty" style="font-weight: bold">{{$address->city}}, {{$address->state}}</span></h5>
+                                            <br>
+                                            <h5><a href="#">Email:</a><span class="product-qty" style="font-weight: bold">{{$address->receiver_email}}</span></h5>
+                                            <br>
+                                            <h5><a href="#">Phone:</a><span class="product-qty" style="font-weight: bold">{{$address->receiver_phone}}</span></h5>
+                                            <br>
+                                        </td>
+                                    </tr>
+                                </tbody>
                             </table>
-                            
-                  
-             </div>
                         </div>
                     </div>
-                     
+                    <div class="mb-25 mt-30">
+                        <div class="payment_method">
+                            <div class="mb-25">
+                                <h5>Payment Method</h5>
+                            </div>
+                            <div class="payment_option">
+                                <div class="custome-radio">
+                                    <input class="form-check-input" required="" type="radio" name="payment_method" id="exampleRadios3" value="card" checked>
+                                    <label class="form-check-label" for="exampleRadios3" data-bs-toggle="collapse" data-target="#bankTransfer" aria-controls="bankTransfer">Pay With Debit Card</label>
+                                    <div class="form-group collapse in" id="bankTransfer">
+                                        <p class="text-muted mt-5">Please note that you will pay for the shipping fee before the item is shipped to you using this method.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="mb-20">
+                        <h4>Your Orders ({{count($cart)}} items)</h4>
+                    </div>
+                    <div class="table-responsive order_table text-center">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th colspan="2">Product</th>
+                                    <th>Total</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach($cart as $carts)
+                                <tr>
+                                    <td class="image product-thumbnail"><img src="{{asset('/images/products/'.$carts->model->image)}}" alt="#"></td>
+                                    <td>
+                                        <h5><a href="#">{{$carts->model->name}}</a></h5> <span class="product-qty">x {{$carts->qty}}</span>
+                                    </td>
+                                    <td>C${{number_format($carts->price * $carts->qty, 2)}}</td>
+                                </tr>
+                                @endforeach
+                                @php
+                                $cart = \Cart::priceTotalFloat();
+                                $total = \Cart::priceTotalFloat();
+                                @endphp
+                                <tr>
+                                    <th>Shipping</th>
+                                    <td colspan="2"><em>Free Shipping</em></td>
+                                </tr>
+                                <tr>
+                                    <th>Total</th>
+                                    <td colspan="2" class="product-subtotal"><span class="font-xl text-brand fw-900">C${{number_format($total, 2)}}</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="bt-1 border-color-1 mt-30 mb-30"></div>
+                    <script src="https://checkout.flutterwave.com/v3.js"></script>
+                    <form>
+                        <button type="button" onClick="makePayment()" id="btnsubmit2" class="btn btn-fill-out btn-block mt-10">Pay Now</button>
+                    </form>
+                </div>
             </div>
-        </main>
-
-@endsection
-
-@section('scripts')
+        </div>
+    </section>
+</main>
 <script>
+    let total_paid = {!! json_encode(\Cart::Totalfloat()) !!};
+    let fare = 1;
+    let total = parseInt(total_paid) + parseInt(fare);
+    var _token = {!! json_encode(env('FLUTTERWAVE_PUB_KEY')) !!};
+    let email = {!! json_encode(auth()->user()->email) !!};
+    let phone = {!! json_encode(auth()->user()->phone) !!};
+    let name = {!! json_encode(auth()->user()->name) !!};
+    let amounts = {!! json_encode(\Cart::Totalfloat()) !!};
 
-let total_paid = {!! json_encode(\Cart::Totalfloat())!!};
-let fare = 1;
-let total = parseInt(total_paid) + parseInt(fare);
-// $('.toggleM').on('change', function(){
-// 	//alert(document.getElementById('fees').value);
-// 	if(document.getElementById('home_delivery').checked == true){
-// 	 $('#shipment').html('<span class="font-weight-bold">'+'₦'+thousands_separators(fare)+'</span>'); 
-// 	 $('#home_de').attr('hidden', false);
-// 	 $('#pickup_de').attr('hidden', true);
-// 	 $('#fee').attr('value', fare);
-// 	  $('#total_paid').html('₦'+thousands_separators(total)); 
-// 	}else{
-//  	$('#shipment').html('<span class="font-weight-bold">'+'₦'+0+'</span>'); 
-// 		$('#pickup_de').attr('hidden', false);
-// 		 $('#fees').attr('value', 0);
-// 		$('#total_paid').html('₦'+thousands_separators(total_paid)); 
-// 		$('#home_de').attr('hidden', true);
-// 	}
-// });
+    function makePayment() {
+        FlutterwaveCheckout({
+            public_key: _token,
+            tx_ref: "SFSL" + Math.floor((Math.random() * 1000000) + 1),
+            amount: amounts,
+            currency: "NGN",
+            country: "NG",
+            payment_options: "card, ussd",
+            meta: {
+                consumer_id: 1,
+                consumer_mac: "92a3-912ba-1192a",
+                purpose: "Payment for Order",
+            },
+            customer: {
+                email: email,
+                phone_number: phone,
+                name: name,
+            },
+            callback: function (response) {
+                var trx_id = response.transaction_id;
+                window.location = '{{route("confirm.payment", '')}}' + "/" + trx_id;
+            },
+            onclose: function () {
+                // close modal
+            },
+            customizations: {
+                title: "Sofarsolar",
+                description: "Payment for Order",
+                logo: "",
+            },
+        });
+    }
 
-
-
-
-var _token = {!!  json_encode(env('FLUTTERWAVE_PUB_KEY'))!!}
-let email = {!! json_encode(auth()->user()->email) !!};
-let phone = {!! json_encode(auth()->user()->phone) !!};
-let name = {!! json_encode(auth()->user()->name) !!};
-let amounts = {!! json_encode(\Cart::Totalfloat())!!}
-
- function makePayment() {
-    FlutterwaveCheckout({
-      public_key: _token,
-      tx_ref: "SFSL"+Math.floor((Math.random() * 1000000) + 1),
-      amount: amounts,
-      currency: "NGN",
-      country: "NG",
-      payment_options: "card, ussd",
-     // redirect_url: // specified redirect URL
-       // https://callbacks.piedpiper.com/flutterwave.aspx?ismobile=34",
-      meta: {
-        consumer_id: 1,
-        consumer_mac: "92a3-912ba-1192a",
-        purpose: "Payment for Order",
-        
-      },
-      customer: {
-        email: email,
-        phone_number: phone,
-        name: name,
-      },
-       callback: function (response) {
-          var trx_id = response.transaction_id;
-         window.location = '{{route("confirm.payment", '')}}'+ "/" +trx_id;
-
-    //       $.ajax({
-    //           url: '{{route("confirm.payment", '')}}'+ "/" +trx_id,
-    //           method: 'get',
-    //           success: function (response) {
-    //             // console.log(response);
-    //             // the transaction status is in response.data.status
-    //             var data = $.parseJSON(response);
-    //             console.log(data);
-    //             var iamount = parseFloat(data.data.amount);
-    //             if(data.data.status == 'successful' ){
-    //                     $('#form1').submit(); 
-    //             }
-    //         },
-    //   });
-      },
-      onclose: function() {
-        // close modal
-      },
-      customizations: {
-        title: "Sofarsolar",
-        description: "Payment for Order",
-       logo: "",
-      },
-    });
-  };
-function thousands_separators(num)
-  {
-    var num_parts = num.toString().split(".");
-    num_parts[0] = num_parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-    return num_parts.join(".");
-  }
-  
+    function thousands_separators(num) {
+        var num_parts = num.toString().split(".");
+        num_parts[0] = num_parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        return num_parts.join(".");
+    }
 </script>
-
+@endsection
+@section('scripts')
 @endsection

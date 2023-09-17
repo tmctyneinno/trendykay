@@ -1,7 +1,7 @@
  
 
 
-
+ 
 <header class="header-area header-style-1 header-height-2">
     <div class="header-top header-top-ptb-1 d-none d-lg-block">
         <div class="container">
@@ -79,51 +79,59 @@
                     </div>
                     <div class="header-action-right">
                         <div class="header-action-2">
-                            <div class="header-action-icon-2">
+                            {{-- <div class="header-action-icon-2">
                                 <a href="shop-wishlist.html">
                                     <img class="svgInject" alt="Evara" src="{{ asset('assets/imgs/theme/icons/icon-heart.svg')}}">
                                     <span class="pro-count blue">4</span>
                                 </a>
-                            </div>
+                            </div> --}}
                             <div class="header-action-icon-2">
-                                <a class="mini-cart-icon" href="shop-cart.html">
+                                <a class="mini-cart-icon" href="{{route('carts.index')}}">
                                     <img alt="Evara" src="{{ asset('assets/imgs/theme/icons/icon-cart.svg')}}">
-                                    <span class="pro-count blue">2</span>
+                                    @if(Cart::count()> 0) 
+                                        <span class="pro-count blue">{{Cart::count()}}</span>  
+                                    @else  
+                                        <span class="pro-count blue"> 0 </span>
+                                    @endif
+                                    {{-- @if(Cart::count() > 0)C${{number_format(Cart::priceTotalfloat())}} @endif --}}
+                                    {{-- @if (Cart::count() > 0)
+                                        <span class="pro-count blue">  {{Cart::count() }}</span></a>
+                                    @elseif(Cart::count() == 0)
+                                        <span class="pro-count blue"> 0</span>
+                                    @endif --}}
                                 </a>
                                 <div class="cart-dropdown-wrap cart-dropdown-hm2">
                                     <ul>
-                                        <li>
-                                            <div class="shopping-cart-img">
-                                                <a href="shop-product-right.html"><img alt="Evara" src="{{ asset('assets/imgs/shop/thumbnail-3.jpg')}}"></a>
-                                            </div>
-                                            <div class="shopping-cart-title">
-                                                <h4><a href="shop-product-right.html">Daisy Casual Bag</a></h4>
-                                                <h4><span>1 × </span>$800.00</h4>
-                                            </div>
-                                            <div class="shopping-cart-delete">
-                                                <a href="#"><i class="fi-rs-cross-small"></i></a>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="shopping-cart-img">
-                                                <a href="shop-product-right.html"><img alt="Evara" src="{{ asset('assets/imgs/shop/thumbnail-2.jpg')}}"></a>
-                                            </div>
-                                            <div class="shopping-cart-title">
-                                                <h4><a href="shop-product-right.html">Corduroy Shirts</a></h4>
-                                                <h4><span>1 × </span>$3200.00</h4>
-                                            </div>
-                                            <div class="shopping-cart-delete">
-                                                <a href="#"><i class="fi-rs-cross-small"></i></a>
-                                            </div>
-                                        </li>
+                                        @if (Cart::count() > 0) 
+                                            @foreach (Cart::content()->take(4) as $carts)
+                                                <li> 
+                                                    <div class="shopping-cart-img">
+                                                        <a href="{{route('carts.index')}}">
+                                                            <img alt="Evara" src="{{asset('images/products/' .$carts->model->image)}}">
+                                                        </a>
+                                                    </div>
+                                                    <div class="shopping-cart-title">
+                                                        <h4><a href="{{route('carts.index')}}">{{$carts->model->name}}</a></h4>
+                                                        <h4><span>{{$carts->qty}} × </span>C${{number_format($carts->model->price)}}</h4>
+                                                    </div>
+                                                    <div class="shopping-cart-delete">
+                                                        <a href="#"><i class="fi-rs-cross-small"></i></a>
+                                                    </div>
+                                                </li>
+                                             @endforeach
+                                        @else
+                                            <span class="text-danger" style="color: red">No item in cart</span>
+                                        @endif
+                                        
+                                        
                                     </ul>
                                     <div class="shopping-cart-footer">
                                         <div class="shopping-cart-total">
-                                            <h4>Total <span>$4000.00</span></h4>
+                                            <h4>Total <span>C${{Cart::priceTotalfloat()}}</span></h4>
                                         </div>
                                         <div class="shopping-cart-button">
-                                            <a href="shop-cart.html" class="outline">View cart</a>
-                                            <a href="shop-checkout.html">Checkout</a>
+                                            <a href="{{route('carts.index')}}" class="outline">View cart</a>
+                                            <a href="{{route('checkout.index')}}">Checkout</a>
                                         </div>
                                     </div>
                                 </div>
@@ -175,27 +183,18 @@
                     <div class="main-menu main-menu-padding-1 main-menu-lh-2 d-none d-lg-block">
                         <nav>
                             <ul>
+                                @foreach ($menu as $mnu )
                                 <li>
-                                    <a class="active" href="index.html">Home </a>
+                                    <a class="active" href="{{route('pages',$mnu->slug)}}">{{$mnu->name}} </a>
                                 </li>
-                                <li><a href="#">Products </a>
-                                    
-                                </li>
-                                <li><a href="#">Blog </a>
-                                   
-                                </li>
-                                <li><a href="#">Project <i class="fi-rs-angle-down"></i></a>
-                                   
-                                </li>
-                                <li>
-                                    <a href="{{route('pages','contacts')}}">Contact Us</a>
-                                </li>
+                                @endforeach
+                               
                             </ul>
                         </nav>
                     </div>
                 </div>
                 <div class="hotline d-none d-lg-block">
-                    <p><i class="fi-rs-headset"></i><span>Hotline</span> 1900 - 888 </p>
+                    <p><i class="fi-rs-headset"></i><span>Hotline</span> +14317777816 </p>
                 </div>
                 <p class="mobile-promotion">Happy <span class="text-brand">Mother's Day</span>. Big Sale Up to 40%</p>
                 <div class="header-action-right d-block d-lg-none">
@@ -217,10 +216,10 @@
                                 <ul>
                                     <li>
                                         <div class="shopping-cart-img">
-                                            <a href="shop-product-right.html"><img alt="Evara" src="{{ asset('assets/imgs/shop/thumbnail-4.jpg')}}"></a>
+                                            <a href="{{route('carts.index')}}"><img alt="Evara" src="{{ asset('assets/imgs/shop/thumbnail-4.jpg')}}"></a>
                                         </div>
                                         <div class="shopping-cart-title">
-                                            <h4><a href="shop-product-right.html">Macbook Pro 2022</a></h4>
+                                            <h4><a href="{{route('carts.index')}}">Macbook Pro 2022</a></h4>
                                             <h3><span>1 × </span>$3500.00</h3>
                                         </div>
                                         <div class="shopping-cart-delete">
@@ -291,19 +290,12 @@
                 <!-- mobile menu start -->
                 <nav>
                     <ul class="mobile-menu">
+                        @foreach ($menu as $mnu )
                         <li class="menu-item-has-children">
-                            <span class="menu-expand"></span><a href="index.html">Home</a>
+                            <span class="menu-expand"></span><a href="{{route('pages',$mnu->slug)}}">{{$mnu->name}}</a>
                         </li>
-                        <li class="menu-item-has-children"><span class="menu-expand"></span>
-                            <a href="shop-grid-right.html">Products</a>
-                        </li>
-                        <li class="menu-item-has-children"><span class="menu-expand"></span>
-                            <a href="{{route('pages','contacts')}}">Blog</a>
-                        </li>
-                        <li class="menu-item-has-children"><span class="menu-expand"></span>
-                            <a href="{{route('pages','contacts')}}" >Contact Us</a>
-                        </li>
-                        
+                        @endforeach
+                       
                     </ul>
                 </nav>
                 <!-- mobile menu end -->

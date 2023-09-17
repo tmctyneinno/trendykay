@@ -130,7 +130,8 @@ class PagesController extends Controller
                 $products['prod'] = Product::take(5)->orderBy('created_at','desc')->get();
                 $products['pro'] = Product::take(10)->orderBy('sale_price','ASC')->get();
                $products['products'] = Product::orderBy('created_at','desc')->paginate(20);
-               return view('users.pages.products', $products);
+               $cart['cart'] =  \Cart::content()->take(4);
+               return view('users.pages.products', $products, $cart);
                 break;
             case "news":
                return view('users.pages.news')->with('news', News::latest()->get())

@@ -1,137 +1,199 @@
-@extends('layouts.app')
+@extends('layouts.app2')
 @section('content')
-<main id="content" role="main" class="checkout-page">
-            <!-- breadcrumb -->
-     <div class="bg-gray-13 bg-md-transparent">
-                <div class="container">
-                    <!-- breadcrumb -->
-                    <div class="my-md-3">
-                        <nav aria-label="breadcrumb">
-                            <ol class="breadcrumb mb-3 flex-nowrap flex-xl-wrap overflow-auto overflow-xl-visble">
-                                <li class="breadcrumb-item flex-shrink-0 flex-xl-shrink-1"><a href="#">Home</a></li>
-                                <li class="breadcrumb-item flex-shrink-0 flex-xl-shrink-1 active" aria-current="page">Order Details</li>
-                            </ol>
-                        </nav>
-                    </div>
-                    <!-- End breadcrumb -->
-                </div>
+<main class="main">
+    <div class="page-header breadcrumb-wrap mb-20">
+        <div class="container">
+            <div class="breadcrumb">
+                <a href="{{route('checkout.index')}}" rel="nofollow">Checkout</a>
+                <span></span> Order Details
             </div>
-            
-            <div class="container">
-                <div class="row mb-8">
-                @include('includes.accountNav')
-                      <div class="mb-8 col-xl-9">
-                        @include('includes.message') 
-                        <br>
-                    
-                         <span style="font-size:24px">Order Details</span> <br>
-                         
-                            <div class="borders-radius-17 border p-4 mt-4 mt-md-0 px-lg-10 px-xl-4 px-wd-10 py-lg-9 py-xl-5 py-wd-9">
-                             
-                            
-                             Order No: {{$orders->order_No}}<br>
-                             Total Amount:  ₦{{$orders->amount <= 0 ? 0 : number_format($orders->amount,2)}}<br>
-                              Placed On:  {{$orders->created_at}} <br>  
-                           
-
-                             <hr>
-                              <strong>Items in this Order</strong>
-                               <div class="row">
-                                <table class="table">
-                                            <thead>
-                                                <tr>
-                                                </tr>
-                                                <tr>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                            @foreach($items as $item)
-                                                <tr class="cart_item">
-                                                    <td>
-                                                  <a href="#"><img width="100px" height="150"class="img-fluid max-width-100 p-1" src="{{asset('images/products/' .$item->image)}}" alt="Image Description"></a>
-                                                    </td>
-                                                    <td>
-                                                     {{$item->product_name}}<br>
-                                                    Placed On: {{$item->created_at}}<br>
-                                                    Amount: ₦{{$item->amount <= 0 ? 0 : number_format($item->amount,2)}}<br>
-                                                     <strong class="product-quantity">QTY: {{$item->qty}}</strong><br>
-                                                  </td>
-
-                                                
-                                                </tr>
-                                                @endforeach
-                                            </tbody>
-                                            </table>
-                             
+        </div>
+    </div>
+    <hr>
+    <section class="mt-20 mb-50">
+        <div class="container">
+            @include('includes.message')
+            <br>
+            <div class="mb-30">
+                <h4 class="text-center">Order Details</h4>
+               
+            </div>
+            <div class="row mt-20">
+                <div class="col-md-6">
+                    <div class="order_review">
+                        <div class="row">
+                            <div class="col-lg-6 mb-sm-15">
+                                <div class="mb-10">
+                                    <h4>Shipping Address</h4>
+                                </div>
                             </div>
-                            <hr>
-                            <div class="row">
-                          
-                             <div class="mb-6 col-xl-6">
-                       <table class="table table-bordered" cellspacing="0">
-                            <thead>
-                            <tr>
-                            <th><strong>SHIPPING INFORMATION</strong> </th>
-                            </tr>
-                            
-                            </thead>
-                            <tbody>
-                            <tr>
-                            <td> 
-                           
-                             
-                           
-                            <p> <strong>Shipping Details</strong><br>
-							Phone:  {{$orders->shipping->receiver_name}}<br>
-							Phone:  {{$orders->shipping->receiver_phone}}<br>
-                           Email: {{$orders->shipping->receiver_email}}<br>
-                            Address: {{$orders->shipping->address}}<br>
-                           City:  {{$orders->shipping->city .$item->state}}<br>
-						   City:  {{$orders->shipping->delivery_method}}<br>
-                           
-                            </p>
-                            </td>
-                            </tr>
-                            </tbody>
-                            </table>
-                            </div>
-                                 <div class="mb-6 col-xl-6">
-                       <table class="table table-bordered" cellspacing="0">
-                            <thead>
-                            <tr>
-                            <th><strong>Payment Information</strong> </th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <tr>
-                            <td> 
-                             <div style="height:10px">
-                            </div>
-                           <p>
-                           @if(isset($orders->external_ref))
-                           <span class="border-bottom border-color-1 mb-5">Payment Type: Card Payment</span><br>
-                           <span class="border-bottom border-color-1 mb-5">Payment Reference: {{$orders->external_ref}}</span><br>
-                           @endif
-                           <span class="border-bottom border-color-1 mb-5" style="line-height:2"> Transaction Reference: {{$orders->transaction_ref}}</span><br>
-                           <span class="border-bottom border-color-1 mb-5" style="line-height:2">Amount: ₦{{number_format($orders->amount)}}</span><br>
-                           <span class="border-bottom border-color-1 mb-5" style="line-height:2">Payment Status: @if($orders->is_paid == 1) <span class="badge badge-success ">&nbsp; Success &nbsp;</span>@else <span  class="badge badge-warning ">Pending</span>@endif</span><br>
-                           <span class="border-bottom border-color-1 mb-5" style="line-height:2">Delivery Status:  @if($orders->is_delivered == 1) <span class="badge badge-success ">&nbsp; Delivered &nbsp;</span>@else <span class="badge badge-warning ">Pending </span> @endif</span><br>
-                            </p>
-                            <div style="height:30px">
-                            </div>
-                            </td>
-                            </tr>
-                            </tbody>
-                            </table>
-                            </div>
-                            </div>
-                         
-                            </div>
-                            <!-- End Tab Content -->
                         </div>
+                        <div class="table-responsive order_table text-center">
+                            <table class="table">
+                                <tbody>
+                                    <tr>
+                                        <td class="flex">
+
+                                            <h5><a href="#">Order No:</a><span class="product-qty" style="font-weight: bold">{{$orders->order_No}}</span></h5>
+                                            <br>
+                                            <h5><a href="#">Total Amount:</a><span class="product-qty" style="font-weight: bold">C${{$orders->amount <= 0 ? 0 : number_format($orders->amount,2)}}</span></h5>
+                                            <br>
+                                            <h5><a href="#">Placed On:</a><span class="product-qty" style="font-weight: bold">{{$orders->created_at}}</span></h5>
+                                            <br>
+
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-6 mb-sm-15">
+                                <div class="mb-10">
+                                    <h4>Payment Information</h4>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="table-responsive order_table text-center">
+                            <table class="table">
+                                <tbody>
+                                    <tr>
+                                        <td class="flex">
+                                            @if(isset($orders->external_ref))
+                                                <h5><a href="#">Payment Type:</a><span class="product-qty" style="font-weight: bold">Card Payment</span></h5>
+                                                <br>
+                                                <h5><a href="#">Payment Reference: </a><span class="product-qty" style="font-weight: bold">{{$orders->external_ref}}</span></h5>
+                                                <br>
+                                            @endif
+                                            <h5><a href="#">Transaction Reference: </a><span class="product-qty" style="font-weight: bold">{{$orders->transaction_ref}}</span></h5>
+                                            <br>
+                                            <h5><a href="#">Amount:</a><span class="product-qty" style="font-weight: bold">C${{number_format($orders->amount)}}</span></h5>
+                                            <br>
+                                            <h5><a href="#">Payment Status:</a>
+                                                @if($orders->is_paid == 1) <span class="badge badge-success ">&nbsp; Success &nbsp;</span>
+                                                @else <span  class="badge badge-warning ">Pending</span>
+						                        @endif</span>
+                                            </h5>
+                                            <br>
+                                            <h5><a href="#">Delivery Status:</a>
+                                                @if($orders->is_delivered == 1) <span class="badge badge-success ">&nbsp; Delivered &nbsp;</span>
+                                                @else <span class="badge badge-warning ">Pending </span> 
+                                                @endif</span><br>
+                                            </h5>
+                                            <br>
+
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+
+                    </div>
+                    <div class="mb-25 mt-30">
+                        <div class="payment_method">
+                            <div class="mb-25">
+                                <h5>Payment Method</h5>
+                            </div>
+                            <div class="payment_option">
+                                <div class="custome-radio">
+                                    <input class="form-check-input" required="" type="radio" name="payment_method" id="exampleRadios3" value="card" checked>
+                                    <label class="form-check-label" for="exampleRadios3" data-bs-toggle="collapse" data-target="#bankTransfer" aria-controls="bankTransfer">Pay With Debit Card</label>
+                                    <div class="form-group collapse in" id="bankTransfer">
+                                        <p class="text-muted mt-5">Please note that you will pay for the shipping fee before the item is shipped to you using this method.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="mb-20">
+                        <h4>Items in this Order</h4>
+                    </div>
+                    <div class="table-responsive order_table text-center">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th >Product</th>
+                                    <th>Total</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach($items as $item)
+                                <tr>
+                                    <td class="image product-thumbnail"><img src="{{asset('images/products/' .$item->image)}}" alt="#"></td>
+                                    <td>
+                                        <h5><a href="#">{{$item->product_name}}</a></h5> 
+                                        <span class="product-qty">Placed On:  {{ \Carbon\Carbon::parse($item->created_at)->format('d M, Y') }}</span><br>
+                                        <span class="product-qty" style="font-weight: bold">Amount: C${{$item->amount <= 0 ? 0 : number_format($item->amount,2)}}</span><br>
+                                        <span class="product-qty">QTY: {{$item->qty}}</span>
+                                    </td>
+                                </tr>
+                                @endforeach
+                                
+                               
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="bt-1 border-color-1 mt-30 mb-30"></div>
+                    <script src="https://checkout.flutterwave.com/v3.js"></script>
+                    <form>
+                        <button type="button" onClick="makePayment()" id="btnsubmit2" class="btn btn-fill-out btn-block mt-10">Pay Now</button>
+                    </form>
                 </div>
             </div>
+        </div>
+    </section>
 </main>
+<script>
+    let total_paid = {!! json_encode(\Cart::Totalfloat()) !!};
+    let fare = 1;
+    let total = parseInt(total_paid) + parseInt(fare);
+    var _token = {!! json_encode(env('FLUTTERWAVE_PUB_KEY')) !!};
+    let email = {!! json_encode(auth()->user()->email) !!};
+    let phone = {!! json_encode(auth()->user()->phone) !!};
+    let name = {!! json_encode(auth()->user()->name) !!};
+    let amounts = {!! json_encode(\Cart::Totalfloat()) !!};
 
+    function makePayment() {
+        FlutterwaveCheckout({
+            public_key: _token,
+            tx_ref: "SFSL" + Math.floor((Math.random() * 1000000) + 1),
+            amount: amounts,
+            currency: "NGN",
+            country: "NG",
+            payment_options: "card, ussd",
+            meta: {
+                consumer_id: 1,
+                consumer_mac: "92a3-912ba-1192a",
+                purpose: "Payment for Order",
+            },
+            customer: {
+                email: email,
+                phone_number: phone,
+                name: name,
+            },
+            callback: function (response) {
+                var trx_id = response.transaction_id;
+                window.location = '{{route("confirm.payment", '')}}' + "/" + trx_id;
+            },
+            onclose: function () {
+                // close modal
+            },
+            customizations: {
+                title: "Sofarsolar",
+                description: "Payment for Order",
+                logo: "",
+            },
+        });
+    }
 
+    function thousands_separators(num) {
+        var num_parts = num.toString().split(".");
+        num_parts[0] = num_parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        return num_parts.join(".");
+    }
+</script>
+@endsection
+@section('scripts')
 @endsection

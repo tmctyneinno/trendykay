@@ -174,6 +174,7 @@ class CheckoutController extends Controller
         $shipping->address = $request->address;
         $shipping->user_id = auth()->user()->id;
         $shipping->receiver_phone = $request->phone;
+        $shipping->receiver_name = $request->name;
         $shipping->receiver_email = $request->email;
         $shipping->is_default = $request->default;
         if($request->default)
@@ -205,7 +206,7 @@ class CheckoutController extends Controller
         }
         if(!isset($request->payment_method)){
             return redirect()->route('checkout.index')->withErrors('Please select a payment method below');
-            }
+        }
         $order = new order;
         $order->user_id = auth()->user()->id;
         $order->order_No = $orderNo->order_No;
@@ -221,20 +222,20 @@ class CheckoutController extends Controller
         if($order->save()){
         $item = DB::table('orders')->where('user_id', auth()->user()->id)->latest()->first();
         $order_items = DB::table('order_items')->where(['order_No' => $orderNo->order_No])->get();
-                   if($request->payment_method == 'card'){
-                    return view('users.products.checkouts')
-                    ->with('address', Shipping::where(['user_id' => auth()->user()->id, 'is_default' => 1 ])->first())
-                    ->with('cart', \Cart::content());
-                    }else{
-                    $items = orderItem::where(['order_No' => $orderNo->order_No])->get();
-                    $orders = Order::where('user_id', auth()->user()->id)->latest()->first();
-                    \Session::flash('success', 'Order was sent successfully');
-                     \Cart::destroy();
-                     $admin = new AdminNotify;
-                     $admin->message = 'New customer order completed Order No: '.$order->order_No;
-                     $admin->save();
-                     return view('users.products.orders', compact('items', 'orders'))->with('success', 'Order was sent successfully');
-                 }
+            if($request->payment_method == 'card'){
+            return view('users.products.checkouts')
+            ->with('address', Shipping::where(['user_id' => auth()->user()->id, 'is_default' => 1 ])->first())
+            ->with('cart', \Cart::content());
+            }else{
+            $items = orderItem::where(['order_No' => $orderNo->order_No])->get();
+            $orders = Order::where('user_id', auth()->user()->id)->latest()->first();
+            \Session::flash('success', 'Order was sent successfully');
+                \Cart::destroy();
+                $admin = new AdminNotify;
+                $admin->message = 'New customer order completed Order No: '.$order->order_No;
+                $admin->save();
+                return view('users.products.orders', compact('items', 'orders'))->with('success', 'Order was sent successfully');
+            }
         }
     }
     
@@ -286,7 +287,7 @@ class CheckoutController extends Controller
         $address->save();
         Session()->flash('message', 'Address Updated');
         return redirect()->back();
-
+ 
     }
 
     /**

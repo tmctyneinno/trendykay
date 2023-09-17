@@ -74,7 +74,7 @@ Auth::routes();
 Route::get('/', 'HomeController@index')->name('index');
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/products/details/{id}', 'HomeController@productDetails')->name('product-details');
-Route::get('/cart/{id}', 'CartController@add')->name('carts.add');
+Route::get('/cart/{id}', 'CartController@add')->name('carts.add'); 
 Route::resource('/carts', 'CartController');
 Route::get('/delete/{id}', 'CartController@remove')->name('carts.delete');
 Route::resource('/products', 'ProductController');

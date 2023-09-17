@@ -31,9 +31,11 @@ class ProductController extends Controller
      }
     public function index()
     {
+        $cart =  \Cart::content()->take(4);
         return view('manage.products.index')
              ->with('products', Product::latest()->get())
              ->with('bheading', 'Product')
+             ->with('cart', $cart)
              ->with('breadcrumb', 'Product');
     }
 
@@ -166,7 +168,7 @@ class ProductController extends Controller
             $ext = $file->getClientOriginalExtension();
             $time = time().$FileName;
             $fileName = $time.'.'.$ext;
-            Image::make(request()->file('image'))->resize(224,224)->save('images/products/'.$fileName);
+            Image::make(request()->file('image'))->resize(1100,1100)->save('images/products/'.$fileName);
             $prod->image = $fileName;
         }  
         if($request->file('images')){
@@ -180,7 +182,7 @@ class ProductController extends Controller
             $dd = md5($time);
             $fileName = $dd.'.'.$ext;
             //$image->move('images/products/', $fileName);
-            Image::make($image)->resize(224,224)->save('images/products/'.$fileName);
+            Image::make($image)->resize(1100,1100)->save('images/products/'.$fileName);
             $images[] = $fileName;
           
         }
@@ -306,7 +308,8 @@ class ProductController extends Controller
               $fileName = $time.'.'.$ext;
              // Image::make(request()->file('image'))->resize(417,287)->save('images/products/'.$fileName);
             // Image::make(request()->file('image'))->resize(200,287)->save('images/products/'.$fileName);
-            Image::make(request()->file('image'))->resize(224,224)->save('images/products/'.$fileName);
+           // Image::make(request()->file('image'))->resize(224,224)->save('images/products/'.$fileName);
+            Image::make(request()->file('image'))->resize(1100,1100)->save('images/products/'.$fileName);
               $prod->image = $fileName;
           }else{
             $prod->image = $prod->image;
@@ -319,10 +322,11 @@ class ProductController extends Controller
               $name =  $image->getClientOriginalName();
               $FileName = \pathinfo($name, PATHINFO_FILENAME);
               $ext =  $image->getClientOriginalExtension();
+               $time = time().$FileName;
                 $dd = md5($time);
                  $fileName = $dd.'.'.$ext;
               //$image->move('images/products/', $fileName);
-              Image::make($image)->resize(224,224)->save('images/products/'.$fileName);
+              Image::make($image)->resize(1100,1100)->save('images/products/'.$fileName);
               $images[] = $fileName;
           }
           $prod->gallery= json_encode($images); 
