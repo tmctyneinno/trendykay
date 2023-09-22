@@ -143,7 +143,7 @@ class PagesController extends Controller
                 return view('users.pages.about')->with('news', News::latest()->get());
              break;
             case "contacts":
-                return view('users.pages.contact')
+                return view('users.pages.contact') 
                 ->with('contact', ContactUs::latest()->first())->with('news', News::latest()->get());
                 break;
             default:
@@ -156,7 +156,8 @@ class PagesController extends Controller
 
     public function newsDetails($id){
         return view('users.pages.news-details')
-        ->with('news', News::where('id', decrypt($id))->first())
+        ->with('newss', News::where('id', decrypt($id))->first())
+        ->with('news', News::latest()->get())
         ->with('recent', News::latest()->take(5)->get());
     }
 

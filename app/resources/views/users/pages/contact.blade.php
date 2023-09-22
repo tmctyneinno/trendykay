@@ -1,4 +1,4 @@
-@extends('layouts.app2')
+@extends('layouts.app')
 @section('content')
 <main class="main">
     <div class="page-header breadcrumb-wrap">

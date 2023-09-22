@@ -1,166 +1,64 @@
 <!DOCTYPE html>
- <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-<head> 
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+
+<!-- Mirrored from wp.alithemes.com/html/evara/evara-frontend/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 04 Sep 2023 12:35:10 GMT -->
+<head>
     <meta charset="utf-8">
+    <title>Trendy Kay Collections</title>
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta property="og:title" content="">
+    <meta property="og:type" content="">
+    <meta property="og:url" content="">
+    <meta property="og:image" content="">
+    <!-- Favicon -->
+    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('assets/imgs/theme/favicon.svg')}}">
+    <!-- Template CSS -->
+    <link rel="stylesheet" href="{{ asset('assets/css/maind134.css?v=3.4')}}">
+     <!--leaflet map-->
+    <link rel="stylesheet" href="../../../../unpkg.com/leaflet%401.7.1/dist/leaflet.css" integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A==" crossorigin="" />
+    <script src="../../../../unpkg.com/leaflet%401.7.1/dist/leaflet.js" integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA==" crossorigin=""></script>
+    {{-- toastr --}}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
 
-    <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title> @yield('title')  {{ config('app.name', 'Trendy Key Collection')}} </title>
-    <link rel="icon" href="{{asset('/images/fav2.png')}}">
-            <!-- Google Fonts -->
-            <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i&display=swap" rel="stylesheet">
-            <!-- CSS Implementing Plugins -->
-            <link rel="stylesheet" href="{{asset('/frontend/vendor/font-awesome/css/fontawesome-all.min.css')}}">
-            <link rel="stylesheet" href="{{asset('/frontend/css/font-electro.css')}}">
-            <link rel="stylesheet" href="{{asset('/frontend/vendor/animate.css/animate.min.css')}}">
-            <link rel="stylesheet" href="{{asset('/frontend/vendor/hs-megamenu/src/hs.megamenu.css')}}">
-            <link rel="stylesheet" href="{{asset('/frontend/vendor/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.css')}}">
-            <link rel="stylesheet" href="{{asset('/frontend/vendor/fancybox/jquery.fancybox.css')}}">
-            <link rel="stylesheet" href="{{asset('/frontend/vendor/slick-carousel/slick/slick.css')}}">
-            <link rel="stylesheet" href="{{asset('/frontend/vendor/bootstrap-select/dist/css/bootstrap-select.min.css')}}">
-            <link rel="stylesheet" href="{{asset('/frontend/css/theme.css')}}">
-        </head>
-    <body>
 
-        @include('includes.header')
-        @yield('content')
-        @include('includes.footer')
-        
-        <a class="js-go-to u-go-to" href="#"
-            data-position='{"bottom": 15, "right": 15 }'
-            data-type="fixed"
-            data-offset-top="400"
-            data-compensation="#header"
-            data-show-effect="slideInUp"
-            data-hide-effect="slideOutDown">
-            <span class="fas fa-arrow-up u-go-to__inner"></span>
-        </a>
+</head>
 
-  <script src="{{asset('/frontend/vendor/jquery/dist/jquery.min.js')}}"></script>
-  <script src="{{asset('/frontend/vendor/jquery-migrate/dist/jquery-migrate.min.js')}}"></script>
-  <script src="{{asset('/frontend/vendor/popper.js/dist/umd/popper.min.js')}}"></script>
-  <script src="{{asset('/frontend/vendor/bootstrap/bootstrap.min.js')}}"></script>
+<body>
+    @include('includes.header')
+    @yield('content')
+    @include('includes.footer')
+    
+     
+    <!-- Vendor JS-->
+    <script src="{{ asset('assets/js/vendor/modernizr-3.6.0.min.js')}}"></script>
+    <script src="{{ asset('assets/js/vendor/jquery-3.6.0.min.js')}}"></script>
+    <script src="{{ asset('assets/js/vendor/jquery-migrate-3.3.0.min.js')}}"></script>
+    <script src="{{ asset('assets/js/vendor/bootstrap.bundle.min.js')}}"></script>
+    <script src="{{ asset('assets/js/plugins/slick.js')}}"></script>
+    <script src="{{ asset('assets/js/plugins/jquery.syotimer.min.js')}}"></script>
+    <script src="{{ asset('assets/js/plugins/wow.js')}}"></script>
+    <script src="{{ asset('assets/js/plugins/jquery-ui.js')}}"></script>
+    <script src="{{ asset('assets/js/plugins/perfect-scrollbar.js')}}"></script>
+    <script src="{{ asset('assets/js/plugins/magnific-popup.js')}}"></script>
+    <script src="{{ asset('assets/js/plugins/select2.min.js')}}"></script>
+    <script src="{{ asset('assets/js/plugins/waypoints.js')}}"></script>
+    <script src="{{ asset('assets/js/plugins/counterup.js')}}"></script>
+    <script src="{{ asset('assets/js/plugins/jquery.countdown.min.js')}}"></script>
+    <script src="{{ asset('assets/js/plugins/images-loaded.js')}}"></script>
+    <script src="{{ asset('assets/js/plugins/isotope.js')}}"></script>
+    <script src="{{ asset('assets/js/plugins/scrollup.js')}}"></script>
+    <script src="{{ asset('assets/js/plugins/jquery.vticker-min.js')}}"></script>
+    <script src="{{ asset('assets/js/plugins/jquery.theia.sticky.js')}}"></script>
+    <script src="{{ asset('assets/js/plugins/jquery.elevatezoom.js')}}"></script>
+    <!-- Template  JS -->
+    <script src="{{ asset('assets/js/maind134.js?v=3.4')}}"></script>
+    <script src="{{ asset('assets/js/shopd134.js?v=3.4')}}"></script>
 
-  <!-- JS Implementing Plugins -->
-  <script src="{{asset('/frontend/vendor/appear.js')}}"></script>
-  <script src="{{asset('/frontend/vendor/jquery.countdown.min.js')}}"></script>
-  <script src="{{asset('/frontend/vendor/hs-megamenu/src/hs.megamenu.js')}}"></script>
-  <script src="{{asset('/frontend/vendor/svg-injector/dist/svg-injector.min.js')}}"></script>
-  <script src="{{asset('/frontend/vendor/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min.js')}}"></script>
-  <script src="{{asset('/frontend/vendor/jquery-validation/dist/jquery.validate.min.js')}}"></script>
-  <script src="{{asset('/frontend/vendor/fancybox/jquery.fancybox.min.js')}}"></script>
-  <script src="{{asset('/frontend/vendor/typed.js/lib/typed.min.js')}}"></script>
-  <script src="{{asset('/frontend/vendor/slick-carousel/slick/slick.js')}}"></script>
-  <script src="{{asset('/frontend/vendor/bootstrap-select/dist/js/bootstrap-select.min.js')}}"></script>
 
-  <!-- JS Electro -->
-  <script src="{{asset('/frontend/js/hs.core.js')}}"></script>
-  <script src="{{asset('/frontend/js/components/hs.countdown.js')}}"></script>
-  <script src="{{asset('/frontend/js/components/hs.header.js')}}"></script>
-  <script src="{{asset('/frontend/js/components/hs.hamburgers.js')}}"></script>
-  <script src="{{asset('/frontend/js/components/hs.unfold.js')}}"></script>
-  <script src="{{asset('/frontend/js/components/hs.focus-state.js')}}"></script>
-  <script src="{{asset('/frontend/js/components/hs.malihu-scrollbar.js')}}"></script>
-  <script src="{{asset('/frontend/js/components/hs.validation.js')}}"></script>
-  <script src="{{asset('/frontend/js/components/hs.fancybox.js')}}"></script>
-  <script src="{{asset('/frontend/js/components/hs.onscroll-animation.js')}}"></script>
-  <script src="{{asset('/frontend/js/components/hs.slick-carousel.js')}}"></script>
-  <script src="{{asset('/frontend/js/components/hs.show-animation.js')}}"></script>
-  <script src="{{asset('/frontend/js/components/hs.svg-injector.js')}}"></script>
-  <script src="{{asset('/frontend/js/components/hs.go-to.js')}}"></script>
-  <script src="{{asset('/frontend/js/components/hs.selectpicker.js')}}"></script>
-
-  <!-- JS Plugins Init. -->
-  <script>
-      $(window).on('load', function () {
-          // initialization of HSMegaMenu component
-          $('.js-mega-menu').HSMegaMenu({
-              event: 'hover',
-              direction: 'horizontal',
-              pageContainer: $('.container'),
-              breakpoint: 767.98,
-              hideTimeOut: 0
-          });
-
-          // initialization of svg injector module
-          $.HSCore.components.HSSVGIngector.init('.js-svg-injector');
-      });
-
-      $(document).on('ready', function () {
-          // initialization of header
-          $.HSCore.components.HSHeader.init($('#header'));
-
-          // initialization of animation
-          $.HSCore.components.HSOnScrollAnimation.init('[data-animation]');
-
-          // initialization of unfold component
-          $.HSCore.components.HSUnfold.init($('[data-unfold-target]'), {
-              afterOpen: function () {
-                  $(this).find('input[type="search"]').focus();
-              }
-          });
-
-          // initialization of popups
-          $.HSCore.components.HSFancyBox.init('.js-fancybox');
-
-         
-          // initialization of forms
-          $.HSCore.components.HSFocusState.init();
-
-          // initialization of form validation
-          $.HSCore.components.HSValidation.init('.js-validate', {
-              rules: {
-                  confirmPassword: {
-                      equalTo: '#signupPassword'
-                  }
-              }
-          });
-
-          // initialization of show animations
-          $.HSCore.components.HSShowAnimation.init('.js-animation-link');
-
-          // initialization of fancybox
-          $.HSCore.components.HSFancyBox.init('.js-fancybox');
-
-          // initialization of slick carousel
-          $.HSCore.components.HSSlickCarousel.init('.js-slick-carousel');
-
-          // initialization of go to
-          $.HSCore.components.HSGoTo.init('.js-go-to');
-
-          // initialization of hamburgers
-          $.HSCore.components.HSHamburgers.init('#hamburgerTrigger');
-
-          // initialization of unfold component
-          $.HSCore.components.HSUnfold.init($('[data-unfold-target]'), {
-              beforeClose: function () {
-                  $('#hamburgerTrigger').removeClass('is-active');
-              },
-              afterClose: function() {
-                  $('#headerSidebarList .collapse.show').collapse('hide');
-              }
-          });
-
-          $('#headerSidebarList [data-toggle="collapse"]').on('click', function (e) {
-              e.preventDefault();
-
-              var target = $(this).data('target');
-
-              if($(this).attr('aria-expanded') === "true") {
-                  $(target).collapse('hide');
-              } else {
-                  $(target).collapse('show');
-              }
-          });
-
-          // initialization of unfold component
-          $.HSCore.components.HSUnfold.init($('[data-unfold-target]'));
-
-          // initialization of select picker
-          $.HSCore.components.HSSelectPicker.init('.js-select');
-      });
-  </script>
-
-  @yield('scripts')
+    @yield('scripts')
 </body>
 </html>

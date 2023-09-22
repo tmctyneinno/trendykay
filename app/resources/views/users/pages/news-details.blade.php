@@ -1,4 +1,4 @@
-@extends('layouts.app2')
+@extends('layouts.app')
 @section('content')
 
 <main class="main">
@@ -7,21 +7,21 @@
             <div class="breadcrumb">
                 <a href="{{route('index')}}" rel="nofollow">Home</a>
                 <span></span> Blog
-                <span></span> {{$news->title}}
+                <span></span> {{$newss->title}}
             </div>
         </div>
-    </div>
+    </div> 
     <section class="mt-50 mb-50">
         <div class="container custom">
             <div class="row">
                 <div class="col-lg-9">
                     <div class="single-page pr-30">
                         <div class="single-header style-2">
-                            <h1 class="mb-30">{{$news->title}}</h1>
+                            <h1 class="mb-30">{{$newss->title}}</h1>
                             <div class="single-header-meta">
                                 <div class="entry-meta meta-1 font-xs mt-15 mb-15">
                                     <span class="post-by">By <a href="#">Jonh</a></span>
-                                    <span class="post-on has-dot">{{ \Carbon\Carbon::parse($news->created_at)->format('d M, Y') }}</span>
+                                    <span class="post-on has-dot">{{ \Carbon\Carbon::parse($newss->created_at)->format('d M, Y') }}</span>
                                    
                                 </div>
                                 <div class="social-icons single-share">
@@ -36,10 +36,10 @@
                             </div>
                         </div>
                         <figure class="single-thumbnail">
-                            <img src="{{asset('/images/news/'.$news->image)}}" alt="">
+                            <img src="{{asset('/images/news/'.$newss->image)}}" alt="">
                         </figure>
                         <div class="single-content">
-                            <p>{!! $news->content !!}</p>
+                            <p>{!! $newss->content !!}</p>
                           
                         </div>
                     </div>
@@ -80,7 +80,7 @@
                                 <div class="col-12 sm-grid-content mb-30">
                                     <div class="post-thumb d-flex border-radius-5 img-hover-scale mb-15">
                                         <a href="blog-post-fullwidth.html">
-                                            <img src="{{asset('/images/news/'.$post->image)}}" alt="">
+                                            <img src="{{asset('/images/newss/'.$post->image)}}" alt="">
                                         </a>
                                     </div>
                                     <div class="post-content media-body">

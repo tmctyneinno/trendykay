@@ -1,4 +1,4 @@
-    @extends('layouts.app2')
+    @extends('layouts.app')
     @section('content')
     @section('title', $title)
             <main class="main">

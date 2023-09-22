@@ -1,4 +1,4 @@
-@extends('layouts.app2')
+@extends('layouts.app')
 @section('content')
 <main class="main">
     <div class="page-header breadcrumb-wrap">
@@ -8,7 +8,7 @@
                 <span></span> Blog
             </div>
         </div>
-    </div>
+    </div> 
     <section class="mt-50 mb-50">
         <div class="container custom">
             <div class="row">

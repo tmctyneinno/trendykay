@@ -60,9 +60,9 @@
                     <ul class="footer-list wow fadeIn animated mb-sm-5 mb-md-0">
                         <li><a href="{{ route('aboutus')}}">About Us</a></li>
                         <li><a href="#">Delivery Information</a></li>
-                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="{{ route('privacypolicy')}}">Privacy Policy</a></li>
                         <li><a href="#">Terms &amp; Conditions</a></li>
-                        <li><a href="#">Contact Us</a></li>
+                        <li><a href="{{ url('pages/contacts')}}">Contact Us</a></li>
                         <li><a href="#">Support Center</a></li>
                     </ul>
                 </div>
@@ -102,11 +102,11 @@
                 <div class="footer-bottom"></div>
             </div>
             <div class="col-lg-6">
-                <p class="float-md-left font-sm text-muted mb-0">&copy; 2022, <strong class="text-brand">Evara</strong> - HTML Ecommerce Template </p>
+                <p class="float-md-left font-sm text-muted mb-0">&copy; 2023, <strong class="text-brand">TrendyKayCollections</strong> -  Ecommerce  </p>
             </div>
             <div class="col-lg-6">
                 <p class="text-lg-end text-start font-sm text-muted mb-0">
-                    Designed by <a href="http://alithemes.com/" target="_blank">Alithemes.com</a>. All rights reserved
+                    Designed by <a href="http://trendykaycollections.com/" target="_blank">TrendyKayCollections.com</a>. All rights reserved
                 </p>
             </div>
         </div>
