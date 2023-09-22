@@ -60,8 +60,10 @@
                                         </div>
                                     </div>
                                     <div class="card-body border">
-                                        @if(count($recent) > 0)
+                                        <div class="row">
+                                            @if(count($recent) > 0)
                                             @foreach($recent as $pro)
+                                            
                                             <div class="col-lg-3 col-md-4">
                                                 <div class="product-cart-wrap mb-30">
                                                     <div class="product-img-action-wrap">
@@ -90,7 +92,9 @@
                                             @endforeach
                                             @else
                                             <p> You don't have any recent viewed Items </p>
-                                            @endif
+                                        @endif
+                                        </div>
+                                        
                                     </div>
                                 </div>
                                 <!-- End Tab Content -->

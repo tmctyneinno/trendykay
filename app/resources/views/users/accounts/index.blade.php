@@ -201,30 +201,42 @@
                                         </div>
                                         <div class="card">
                                             <div class="card-body">
-                                                @if(count($recent) > 0)
-                                                    @foreach($recent as $pro)
-                                                        <div class="mb-2">
-                                                            <a href="{{route('product-details', encrypt($pro->id))}}" class="font-size-12 text-gray-5">{{$pro->category->name}}</a>
-                                                        </div>
-                                                        <a href="{{route('product-details', encrypt($pro->id))}}">
-                                                            <img src="{{asset('images/products/' .$order->image)}}" alt="#">
-                                                            <h5>{{$pro->category->name}}</h5>
-                                                        </a>
-                                                        <div class="flex-center-between mb-1">
-                                                            <div class="prodcut-price">
-                                                                <div class="text-gray-100">C${{number_format($pro->price)}}</div>
+                                                <div class="row">
+                                                    @if(count($recent) > 0)
+                                                        @foreach($recent as $pro)
+                                                        
+                                                        <div class="col-lg-3 col-md-4">
+                                                            <div class="product-cart-wrap mb-30">
+                                                                <div class="product-img-action-wrap">
+                                                                    <div class="product-img product-img-zoom">
+                                                                        <a href="{{route('product-details', encrypt($pro->id))}}">
+                                                                            <img class="default-img" src="{{asset('/images/products/'.$pro->image)}}" alt="">
+                                                                            <img class="hover-img" src="{{asset('/images/products/'.$pro->image)}}" alt="">
+                                                                        </a>
+                                                                    </div>
+                                                                    <div class="product-badges product-badges-position product-badges-mrg">
+                                                                        <span class="hot">Hot</span>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="product-content-wrap">
+                                                                    <div class="product-category">
+                                                                        <a href="{{route('product-details', encrypt($pro->id))}}"></a>
+                                                                    </div>
+                                                                    <h2><a href="{{route('product-details', encrypt($pro->id))}}">{{$pro->name}}</a></h2>
+                                                                    
+                                                                    <div class="product-price">
+                                                                        <span>C${{number_format($pro->price)}} </span>
+                                                                    </div>
+                                                                </div>
                                                             </div>
-                                                            <div class="d-none d-xl-block prodcut-add-cart">
-                                                                <a href="{{route('product-details', encrypt($pro->id))}}" class="btn-add-cart btn-primary transition-3d-hover"><i class="ec ec-add-to-cart"></i></a>
-                                                            </div>
                                                         </div>
-                                                       
-                                                    @endforeach
-                                                @else
-                                                    <p> You don't have any recent viewed Items </p>
-                                                @endif
-
+                                                        @endforeach
+                                                        @else
+                                                        <p> You don't have any recent viewed Items </p>
+                                                    @endif
+                                                </div>
                                             </div>
+                                           
                                         </div>
                                     </div>
                                 </div>

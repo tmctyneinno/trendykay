@@ -38,7 +38,7 @@ class PaymentController extends Controller
                         'product_data' => [
                             "name" => $custemail,
                         ],
-                        'unit_amount'  =>  $amount,
+                        'unit_amount'  =>  $amount * 100,
                     ],
                     'quantity'   => 1,                   
                 ],
