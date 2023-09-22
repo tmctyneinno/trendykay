@@ -29,7 +29,7 @@
                             </thead>
                             <tbody>
                                 @foreach ($cart as $carts )
-                                <tr>
+                                <tr> 
                                     <td class="image product-thumbnail"><img src="{{asset('images/products/' .$carts->model->image)}}" alt="#"></td>
                                     <td class="product-des product-name">
                                         <h5 class="product-name"><a href="#">{{$carts->model->name}}</a></h5>

@@ -1,11 +1,14 @@
 @extends('layouts.admin')
 @section('content')
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/habibmhamadi/multi-select-tag/dist/css/multi-select-tag.css">
+<script src="https://cdn.jsdelivr.net/gh/habibmhamadi/multi-select-tag/dist/js/multi-select-tag.js"></script>
+
  <div class="container-fluid">
             <div class="row">
                 <div class="col-md-12">
                 {{Form::open(['action' => ['ProductController@update', encrypt($product->id)], 'method'=>'post', 'enctype' => 'multipart/form-data'])}}
               @csrf
-              @method('put')
+              @method('put') 
               <div class="card">
                         <div class="card-body">
                             <h6 class="card-title">Edit Product</h6>
@@ -44,6 +47,7 @@
                                               @enderror
                                           </div>           
                                       </div>
+
                                       <div class="col-md-6">
                                         <div class="form-group">
                                             <input type="text" name="sale_price"  value="{{$product->discount}}%" disabled class="form-control @error('sale_price') is-invalid @enderror" id="exampleInputEmail1"
@@ -56,6 +60,75 @@
                                         </div>           
                                     </div>
 
+
+                                      <div class="col-md-6">
+                                        <div class="form-group">
+                                          <select name="colors[]" id="colors"  multiple >
+                                              {{-- <option value="">Select Color</option> --}}
+                                              <option value="black">Black</option>
+                                              <option value="blue">Blue</option>
+                                              <option value="white">White</option>
+                                              <option value="green">Green</option>
+                                              <option value="purple">Purple</option>
+                                              <option value="wine">Wine</option>
+                                          </select>
+                                          <small id="emailHelp" class="form-text text-muted">Select Color 
+                                          </small>
+                                          @error('color')
+                                          <span class="invalid-feedback"> <small> *</small> </span>
+                                          @enderror
+                                        </div>
+                                      </div>
+
+                                      <div class="col-md-6">
+                                        <div class="form-group">
+                                          <select name="sizes[]" id="sizes"  multiple >
+                                              {{-- <option value="">Select Color</option> --}}
+                                              <option value="S">S</option>
+                                              <option value="M">M</option>
+                                              <option value="L">L</option>
+                                              <option value="XL">XL</option>
+                                              <option value="XXL">XXL</option>
+                                              <option value="3XL">3XL</option>
+                                              <option value="4XL">4XL</option>
+                                              <option value="5XL">5XL</option>
+                                          </select>
+                                          <small id="emailHelp" class="form-text text-muted">Select Size 
+                                          </small>
+                                          @error('size')
+                                          <span class="invalid-feedback"> <small> *</small> </span>
+                                          @enderror
+                                        </div>
+                                      </div>
+
+                                      <script>
+                                        new MultiSelectTag('variants', {
+                                            rounded: true,    // default true
+                                            shadow: true,      // default false
+                                            placeholder: 'Search',  // default Search...
+                                            onChange: function(values) {
+                                                console.log(values)
+                                            }
+                                        });
+                                        new MultiSelectTag('colors', {
+                                            rounded: true,    // default true
+                                            shadow: true,      // default false
+                                            placeholder: 'Search',  // default Search...
+                                            onChange: function(values) {
+                                                console.log(values)
+                                            }
+                                        });
+                                        new MultiSelectTag('sizes', {
+                                            rounded: true,    // default true
+                                            shadow: true,      // default false
+                                            placeholder: 'Search',  // default Search...
+                                            onChange: function(values) {
+                                                console.log(values)
+                                            }
+                                        })
+                                    </script>
+
+                                      
                                     
                                     </div>           
                                   </div>
@@ -157,7 +230,7 @@
                         </div>
                     {{Form::close()}}
 
-    </div>
+                    </div>
                         </div>
                     </div>
                    

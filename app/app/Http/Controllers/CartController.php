@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Session\Session;
 use App\Product;
+use App\News;
 use App\ProductVariation;
 
 class CartController extends Controller
@@ -53,6 +54,7 @@ class CartController extends Controller
       //  dd(\Cart::content());
         return view('users.products.carts')
         ->with('cart', \Cart::content())
+        ->with('news', News::latest()->get())
         ->with('breadcrumb', 'Shopping Cart');
     }
 

@@ -6,6 +6,8 @@ use App\Category;
 use App\CurrencyExchange;
 use App\Http\Requests\ProductRequest;
 use App\Product;
+use App\Color;
+use App\Size;
 use Illuminate\Support\Facades\DB;
 use App\SubCategory;
 use Intervention\Image\Facades\Image;
@@ -116,6 +118,9 @@ class ProductController extends Controller
     {
         $valid = Validator::make($request->all(), [
             'name' => 'required',
+            'colors' => 'required',
+            'sizes' => 'required',
+            'variants' => 'required',
             'category_id' => 'required|integer',
             'image' => 'required',
             'images' => 'required',
@@ -123,107 +128,125 @@ class ProductController extends Controller
             'price' => 'required|integer',
             'sale_price' => 'required|integer',
         ]);
-
-        if($valid->fails()){
+    
+        if ($valid->fails()) {
             \Session::flash('alert', 'error');
             \Session::flash('message', 'The fields with * are required');
             return redirect()->back()->withErrors($valid)->withInput($request->all())
-            ->with('bheading', 'Product')
-            ->with('breadcrumb', 'Index');
+                ->with('bheading', 'Product')
+                ->with('breadcrumb', 'Index');
         }
-
+    
         $currencyRate = CurrencyExchange::first();
-
-      //  dd(request()->images);
-      $cat = SubCategory::where('id', $request->category_id)->first();
-      DB::beginTransaction();
-      try{
-        $prod = new Product;
-        $prod->name= $request->name;
-        $prod->category_id = $request->category_id;
-        $prod->sub_category_id = 1;
-        $prod->description = $request->description;
-        $prod->discount = $request->discount;
-        
-        if($request->hasfile('specification') && !empty($request->file('specification')))
-          {
-            $file = request()->file('specification');
-            $name = $file->getClientOriginalName();
-            $FileName = \pathinfo($name, PATHINFO_FILENAME);
-            $ext = $file->getClientOriginalExtension();
-            $time = time().$FileName;
-            $fileName = $time.'.'.$ext;
-            $file->move('images/pdf',$fileName);
-            $prod->specification = $fileName;
-          }
-        $prod->price = $request->price;
-        $prod->admin_id = auth('admin')->user()->id;
-        $prod->sale_price = $request->sale_price;
-        // $prod->percentage = ($request->price - $request->sale_price) *(($request->price - $request->sale_price)/100);
-        $prod->discount = (($request->price - $request->sale_price) / $request->price) * 100;
-        if($request->file('image')){
-            $file = request()->file('image');
-            $name = $file->getClientOriginalName();
-            $FileName = \pathinfo($name, PATHINFO_FILENAME);
-            $ext = $file->getClientOriginalExtension();
-            $time = time().$FileName;
-            $fileName = $time.'.'.$ext;
-            Image::make(request()->file('image'))->resize(1100,1100)->save('images/products/'.$fileName);
-            $prod->image = $fileName;
-        }  
-        if($request->file('images')){
-            
-            $file = request()->file('images');
-            foreach($file  as $image){
-            $name =  $image->getClientOriginalName();
-            $FileName = \pathinfo($name, PATHINFO_FILENAME);
-            $ext =  $image->getClientOriginalExtension();
-            $time = time().$FileName;
-            $dd = md5($time);
-            $fileName = $dd.'.'.$ext;
-            //$image->move('images/products/', $fileName);
-            Image::make($image)->resize(1100,1100)->save('images/products/'.$fileName);
-            $images[] = $fileName;
+        $cat = SubCategory::where('id', $request->category_id)->first();
+    
+        DB::beginTransaction();
+    
+        try {
+            $prod = new Product;
+            $prod->name = $request->name;
           
-        }
-        $prod->gallery= json_encode($images); 
-        }
-        $xx = $request->price - $request->sale_price;
-        $cc = (($xx/$request->price)*100);
-        $prod->percentage = $cc;
-
-        if($prod->save()){
-            if(request()->has('qty')){
-            $pric = explode(',', $request->amount);
-            $qty = explode(',', $request->qty);
-            if(count($pric) > count($qty)){
-                \Session::flash('alert', 'error');
-                \Session::flash('message', 'Quantity and Price in Price Variation must have same numbers'); 
-                return redirect()->back()->withErrors($valid)->withInput($request->all());
-            }
-            if($qty){
-                foreach($pric as $key => $value){
-                $eid = Product::latest()->first();
-                $pp = new ProductVariation;
-                $pp->price = $value;
-                $pp->qty = $qty[$key];
-                $pp->product_id = $eid->id;
-                $pp->save(); 
-            }
+            $prod->size =  json_encode($request->sizes);
+            $prod->color =  json_encode($request->colors);
+            $prod->variation =  json_encode($request->variants);
+            $prod->category_id = $request->category_id;
+            $prod->sub_category_id = 1;
+            $prod->description = $request->description;
+            $prod->discount = (($request->price - $request->sale_price) / $request->price) * 100;
             
+            $colors = $request->colors;
+            $sizes = $request->sizes;
+            $variations = $request->variants;
+    
+            $prod->price = $request->price;
+            $prod->admin_id = auth('admin')->user()->id;
+            $prod->sale_price = $request->sale_price;
+    
+            if ($request->file('image')) {
+                $file = request()->file('image');
+                $name = $file->getClientOriginalName();
+                $FileName = \pathinfo($name, PATHINFO_FILENAME);
+                $ext = $file->getClientOriginalExtension();
+                $time = time().$FileName;
+                $fileName = $time.'.'.$ext;
+                Image::make(request()->file('image'))->resize(1100, 1100)->save('images/products/'.$fileName);
+                $prod->image = $fileName;
+            }
+    
+            if ($request->file('images')) {
+                $file = request()->file('images');
+                foreach ($file as $image) {
+                    $name = $image->getClientOriginalName();
+                    $FileName = \pathinfo($name, PATHINFO_FILENAME);
+                    $ext = $image->getClientOriginalExtension();
+                    $time = time().$FileName;
+                    $dd = md5($time);
+                    $fileName = $dd.'.'.$ext;
+                    Image::make($image)->resize(1100, 1100)->save('images/products/'.$fileName);
+                    $images[] = $fileName;
+                }
+                $prod->gallery = json_encode($images);
+            }
+    
+            $xx = $request->price - $request->sale_price;
+            $cc = (($xx / $request->price) * 100);
+            $prod->percentage = $cc;
+    
+            if ($prod->save()) {
+                $productIds = $prod->id;
+    
+                foreach ($colors as $key => $colorname) {
+                    $color = new Color;
+                    $color->name = $colorname;
+                    $color->product_id = $productIds;
+                    $color->save();
+                }
+                $prod->color = json_encode($colors);
+            
+                foreach ($sizes as $key => $sizename) {
+                    $size = new Size;
+                    $size->name = $sizename;
+                    $size->product_id = $productIds;
+                    $size->save();
+                }
+                $prod->size = json_encode($sizes);
+    
+                foreach ($variations as $key => $variationname) {
+                    $variation = new ProductVariation;
+                    $variation->name = $variationname;
+                    $variation->product_id = $productIds;
+                    $variation->save();
+                }
+                $prod->variation = json_encode($variations);
+                if (request()->has('qty')) {
+                    $pric = explode(',', $request->amount);
+                    $qty = explode(',', $request->qty);
+    
+                    if (count($pric) !== count($qty)) {
+                        \Session::flash('alert', 'error');
+                        \Session::flash('message', 'Quantity and Price in Price Variation must have the same number of values');
+                        return redirect()->back()->withErrors($valid)->withInput($request->all());
+                    }
+    
+                    // foreach ($pric as $key => $value) {
+                    //     $pp = new ProductVariation;
+                    //     $pp->price = $value;
+                    //     $pp->qty = $qty[$key];
+                    //     $pp->product_id = $prod->id;
+                    //     $pp->save();
+                    // }
+                }
+            }
+    
+            DB::commit();
+        } catch (\Exception $e) {
+            DB::rollBack();
+            throw $e;
         }
-    }
-        }
-        DB::commit();
-    }catch(\Exception $e){
-
-        DB::rollBack();
-        throw $e;
-    }
-
-    \Session::flash('alert', 'success');
-    \Session::flash('message', 'Product Added Successfully');  
-    return redirect()->back();
+    
+        \Session::flash('alert', 'success');
+        \Session::flash('message', 'Product Added Successfully');
+        return redirect()->back();
     }
 
     /**
@@ -266,6 +289,7 @@ class ProductController extends Controller
         $valid = Validator::make($request->all(), [
             'price' => 'required|integer',
             'sale_price' => 'required|integer',
+
         ]);
 
         if($valid->fails()){
@@ -284,6 +308,30 @@ class ProductController extends Controller
           $prod->category_id = $request->category_id;
           $prod->description = $request->description;
           $prod->discount = (($request->price - $request->sale_price) / $request->price) * 100;
+
+          $colors = $request->colors;
+        $sizes = $request->sizes;
+        $variations = $request->variations;
+
+        $eid = Product::latest()->first(); 
+        $productIds = $eid->id;
+
+        foreach ($colors as $key => $colorname) {
+            $color = new Color;
+            $color->name = $colorname;
+            $color->product_id = $productIds;
+            $color->save();
+        }
+        $prod->color = json_encode($colors);
+    
+        foreach ($sizes as $key => $sizename) {
+            $color = new Size;
+            $color->name = $sizename;
+            $color->product_id = $productIds;
+            $color->save();
+        }
+        $prod->size = json_encode($sizes);
+
           if($request->hasfile('specification') && !empty($request->file('specification')))
           {
             $file = request()->file('specification');

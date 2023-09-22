@@ -34,10 +34,13 @@
                         </div>
                         <h5 class="mt-20 mb-10 fw-600 text-grey-4 wow fadeIn animated">Contact</h5>
                         <p class="wow fadeIn animated">
-                            <strong>Address: </strong>562 Wellington Road, Street 32, San Francisco
+                            <strong>Address: </strong>Winnipeg, Manitoba, Canada
                         </p>
                         <p class="wow fadeIn animated">
-                            <strong>Phone: </strong>+01 2222 365 /(+91) 01 2345 6789
+                            <strong>Phone: </strong>+14317777816
+                        </p>
+                        <p class="wow fadeIn animated">
+                            <strong>Email: </strong>trendykaycollections@gmail.com
                         </p>
                         <p class="wow fadeIn animated">
                             <strong>Hours: </strong>10:00 - 18:00, Mon - Sat
@@ -55,7 +58,7 @@
                 <div class="col-lg-2 col-md-3">
                     <h5 class="widget-title wow fadeIn animated">About</h5>
                     <ul class="footer-list wow fadeIn animated mb-sm-5 mb-md-0">
-                        <li><a href="#">About Us</a></li>
+                        <li><a href="{{ route('aboutus')}}">About Us</a></li>
                         <li><a href="#">Delivery Information</a></li>
                         <li><a href="#">Privacy Policy</a></li>
                         <li><a href="#">Terms &amp; Conditions</a></li>

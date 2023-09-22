@@ -20,6 +20,7 @@ class PagesController extends Controller
     public function AddMenu(){
         return view('manage.menu.create')
         ->with('bheading', 'Add Menu')
+        ->with('news', News::latest()->get())
         ->with('breadcrumb', 'Add Menu');
     }
 
@@ -123,7 +124,7 @@ class PagesController extends Controller
                 return app('App\Http\Controllers\HomeController')->Index();
                 break;
             case "projects":
-             return view('users.pages.projects')->with('projects', Project::inRandomOrder()->get())
+             return view('users.pages.projects')->with('projects', Project::inRandomOrder()->get())->with('news', News::latest()->get())
                 ->with('recent', Project::take(5)->latest()->get());
                 break;
             case "products":
@@ -131,18 +132,19 @@ class PagesController extends Controller
                 $products['pro'] = Product::take(10)->orderBy('sale_price','ASC')->get();
                $products['products'] = Product::orderBy('created_at','desc')->paginate(20);
                $cart['cart'] =  \Cart::content()->take(4);
-               return view('users.pages.products', $products, $cart);
+               $news['news'] = News::latest()->get();
+               return view('users.pages.products', $products, $cart )->with('news', News::latest()->get());
                 break;
             case "news":
                return view('users.pages.news')->with('news', News::latest()->get())
                ->with('recent', News::latest()->take(5)->get());
             break;
             case "about": 
-                return view('users.pages.about');
+                return view('users.pages.about')->with('news', News::latest()->get());
              break;
             case "contacts":
                 return view('users.pages.contact')
-                ->with('contact', ContactUs::latest()->first());
+                ->with('contact', ContactUs::latest()->first())->with('news', News::latest()->get());
                 break;
             default:
             

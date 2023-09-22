@@ -1,70 +1,106 @@
-@extends('layouts.app')
+@extends('layouts.app2')
 @section('content')
 
-<main id="content" role="main">
-    <!-- breadcrumb -->
-    <div class="bg-gray-13 bg-md-transparent">
+<main class="main">
+    <div class="page-header breadcrumb-wrap">
         <div class="container">
-            <!-- breadcrumb -->
-            <div class="my-md-3">
-                <nav aria-label="breadcrumb">
-                    <ol class="breadcrumb mb-3 flex-nowrap flex-xl-wrap overflow-auto overflow-xl-visble">
-                        <li class="breadcrumb-item flex-shrink-0 flex-xl-shrink-1"><a href="">Home</a></li>
-                        <li class="breadcrumb-item flex-shrink-0 flex-xl-shrink-1"><a href="">News</a></li>
-                        <li class="breadcrumb-item flex-shrink-0 flex-xl-shrink-1 active" aria-current="page">{{$news->title}}</li>
-                    </ol>
-                </nav>
+            <div class="breadcrumb">
+                <a href="{{route('index')}}" rel="nofollow">Home</a>
+                <span></span> Blog
+                <span></span> {{$news->title}}
             </div>
-            <!-- End breadcrumb -->
         </div>
     </div>
-    <!-- End breadcrumb -->
-
-    <div class="container">
-        <div class="row">
-            <div class="col-xl-9 col-wd">
-                <div class="min-width-500-wd">
-                    <article class="card mb-8 border-0">
-                        <img class="img-fluid" src="{{asset('/images/news/'.$news->image)}}" alt="Image Description">
-                        <div class="card-body pt-5 pb-0 px-0">
-                            <div class="d-block d-md-flex flex-center-between mb-4 mb-md-0">
-                                <h4 class="mb-md-3 mb-1">{{$news->title}}</h4>
-                             
-                            </div>
-                            <div class="mb-3 pb-3 border-bottom">
-                                <div class="list-group list-group-horizontal flex-wrap list-group-borderless align-items-center mx-n0dot5">
+    <section class="mt-50 mb-50">
+        <div class="container custom">
+            <div class="row">
+                <div class="col-lg-9">
+                    <div class="single-page pr-30">
+                        <div class="single-header style-2">
+                            <h1 class="mb-30">{{$news->title}}</h1>
+                            <div class="single-header-meta">
+                                <div class="entry-meta meta-1 font-xs mt-15 mb-15">
+                                    <span class="post-by">By <a href="#">Jonh</a></span>
+                                    <span class="post-on has-dot">{{ \Carbon\Carbon::parse($news->created_at)->format('d M, Y') }}</span>
                                    
-                                    <a href="" class="mx-0dot5 text-gray-5">Posted On {{$news->created_at->format('d/m/y')}}</a>
+                                </div>
+                                <div class="social-icons single-share">
+                                    <ul class="text-grey-5 d-inline-block">
+                                        <li><strong class="mr-10">Share this:</strong></li>
+                                        <li class="social-facebook"><a href="#"><img src="assets/imgs/theme/icons/icon-facebook.svg" alt=""></a></li>
+                                        <li class="social-twitter"> <a href="#"><img src="assets/imgs/theme/icons/icon-twitter.svg" alt=""></a></li>
+                                        <li class="social-instagram"><a href="#"><img src="assets/imgs/theme/icons/icon-instagram.svg" alt=""></a></li>
+                                        <li class="social-linkedin"><a href="#"><img src="assets/imgs/theme/icons/icon-pinterest.svg" alt=""></a></li>
+                                    </ul>
                                 </div>
                             </div>
+                        </div>
+                        <figure class="single-thumbnail">
+                            <img src="{{asset('/images/news/'.$news->image)}}" alt="">
+                        </figure>
+                        <div class="single-content">
                             <p>{!! $news->content !!}</p>
+                          
                         </div>
-                    </article>
-               
-            </div>
-            </div>
-            <div class="col-xl-3 col-wd">
-                <aside class="mb-7">
-                    <div class="border-bottom border-color-1 mb-5">
-                        <h3 class="section-title section-title__sm mb-0 pb-2 font-size-18">Recent Posts</h3>
                     </div>
-                    @foreach ($recent as $post )
-                    <article class="mb-4">
-                        <div class="media">
-                            <div class="width-75 height-75 mr-3">
-                                <img class="img-fluid object-fit-cover" src="{{asset('/images/news/'.$post->image)}}" alt="Image Description">
-                            </div>
-                            <div class="media-body">
-                                <h4 class="font-size-14 mb-1"><a href="../blog/single-blog-post.html" class="text-gray-39">{{$post->title}}</a></h4>
-                                <span class="text-gray-5">{{$post->created_at->format('d/m/y')}}</span>
+                </div>
+                <div class="col-lg-3 primary-sidebar sticky-sidebar">
+                    <div class="widget-area">
+                        <div class="sidebar-widget widget_search mb-50">
+                            <div class="search-form">
+                                <form action="#">
+                                    <input type="text" placeholder="Search…">
+                                    <button type="submit"> <i class="fi-rs-search"></i> </button>
+                                </form>
                             </div>
                         </div>
-                    </article>
-                    @endforeach
-                    
+                        <!--Widget categories-->
+                        <div class="sidebar-widget widget_categories mb-40">
+                            <div class="widget-header position-relative mb-20 pb-10">
+                                <h5 class="widget-title">Categories</h5>
+                            </div>
+                            <div class="post-block-list post-module-1 post-module-5">
+                                <ul>
+                                    <li class="cat-item cat-item-2"><a href="blog-category-list.html">Beauty</a> (3)</li>
+                                    <li class="cat-item cat-item-3"><a href="blog-category-list.html">Book</a> (6)</li>
+                                    <li class="cat-item cat-item-4"><a href="blog-category-list.html">Design</a> (4)</li>
+                                    <li class="cat-item cat-item-5"><a href="blog-category-list.html">Fashion</a> (3)</li>
+                                    <li class="cat-item cat-item-6"><a href="blog-category-list.html">Lifestyle</a> (6)</li>
+                                    <li class="cat-item cat-item-7"><a href="blog-category-list.html">Travel</a> (2)</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <!--Widget latest posts style 1-->
+                        <div class="sidebar-widget widget_alitheme_lastpost mb-20">
+                            <div class="widget-header position-relative mb-20 pb-10">
+                                <h5 class="widget-title">Recent Posts</h5>
+                            </div>
+                            <div class="row">
+                                @foreach ($recent as $post )
+                                <div class="col-12 sm-grid-content mb-30">
+                                    <div class="post-thumb d-flex border-radius-5 img-hover-scale mb-15">
+                                        <a href="blog-post-fullwidth.html">
+                                            <img src="{{asset('/images/news/'.$post->image)}}" alt="">
+                                        </a>
+                                    </div>
+                                    <div class="post-content media-body">
+                                        <h4 class="post-title mb-10 text-limit-2-row">{{$post->title}} </h4>
+                                        <div class="entry-meta meta-13 font-xxs color-grey">
+                                            <span class="post-on mr-10">                     
+                                                {{ \Carbon\Carbon::parse($post->created_at)->format('d M, Y') }}
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                @endforeach
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
+    </section>
 </main>
 
 @endsection

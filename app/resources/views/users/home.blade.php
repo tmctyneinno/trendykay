@@ -97,13 +97,13 @@
                                 <div class="product-cart-wrap mb-30">
                                     <div class="product-img-action-wrap">
                                         <div class="product-img product-img-zoom">
-                                            <a href="{{route('product-details', encrypt($pro->id))}}">
+                                            <a href="{{route('product-details', $pro->id )}}">
                                                 <img class="default-img" src="{{asset('/images/products/'.$pro->image)}}" alt="">
                                                 <img class="hover-img" src="{{asset('/images/products/'.$pro->image)}}" alt="">
                                             </a>
                                         </div>
                                         <div class="product-action-1">
-                                            <a aria-label="Quick view" href="{{route('product-details', encrypt($pro->id))}}" class="action-btn hover-up" >
+                                            <a aria-label="Quick view" href="{{route('product-details', $pro->id )}}" class="action-btn hover-up" >
                                                 <i class="fi-rs-eye"></i>
                                             </a>
                                             <a aria-label="Add To Wishlist" class="action-btn hover-up" href="shop-wishlist.html">
@@ -118,14 +118,14 @@
                                         <div class="product-category">
                                             <a href="shop-grid-right.html">{{$pro->category->name}}</a>
                                         </div>
-                                        <h2><a href="{{route('product-details', encrypt($pro->id))}}">{{$pro->name}}</a></h2>
+                                        <h2><a href="{{route('product-details', $pro->id )}}">{{$pro->name}}</a></h2>
                                         
                                         <div class="product-price">
                                             <span>C${{number_format($pro->sale_price)}} </span> 
                                             <span class="old-price">₦{{number_format($pro->price)}}</span>
                                         </div>
                                         <div class="product-action-1 show">
-                                            <a aria-label="Add To Cart" class="action-btn hover-up" href="{{route('product-details', encrypt($pro->id))}}">
+                                            <a aria-label="Add To Cart" class="action-btn hover-up" href="{{route('product-details', $pro->id )}}">
                                                 <i class="fi-rs-shopping-bag-add"></i></a>
                                         </div>
                                     </div>
@@ -275,16 +275,16 @@
                         <div class="row product-grid-4">
                             @foreach ($prod as $prods )
                             <div class="col-lg-3 col-md-4 col-12 col-sm-6">
-                                <div class="product-cart-wrap mb-30">
+                                <div class="product-cart-wrap mb-30"> 
                                     <div class="product-img-action-wrap">
                                         <div class="product-img product-img-zoom">
-                                            <a href="{{route('product-details', encrypt($prods->id))}}">
+                                            <a href="{{route('product-details', $prods->id)}}">
                                                 <img class="hover-img" src="{{asset('images/products/'.$prods->image)}}" alt="">
                                                 <img class="default-img" src="{{asset('images/products/'.$prods->image)}}" alt="">
                                             </a>
                                         </div>
                                         <div class="product-action-1">
-                                            <a aria-label="Quick view" href="{{route('product-details', encrypt($pro->id))}}" class="action-btn hover-up" >
+                                            <a aria-label="Quick view" href="{{route('product-details', $pro->id)}}" class="action-btn hover-up" >
                                                 <i class="fi-rs-eye"></i>
                                             </a>
                                            <a aria-label="Add To Wishlist" class="action-btn hover-up" href="#"><i class="fi-rs-heart"></i></a>
@@ -297,13 +297,13 @@
                                         <div class="product-category">
                                             <a href="shop-grid-right.html">{{$prods->category->name}}</a>
                                         </div>
-                                        <h2><a href="{{route('product-details', encrypt($prods->id))}}">{{$prods->name}}</a></h2>
+                                        <h2><a href="{{route('product-details', $prods->id)}}">{{$prods->name}}</a></h2>
                                        
                                         <div class="product-price">
                                             <span>C${{number_format($prods->price)}}</span>
                                         </div>
                                         <div class="product-action-1 show">
-                                            <a aria-label="Add To Cart" class="action-btn hover-up" href="{{route('product-details', encrypt($prods->id))}}"><i class="fi-rs-shopping-bag-add"></i></a>
+                                            <a aria-label="Add To Cart" class="action-btn hover-up" href="{{route('product-details', $prods->id)}}"><i class="fi-rs-shopping-bag-add"></i></a>
                                         </div>
                                     </div>
                                 </div>
@@ -395,7 +395,7 @@
                         <div class="product-cart-wrap small hover-up">
                             <div class="product-img-action-wrap">
                                 <div class="product-img product-img-zoom">
-                                    <a href="{{route('product-details',encrypt($recent->id))}}}">
+                                    <a href="{{route('product-details', $recent->id)}}}">
                                         <img class="default-img" src="{{asset('images/products/'.$recent->image)}}" alt="">
                                         <img class="hover-img" src="{{asset('images/products/'.$recent->image)}}" alt="">
                                     </a>
@@ -410,7 +410,7 @@
                                 </div>
                             </div>
                             <div class="product-content-wrap">
-                                <h2><a href="C${{route('product-details',encrypt($recent->id))}}">Curabitur porta</a></h2>
+                                <h2><a href="C${{route('product-details', $recent->id )}}">Curabitur porta</a></h2>
                                 <div class="rating-result" title="90%">
                                     <span>
                                     </span>

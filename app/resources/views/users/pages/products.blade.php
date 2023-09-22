@@ -66,7 +66,7 @@
                                     <div class="product-cart-wrap mb-30">
                                         <div class="product-img-action-wrap">
                                             <div class="product-img product-img-zoom">
-                                                <a href="{{route('product-details', encrypt($product->id))}}">
+                                                <a href="{{route('product-details', $product->id )}}">
                                                     <img class="default-img" src="{{asset('/images/products/'.$product->image)}}" alt="">
                                                     <img class="hover-img" src="{{asset('/images/products/'.$product->image)}}" alt="">
                                                 </a>
@@ -83,9 +83,9 @@
                                         </div>
                                         <div class="product-content-wrap">
                                             <div class="product-category">
-                                                <a href="{{route('product-details', encrypt($product->id))}}">{{$product->category->name}}</a>
+                                                <a href="{{route('product-details', $product->id)}}">{{$product->category->name}}</a>
                                             </div>
-                                            <h2><a href="{{route('product-details', encrypt($product->id))}}">{{$product->name}}</a></h2>
+                                            <h2><a href="{{route('product-details', $product->id)}}">{{$product->name}}</a></h2>
                                             <div class="" title="90%">
                                                 <span>
                                                     <br>
@@ -96,7 +96,7 @@
                                                 <span class="old-price">C${{number_format($product->price)}}</span>
                                             </div>
                                             <div class="product-action-1 show">
-                                                <a aria-label="Add To Cart" class="action-btn hover-up" href="{{route('product-details', encrypt($product->id))}}"><i class="fi-rs-shopping-bag-add"></i></a>
+                                                <a aria-label="Add To Cart" class="action-btn hover-up" href="{{route('product-details', $product->id)}}"><i class="fi-rs-shopping-bag-add"></i></a>
                                             </div>
                                         </div>
                                     </div>
@@ -124,7 +124,7 @@
                                 <h5 class="section-title style-1 mb-30 wow fadeIn animated">Category</h5>
                                 <ul class="categories">
                                     @foreach($menu_categories as $catt)
-                                        <li><a href="{{route('user.category',encrypt($catt->id))}}">{{$catt->name}}</a></li>
+                                        <li><a href="{{route('user.category', $catt->id)}}">{{$catt->name}}</a></li>
                                    
                                     @endforeach
                                 </ul>
@@ -142,13 +142,12 @@
                                         <img src="{{asset('images/products/'.$prods->image)}}" alt="#">
                                     </div>
                                     <div class="content pt-10">
-                                        <h5><a href="{{route('product-details', encrypt($prods->id))}}">{{$prods->name}}</a></h5>
+                                        <h5><a href="{{route('product-details', $prods->id )}}">{{$prods->name}}</a></h5>
                                         <p class="price mb-0 mt-5">C${{number_format($prods->price)}}</p>
                                        
                                     </div>
                                 </div>
                                 @endforeach
-                               
                             </div>
                             
                         </div>

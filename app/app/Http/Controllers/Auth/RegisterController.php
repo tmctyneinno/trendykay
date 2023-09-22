@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use App\News;
 
 class RegisterController extends Controller
 {
@@ -86,5 +87,10 @@ class RegisterController extends Controller
             $admin->save();
         }
         return $create;
+    }
+
+    public function showRegistrationForm()
+    {
+        return view('auth.register')->with('news', News::latest()->get());
     }
 }

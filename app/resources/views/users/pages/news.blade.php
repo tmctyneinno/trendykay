@@ -1,73 +1,121 @@
-@extends('layouts.app')
+@extends('layouts.app2')
 @section('content')
-<main id="content" role="main">
-    <div class="bg-gray-13 bg-md-transparent">
+<main class="main">
+    <div class="page-header breadcrumb-wrap">
         <div class="container">
-            <!-- breadcrumb -->
-            <div class="my-md-3">
-                <nav aria-label="breadcrumb">
-                    <ol class="breadcrumb mb-3 flex-nowrap flex-xl-wrap overflow-auto overflow-xl-visble">
-                        <li class="breadcrumb-item flex-shrink-0 flex-xl-shrink-1"><a href="{{route('index')}}">Home</a></li>
-                        <li class="breadcrumb-item flex-shrink-0 flex-xl-shrink-1 active" aria-current="page">News</li>
-                    </ol>
-                </nav>
+            <div class="breadcrumb">
+                <a href="{{route('index')}}" rel="nofollow">Home</a>
+                <span></span> Blog
             </div>
-            <!-- End breadcrumb -->
         </div>
     </div>
-    <div class="container">
-        <div class="row">
-            <div class="col-xl-9 col-wd">
-                <div class="min-width-1100-wd">
-                    @foreach ($news as $blog )
-                    <article class="card mb-13 border-0">
-                        <div class="row">
-                            <div class="col-lg-4 mb-5 mb-lg-0">
-                                <a href="#" class="d-block"><img class="img-fluid min-height-250 object-fit-cover" src="{{asset('/images/news/'.$blog->image)}}" alt="{{asset('/images/news/'.$blog->image)}}"></a>
-                            </div>
-                            <div class="col-lg-8">
-                                <div class="card-body p-0">
-                                    <h4 class="mb-3"><a href="{{route('news.details',encrypt($blog->id))}}">{{$blog->title}}</a></h4>
-                                    <div class="mb-3 pb-3 border-bottom">
-                                        <div class="list-group list-group-horizontal flex-wrap list-group-borderless align-items-center mx-n0dot5">
-                                            <a href="{{route('news.details',encrypt($blog->id))}}" class="mx-0dot5 text-gray-5">posted on: {{$blog->created_at->format('d/m/y')}}</a>
-                                        </div>
-                                    </div>
-                                    <p>{!! substr($blog->content,0,500)!!}</p>
-                                    <div class="flex-horizontal-center">
-                                        <a href="{{route('news.details',encrypt($blog->id))}}" class="btn btn-soft-secondary-w mb-md-0 font-weight-normal px-5 px-md-4 px-lg-5">Read More</a>
-                                                
-                                     </div>
+    <section class="mt-50 mb-50">
+        <div class="container custom">
+            <div class="row">
+                <div class="col-lg-9">
+                    <div class="single-header mb-50">
+                        <h3 class="font-xxl text-brand">Our Blog</h3>
+                        <div class="entry-meta meta-1 font-xs mt-15 mb-15">
+                        </div>
+                    </div>
+                    <div class="loop-grid loop-list pr-30">
+                        @foreach ($news as $blog )
+                        <article class="wow fadeIn animated hover-up mb-30">
+                            <div class="post-thumb" style="background-image: url({{asset('/images/news/'.$blog->image)}})">
+                                <div class="entry-meta">
+                                    <a class="entry-meta meta-2" href="{{route('news.details',encrypt($blog->id))}}">Dresses</a>
                                 </div>
                             </div>
+                            <div class="entry-content-2">
+                                <h3 class="post-title mb-15">
+                                    <a href="{{route('news.details',encrypt($blog->id))}}">{{$blog->title}}</a></h3>
+                                <p class="post-exerpt mb-30">{!! substr($blog->content,0,500)!!}</p>
+                                <div class="entry-meta meta-1 font-xs color-grey mt-10 pb-10">
+                                    <div>
+                                        <span class="post-on"> <i class="fi-rs-clock"></i> 
+                                            {{ \Carbon\Carbon::parse($blog->created_at)->format('d M, Y') }}
+                                        </span>
+                                        {{-- <span class="hit-count has-dot">17k Views</span> --}}
+                                    </div>
+                                    <a href="{{route('news.details',encrypt($blog->id))}}" class="text-brand">Read more <i class="fi-rs-arrow-right"></i></a>
+                                </div>
+                            </div>
+                        </article>
+                        @endforeach
+                    </div>
+                    <!--post-grid-->
+                    {{-- <div class="pagination-area mt-15 mb-sm-5 mb-lg-0">
+                        <nav aria-label="Page navigation example">
+                            <ul class="pagination justify-content-start">
+                                <li class="page-item active"><a class="page-link" href="#">01</a></li>
+                                <li class="page-item"><a class="page-link" href="#">02</a></li>
+                                <li class="page-item"><a class="page-link" href="#">03</a></li>
+                                <li class="page-item"><a class="page-link dot" href="#">...</a></li>
+                                <li class="page-item"><a class="page-link" href="#">16</a></li>
+                                <li class="page-item"><a class="page-link" href="#"><i class="fi-rs-angle-double-small-right"></i></a></li>
+                            </ul>
+                        </nav>
+                    </div> --}}
+                </div>
+                <div class="col-lg-3 primary-sidebar sticky-sidebar">
+                    <div class="widget-area">
+                        <div class="sidebar-widget widget_search mb-50">
+                            <div class="search-form">
+                                <form action="#">
+                                    <input type="text" placeholder="Search…">
+                                    <button type="submit"> <i class="fi-rs-search"></i> </button>
+                                </form>
+                            </div>
                         </div>
-                    </article>
-                    @endforeach
+                        <!--Widget categories-->
+                        <div class="sidebar-widget widget_categories mb-40">
+                            <div class="widget-header position-relative mb-20 pb-10">
+                                <h5 class="widget-title">Categories</h5>
+                            </div>
+                            <div class="post-block-list post-module-1 post-module-5">
+                                <ul>
+                                    <li class="cat-item cat-item-2"><a href="blog-category-list.html">Beauty</a> (3)</li>
+                                    <li class="cat-item cat-item-3"><a href="blog-category-list.html">Book</a> (6)</li>
+                                    <li class="cat-item cat-item-4"><a href="blog-category-list.html">Design</a> (4)</li>
+                                    <li class="cat-item cat-item-5"><a href="blog-category-list.html">Fashion</a> (3)</li>
+                                    <li class="cat-item cat-item-6"><a href="blog-category-list.html">Lifestyle</a> (6)</li>
+                                    <li class="cat-item cat-item-7"><a href="blog-category-list.html">Travel</a> (2)</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <!--Widget latest posts style 1-->
+                        <div class="sidebar-widget widget_alitheme_lastpost mb-20">
+                            <div class="widget-header position-relative mb-20 pb-10">
+                                <h5 class="widget-title">Recent Posts</h5>
+                            </div> 
+                            <div class="row">
+                                @foreach ($recent as $post )
+                                <div class="col-12 sm-grid-content mb-30">
+                                    <div class="post-thumb d-flex border-radius-5 img-hover-scale mb-15">
+                                        <a href="blog-post-fullwidth.html">
+                                            <img src="{{asset('/images/news/'.$post->image)}}" alt="">
+                                        </a>
+                                    </div>
+                                    <div class="post-content media-body">
+                                        <h4 class="post-title mb-10 text-limit-2-row">{{$post->title}} </h4>
+                                        <div class="entry-meta meta-13 font-xxs color-grey">
+                                            <span class="post-on mr-10">
+                                                 {{ \Carbon\Carbon::parse($post->created_at)->format('d M, Y') }}
+                                                </span>
+                                            {{-- <span class="hit-count has-dot ">126k Views</span> --}}
+                                        </div>
+                                    </div>
+                                </div>
+                                @endforeach
+                                
+                            </div>
+                        </div>
+                       
+                        
+                    </div>
                 </div>
             </div>
-            <div class="col-xl-3 col-wd">
-                <aside class="mb-7">
-                    <div class="border-bottom border-color-1 mb-5">
-                        <h3 class="section-title section-title__sm mb-0 pb-2 font-size-18">Recent Posts</h3>
-                    </div>
-                    @foreach ($recent as $post )
-                    <article class="mb-4">
-                        <div class="media">
-                            <div class="width-75 height-75 mr-3">
-                                <img class="img-fluid object-fit-cover" src="{{asset('/images/news/'.$post->image)}}" alt="Image Description">
-                            </div>
-                            <div class="media-body">
-                                <h4 class="font-size-14 mb-1"><a href="../blog/single-blog-post.html" class="text-gray-39">{{$post->title}}</a></h4>
-                                <span class="text-gray-5">{{$post->created_at->format('d/m/y')}}</span>
-                            </div>
-                        </div>
-                    </article>
-                    @endforeach
-                    
-                </aside>
-                
-            </div>
         </div>
-    </div>
+    </section>
 </main>
 @endsection

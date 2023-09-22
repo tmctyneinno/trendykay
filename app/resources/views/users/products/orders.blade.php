@@ -45,14 +45,14 @@
                                     </tr>
                                 </tbody>
                             </table>
-                        </div>
+                        </div> 
                         <div class="row">
                             <div class="col-lg-6 mb-sm-15">
                                 <div class="mb-10">
                                     <h4>Payment Information</h4>
                                 </div>
                             </div>
-                        </div>
+                        </div> 
                         <div class="table-responsive order_table text-center">
                             <table class="table">
                                 <tbody>
@@ -137,8 +137,27 @@
                     </div>
                     <div class="bt-1 border-color-1 mt-30 mb-30"></div>
                     <script src="https://checkout.flutterwave.com/v3.js"></script>
-                    <form>
-                        <button type="button" onClick="makePayment()" id="btnsubmit2" class="btn btn-fill-out btn-block mt-10">Pay Now</button>
+                    <form action="{{ route('pay.checkout')}}" method="POST">
+                        {{-- <form 
+
+                            role="form" 
+
+                            action="{{ route('paypal.checkout')}}" 
+
+                            method="post" 
+
+                            class="require-validation"
+
+                            data-cc-on-file="false"
+
+                            data-stripe-publishable-key="{{ env('STRIPE_KEY') }}"
+
+                            id="payment-form"> --}}
+                        @csrf
+                        <input value="{{$orders->order_No}}" name="orderNo" >
+                        <input value="{{\Cart::Totalfloat()}}" name="amount" >
+                        {{-- <button type="button" onClick="makePayment()" id="btnsubmit2" class="btn btn-fill-out btn-block mt-10">Pay Now</button> --}}
+                        <button type="submit"  class="btn btn-fill-out btn-block mt-10">Pay Now with PayPal</button>
                     </form>
                 </div>
             </div>

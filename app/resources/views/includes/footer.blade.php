@@ -1,111 +1,129 @@
-   <footer>
-            <div class="pt-8 pb-4 bg-gray-13">
-                <div class="container mt-1">
+<footer class="main">
+    <section class="newsletter p-30 text-white wow fadeIn animated">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-7 mb-md-3 mb-lg-0">
+                    <div class="row align-items-center">
+                        <div class="col flex-horizontal-center">
+                            <img class="icon-email" src="{{ asset('assets/imgs/theme/icons/icon-email.svg')}}" alt="">
+                            <h4 class="font-size-20 mb-0 ml-3">Sign up to Newsletter</h4>
+                        </div>
+                        <div class="col my-4 my-md-0 des">
+                            <h5 class="font-size-15 ml-4 mb-0">...and receive <strong>$25 coupon for first shopping.</strong></h5>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-5">
+                    <!-- Subscribe Form -->
+                    <form class="form-subcriber d-flex wow fadeIn animated">
+                        <input type="email" class="form-control bg-white font-small" placeholder="Enter your email">
+                        <button class="btn bg-dark text-white" type="submit">Subscribe</button>
+                    </form>
+                    <!-- End Subscribe Form -->
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="section-padding footer-mid">
+        <div class="container pt-15 pb-20">
+            <div class="row">
+                <div class="col-lg-4 col-md-6">
+                    <div class="widget-about font-md mb-md-5 mb-lg-0">
+                        <div class="logo logo-width-1 wow fadeIn animated">
+                            <a href="index.html"><img src="{{ asset('assets/imgs/theme/logo.svg')}}" alt="logo"></a>
+                        </div>
+                        <h5 class="mt-20 mb-10 fw-600 text-grey-4 wow fadeIn animated">Contact</h5>
+                        <p class="wow fadeIn animated">
+                            <strong>Address: </strong>Winnipeg, Manitoba, Canada
+                        </p>
+                        <p class="wow fadeIn animated">
+                            <strong>Phone: </strong>+14317777816
+                        </p>
+                        <p class="wow fadeIn animated">
+                            <strong>Email: </strong>trendykaycollections@gmail.com
+                        </p>
+                        <p class="wow fadeIn animated">
+                            <strong>Hours: </strong>10:00 - 18:00, Mon - Sat
+                        </p>
+                        <h5 class="mb-10 mt-30 fw-600 text-grey-4 wow fadeIn animated">Follow Us</h5>
+                        <div class="mobile-social-icon wow fadeIn animated mb-sm-5 mb-md-0">
+                            <a href="#"><img src="{{ asset('assets/imgs/theme/icons/icon-facebook.svg')}}" alt=""></a>
+                            <a href="#"><img src="{{ asset('assets/imgs/theme/icons/icon-twitter.svg')}}" alt=""></a>
+                            <a href="#"><img src="{{ asset('assets/imgs/theme/icons/icon-instagram.svg')}}" alt=""></a>
+                            <a href="#"><img src="{{ asset('assets/imgs/theme/icons/icon-pinterest.svg')}}" alt=""></a>
+                            <a href="#"><img src="{{ asset('assets/imgs/theme/icons/icon-youtube.svg')}}" alt=""></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-3">
+                    <h5 class="widget-title wow fadeIn animated">About</h5>
+                    <ul class="footer-list wow fadeIn animated mb-sm-5 mb-md-0">
+                        <li><a href="{{ route('aboutus')}}">About Us</a></li>
+                        <li><a href="#">Delivery Information</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms &amp; Conditions</a></li>
+                        <li><a href="#">Contact Us</a></li>
+                        <li><a href="#">Support Center</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-2  col-md-3">
+                    <h5 class="widget-title wow fadeIn animated">My Account</h5>
+                    <ul class="footer-list wow fadeIn animated">
+                        <li><a href="#">Sign In</a></li>
+                        <li><a href="#">View Cart</a></li>
+                        <li><a href="#">My Wishlist</a></li>
+                        <li><a href="#">Track My Order</a></li>
+                        <li><a href="#">Help</a></li>
+                        <li><a href="#">Order</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-4">
+                    <h5 class="widget-title wow fadeIn animated">Install App</h5>
                     <div class="row">
-                        <div class="col-lg-4 ">
-                            <div class="mb-4">
-                                <a href="#" class="d-inline-block">
-                                   <img src="{{asset('/images/logo.png')}}" width="100px">
-                                </a>
-                            </div>
-                            <div class="mb-4">
-                                <div class="row no-gutters">
-                                    <div class="col-auto">
-                                        <i class="ec ec-support text-primary font-size-20"></i>
-                                    </div>
-                                    <div class="col pl-3">
-                                        <div class="font-size-13 font-weight-light">Got questions? Call us 24/7!</div>
-                                        (+234) 0813-532-4241, 
-                                   
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="mb-4">
-                                <h6 class="mb-1 font-weight-bold">Contact info</h6>
-                                <address class="">
-                                    Block C12 shop 02 & 09, Arena Shopping Complex, Bolade-oshodi, Lagos
-                                </address>
-                            </div>
-                            <div class="my-4 my-md-3">
-                                <ul class="list-inline mb-0 opacity-7">
-                                    <li class="list-inline-item mr-0">
-                                        <a class="btn font-size-20 btn-icon btn-soft-dark btn-bg-transparent rounded-circle" href="#">
-                                            <span class="fab fa-facebook-f btn-icon__inner"></span>
-                                        </a>
-                                    </li>
-                                    <li class="list-inline-item mr-0">
-                                        <a class="btn font-size-20 btn-icon btn-soft-dark btn-bg-transparent rounded-circle" href="#">
-                                            <span class="fab fa-google btn-icon__inner"></span>
-                                        </a>
-                                    </li>
-                                    <li class="list-inline-item mr-0">
-                                        <a class="btn font-size-20 btn-icon btn-soft-dark btn-bg-transparent rounded-circle" href="#">
-                                            <span class="fab fa-twitter btn-icon__inner"></span>
-                                        </a>
-                                    </li>
-                                    <li class="list-inline-item mr-0">
-                                        <a class="btn font-size-20 btn-icon btn-soft-dark btn-bg-transparent rounded-circle" href="#">
-                                            <span class="fab fa-github btn-icon__inner"></span>
-                                        </a>
-                                    </li>
-                                </ul>
+                        <div class="col-md-8 col-lg-12">
+                            <p class="wow fadeIn animated">From App Store or Google Play</p>
+                            <div class="download-app wow fadeIn animated">
+                                <a href="#" class="hover-up mb-sm-4 mb-lg-0"><img class="active" src="{{ asset('assets/imgs/theme/app-store.jpg')}}" alt=""></a>
+                                <a href="#" class="hover-up"><img src="{{ asset('assets/imgs/theme/google-play.jpg')}}" alt=""></a>
                             </div>
                         </div>
-                        <div class="col-lg-7">
-                            <div class="row">
-                                <div class="col-4 col-md mb-3 mb-md-0">
-                                    <h6 class="mb-3 font-weight-bold">Categories</h6>
-                                    <!-- List Group -->
-                                    <ul class="list-group list-group-flush list-group-borderless mb-0 list-group-transparent">
-                                        @foreach ($menu_categories as $mnu )
-                                            
-                                    
-                                        <li><a class="list-group-item list-group-item-action" href="../shop/product-categories-5-column-sidebar.html">{{$mnu->name}}</a></li>
-                                        @endforeach
-                                    </ul>
-                                    <!-- End List Group -->
-                                </div>
-
-                                <div class="col-4 col-md mb-3 mb-md-0">
-                                    <h6 class="mb-3 font-weight-bold">Links</h6>
-                                    <!-- List Group -->
-                                    <ul class="list-group list-group-flush list-group-borderless mb-0 list-group-transparent">
-                                        @foreach ($menu as $ss )
-                                        <li><a class="list-group-item list-group-item-action" href="../shop/my-account.html">{{$ss->name}}</a></li>
-                                        @endforeach
-         
-                                    </ul>
-                                    <!-- End List Group -->
-                                </div>
-
-                                <div class="col-4 col-md mb-3 mb-md-0">
-                                    <h6 class="mb-3 font-weight-bold">Contact Us</h6>
-                                    <!-- List Group -->
-                                    <div class="font-size-13 font-weight-bold">Got questions? Call us 24/7!</div>
-                                    <div class="font-size-13 font-weight-light">Phone Number</div>
-                                        (800) 8001-8588, 
-                                    <!-- End List Group -->
-                                    <div class="font-size-13 font-weight-light">Email Address</div>
-                                       support@sofarsolar.ng
-                                    <!-- End List Group -->
-                                    <h6 class="mb-1 font-weight-light">Physical Address</h6>
-                                    <address class="">
-                                        Lagos, Nigeria
-                                    </address>
-                                </div>
-                               
-                            </div>
+                        <div class="col-md-4 col-lg-12 mt-md-3 mt-lg-0">
+                            <p class="mb-20 wow fadeIn animated">Secured Payment Gateways</p>
+                            <img class="wow fadeIn animated" src="{{ asset('assets/imgs/theme/payment-method.png')}}" alt="">
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="bg-gray-14 py-2">
-                <div class="container">
-                    <div class="flex-center-between d-block d-md-flex">
-                        <div class="mb-3 mb-md-0">© <a href="#" class="font-weight-bold text-gray-90">Sofarsolar.ng</a> - All rights Reserved</div>
-                        
-                    </div>
+        </div>
+    </section>
+    <div class="container pb-20 wow fadeIn animated">
+        <div class="row">
+            <div class="col-12 mb-20">
+                <div class="footer-bottom"></div>
+            </div>
+            <div class="col-lg-6">
+                <p class="float-md-left font-sm text-muted mb-0">&copy; 2022, <strong class="text-brand">Evara</strong> - HTML Ecommerce Template </p>
+            </div>
+            <div class="col-lg-6">
+                <p class="text-lg-end text-start font-sm text-muted mb-0">
+                    Designed by <a href="http://alithemes.com/" target="_blank">Alithemes.com</a>. All rights reserved
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+<!-- Preloader Start -->
+{{-- <div id="preloader-active">
+    <div class="preloader d-flex align-items-center justify-content-center">
+        <div class="preloader-inner position-relative">
+            <div class="text-center">
+                <h5 class="mb-10">Now Loading</h5>
+                <div class="loader">
+                    <div class="bar bar1"></div>
+                    <div class="bar bar2"></div>
+                    <div class="bar bar3"></div>
                 </div>
             </div>
-            <!-- End Footer-copy-right -->
-        </footer>
+        </div>
+    </div>
+</div> --}}

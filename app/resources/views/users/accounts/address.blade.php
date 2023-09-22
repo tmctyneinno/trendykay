@@ -1,82 +1,103 @@
-@extends('layouts.app')
-
+@extends('layouts.app2')
 @section('content')
-
-<main id="content" role="main" class="checkout-page">
+<main  class="main">
             <!-- breadcrumb -->
-     <div class="bg-gray-13 bg-md-transparent">
+            <div class="page-header breadcrumb-wrap">
                 <div class="container">
-                    <!-- breadcrumb -->
-                    <div class="my-md-3">
-                        <nav aria-label="breadcrumb">
-                            <ol class="breadcrumb mb-3 flex-nowrap flex-xl-wrap overflow-auto overflow-xl-visble">
-                                <li class="breadcrumb-item flex-shrink-0 flex-xl-shrink-1"><a href="#">Home</a></li>
-                                <li class="breadcrumb-item flex-shrink-0 flex-xl-shrink-1 active" aria-current="page">My Addresses</li>
-                            </ol>
-                        </nav>
+                    <div class="breadcrumb">
+                        <a href="{{ url('pages/home') }}" rel="nofollow">Home</a>
+                        <span></span> Order Details
                     </div>
-                    <!-- End breadcrumb -->
                 </div>
             </div>
-            
-            <div class="container">
-                <div class="row mb-8">
-                @include('includes.accountNav')
 
-                      <div class="mb-8 col-xl-9">
-                            <div class="borders-radius-17 border p-4 mt-4 mt-md-0 px-lg-10 px-xl-4 px-wd-10 py-lg-9 py-xl-5 py-wd-9">
-                             
-                               <div class="row">
-                               @if(count($addresses)>0)
-                                @foreach($addresses as $addres)
-                                <div class="mb-6 col-xl-6">
-                            <table class="table table-bordered" cellspacing="0">
-                            <thead>
-                            <tr>
-                           @if($addres->is_default == 1)
-                           <th>Billing Address <span class="badge badge-danger">Default</span> <a href=""><span class="fa fa-pen float-right"></span></a> </th>
-                          @else
-                            <th>Billing Address<a href="{{route('users.update-address', encrypt($addres->id))}}"> <span class="badge badge-info">Set Default</span><span class="fa fa-pen float-right"></span></a> </th>
-                          @endif
-                            </tr>
-                            
-                            </thead>
-                            <tbody>
-                            <tr>
-                            
-                            <td>
-                          
-                            <p>
-                                Name: {{$addres->receiver_name}}<br>
-                                Address: {{$addres->address}}<br>
-                                City: {{$addres->city . " , " . strtoupper($addres->state)}}<br>
-                                Phone: {{$addres->receiver_phone}}<br>
-                            
-                            </td>   
-                            </tr>
-                            </tbody>
-                            </table>
-                            </div>
-                              @endforeach
-                            
-                            </div>
-                            <div class="float-right">
-                            {{$addresses->links()}}
-                            </div>
-                            @else
-                            <div class="mb-3">
-                                   <p>You currently do not have any saved address</p>
-                                <a href=""><button type="submit" class="btn btn-primary-dark-w px-5">Add New Address</button>
-                                   
+            <section class="pt-50 pb-150">
+                <div class="container">
+                    <div class="row mb-8">
+                        <div class="col-lg-12 m-auto">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    {{-- @include('includes.accountNav') --}}
+                                    <div class="dashboard-menu">
+                                        <ul class="nav flex-column" role="tablist">
+                                            <li class="nav-item">
+                                                <a class="nav-link " id="dashboard-tab"  href="{{route('users.account')}}"  
+                                                aria-controls="dashboard" aria-selected="false">Account details</a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a class="nav-link " id="orders-tab"  href="{{route('users.orders')}}"  
+                                                aria-controls="orders" aria-selected="false"><i class="fi-rs-shoppingg-bag mr-10"></i>Orders</a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a class="nav-link active" id="track-orders-tab"  href="{{route('users.address')}}"  
+                                                aria-controls="track-orders" aria-selected="false"><i class="fi-rs-markerr mr-10"></i>My Address Book</a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a class="nav-link"  href="{{route('users.recentViews')}}" 
+                                                ><i class="fi-rs-eyes mr-10"></i>Recently Viewed</a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a class="nav-link" id="account-detail-tab"  href="{{route('user.transactions')}}"  
+                                                aria-controls="account-detail" ><i class="fi-rs-atm mr-10"></i>Card Payments</a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a class="nav-link" id="account-detail-tab"  href="{{route('user.account.details')}}"  
+                                                aria-controls="update-detail" ><i class="fi-rs-atm mr-10"></i>Update Account</a>
+                                            </li>
+                                            
+                                        </ul>
+                                    </div>
+                                </div>
+
+                                
+                                <div class="col-md-8">
+                                    @if(count($addresses)>0)
+                                    @foreach($addresses as $addres)
+                                    <div class="card">
+                                        <div class="card-header">
+                                            <h5 class="mb-0">
+                                                @if($addres->is_default == 1)
+                                                        <th>Billing Address 
+                                                            <a class="btn btn-outline btn-sm btn-brand-outline font-weight-bold text-brand bg-white text-hover-white  border-radius-5 
+                                                            btn-shadow-brand ">  Default</a>
+                                                        </th>
+                                                @else
+                                                    <th>Billing Address
+                                                        <a href="{{route('users.update-address', encrypt($addres->id))}}" class="btn btn-outline btn-sm btn-brand-outline font-weight-bold text-brand bg-white text-hover-white  border-radius-5 
+                                                            btn-shadow-brand ">  Default</a>
+                                                    </th>
+                                                @endif
+                                            </h5>
+                                        </div>
+                                    </div>
+                                    <div class="card-body border">
+                                       
+                                       
+                                            <address style="font-weight: bold">Name: {{$addres->receiver_name}}</address>
+                                                <p> Address: {{$addres->address}}</p>
+                                                <p> City: {{$addres->city . " , " . strtoupper($addres->state)}} </p>
+                                                <p> Phone: {{$addres->receiver_phone}}</p>
+                                            <br><br>
+                                            @endforeach
+                                            @else
+                                                <p>Shipping Address</p>
+                                                <h6> You dont have any Default shipping Address yet</h6>
+                                       
                                     </div>
                                     @endif
-                    <a href="{{route('users.add-address')}}"><button type="submit" class="btn btn-primary-dark-w px-5">Add New Address</button>
+                                
+                                    <a href="{{url('customer.add-address')}}" class="btn btn-small">Add New</a>
+                                    </div>
+                                <!-- End Tab Content -->
                             </div>
-                            
-                            <!-- End Tab Content -->
+                  
+
+                            </div>
                         </div>
+                    
+                    </div>
                 </div>
-            </div>
+            </section>
 </main>
 
 

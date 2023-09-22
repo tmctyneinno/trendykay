@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Category;
+use App\News;
 use Illuminate\Http\Request;
 use Intervention\Image\Facades\Image;
 use Symfony\Component\HttpFoundation\Session\Session;
@@ -25,6 +26,7 @@ class CategoryController extends Controller
         return view('manage.category.index')
             ->with('category', Category::latest()->get())
             ->with('bheading', 'Category')
+            ->with('news', News::latest()->get())
             ->with('breadcrumb', 'Index');
     }
 

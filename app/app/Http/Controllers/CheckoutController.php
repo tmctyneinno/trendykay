@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\AdminNotify;
 use App\User;
 use App\Shipping;
+use App\News;
 use App\Product;
 use App\Category;
 use App\Http\Requests\CheckoutRequest;
@@ -157,6 +158,7 @@ class CheckoutController extends Controller
         $shipping= Shipping::where(['user_id' => auth()->user()->id, 'is_default' => 1])->get();
         return view('users.products.checkout')
         ->with('shipping', $shipping)
+        ->with('news', News::latest()->get())
         ->with('cart', \Cart::content());
     }
 
@@ -216,7 +218,7 @@ class CheckoutController extends Controller
         $order->amount = \Cart::priceTotalFloat();
         $shipping = Shipping::where(['user_id' => auth()->user()->id, 'is_default' => 1])->first();
         if(!isset($shipping)){
-            return redirect()->route('checkout.index')->withErrors('Please select a default Address');
+            return redirect()->route('checkout.index')->withErrors('Please select a default Address') ->with('news', News::latest()->get());
             }
         $order->shipping_id = $shipping->id;
         if($order->save()){
@@ -224,6 +226,7 @@ class CheckoutController extends Controller
         $order_items = DB::table('order_items')->where(['order_No' => $orderNo->order_No])->get();
             if($request->payment_method == 'card'){
             return view('users.products.checkouts')
+            ->with('news', News::latest()->get())
             ->with('address', Shipping::where(['user_id' => auth()->user()->id, 'is_default' => 1 ])->first())
             ->with('cart', \Cart::content());
             }else{
@@ -234,7 +237,7 @@ class CheckoutController extends Controller
                 $admin = new AdminNotify;
                 $admin->message = 'New customer order completed Order No: '.$order->order_No;
                 $admin->save();
-                return view('users.products.orders', compact('items', 'orders'))->with('success', 'Order was sent successfully');
+                return view('users.products.orders', compact('items', 'orders'))->with('success', 'Order was sent successfully')->with('news', News::latest()->get());
             }
         }
     }
@@ -301,7 +304,7 @@ class CheckoutController extends Controller
         //
     }
 
-    public function verify($trxref){
+    public function verifyy($trxref){
         $trnx_ref_exists = Transaction::where(['external_ref' => $trxref])->first();
         if ($trnx_ref_exists) {
             return response()->json($trnx_ref_exists);
@@ -354,12 +357,12 @@ class CheckoutController extends Controller
                  $admin = new AdminNotify;
                  $admin->message = 'New customer order completed <br>'.'Order No'.$order->order_No;
                  $admin->save();
-                 return view('users.products.completed', compact('items', 'orders'))->with('success', 'Order completed successfully');
+                 return view('users.products.completed', compact('items', 'orders'))->with('success', 'Order completed successfully')->with('news', News::latest()->get());
         } else {
             //Dont Give Value and return to Failure page
             \Session::flash('flash_message', 'Something went wrong');
             $message = 'Your payment was not successful. Something went wrong.';
-            return view('customer.cart.checkout', compact('message'));
+            return view('customer.cart.checkout', compact('message'))->with('news', News::latest()->get());
         }
           
     }

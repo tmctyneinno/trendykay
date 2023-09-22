@@ -9,6 +9,9 @@ class Product extends Model
 {
     protected $fillable = [
         'name',
+        'color',
+        'size',
+        'variation', 
         'category_id',
         'image',
         'gallery',
@@ -19,6 +22,16 @@ class Product extends Model
         'exchange_rate',
         'discount',
     ];
+
+    public function colors()
+    {
+        return $this->hasMany(Color::class);
+    }
+
+    public function sizes()
+    {
+        return $this->hasMany(Size::class);
+    }
 
     
     public function category(){
@@ -33,3 +46,4 @@ class Product extends Model
         return $this->belongsTo(SubCategory::class, 'sub_category_id', 'id');
     }
 }
+ 

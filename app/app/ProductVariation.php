@@ -6,10 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class ProductVariation extends Model
 {
+    protected $table = "product_variations";
     protected $fillable = [
-        'price',
-        'qty',
-        'product_id'
+        'name',
+        'product_id' 
 
     ];
 }

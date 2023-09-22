@@ -7,6 +7,7 @@ use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
+use App\News;
 
 class LoginController extends Controller
 {
@@ -19,7 +20,7 @@ class LoginController extends Controller
     | redirecting them to your home screen. The controller uses a trait
     | to conveniently provide its functionality to your applications.
     |
-    */
+    */ 
 
     use AuthenticatesUsers;
 
@@ -41,11 +42,16 @@ class LoginController extends Controller
     }
 
     function authenticated(Request $request, $user)
-{
-    $user->update([
-        'last_login' => Carbon::now()->toDateTimeString(),
-        'login_ip'  => $request->getClientIp(),
-    ]);
-    //dd($user);
-}
+    {
+        $user->update([
+            'last_login' => Carbon::now()->toDateTimeString(),
+            'login_ip'  => $request->getClientIp(),
+        ]);
+        //dd($user);    
+    }
+
+    public function showLoginForm(){
+            
+        return view('auth.login') ->with('news', News::latest()->get());
+    }
 }

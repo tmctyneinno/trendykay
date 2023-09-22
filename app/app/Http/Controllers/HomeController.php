@@ -12,6 +12,7 @@ use App\Review;
 use App\Notification;
 use App\User;
 use App\Menu;
+use App\News;
 use App\Slider;
 use App\Shipping;
 use App\Transaction;
@@ -52,13 +53,14 @@ class HomeController extends Controller
             ->with('title', 'Index') 
             ->with('prod', $prod)
             ->with('cart', $cart) 
+            ->with('news', News::latest()->get())
             ->with('products', Product::latest()->simplePaginate(50))
             ->with('sliders', Slider::get())
-            ->with('categories', Category::take(4)->get());
+            ->with('categories', Category::take(4)->get()); 
     } 
 
     public function productDetails($id){
-        $id = decrypt($id);
+        $id = $id;
         $cart =  \Cart::content()->take(4);
         $product = Product::where('id', $id)->first();
         session()->push('products.recently_viewed', $product->getKey());
@@ -73,6 +75,7 @@ class HomeController extends Controller
                 ->with('title', $product->name)
                 ->with('product', $product)
                 ->with('cart',$cart)
+                ->with('news', News::latest()->get())
                 ->with('products', Product::latest()->take(5)->get())
                 ->with('breadcrumb', $product->name)
                 ->with('category', Category::latest()->get());
@@ -80,16 +83,34 @@ class HomeController extends Controller
 
         public function Account(){
           $title = "My Details";
-         $cart =  \Cart::content()->take(4);
+          $cart =  \Cart::content()->take(4);
           $addresses= DB::table('shippings')->where(['user_id'=> auth()->user()->id, 'is_default' => '1'])->get();
-          return view('users.accounts.index')->with('cart',  $cart)->with('addresses', $addresses)->with('title',$title );  
+          $orders = DB::table('orders')
+          ->join('order_items', 'orders.order_No', '=' ,'order_items.order_No')
+          ->where('orders.user_id', auth()->user()->id)
+          ->latest('orders.created_at')
+          ->paginate(8);
+          $products = session()->get('products.recently_viewed');
+          if(is_array($products)){
+          $data = array_unique($products);
+           $datas = array_slice($data, -10, 10, true);
+           $products['recent'] = product::whereIn('id', $datas)->take(10)->latest()->get();
+          }else{
+              $products['recent'] = [];
+          }
+          return view('users.accounts.index', $products)
+          ->with('orders', $orders)
+          ->with('news', News::latest()->get())
+          ->with('transactions', Transaction::where(['user_id' =>auth()->user()->id])->latest()->simplePaginate(10))
+          ->with('cart',  $cart)->with('addresses', $addresses)->with('title',$title );  
         }
 
         public function UserAddress(){
             $title = "My Details";
            $cart =  \Cart::content()->take(4);
-            $addresses= DB::table('shippings')->where(['user_id'=> auth()->user()->id])->paginate(4);  
-            return view('users.accounts.address', compact('addresses', 'title', 'cart'));
+            $addresses= DB::table('shippings')->where(['user_id'=> auth()->user()->id])->paginate(4); 
+            $news = News::latest()->get(); 
+            return view('users.accounts.address', compact('addresses', 'title', 'cart', 'news'));
         }
 
         public function myOrders(){
@@ -99,7 +120,8 @@ class HomeController extends Controller
             ->where('orders.user_id', auth()->user()->id)
             ->latest('orders.created_at')
             ->paginate(8);
-            return view('users.accounts.orders', compact('orders','cart'));
+            $news = News::latest()->get();
+            return view('users.accounts.orders', compact('orders','cart', 'news'));
         }
 
 
@@ -107,14 +129,16 @@ class HomeController extends Controller
         $cart =  \Cart::content()->take(4);
         $items= OrderItem::where(['order_No'=> decrypt($id)])->get();
         $orders = Order::where(['order_No' => decrypt($id)])->first();
-        return view('users.accounts.orderDetails', compact('orders', 'items', 'cart'));
+        $news = News::latest()->get();
+        return view('users.accounts.orderDetails', compact('orders', 'items', 'cart', 'news'));
 
     }
 
 
     public function recentViews(){
-       $cart =  \Cart::content()->take(4);
+        $cart =  \Cart::content()->take(4);
         $products = session()->get('products.recently_viewed');
+        $news = News::latest()->get();
         if(is_array($products)){
         $data = array_unique($products);
          $datas = array_slice($data, -10, 10, true);
@@ -122,14 +146,15 @@ class HomeController extends Controller
         }else{
             $products['recent'] = [];
         }
-           return view('users.accounts.recent-view', $products, compact('cart'));
-        }
+        return view('users.accounts.recent-view', $products, compact('cart', 'news'));
+    }
 
         
         public function myTransactions(){
            $cart =  \Cart::content()->take(4);
             return view('users.accounts.transactions')
             ->with('cart',  $cart)
+            ->with('news', News::latest()->get())
             ->with('transactions', Transaction::where(['user_id' =>auth()->user()->id])->latest()->simplePaginate(10))
             ->with('user', User::where('id', auth()->user()->id)->first());
 
@@ -138,11 +163,13 @@ class HomeController extends Controller
 
         public function UserDetails(){
            $cart =  \Cart::content()->take(4);
-            return view('users.accounts.profile', compact('cart'));
+           $news = News::latest()->get();
+            return view('users.accounts.profile', compact('cart', 'news'));
         }
 
         public function updateDetails(Request $request){
            $cart =  \Cart::content()->take(4);
+           $news = News::latest()->get();
             if($request->name){
              $update_user = [
                  'name' => $request->name,
@@ -154,7 +181,7 @@ class HomeController extends Controller
                ->update($update_user);
     
                if(!isset($request->password)){
-               return redirect()->back()->with('success', 'Details Updated Successfully')->with('cart', $cart);
+               return redirect()->back()->with('success', 'Details Updated Successfully')->with('cart', $cart)->with('news', News::latest()->get());
             }
         }
     
@@ -188,11 +215,13 @@ class HomeController extends Controller
     public function createAddresss(){
        $cart =  \Cart::content()->take(4);
         $addresses['addresses']= DB::table('shippings')->where(['user_id'=> auth()->user()->id])->get();
-        return view('users.accounts.add-address',$addresses);
+        $news['news'] = News::latest()->get();
+        return view('users.accounts.add-address',$addresses, $news);
     }
 
     public function Updateship($id){
         $addresses = shipping::find(decrypt($id));
+        $news['news'] = News::latest()->get();
         $addresses['addresses']= DB::table('shippings')->where(['id'=>  $addresses->id])->get();
         return view('users.accounts.update-address',$addresses);
     }
@@ -200,7 +229,7 @@ class HomeController extends Controller
     public function AddressDelete($id){
         $address = Shipping::find(decrypt($id));
         $address->delete();
-        return redirect()->back()->with('error', 'Address Deleted Successfully');
+        return redirect()->back()->with('error', 'Address Deleted Successfully')->with('news', News::latest()->get());
     }
 
     public function Shipping(Request $request, $id){  
@@ -223,7 +252,7 @@ class HomeController extends Controller
             $shipping->city = $request->city;
             $shipping->state = $request->state;
             if($shipping->save()){
-                return redirect()->back()->with('success', 'Address updated successfully');
+                return redirect()->back()->with('success', 'Address updated successfully')->with('news', News::latest()->get());
             }
         }  
                 $shipping = new Shipping;
@@ -251,16 +280,18 @@ class HomeController extends Controller
         return view('users.pages.products')
 
             ->with('products',  Product::where('category_id', $id)->simplePaginate(20))
+            ->with('news', News::latest()->get())
             ->with('prod', Product::latest()->take(5)->get());
     }
 
     public function Pages($id){
         $id = decrypt($id);
-       $cart =  \Cart::content()->take(4);
+        $cart =  \Cart::content()->take(4);
+        $news = News::latest()->get();
         $menu = Menu::where('id', $id)->first();
         $menus = preg_replace("/\s+/", "",$menu->name);
         $product = Product::where('id', 19)->first();
-        return view('users.pages'.".".$menus, compact('product', 'cart'));
+        return view('users.pages'.".".$menus, compact('product', 'cart', 'news'));
     }
     
     public function search(Request $request)
@@ -271,31 +302,35 @@ class HomeController extends Controller
     }
     return view ( 'users.pages.products',$product)
     ->with('prod', Product::latest()->take(5)->get())
+    ->with('news', News::latest()->get())
     ->with('search',$search);
     }
 
     public function Addreview(Request $request, $id){
-        if(isset($request->name)){
-        
-        $proid = product::findorfail($id);
-        
-        $review = new Review;
-        $review->product_id = $proid->id;
-        $review->name = $request->name;
-        $review->email = $request->email;
-        $review->rating = $request->rated;
-        $review->description = $request->description;
-        
-        if($review->save()){
-            return back();
-        }else{
-           // Set a success message in the session
-            Session::flash('success', 'Review Successfully Submitted');
-            return redirect('customer.product-details');
+            if(isset($request->name)){
+            
+            $proid = product::findorfail($id);
+            
+            $review = new Review;
+            $review->product_id = $proid->id;
+            $review->name = $request->name;
+            $review->email = $request->email;
+            $review->rating = $request->rated;
+            $review->description = $request->description;
+            
+            if($review->save()){
+                return back();
+            }else{
+            // Set a success message in the session
+                Session::flash('success', 'Review Successfully Submitted');
+                return redirect('customer.product-details') ->with('news', News::latest()->get());
+            }
         }
     }
-}
 
+    public function privacypolicy(){
+        return  view('users.pages.privacy-policy')->with('news', News::latest()->get());
+    }
                
 
 }

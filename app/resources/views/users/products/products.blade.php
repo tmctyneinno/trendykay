@@ -81,7 +81,7 @@
                                                 <div class="bt-1 border-color-1 mt-15 mb-15"></div>
                                                 <div class="short-desc mb-30">
                                                     {{-- <p>{!!$product->description!!}</p> --}}
-                                                </div>
+                                                </div> 
                                                 <div class="product_sort_info font-xs mb-30">
                                                     <ul>
                                                         <li class="mb-10"><i class="fi-rs-crown mr-5"></i> 1 Year Brand Warranty</li>
@@ -90,8 +90,62 @@
                                                     </ul>
                                                 </div>
                                                 <div class="attr-detail attr-color mb-15">
-                                                    <strong class="mr-10">Color</strong>
-                                                    <ul class="list-filter color-filter">
+                                                    {{-- <strong class="mr-10">Color
+                                                        <ul class="list-filter color-filter">
+                                                            @foreach ($product->colors as $color)
+                                                                <li >{{ Str::ucfirst($color->name)  }}</li>
+                                                            @endforeach
+                                                        </ul>
+                                                    </strong> --}}
+                                                    {{-- <br> --}}
+                                                    <style>
+                                                        /* Style the checkboxes */
+                                                        .list-color input[type="checkbox"] {
+                                                            width: 16px; /* Adjust the width as needed */
+                                                            height: 16px; /* Adjust the height as needed */
+                                                            margin-right: 5px; /* Adjust the spacing between checkboxes and labels */
+                                                        }
+                                                    
+                                                        /* Style the labels (color names) */
+                                                        .list-color label {
+                                                            font-size: 14px; /* Adjust the font size as needed */
+                                                        }
+                                                        .product-color-wine {
+                                                            background-color: #722f37; /* Set the background color to the desired wine color */
+                                                        }
+                                                        .product-color-blue {
+                                                            background-color: rgb(9, 9, 199); /* Set the background color to the desired wine color */
+                                                        }
+                                                    </style>
+                                                    <strong>
+                                                        <label>Color</label>
+                                                        <ul class="list-color list-filter color-filter">
+                                                            @foreach ($product->colors as $color)
+                                                                @if($color->name === 'wine')
+                                                                    <li>
+                                                                        <li><a  data-color="wine"><span class="product-color-wine"></span></a> {{ Str::ucfirst($color->name) }}</li>
+                                                                    </li>
+                                                                @endif
+                                                                @if($color->name === 'green')
+                                                                    <li>
+                                                                        <li><a  data-color="green"><span class="product-color-green"></span></a> {{ Str::ucfirst($color->name) }}</li>
+                                                                    </li>
+                                                                @endif
+                                                                @if($color->name === 'blue')
+                                                                    <li>
+                                                                        <li><a  data-color="blue"><span class="product-color-blue"></span></a> {{ Str::ucfirst($color->name) }}</li>
+                                                                    </li>
+                                                                @endif
+                                                                @if($color->name === 'red')
+                                                                    <li>
+                                                                        <li><a  data-color="Red"><span class="product-color-red"></span></a> {{ Str::ucfirst($color->name) }}</li>
+                                                                    </li>
+                                                                @endif
+                                                            @endforeach
+                                                        </ul>
+                                                    </strong>
+                                                    
+                                                    {{-- <ul class="list-filter color-filter">
                                                         <li><a href="#" data-color="Red"><span class="product-color-red"></span></a></li>
                                                         <li><a href="#" data-color="Yellow"><span class="product-color-yellow"></span></a></li>
                                                         <li class="active"><a href="#" data-color="White"><span class="product-color-white"></span></a></li>
@@ -99,16 +153,24 @@
                                                         <li><a href="#" data-color="Cyan"><span class="product-color-cyan"></span></a></li>
                                                         <li><a href="#" data-color="Green"><span class="product-color-green"></span></a></li>
                                                         <li><a href="#" data-color="Purple"><span class="product-color-purple"></span></a></li>
-                                                    </ul>
+                                                    </ul> --}}
                                                 </div>
                                                 <div class="attr-detail attr-size">
                                                     <strong class="mr-10">Size</strong>
-                                                    <ul class="list-filter size-filter font-small">
-                                                        <li><a href="#">S</a></li>
+                                                    <ul class="list-size list-filter size-filter font-small">
+                                                        @foreach ($product->sizes as $size)
+                                                            <li>
+                                                                <label>
+                                                                    <input type="checkbox" name="selected_colors[]" value="{{ $size->name }}"><br>
+                                                                    {{ Str::ucfirst($size->name) }}
+                                                                </label>
+                                                            </li>
+                                                        @endforeach
+                                                       {{-- <li><a href="#">S</a></li>
                                                         <li class="active"><a href="#">M</a></li>
                                                         <li><a href="#">L</a></li>
                                                         <li><a href="#">XL</a></li>
-                                                        <li><a href="#">XXL</a></li>
+                                                        <li><a href="#">XXL</a></li> --}}
                                                     </ul>
                                                 </div>
                                                 <div class="bt-1 border-color-1 mt-30 mb-30"></div>
@@ -418,12 +480,12 @@
                                                 @foreach($related as $related_pro)
                                                 <div class="col-lg-3 col-md-4 col-12 col-sm-6">
                                                     <div class="pro-details-brand">
-                                                        <span> <a href="{{route('user.category',encrypt($related_pro->category->id))}}">{{$related_pro->category->name}}</a></span>
+                                                        <span> <a href="{{route('user.category', $related_pro->category->id)}}">{{$related_pro->category->name}}</a></span>
                                                     </div>
                                                     <div class="product-cart-wrap small hover-up">
                                                         <div class="product-img-action-wrap">
                                                             <div class="product-img product-img-zoom">
-                                                                <a href="{{route('user.category',encrypt($related_pro->category->id))}}" tabindex="0">
+                                                                <a href="{{route('user.category', $related_pro->category->id)}}" tabindex="0">
                                                                     <img class="default-img" src="{{asset('images/products/'.$related_pro->image)}}" alt="">
                                                                     <img class="hover-img" src="{{asset('images/products/'.$related_pro->image)}}" alt="">
                                                                 </a>
@@ -433,7 +495,7 @@
                                                             </div>
                                                         </div>
                                                         <div class="product-content-wrap">
-                                                            <h2><a href="{{route('user.category',encrypt($related_pro->category->id))}}" tabindex="0">{{$related_pro->name}}</a></h2>
+                                                            <h2><a href="{{route('user.category', $related_pro->category->id )}}" tabindex="0">{{$related_pro->name}}</a></h2>
                                                             <div class="rating-result" title="90%">
                                                                 <span>
                                                                 </span>
@@ -477,7 +539,7 @@
                                             <img src="{{asset('images/products/'.$prods->image)}}" alt="#">
                                         </div>
                                         <div class="content pt-10">
-                                            <h5><a href="{{route('product-details',encrypt($prods->id))}}">{{$prods->name}}</a></h5>
+                                            <h5><a href="{{route('product-details', $prods->id )}}">{{$prods->name}}</a></h5>
                                             <p class="price mb-0 mt-5">C${{number_format($prods->price)}}</p>
                                             {{-- <div class="product-rate">
                                                 <div class="product-rating" style="width:90%"></div>
@@ -519,7 +581,7 @@
 
             addToCartButton.on('click', function() {
                 cartId = {!! json_encode($product->id) !!}
-                $.ajaxSetup({
+                $.ajaxSetup({ 
                     headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                     }

@@ -99,13 +99,21 @@
                                     <td colspan="2" class="product-subtotal"><span class="font-xl text-brand fw-900">C${{number_format($total, 2)}}</span></td>
                                 </tr>
                             </tbody>
-                        </table>
+                        </table> 
                     </div>
                     <div class="bt-1 border-color-1 mt-30 mb-30"></div>
                     <script src="https://checkout.flutterwave.com/v3.js"></script>
-                    <form>
+                    {{-- <form>
                         <button type="button" onClick="makePayment()" id="btnsubmit2" class="btn btn-fill-out btn-block mt-10">Pay Now</button>
-                    </form>
+                    </form> --}}
+                    
+                    <form action="{{ route('pay.checkout') }}" method="POST">
+                        <a href="{{ url('/') }}" class="btn btn-danger"> <i class="fa fa-arrow-left"></i> Continue Shopping</a>
+                        <input type="hidden" name="_token" value="{{csrf_token()}}">
+                        <input type='hidden' name="total" value="{{ \Cart::Totalfloat() }}">
+                        <input type='hidden' name="productname" value="">
+                        <button class="btn btn-success" type="submit" id="checkout-live-button"><i class="fa fa-money"></i> Pay Now</button>
+                        </form>
                 </div>
             </div>
         </div>
@@ -147,7 +155,7 @@
                 // close modal
             },
             customizations: {
-                title: "Sofarsolar",
+                title: "Trendy Kay",
                 description: "Payment for Order",
                 logo: "",
             },

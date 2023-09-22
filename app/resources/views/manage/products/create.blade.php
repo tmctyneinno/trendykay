@@ -1,5 +1,8 @@
 @extends('layouts.admin')
 @section('content')
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/habibmhamadi/multi-select-tag/dist/css/multi-select-tag.css">
+<script src="https://cdn.jsdelivr.net/gh/habibmhamadi/multi-select-tag/dist/js/multi-select-tag.js"></script>
+
  <div class="container-fluid">
             <div class="row">
                 <div class="col-md-12">
@@ -11,10 +14,10 @@
                             <div class="row">
                                 <div class="col-md-12">
                                         <div class="form-group">
-                                            <input type="text" name="name"  value="{{old('name')}}" class="form-control @error('name') is-invalid @enderror" id="exampleInputEmail1"
+                                            <input required type="text" name="name"  value="{{old('name')}}" class="form-control @error('name') is-invalid @enderror" id="exampleInputEmail1"
                                                    aria-describedby="emailHelp" placeholder="Product name">
                                             <small id="emailHelp" class="form-text text-muted">Product Name e.g Calender, Envelope
-                                            </small>
+                                            </small> 
                                             @error('name')
                                             <span class="invalid-feedback"> <small> * </small> </span>
                                             @enderror
@@ -22,7 +25,7 @@
                                     </div> 
                                         <div class="col-md-12">
                                         <div class="form-group">
-                                           <input type="number" name="price"  value="{{old('price')}}" class="form-control @error('price') is-invalid @enderror" id="exampleInput"
+                                           <input required type="number" name="price"  value="{{old('price')}}" class="form-control @error('price') is-invalid @enderror" id="exampleInput"
                                                    aria-describedby="EventLocation" placeholder="Product Price">
                                             <small id="emailHelp" class="form-text text-muted">Product price per unit production 
                                             </small>
@@ -34,7 +37,7 @@
 
                                         <div class="col-md-12">
                                           <div class="form-group">
-                                            <input type="number" name="sale_price"  value="{{old('sale_price')}}" class="form-control @error('price') is-invalid @enderror" id="exampleInputEmail1"
+                                            <input required type="number" name="sale_price"  value="{{old('sale_price')}}" class="form-control @error('price') is-invalid @enderror" id="exampleInputEmail1"
                                                    aria-describedby="emailHelp" placeholder="Sale Price">
                                             <small id="emailHelp" class="form-text text-muted">Discounted Price
                                             </small>
@@ -44,12 +47,98 @@
                                           </div>           
                                         </div>
 
-                                      
+                                        <div class="col-md-6">
+                                          <div class="form-group">
+                                            <select name="colors[]" id="color"  multiple required>
+                                                {{-- <option value="">Select Color</option> --}}
+                                                <option value="Red">Red</option>
+                                                <option value="black">Black</option>
+                                                <option value="blue">Blue</option>
+                                                <option value="white">White</option>
+                                                <option value="green">Green</option>
+                                                <option value="purple">Purple</option>
+                                                <option value="wine">Wine</option>
+                                            </select>
+                                            <small id="emailHelp" class="form-text text-muted">Select Color 
+                                            </small>
+                                            @error('color')
+                                            <span class="invalid-feedback"> <small> *</small> </span>
+                                            @enderror
+                                          </div>
+                                        </div>
+
+                                        <div class="col-md-6">
+                                          <div class="form-group">
+                                            <select name="sizes[]" id="size"  multiple required>
+                                                {{-- <option value="">Select Color</option> --}}
+                                                <option value="S">S</option>
+                                                <option value="M">M</option>
+                                                <option value="L">L</option>
+                                                <option value="XL">XL</option>
+                                                <option value="XXL">XXL</option>
+                                                <option value="3XL">3XL</option>
+                                                <option value="4XL">4XL</option>
+                                                <option value="5XL">5XL</option>
+                                            </select>
+                                            <small id="emailHelp" class="form-text text-muted">Select Size 
+                                            </small>
+                                            @error('size')
+                                            <span class="invalid-feedback"> <small> *</small> </span>
+                                            @enderror
+                                          </div>
+                                        </div>
+
+                                        <div class="col-md-6">
+                                          <div class="form-group">
+                                            <label>Variant Inventory</label>
+                                            <select name="variants[]" id="variants"  multiple>
+                                             
+                                                <option value="L-0">L-0</option>
+                                                <option value="XL-1">XL-1</option>
+                                                <option value="XXL-1">XXL-1</option>
+                                                <option value="3XL-1">3XL-1</option>
+                                                <option value="4XL-0">4XL-0</option>
+                                                <option value="5XL-1">5XL-1</option>
+                                            </select>
+                                            <small id="emailHelp" class="form-text text-muted">Select Varient Inventory 
+                                            </small>
+                                            @error('size')
+                                            <span class="invalid-feedback"> <small> *</small> </span>
+                                            @enderror
+                                          </div>
+                                        </div>
+
+                                        <script>
+                                            new MultiSelectTag('variants', {
+                                                rounded: true,    // default true
+                                                shadow: true,      // default false
+                                                placeholder: 'Search',  // default Search...
+                                                onChange: function(values) {
+                                                    console.log(values)
+                                                }
+                                            });
+                                            new MultiSelectTag('color', {
+                                                rounded: true,    // default true
+                                                shadow: true,      // default false
+                                                placeholder: 'Search',  // default Search...
+                                                onChange: function(values) {
+                                                    console.log(values)
+                                                }
+                                            });
+                                            new MultiSelectTag('size', {
+                                                rounded: true,    // default true
+                                                shadow: true,      // default false
+                                                placeholder: 'Search',  // default Search...
+                                                onChange: function(values) {
+                                                    console.log(values)
+                                                }
+                                            })
+                                        </script>
 
                                       <div class="col-md-12">
                                          <div class="form-group">
                                            
-                                           <select value="{{old('category_id')}}" class="form-control @error('category_id') is-invalid @enderror" name="category_id"> 
+                                           <select required value="{{old('category_id')}}" class="form-control @error('category_id') is-invalid @enderror" name="category_id"> 
                                           <option> SELECT CATEGORY </option>
                                            @foreach ($category as $cat )
                                                 <option value="{{$cat->id}}"> {{$cat->name}} </option>
@@ -63,36 +152,21 @@
                                         </div>           
                                       </div>
 
-                                         <div class="col-md-12">
-                                  <div class="form-group">
-                                    
-                                    <textarea id="summernote" class="@error('description') is-invalid @enderror" name="description">{{old('description')}}</textarea>
-                                     <small id="emailHelp" class="form-text text-muted">Product Description
-                                            </small>
-                                            @error('description')
-                                            <span class="invalid-feedback"> <small> *</small> </span>
-                                            @enderror
-                                    </div>
-
-
-                                         </div>
-
-                                         <div class="col-md-12">
-                                          <div class="custom-file">
-                                            <input type="file" name="specification" class="custom-file-input  @error('specification') is-invalid @enderror" id="customFiles">
-                                            <label class="custom-file-label" for="customFiles">Upload specification</label>
-                                          </div>
-                                          <small id="emailHelp" class="form-text text-muted"> Choose the specification PDF file 
-                                          </small>
-                                                    @error('specification')
+                                        <div class="col-md-12">
+                                          <div class="form-group">
+                                            
+                                            <textarea required id="summernote" class="@error('description') is-invalid @enderror" name="description">{{old('description')}}</textarea>
+                                            <small id="emailHelp" class="form-text text-muted">Product Description
+                                                    </small>
+                                                    @error('description')
                                                     <span class="invalid-feedback"> <small> *</small> </span>
                                                     @enderror
-                                                 </div>
+                                            </div>
+                                        </div>
 
-
-                                               <div class="col-md-6 pt-4">
+                                        <div class="col-md-6 pt-4">
                                               <div class="custom-file">
-                                            <input type="file"name="image" class="custom-file-input  @error('image') is-invalid @enderror">
+                                            <input required type="file" name="image" class="custom-file-input  @error('image') is-invalid @enderror">
                                                 <label class="custom-file-label" for="customFile">Choose Cover Image</label>
                                             </div>
                                             <small id="emailHelp" class="form-text text-muted"> Choose a cover image for design sample
@@ -105,7 +179,7 @@
                                          
                                                <div class="col-md-6 pt-4">
                                   <div class="custom-file">
-                                            <input type="file"name="images[]" multiple class="custom-file-input  @error('images') is-invalid @enderror" id="customFile">
+                                            <input required type="file"name="images[]" multiple class="custom-file-input  @error('images') is-invalid @enderror" id="customFile">
                                                 <label class="custom-file-label" for="customFile">Choose More Image</label>
                                             </div>
                                             <small id="emailHelp" class="form-text text-muted"> Choose more images of the design sample slides

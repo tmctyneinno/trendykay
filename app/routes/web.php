@@ -67,13 +67,13 @@ Route::prefix('admin')->group(function(){
     Route::get('/project/delete/{id}', 'AdminController@ProjectDelete')->name('admin.project.delete');
     Route::post('/update/rates', 'AdminController@ExchangeRate')->name('updateDollarRate');
 });
-});
+}); 
 
 
 Auth::routes();
 Route::get('/', 'HomeController@index')->name('index');
 Route::get('/home', 'HomeController@index')->name('home');
-Route::get('/products/details/{id}', 'HomeController@productDetails')->name('product-details');
+Route::get('/products/details/{id}', 'HomeController@productDetails')->name('product-details'); 
 Route::get('/cart/{id}', 'CartController@add')->name('carts.add'); 
 Route::resource('/carts', 'CartController');
 Route::get('/delete/{id}', 'CartController@remove')->name('carts.delete');
@@ -90,7 +90,16 @@ Route::resource('/checkout', 'CheckoutController')->middleware('auth');
 Route::get('/payment/{trxref}', 'CheckoutController@verify')->name('verify.pay');
 Route::post('/checkout/payments', 'CheckoutController@storeOrder');
 Route::get('/address/checkout', 'CheckoutController@addNew')->name('checkout.addNew');
-Route::get('/confirm/payment/{id}','CheckoutController@verify')->name('confirm.payment');
+// Route::get('/confirm/payment/{id}','CheckoutController@verify')->name('confirm.payment'); 
+Route::post('/confirm/payment/','CheckoutController@verify')->name('confirm.payment'); 
+
+
+Route::post('/pay/checkout', 'PaymentController@initiatePayCheckout')->name('pay.checkout');
+
+
+Route::get('success', 'PaymentController@handlePaymentSuccess')->name('payment.success');
+Route::get('error', 'PaymentController@errorpayment')->name('payment.cancel');
+
 Route::get('user/orders', 'HomeController@myOrders')->name('users.orders');
 Route::get('user/transactions', 'HomeController@myTransactions')->name('user.transactions');
 Route::get('/users/order/details/{id}', 'HomeController@OrderDetails')->name('users.order-details');
@@ -106,6 +115,9 @@ Route::post('/address/store/{id}', 'HomeController@Shipping');
 Route::get('/user-address', 'HomeController@userAddress')->name('users.user-address');
 Route::get('/add-address', 'HomeController@createAddresss')->name('users.add-address');
 Route::get('/address/delete/{id}', 'HomeController@AddressDelete')->name('address.delete');
+Route::get('/aboutus', 'HomeController@about')->name('aboutus');
+Route::get('/privacypolicy', 'HomeController@privacypolicy')->name('privacypolicy');
+
 
 });
 

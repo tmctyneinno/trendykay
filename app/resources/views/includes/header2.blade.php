@@ -18,14 +18,18 @@
                     <div class="text-center">
                         <div id="news-flash" class="d-inline-block">
                             <ul>
-                                <li>Get great devices up to 50% off <a href="shop-grid-right.html">View details</a></li>
-                                <li>Supper Value Deals - Save more with coupons</li>
-                                <li>Trendy 25silver jewelry, save up 35% off today <a href="shop-grid-right.html">Shop now</a></li>
+                                @foreach ($news as $new)
+                                <li>{{$new->title}} </li>
+                                {{-- <li>{{$new->title}} <a href="{{route('news.details',encrypt($new->id))}}">View details</a></li> --}}
+                                @endforeach
+                               
                             </ul>
                         </div>
                     </div>
                 </div>
+               
                 <div class="col-xl-3 col-lg-4">
+                    
                     <div class="header-info header-info-right">
                         <ul>
 
@@ -35,10 +39,10 @@
                                 <li>
                                     <a class="language-dropdown-active" href="{{route('users.account')}}"> <i class="fi-rs-world"></i> Account <i class="fi-rs-angle-small-down"></i></a>
                                     <ul class="language-dropdown">
-                                        <li><i class="fi-rs-user"></i><a href="{{ route('logout') }}"
-                                            onclick="event.preventDefault();
-                                                          document.getElementById('logout-form').submit(); ">Log out</a>
-                                        </li>
+                                        <li><a href="{{route('users.orders')}}" >Orders</a></li>
+                                        <li><a href="{{route('user.account.details')}}" >Settings</a></li>
+                                        <li><a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Log out</a></li>
+                                        
                                     </ul>
                                 </li>
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
