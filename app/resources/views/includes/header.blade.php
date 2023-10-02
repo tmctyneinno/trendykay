@@ -64,7 +64,7 @@
                 </div>
                 <div class="header-right">
                     <div class="search-style-2">
-                        <form action="#">
+						{{Form::open(['action' => 'HomeController@search', 'method'=>'get', 'class'=>'js-focus-state'])}}
                             <select class="select-active">
                                 <option>All Categories</option>
                                 <option>Women's</option>
@@ -78,7 +78,13 @@
                                 <option>Shoes</option>
                                 <option>Mother & Kids</option>
                             </select>
-                            <input type="text" placeholder="Search for items...">
+						 
+							<input type="text" value="@if(isset($search)) {{$search}} @endif" name="search" id="searchproduct-item" placeholder="Search for Products" 
+								aria-label="Search for Products" aria-describedby="searchProduct1" required>
+							<div class="form-group" style="">
+                              
+							    <button type="submit" class="btn btn-fill-out btn-block text-color "  style="background:#088178; color:#fff; margin-right: 180px;" id="searchProduct1"><i class="fi-rs-search"></i></button>
+							</div>
                         </form>
                     </div>
                     <div class="header-action-right">
@@ -97,12 +103,6 @@
                                     @else  
                                         <span class="pro-count blue"> 0 </span>
                                     @endif
-                                    {{-- @if(Cart::count() > 0)C${{number_format(Cart::priceTotalfloat())}} @endif --}}
-                                    {{-- @if (Cart::count() > 0)
-                                        <span class="pro-count blue">  {{Cart::count() }}</span></a>
-                                    @elseif(Cart::count() == 0)
-                                        <span class="pro-count blue"> 0</span>
-                                    @endif --}}
                                 </a>
                                 <div class="cart-dropdown-wrap cart-dropdown-hm2">
                                     <ul>
@@ -203,41 +203,53 @@
                 <p class="mobile-promotion">Happy <span class="text-brand">Mother's Day</span>. Big Sale Up to 40%</p>
                 <div class="header-action-right d-block d-lg-none">
                     <div class="header-action-2">
-                        <div class="header-action-icon-2">
+                        {{-- <div class="header-action-icon-2">
                             <a href="shop-wishlist.html">
                                 <img alt="Evara" src="{{ asset('assets/imgs/theme/icons/icon-heart.svg')}}">
                                 <span class="pro-count white">4</span>
                             </a>
-                        </div>
+                        </div> --}}
                         <div class="header-action-icon-2">
                             <a class="mini-cart-icon" href="{{route('carts.index')}}">
                                 <img alt="Evara" src="{{ asset('assets/imgs/theme/icons/icon-cart.svg')}}">
                                 <span class="pro-count white">
-                                    @if(Cart::count() > 0)C${{number_format(Cart::priceTotalfloat())}} @endif
+                                    @if(Cart::count() > 0)
+                                        {{Cart::count()}}
+                                    @else
+                                        0
+                                    @endif
                                 </span>
                             </a>
                             <div class="cart-dropdown-wrap cart-dropdown-hm2">
                                 <ul>
+                                    @if (Cart::count() > 0) 
+                                        @foreach (Cart::content()->take(4) as $carts)
                                     <li>
                                         <div class="shopping-cart-img">
-                                            <a href="{{route('carts.index')}}"><img alt="Evara" src="{{ asset('assets/imgs/shop/thumbnail-4.jpg')}}"></a>
+                                            <a href="{{route('carts.index')}}">
+                                                <img alt="Evara" src="{{asset('images/products/' .$carts->model->image)}}">
+                                            </a>
                                         </div>
                                         <div class="shopping-cart-title">
-                                            <h4><a href="{{route('carts.index')}}">Macbook Pro 2022</a></h4>
-                                            <h3><span>1 × </span>$3500.00</h3>
+                                            <h4><a href="{{route('carts.index')}}">{{$carts->model->name}}</a></h4>
+                                            <h3><span>{{$carts->qty}} × </span>C${{number_format($carts->model->price)}}</h3>
                                         </div>
                                         <div class="shopping-cart-delete">
                                             <a href="#"><i class="fi-rs-cross-small"></i></a>
                                         </div>
                                     </li>
+                                    @endforeach
+                                    @else
+                                        <span class="text-danger" style="color: red">No item in cart</span>
+                                    @endif
                                 </ul>
                                 <div class="shopping-cart-footer">
                                     <div class="shopping-cart-total">
-                                        <h4>Total <span>$383.00</span></h4>
+                                        <h4>Total <span>C${{Cart::priceTotalfloat()}}</span></h4>
                                     </div>
                                     <div class="shopping-cart-button">
-                                        <a href="shop-cart.html">View cart</a>
-                                        <a href="shop-checkout.html">Checkout</a>
+                                        <a href="{{route('carts.index')}}">View cart</a>
+                                        <a href="{{route('checkout.index')}}">Checkout</a>
                                     </div>
                                 </div>
                             </div>
@@ -270,9 +282,12 @@
         </div>
         <div class="mobile-header-content-area">
             <div class="mobile-search search-style-3 mobile-header-border">
-                <form action="#">
-                    <input type="text" placeholder="Search for items…">
-                    <button type="submit"><i class="fi-rs-search"></i></button>
+                {{Form::open(['action' => 'HomeController@search', 'method'=>'get', 'class'=>'js-focus-state'])}}
+                <input type="text" value="@if(isset($search)) {{$search}} @endif" name="search" 
+                id="searchproduct-item" placeholder="Search for Products" 
+                    aria-label="Search for Products" aria-describedby="searchProduct1" required>    
+                    {{-- <input type="text" placeholder="Search for items…"> --}}
+                    <button type="submit" id="searchProduct1"><i class="fi-rs-search"></i></button>
                 </form>
             </div>
             <div class="mobile-menu-wrap mobile-header-border">

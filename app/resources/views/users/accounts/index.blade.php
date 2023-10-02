@@ -172,28 +172,46 @@
                                 </div>
                                 <div class="tab-pane fade" id="track-orders" role="tabpanel" aria-labelledby="track-orders-tab">
                                     <div class="card">
-                                        <div class="card-header">
-                                            <h5 class="mb-0">Billing Address</h5>
-                                        </div>
-                                        <div class="card">
-                                            <div class="card-body">
-                                                @if(count($addresses) >0)
-                                                    @foreach($addresses as $address)
-                                                        <address style="font-weight: bold">Name: {{$address->receiver_name}}</address>
-                                                            <p> Address: {{$address->address}}</p>
-                                                            <p> City: {{$address->city . " , " . strtoupper($address->state)}} </p>
-                                                            <p> Phone: {{$address->receiver_phone}}</p>
-                                                        <br><br>
+                                        <div class="col-md-12">
+                                            @if(count($addresses)>0)
+                                            @foreach($addresses as $addres)
+                                            <div class="card">
+                                                <div class="card-header">
+                                                    <h5 class="mb-0">
+                                                        @if($addres->is_default == 1)
+                                                                <th>Billing Address 
+                                                                    <a class="btn btn-outline btn-sm btn-brand-outline font-weight-bold text-brand bg-white text-hover-white  border-radius-5 
+                                                                    btn-shadow-brand ">  Default</a>
+                                                                </th>
+                                                        @else
+                                                            <th>Billing Address
+                                                                <a href="{{route('users.update-address', encrypt($addres->id))}}" class="btn btn-outline btn-sm btn-brand-outline font-weight-bold text-brand bg-white text-hover-white  border-radius-5 
+                                                                    btn-shadow-brand ">  Default</a>
+                                                            </th>
+                                                        @endif
+                                                    </h5>
+                                                </div>
+                                            </div>
+                                            <div class="card-body border">
+                                               
+                                               
+                                                    <address style="font-weight: bold">Name: {{$addres->receiver_name}}</address>
+                                                        <p> Address: {{$addres->address}}</p>
+                                                        <p> City: {{$addres->city . " , " . strtoupper($addres->state)}} </p>
+                                                        <p> Phone: {{$addres->receiver_phone}}</p>
+                                                    <br><br>
                                                     @endforeach
                                                     @else
                                                         <p>Shipping Address</p>
                                                         <h6> You dont have any Default shipping Address yet</h6>
-                                                        <a href="{{url('customer.add-address')}}" class="btn btn-small">Add New</a>
-                                                @endif
+                                               
                                             </div>
+                                            @endif
+                                            <a href="{{url('customer.add-address')}}" class="btn btn-small">Add New</a>
                                         </div>
                                     </div>
                                 </div>
+                            </div>
                                 <div class="tab-pane fade" id="address" role="tabpanel" aria-labelledby="address-tab">
                                     <div class="card">
                                         <div class="card-header">

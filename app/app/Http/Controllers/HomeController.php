@@ -215,15 +215,15 @@ class HomeController extends Controller
     public function createAddresss(){
        $cart =  \Cart::content()->take(4);
         $addresses['addresses']= DB::table('shippings')->where(['user_id'=> auth()->user()->id])->get();
-        $news['news'] = News::latest()->get();
-        return view('users.accounts.add-address',$addresses, $news);
+        $news['news'] = News::latest()->get(); 
+        return view('users.accounts.add-address',$addresses, $news)->with('news', News::latest()->get());
     }
 
     public function Updateship($id){
         $addresses = shipping::find(decrypt($id));
         $news['news'] = News::latest()->get();
         $addresses['addresses']= DB::table('shippings')->where(['id'=>  $addresses->id])->get();
-        return view('users.accounts.update-address',$addresses);
+        return view('users.accounts.update-address',$addresses)->with('news', News::latest()->get());
     }
 
     public function AddressDelete($id){
@@ -294,17 +294,28 @@ class HomeController extends Controller
         return view('users.pages'.".".$menus, compact('product', 'cart', 'news'));
     }
     
+   
     public function search(Request $request)
-   {
-    if(isset($request->search)){
-    $search = $request->get('search');
-     $product['products'] = Product::where( 'name', 'LIKE', "%$search%" )->simplePaginate(18);
+    { 
+        $search = null;
+        $products = null;
+        $productCount = 0;
+
+        if(isset($request->search)){
+            $search = $request->get('search');
+            $products = Product::where('name', 'LIKE', "%$search%")->simplePaginate(18);
+            $productCount = $products->count(); // Get the total number of products found
+        }
+
+        return view('users.pages.products', [
+            'products' => $products,
+            'prod' => Product::latest()->take(5)->get(),
+            'news' => News::latest()->get(),
+            'search' => $search,
+            'productCount' => $productCount,
+        ]);
     }
-    return view ( 'users.pages.products',$product)
-    ->with('prod', Product::latest()->take(5)->get())
-    ->with('news', News::latest()->get())
-    ->with('search',$search);
-    }
+
 
     public function Addreview(Request $request, $id){
             if(isset($request->name)){

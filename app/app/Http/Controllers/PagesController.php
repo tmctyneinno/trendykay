@@ -128,12 +128,14 @@ class PagesController extends Controller
                 ->with('recent', Project::take(5)->latest()->get());
                 break;
             case "products":
+                $productCount = Product::take(10)->orderBy('sale_price','ASC')->get();
                 $products['prod'] = Product::take(5)->orderBy('created_at','desc')->get();
                 $products['pro'] = Product::take(10)->orderBy('sale_price','ASC')->get();
-               $products['products'] = Product::orderBy('created_at','desc')->paginate(20);
-               $cart['cart'] =  \Cart::content()->take(4);
-               $news['news'] = News::latest()->get();
-               return view('users.pages.products', $products, $cart )->with('news', News::latest()->get());
+                $products['products'] = Product::orderBy('created_at','desc')->paginate(20);
+                $cart['cart'] =  \Cart::content()->take(4);
+                $news['news'] = News::latest()->get();
+
+               return view('users.pages.products', $products, $cart )->with('news', News::latest()->get())->with('productCount', $productCount->count());
                 break;
             case "news":
                return view('users.pages.news')->with('news', News::latest()->get())
@@ -147,8 +149,8 @@ class PagesController extends Controller
                 ->with('contact', ContactUs::latest()->first())->with('news', News::latest()->get());
                 break;
             default:
-            
-            return view('errors.404');
+             
+            return view('errors.404'); 
             break;
         }
 

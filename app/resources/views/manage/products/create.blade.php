@@ -79,6 +79,11 @@
                                                 <option value="3XL">3XL</option>
                                                 <option value="4XL">4XL</option>
                                                 <option value="5XL">5XL</option>
+                                                <option value="38">38</option>
+                                                <option value="44">44</option>
+                                                <option value="46">46</option>
+                                                <option value="50">50</option>
+                                                <option value="52">52</option>
                                             </select>
                                             <small id="emailHelp" class="form-text text-muted">Select Size 
                                             </small>
@@ -98,7 +103,11 @@
                                                 <option value="XXL-1">XXL-1</option>
                                                 <option value="3XL-1">3XL-1</option>
                                                 <option value="4XL-0">4XL-0</option>
-                                                <option value="5XL-1">5XL-1</option>
+                                                <option value="44-1">44-1</option>
+                                                <option value="46-1">46-1</option>
+                                                <option value="48-1">48-1</option>
+                                                <option value="50-1">50-1</option>
+                                                <option value="52-0">52-0</option>
                                             </select>
                                             <small id="emailHelp" class="form-text text-muted">Select Varient Inventory 
                                             </small>

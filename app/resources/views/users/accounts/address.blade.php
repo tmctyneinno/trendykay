@@ -72,7 +72,6 @@
                                     </div>
                                     <div class="card-body border">
                                        
-                                       
                                             <address style="font-weight: bold">Name: {{$addres->receiver_name}}</address>
                                                 <p> Address: {{$addres->address}}</p>
                                                 <p> City: {{$addres->city . " , " . strtoupper($addres->state)}} </p>
@@ -85,9 +84,8 @@
                                        
                                     </div>
                                     @endif
-                                
                                     <a href="{{url('customer.add-address')}}" class="btn btn-small">Add New</a>
-                                    </div>
+                                </div> 
                                 <!-- End Tab Content -->
                             </div>
                   

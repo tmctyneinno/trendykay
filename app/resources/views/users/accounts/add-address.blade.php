@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-
+ 
 <main id="content" role="main" class="checkout-page">
             <!-- breadcrumb -->
      <div class="bg-gray-13 bg-md-transparent">

@@ -112,10 +112,70 @@
                                                         }
                                                         .product-color-wine {
                                                             background-color: #722f37; /* Set the background color to the desired wine color */
+                                                            font-size: 12px !important;
                                                         }
+                                                        
                                                         .product-color-blue {
                                                             background-color: rgb(9, 9, 199); /* Set the background color to the desired wine color */
                                                         }
+                                                        .product-color-black{
+                                                            background-color: black;
+                                                        }
+                                                        /* .size-box {
+                                                            display: inline-block;
+                                                            margin: 5px;
+                                                            padding: 10px;
+                                                            border: 1px solid #ccc;
+                                                            cursor: pointer;
+                                                            position: relative; 
+                                                        }
+                                                        .size-box input[type="checkbox"] {
+                                                           
+                                                            cursor: pointer;
+                                                            position: absolute; 
+                                                            opacity: 0;
+                                                        }
+                                                        .size-box label {
+                                                            display: block;
+                                                            text-align: center;
+                                                            z-index: 1;
+                                                        }
+                                                        .size-box:hover {
+                                                            background-color: #f0f0f0; 
+                                                        }
+                                                        .size-box input[type="checkbox"]:checked + label,
+                                                        .size-box:hover input[type="checkbox"] { 
+                                                            background-color: #007bff;
+                                                            color: #fff;
+                                                            border-color: #007bff;
+                                                        } */
+
+                                                        .size-box {
+                                                            display: inline-block;
+                                                            margin: 5px;
+                                                            cursor: pointer;
+                                                        }
+
+                                                        .size-box input[type="checkbox"] {
+                                                            display: none; /* Hide the actual checkbox */
+                                                        }
+
+                                                        .size-box label {
+                                                            display: block;
+                                                            text-align: center;
+                                                            padding: 10px;
+                                                            border: 1px solid #ccc;
+                                                            background-color: #fff; /* Set the default background color */
+                                                            transition: background-color 0.3s ease; /* Add a smooth hover effect */
+                                                        }
+
+                                                        .size-box input[type="checkbox"]:checked + label {
+                                                            background-color: #007bff; /* Change the background color when selected */
+                                                            color: #fff;
+                                                            border-color: #007bff;
+                                                        }
+
+
                                                     </style>
                                                     <strong>
                                                         <label>Color</label>
@@ -125,20 +185,25 @@
                                                                     <li>
                                                                         <li><a  data-color="wine"><span class="product-color-wine"></span></a> {{ Str::ucfirst($color->name) }}</li>
                                                                     </li>
-                                                                @endif
+                                                                @endif 
                                                                 @if($color->name === 'green')
                                                                     <li>
-                                                                        <li><a  data-color="green"><span class="product-color-green"></span></a> {{ Str::ucfirst($color->name) }}</li>
+                                                                        <li><a  data-color="Green"><span class="product-color-green"></span></a> {{ Str::ucfirst($color->name) }}</li>
                                                                     </li>
                                                                 @endif
                                                                 @if($color->name === 'blue')
                                                                     <li>
-                                                                        <li><a  data-color="blue"><span class="product-color-blue"></span></a> {{ Str::ucfirst($color->name) }}</li>
+                                                                        <li><a  data-color="Blue"><span class="product-color-blue"></span></a> {{ Str::ucfirst($color->name) }}</li>
                                                                     </li>
                                                                 @endif
                                                                 @if($color->name === 'red')
                                                                     <li>
                                                                         <li><a  data-color="Red"><span class="product-color-red"></span></a> {{ Str::ucfirst($color->name) }}</li>
+                                                                    </li>
+                                                                @endif
+                                                                @if($color->name === 'black')
+                                                                    <li>
+                                                                        <li><a  data-color="Black"><span class="product-color-black"></span></a> {{ Str::ucfirst($color->name) }}</li>
                                                                     </li>
                                                                 @endif
                                                             @endforeach
@@ -160,12 +225,15 @@
                                                     <ul class="list-size list-filter size-filter font-small">
                                                         @foreach ($product->sizes as $size)
                                                             <li>
-                                                                <label>
-                                                                    <input type="checkbox" name="selected_colors[]" value="{{ $size->name }}"><br>
-                                                                    {{ Str::ucfirst($size->name) }}
-                                                                </label>
+                                                                <div class="size-box">
+                                                                    <input type="checkbox" id="size-small" name="selected_sizes[]" value="small">
+                                                                    <label for="size-small">{{ Str::ucfirst($size->name) }}</label>
+                                                                </div>
                                                             </li>
                                                         @endforeach
+                                                        <script>
+                                                           
+                                                        </script>
                                                        {{-- <li><a href="#">S</a></li>
                                                         <li class="active"><a href="#">M</a></li>
                                                         <li><a href="#">L</a></li>

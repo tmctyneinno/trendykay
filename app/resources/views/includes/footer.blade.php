@@ -71,10 +71,8 @@
                     <ul class="footer-list wow fadeIn animated">
                         <li><a href="#">Sign In</a></li>
                         <li><a href="{{route('carts.index')}}">View Cart</a></li>
-                        <li><a href="#">My Wishlist</a></li>
-                        <li><a href="#">Track My Order</a></li>
                         <li><a href="#">Help</a></li>
-                        <li><a href="#">Order</a></li>
+                        <li><a href="{{route('users.orders')}}">Order</a></li>
                     </ul>
                 </div>
                 <div class="col-lg-4">
