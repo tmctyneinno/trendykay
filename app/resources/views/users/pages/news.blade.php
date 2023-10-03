@@ -77,12 +77,10 @@
                             </div>
                             <div class="post-block-list post-module-1 post-module-5">
                                 <ul>
-                                    <li class="cat-item cat-item-2"><a href="blog-category-list.html">Beauty</a> (3)</li>
-                                    <li class="cat-item cat-item-3"><a href="blog-category-list.html">Book</a> (6)</li>
-                                    <li class="cat-item cat-item-4"><a href="blog-category-list.html">Design</a> (4)</li>
-                                    <li class="cat-item cat-item-5"><a href="blog-category-list.html">Fashion</a> (3)</li>
-                                    <li class="cat-item cat-item-6"><a href="blog-category-list.html">Lifestyle</a> (6)</li>
-                                    <li class="cat-item cat-item-7"><a href="blog-category-list.html">Travel</a> (2)</li>
+                                    @foreach($menu_categories as $cat )
+                                    <li class="cat-item cat-item-2"><a href="{{route('user.category', encrypt($cat->id))}}"> {{$cat->name}}</a></li>
+                                    @endforeach
+                                   
                                 </ul>
                             </div>
                         </div>
