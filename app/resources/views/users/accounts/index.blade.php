@@ -24,7 +24,7 @@
                 <span></span> My Account
             </div>
         </div>
-    </div>
+    </div> 
     <section class="pt-50 pb-150">
         <div class="container">
             <div class="row">

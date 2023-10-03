@@ -8,7 +8,7 @@
                         <a href="{{ url('pages/home') }}" rel="nofollow">Home</a>
                         <span></span> Order Details
                     </div>
-                </div>
+                </div> 
             </div>
 
             <section class="pt-50 pb-150">

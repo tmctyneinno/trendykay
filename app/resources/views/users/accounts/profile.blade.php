@@ -9,7 +9,7 @@
                         <span></span>Account details
                     </div>
                 </div>
-            </div>
+            </div> 
 
             <section class="pt-50 pb-150">
                 <div class="container">

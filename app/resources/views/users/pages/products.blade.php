@@ -67,7 +67,7 @@
                             </div>
                             <div class="row product-grid-3">
                                 
-                                @forelse ($products as $product )
+                                @forelse ($products as $product ) 
                                 <div class="col-lg-4 col-md-4 col-12 col-sm-6">
                                     <div class="product-cart-wrap mb-30">
                                         <div class="product-img-action-wrap">
@@ -130,12 +130,11 @@
                                 <h5 class="section-title style-1 mb-30 wow fadeIn animated">Category</h5>
                                 <ul class="categories">
                                     @foreach($menu_categories as $catt)
-                                        <li><a href="{{route('user.category', $catt->id)}}">{{$catt->name}}</a></li>
-                                   
+                                        <li><a href="{{route('user.category',encrypt($catt->id))}}">{{$catt->name}}</a></li>
                                     @endforeach
                                 </ul>
                             </div>
-                             
+                               
                             <!-- Product sidebar Widget -->
                             <div class="sidebar-widget product-sidebar  mb-30 p-30 bg-grey border-radius-10">
                                 <div class="widget-header position-relative mb-20 pb-10">

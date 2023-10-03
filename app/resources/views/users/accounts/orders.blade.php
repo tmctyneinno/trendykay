@@ -9,7 +9,7 @@
                         <span></span>Account details
                     </div>
                 </div>
-            </div>
+            </div> 
 
             <section class="pt-50 pb-150">
                 <div class="container">
@@ -60,6 +60,7 @@
                                             </h5>
                                         </div>
                                     </div>
+
                                     <div class="card-body">
                                         <div class="table-responsive">
                                             <table class="table">
@@ -114,6 +115,8 @@
                                             </table>
                                         </div>
                                     </div>
+
+
                                 </div>
                                 <!-- End Tab Content -->
                             </div>

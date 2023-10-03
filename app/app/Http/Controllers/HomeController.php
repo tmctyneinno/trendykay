@@ -275,13 +275,16 @@ class HomeController extends Controller
                 }
     }
     
-    public function Categories($id){
+    public function Categories($id){ 
         $id = decrypt($id);
+        $productCount = Product::where('category_id', $id)->simplePaginate(20);
+
         return view('users.pages.products')
 
             ->with('products',  Product::where('category_id', $id)->simplePaginate(20))
             ->with('news', News::latest()->get())
-            ->with('prod', Product::latest()->take(5)->get());
+            ->with('prod', Product::latest()->take(5)->get())
+            ->with('productCount', $productCount->count());
     }
 
     public function Pages($id){

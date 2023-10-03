@@ -234,11 +234,6 @@
                                                         <script>
                                                            
                                                         </script>
-                                                       {{-- <li><a href="#">S</a></li>
-                                                        <li class="active"><a href="#">M</a></li>
-                                                        <li><a href="#">L</a></li>
-                                                        <li><a href="#">XL</a></li>
-                                                        <li><a href="#">XXL</a></li> --}}
                                                     </ul>
                                                 </div>
                                                 <div class="bt-1 border-color-1 mt-30 mb-30"></div>

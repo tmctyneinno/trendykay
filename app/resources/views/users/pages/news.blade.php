@@ -19,7 +19,8 @@
                         </div>
                     </div>
                     <div class="loop-grid loop-list pr-30">
-                        @foreach ($news as $blog )
+                       
+                        @forelse ($news as $blog )
                         <article class="wow fadeIn animated hover-up mb-30">
                             <div class="post-thumb" style="background-image: url({{asset('/images/news/'.$blog->image)}})">
                                 <div class="entry-meta">
@@ -41,7 +42,9 @@
                                 </div>
                             </div>
                         </article>
-                        @endforeach
+                        @empty
+                        <h4>No Blog found</h4>
+                        @endforelse
                     </div>
                     <!--post-grid-->
                     {{-- <div class="pagination-area mt-15 mb-sm-5 mb-lg-0">

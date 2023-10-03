@@ -58,32 +58,20 @@
     </div>
     <div class="header-middle header-middle-ptb-1 d-none d-lg-block">
         <div class="container">
-            <div class="header-wrap">
+            <div class="header-wrap"> 
                 <div class="logo logo-width-1">
                     <a href="index.html"><img src="{{ asset('assets/imgs/theme/logo.svg')}}" alt="logo"></a>
                 </div>
                 <div class="header-right">
                     <div class="search-style-2">
 						{{Form::open(['action' => 'HomeController@search', 'method'=>'get', 'class'=>'js-focus-state'])}}
-                            <select class="select-active">
-                                <option>All Categories</option>
-                                <option>Women's</option>
-                                <option>Men's</option>
-                                <option>Cellphones</option>
-                                <option>Computer</option>
-                                <option>Electronics</option>
-                                <option> Accessories</option>
-                                <option>Home & Garden</option>
-                                <option>Luggage</option>
-                                <option>Shoes</option>
-                                <option>Mother & Kids</option>
-                            </select>
+                            
 						 
 							<input type="text" value="@if(isset($search)) {{$search}} @endif" name="search" id="searchproduct-item" placeholder="Search for Products" 
 								aria-label="Search for Products" aria-describedby="searchProduct1" required>
 							<div class="form-group" style="">
                               
-							    <button type="submit" class="btn btn-fill-out btn-block text-color "  style="background:#088178; color:#fff; margin-right: 180px;" id="searchProduct1"><i class="fi-rs-search"></i></button>
+							    <button type="submit" class="btn btn-fill-out btn-block text-color "  style="background:#088178; color:#fff; margin-right: 290px;" id="searchProduct1"><i class="fi-rs-search"></i></button>
 							</div>
                         </form>
                     </div>
@@ -160,12 +148,13 @@
                         <div class="categori-dropdown-wrap categori-dropdown-active-large">
                             <ul>
                                 @foreach($menu_categories as $cat )
-                                <li class="has-children">
+                                {{-- <li class="has-children"> --}}
+                                <li class="">
                                     <a href="{{route('user.category', encrypt($cat->id))}}">
                                         {{-- <i class="evara-font-tshirt"></i> --}}
                                         {{$cat->name}}
                                     </a>
-                                    <div class="dropdown-menu">
+                                    {{-- <div class="dropdown-menu">
                                         <ul class="mega-menu ">
                                             @foreach($cat->subCategory as $pro)
                                                 <li>
@@ -174,7 +163,7 @@
                                                 </li>
                                             @endforeach
                                         </ul>
-                                    </div>
+                                    </div> --}}
                                 </li>
                                 @endforeach
 {{--                               

@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title> SolarSofar | Admin</title>
+    <title> Trendy Kay Collections | Admin</title>
     <!-- Favicon -->
  <link rel="stylesheet" href="{{asset('/backend/vendors/dataTable/dataTables.min.css')}}" type="text/css">
   <link rel="icon" href="{{asset('/images/fav2.png')}}">
