@@ -17,7 +17,7 @@
                                             <i class="fa fa-ellipsis-v" aria-hidden="true"></i>
                                         </a>
                                        
-                                    </div>
+                                    </div> 
                                 </div>
                             </div>
                             
