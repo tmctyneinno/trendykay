@@ -7,7 +7,7 @@
     <title> Trendy Kay Collections | Admin</title>
     <!-- Favicon -->
  <link rel="stylesheet" href="{{asset('/backend/vendors/dataTable/dataTables.min.css')}}" type="text/css">
-  <link rel="icon" href="{{asset('/images/fav2.png')}}">
+  <link rel="icon" href="{{ asset('/assets/logo.png')}}">
     <!-- Plugin styles -->
     <link rel="stylesheet" href="{{asset('/backend/vendors/bundle.css')}}" type="text/css">
     <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.css" rel="stylesheet">
@@ -170,7 +170,7 @@
                 <div class="navigation-menu-tab-header" data-toggle="tooltip" title="Admin" data-placement="right">
                     <a href="#" class="nav-link" data-toggle="dropdown" aria-expanded="false">
                         <figure class="avatar avatar-sm">
-                                 <img src="{{asset('/images/fav.png')}}" height="10px" width="10px">
+                                 <img src="{{ asset('/assets/logo.png')}}" height="10px" width="10px">
                         </figure>
                     </a>
                 </div>
@@ -211,8 +211,8 @@
             <div>
                 <div id="navigation-logo">
                     <a href="{{route('admin.index')}}">
-                        <img class="logo" src="{{asset('/images/logo.png')}}" height="auto" width="120px">
-                        <img class="logo-light" src="{{asset('/images/logo.png')}}" height="auto" width="120px" alt="light logo">
+                        <img class="logo" src="{{ asset('/assets/logo.png')}}" height="auto" width="120px">
+                        <img class="logo-light" src="{{ asset('/assets/logo.png')}}" height="auto" width="120px" alt="light logo">
                     </a>
                 </div>
             </div>

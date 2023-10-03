@@ -341,10 +341,11 @@
                     <div class="carausel-6-columns" id="carausel-6-columns">
                         @foreach($menu_categories as $cat )
                         <div class="card-1">
-                            <figure class=" img-hover-scale overflow-hidden">
-                                <a href="shop-grid-right.html"><img src="{{ asset('assets/imgs/shop/category-thumb-8.jpg')}}" alt=""></a>
+                            <figure class=" img-hover-scale overflow-hidden"> 
+                                <a href="{{route('user.category', encrypt($cat->id))}}"><img src="{{asset('/images/category/'.$cat->image)}}" alt=""></a>
+                                {{-- <a href=""><img src="{{asset('/images/category/'.$cat->image)}}" alt=""></a> --}}
                             </figure>
-                            <h5><a href="shop-grid-right.html"> {{$cat->name}}</a></h5>
+                            <h5><a href="{{route('user.category', encrypt($cat->id))}}"> {{$cat->name}}</a></h5>
                         </div>
                         @endforeach
                     </div>

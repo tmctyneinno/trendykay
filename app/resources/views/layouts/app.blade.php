@@ -13,7 +13,7 @@
     <meta property="og:url" content="">
     <meta property="og:image" content="">
     <!-- Favicon -->
-    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('assets/imgs/theme/favicon.svg')}}">
+    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('/assets/logo.png')}}">
     <!-- Template CSS -->
     <link rel="stylesheet" href="{{ asset('assets/css/maind134.css?v=3.4')}}">
      <!--leaflet map-->
