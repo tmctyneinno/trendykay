@@ -13,8 +13,8 @@
                                     <h4 class="animated">{{ $slider->name }}</h4>
                                     <h2 class="animated fw-900">{{ $slider->secondname }}</h2>
                                     <h1 class="animated fw-900 text-brand">{{ $slider->thirdname }}</h1>
-                                    <p class="animated">Save more with coupons & up to 70% off</p>
-                                    <a class="animated btn btn-brush btn-brush-3" href="shop-product-right.html"> Shop Now </a>
+                                    <p class="animated">Save more with coupons & up to 20% off</p>
+                                    {{-- <a class="animated btn btn-brush btn-brush-3" href="{{route('shops')}}"> Shop Now </a> --}}
                                 </div>
                             </div>
                             <div class="col-lg-7 col-md-6">
