@@ -170,9 +170,9 @@
                                                         }
 
                                                         .size-box input[type="checkbox"]:checked + label {
-                                                            background-color: #007bff; /* Change the background color when selected */
+                                                            background-color: #088178; /* Change the background color when selected */
                                                             color: #fff;
-                                                            border-color: #007bff;
+                                                            border-color: #088178;
                                                         }
 
 
@@ -210,30 +210,20 @@
                                                         </ul>
                                                     </strong>
                                                     
-                                                    {{-- <ul class="list-filter color-filter">
-                                                        <li><a href="#" data-color="Red"><span class="product-color-red"></span></a></li>
-                                                        <li><a href="#" data-color="Yellow"><span class="product-color-yellow"></span></a></li>
-                                                        <li class="active"><a href="#" data-color="White"><span class="product-color-white"></span></a></li>
-                                                        <li><a href="#" data-color="Orange"><span class="product-color-orange"></span></a></li>
-                                                        <li><a href="#" data-color="Cyan"><span class="product-color-cyan"></span></a></li>
-                                                        <li><a href="#" data-color="Green"><span class="product-color-green"></span></a></li>
-                                                        <li><a href="#" data-color="Purple"><span class="product-color-purple"></span></a></li>
-                                                    </ul> --}}
                                                 </div>
                                                 <div class="attr-detail attr-size">
                                                     <strong class="mr-10">Size</strong>
                                                     <ul class="list-size list-filter size-filter font-small">
                                                         @foreach ($product->sizes as $size)
-                                                            <li>
-                                                                <div class="size-box">
-                                                                    <input type="checkbox" id="size-small" name="selected_sizes[]" value="small">
-                                                                    <label for="size-small">{{ Str::ucfirst($size->name) }}</label>
-                                                                </div>
-                                                            </li>
-                                                        @endforeach
-                                                        <script>
-                                                           
-                                                        </script>
+                                                        <li>
+                                                            <div class="size-box">
+                                                                <input type="checkbox" id="size-{{ $size->id }}" name="selected_size" value="{{ $size->name }}" class="checkbox-toggle" data-size-id="{{ $size->id }}">
+                                                                <label for="size-{{ $size->id }}">{{ Str::ucfirst($size->name) }}</label>
+                                                            </div>
+                                                        </li>
+                                                    @endforeach
+                                                    
+                                                        
                                                     </ul>
                                                 </div>
                                                 <div class="bt-1 border-color-1 mt-30 mb-30"></div>
@@ -247,11 +237,6 @@
                                                     }
                                                   </style>
                                                 <div class="detail-extralink">
-                                                    {{-- <div class="col border radius">
-                                                        <input class="qty-val" 
-                                                        name="qty" id="qty2" type="number" value="1">
-                                                    </div> --}}
-
                                                     <div class="col-auto pr-1">
                                                         <div class="input-group">
                                                             <div class="col  radius " style="margin-right:10px">
@@ -259,8 +244,8 @@
                                                             class="qty-val " name="counter product-quantity" value="1" title="Qty" id="myNumberInput">
                                                             </div>
                                                             <div class="input-group-append">
-                                                                <button style="padding: 8px 10px;" class="js-plus btn btn-icon btn-xs btn-outline-secondary increment-btn">+</button>
                                                                 <button style="padding: 8px 10px;" class="js-minus btn btn-icon btn-xs btn-outline-secondary decrement-btn">-</button>
+                                                                <button style="padding: 8px 10px;" class="js-plus btn btn-icon btn-xs btn-outline-secondary increment-btn">+</button>
                                                             </div>
                                                         </div>
                                                     </div>                                                    
@@ -617,18 +602,66 @@
                     </div>
                 </section>
             </main>
-            
-        
-            
     @endsection
     @section('scripts')
 
+    <script>
+      
+
+        // document.addEventListener('DOMContentLoaded', function() {
+        //     var myNumberInput = $('#myNumberInput');
+        //     // Get all checkboxes with the class 'checkbox-toggle'
+        //     const checkboxes = document.querySelectorAll('.checkbox-toggle');
+        //     checkboxes.forEach(checkbox => {
+        //         checkbox.addEventListener('change', function() {
+        //             const targetId = this.getAttribute('id');
+        //             // Find the corresponding increment and decrement buttons
+        //            // const incrementButtons = document.querySelectorAll(`.increment-btn[data-target="${targetId}"]`);
+        //             const incrementButtons = document.querySelectorAll('.increment-btn');
+        //             const decrementButtons = document.querySelectorAll('.decrement-btn');
+
+        //             if (this.checked) {
+        //                 myNumberInput.val(parseInt(myNumberInput.val()) + 1);
+        //                //alert(myNumberInput);
+        //             } else {
+        //                // decrementButtons;
+        //                 var currentValue = parseInt(myNumberInput.val());
+        //                 if (currentValue > 1) {
+        //                     myNumberInput.val(currentValue - 1);
+        //                 }
+        //             }
+
+        //         })
+        //     });
+
+        // });
+    </script>
     <script>
         $(document).ready(function() {
             var myNumberInput = $('#myNumberInput');
             var incrementBtn = $('.increment-btn');
             var decrementBtn = $('.decrement-btn');
             var addToCartButton = $('#add2cart');
+
+            // Get all checkboxes with the class 'checkbox-toggle'
+            const checkboxes = document.querySelectorAll('.checkbox-toggle');
+
+             // Add a click event listener to each checkbox
+            checkboxes.forEach(checkbox => {
+                checkbox.addEventListener('click', function() {
+                    // Uncheck all other checkboxes
+                    checkboxes.forEach(otherCheckbox => {
+                        if (otherCheckbox !== checkbox) {
+                            otherCheckbox.checked = false;
+                        }
+                    });
+
+                    // Get the size ID from the data attribute
+                    const sizeId = checkbox.getAttribute('data-size-id');
+                    
+                });
+            });
+            
             // var counter = $('.counter');
             incrementBtn.on('click', function() {
                 myNumberInput.val(parseInt(myNumberInput.val()) + 1);
@@ -643,6 +676,8 @@
             
 
             addToCartButton.on('click', function() {
+               // var sizeId = $(this).data('size-id'); 
+                alert(sizeId);
                 cartId = {!! json_encode($product->id) !!}
                 $.ajaxSetup({ 
                     headers: {

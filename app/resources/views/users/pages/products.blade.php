@@ -80,8 +80,6 @@
                                             <div class="product-action-1">
                                                 <a aria-label="Quick view" class="action-btn hover-up" >
                                                 <i class="fi-rs-search"></i></a>
-                                                <a aria-label="Add To Wishlist" class="action-btn hover-up" href="#">
-                                                    <i class="fi-rs-heart"></i></a>
                                             </div>
                                             <div class="product-badges product-badges-position product-badges-mrg">
                                                 <span class="best">{{number_format($product->discount,0)}}% </span>

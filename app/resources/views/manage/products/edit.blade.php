@@ -63,12 +63,12 @@
 
                                       <div class="col-md-6">
                                         <div class="form-group">
-                                          <select name="colors[]" id="colors"  multiple >
+                                          <select name="colors[]" id="colors"  multiple required>
                                               {{-- <option value="">Select Color</option> --}}
                                               <option value="black">Black</option>
                                               <option value="blue">Blue</option>
                                               <option value="white">White</option>
-                                              <option value="green">Green</option>
+                                              <option value="green">Green</option> 
                                               <option value="purple">Purple</option>
                                               <option value="wine">Wine</option>
                                           </select>
@@ -82,16 +82,21 @@
 
                                       <div class="col-md-6">
                                         <div class="form-group">
-                                          <select name="sizes[]" id="sizes"  multiple >
-                                              {{-- <option value="">Select Color</option> --}}
-                                              <option value="S">S</option>
-                                              <option value="M">M</option>
-                                              <option value="L">L</option>
-                                              <option value="XL">XL</option>
-                                              <option value="XXL">XXL</option>
-                                              <option value="3XL">3XL</option>
-                                              <option value="4XL">4XL</option>
-                                              <option value="5XL">5XL</option>
+                                          <select name="sizes[]" id="sizes"  multiple required>
+                                            <option value="S">S</option>
+                                            <option value="M">M</option>
+                                            <option value="L">L</option>
+                                            <option value="XL">XL</option>
+                                            <option value="XXL">XXL</option>
+                                            <option value="3XL">3XL</option>
+                                            <option value="4XL">4XL</option>
+                                            <option value="5XL">5XL</option>
+                                            <option value="38">38</option>
+                                            <option value="44">44</option>
+                                            <option value="46">46</option>
+                                            <option value="48">48</option>
+                                            <option value="50">50</option>
+                                            <option value="52">52</option>
                                           </select>
                                           <small id="emailHelp" class="form-text text-muted">Select Size 
                                           </small>
@@ -162,17 +167,7 @@
 
                                          </div>
 
-                                         <div class="col-md-12">
-                                          <div class="custom-file">
-                                            <input type="file" name="specification" class="custom-file-input  @error('specification') is-invalid @enderror" id="customFiles">
-                                            <label class="custom-file-label" for="customFiles">Upload specification</label>
-                                          </div>
-                                          <small id="emailHelp" class="form-text text-muted"> Choose the specification PDF file 
-                                          </small>
-                                                    @error('specification')
-                                                    <span class="invalid-feedback"> <small> *</small> </span>
-                                                    @enderror
-                                                 </div>
+                                         
 
 
                                                <div class="col-md-6">

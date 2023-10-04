@@ -8,7 +8,7 @@
                 <a href="{{ url('pages/home') }}" rel="nofollow">Home</a>
                 <span></span> Cart
             </div>
-        </div>
+        </div> 
     </div>
     <section class="mt-50 mb-50">
         <div class="container">
@@ -33,8 +33,7 @@
                                     <td class="image product-thumbnail"><img src="{{asset('images/products/' .$carts->model->image)}}" alt="#"></td>
                                     <td class="product-des product-name">
                                         <h5 class="product-name"><a href="#">{{$carts->model->name}}</a></h5>
-                                        {{-- <p class="font-xs">Maboriosam in a tonto nesciung eget<br> distingy magndapibus.
-                                        </p> --}}
+                                        <p class="font-xs">{{$carts->model->size}}  </p>
                                     </td>
                                     <td class="price" data-title="Price">
                                         <span>C${{number_format($carts->price)}} </span>

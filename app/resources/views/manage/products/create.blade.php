@@ -82,6 +82,7 @@
                                                 <option value="38">38</option>
                                                 <option value="44">44</option>
                                                 <option value="46">46</option>
+                                                <option value="48">48</option>
                                                 <option value="50">50</option>
                                                 <option value="52">52</option>
                                             </select>
@@ -93,9 +94,9 @@
                                           </div>
                                         </div>
 
-                                        <div class="col-md-6">
+                                        {{-- <div class="col-md-6">
                                           <div class="form-group">
-                                            <label>Variant Inventory</label>
+                                            <label>Variant Inventory</label> 
                                             <select name="variants[]" id="variants"  multiple>
                                              
                                                 <option value="L-0">L-0</option>
@@ -115,7 +116,7 @@
                                             <span class="invalid-feedback"> <small> *</small> </span>
                                             @enderror
                                           </div>
-                                        </div>
+                                        </div> --}}
 
                                         <script>
                                             new MultiSelectTag('variants', {
