@@ -81,7 +81,11 @@
                                             </tr>
                                             <tr>
                                                 <td class="cart_total_label">Shipping</td>
-                                                <td class="cart_total_amount"> <i class="ti-gift mr-5"></i> Free Shipping</td>
+                                                <td class="cart_total_amount"> <i class="ti-gift mr-5"></i> Stardard Shipping</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="cart_total_label">Tax</td>
+                                                <td class="cart_total_amount"> <i class="ti-gift mr-5"></i> 12%</td>
                                             </tr>
                                             <tr>
                                                 <td class="cart_total_label">Total</td>

@@ -43,7 +43,7 @@
                             <strong>Email: </strong>trendykaycollections@gmail.com
                         </p>
                         <p class="wow fadeIn animated">
-                            <strong>Hours: </strong>10:00 - 18:00, Mon - Sat
+                            <strong>Hours: </strong>10:00 - 18:00
                         </p>
                         
                     </div>

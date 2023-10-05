@@ -127,13 +127,7 @@
                                     <h5>Payment Method</h5>
                                 </div>
                                 <div class="payment_option">
-                                    <div class="custome-radio">
-                                        <input class="form-check-input" required="" type="radio" name="payment_method" id="exampleRadios3" checked="" value="cash_delivery">
-                                        <label class="form-check-label" for="exampleRadios3" data-bs-toggle="collapse" data-target="#bankTranfer" aria-controls="bankTranfer">Cash On Delivery</label>
-                                        <div class="form-group collapse in" id="bankTranfer">
-                                            <p class="text-muted mt-5">Please note that you will pay for shipping fee before item is shipped to you on this method </p>
-                                        </div>
-                                    </div>
+                                    
                                     <div class="custome-radio">
                                         <input class="form-check-input" required="" type="radio" name="payment_method" id="exampleRadios3" checked="" value="card">
                                         <label class="form-check-label" for="exampleRadios3" data-bs-toggle="collapse" data-target="#bankTranfer" aria-controls="bankTranfer">Pay With Debit Card</label>

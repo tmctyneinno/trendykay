@@ -55,7 +55,7 @@ class HomeController extends Controller
             ->with('prod', $prod)
             ->with('cart', $cart) 
             ->with('news', News::latest()->get())
-            ->with('products', Product::inRandomOrder()->latest()->simplePaginate(16))
+            ->with('products', Product::inRandomOrder()->latest()->simplePaginate(15))
             ->with('sliders', Slider::get())
             ->with('categories', Category::inRandomOrder()->take(4)->get()); 
     } 
@@ -344,7 +344,7 @@ class HomeController extends Controller
     }
 
     public function privacypolicy(){
-        return  view('users.pages.privacy-policy')->with('news', News::latest()->get());
+        return  view('users.pages.privacy-policy')->with('news', News::latest()->get())->with('categories', Category::inRandomOrder()->get());
     }
                
 

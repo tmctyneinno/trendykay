@@ -275,10 +275,7 @@
                                                 <a class="nav-link active" id="Description-tab" data-bs-toggle="tab" href="#Description">Description</a>
                                             </li>
                                             <li class="nav-item">
-                                                <a class="nav-link" id="Additional-info-tab" data-bs-toggle="tab" href="#Additional-info">Additional info</a>
-                                            </li>
-                                            <li class="nav-item">
-                                                <a class="nav-link" id="Reviews-tab" data-bs-toggle="tab" href="#Reviews">Reviews (3)</a>
+                                                <a class="nav-link" id="Reviews-tab" data-bs-toggle="tab" href="#Reviews">Reviews</a>
                                             </li>
                                         </ul>
                                         <div class="tab-content shop_info_tab entry-main-content">
@@ -521,6 +518,47 @@
                                     </div>
                                     <div class="row mt-10">
                                         <div class="col-12">
+                                            <h3 class="section-title style-1 mb-30">Recently Viewed</h3>
+                                        </div>
+                                        <div class="col-12">
+                                            <div class="row related-products">
+                                                @foreach($recent as $recents)
+                                                <div class="col-lg-3 col-md-4 col-12 col-sm-6">
+                                                    <div class="pro-details-brand">
+                                                        <span> <a href="{{route('user.category',encrypt($recents->category->id))}}">{{$recents->category->name}}</a></span>
+                                                    </div>
+                                                    <div class="product-cart-wrap small hover-up">
+                                                        <div class="product-img-action-wrap">
+                                                            <div class="product-img product-img-zoom">
+                                                                <a href="{{route('product-details',$recents->id)}}" tabindex="0">
+                                                                    <img class="default-img" src="{{asset('images/products/'.$recents->image)}}" alt="">
+                                                                    <img class="hover-img" src="{{asset('images/products/'.$recents->image)}}" alt="">
+                                                                </a>
+                                                            </div>
+                                                            <div class="product-badges product-badges-position product-badges-mrg">
+                                                                <span class="hot">{{$recents->discount}}%</span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="product-content-wrap">
+                                                            <h2><a href="{{route('user.category', $recents->category->id )}}" tabindex="0">{{$recents->name}}</a></h2>
+                                                            <div class="rating-result" title="90%">
+                                                                <span>
+                                                                </span>
+                                                            </div>
+                                                            <div class="product-price">
+                                                                <span>C${{number_format($recents->sale_price)}}  </span>
+                                                                <span class="old-price">C${{number_format($recents->price)}}</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                @endforeach
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <div class="row mt-10">
+                                        <div class="col-12">
                                             <h3 class="section-title style-1 mb-30">Related Products</h3>
                                         </div>
                                         <div class="col-12">
@@ -528,12 +566,12 @@
                                                 @foreach($related as $related_pro)
                                                 <div class="col-lg-3 col-md-4 col-12 col-sm-6">
                                                     <div class="pro-details-brand">
-                                                        <span> <a href="{{route('user.category', $related_pro->category->id)}}">{{$related_pro->category->name}}</a></span>
+                                                        <span> <a href="{{route('user.category',encrypt($related_pro->category->id))}}">{{$related_pro->category->name}}</a></span>
                                                     </div>
                                                     <div class="product-cart-wrap small hover-up">
                                                         <div class="product-img-action-wrap">
                                                             <div class="product-img product-img-zoom">
-                                                                <a href="{{route('user.category', $related_pro->category->id)}}" tabindex="0">
+                                                                <a href="{{route('product-details',$related_pro->id)}}" tabindex="0">
                                                                     <img class="default-img" src="{{asset('images/products/'.$related_pro->image)}}" alt="">
                                                                     <img class="hover-img" src="{{asset('images/products/'.$related_pro->image)}}" alt="">
                                                                 </a>
@@ -568,7 +606,7 @@
                                     <!-- Menu List -->
                                     @foreach($category as $catt)
                                     <ul class="categories">
-                                        <li><a href="#">{{$catt->name}}</a></li>
+                                        <li><a href="{{route('user.category', encrypt($catt->id))}}">{{$catt->name}}</a></li>
                                     </ul>
                                     <!-- End Menu List -->
                                     @endforeach
@@ -677,7 +715,7 @@
 
             addToCartButton.on('click', function() {
                 var sizeId = $(this).data('size-id'); 
-                alert(sizeId);
+               // alert(sizeId);
                 cartId = {!! json_encode($product->id) !!}
                 $.ajaxSetup({ 
                     headers: {
