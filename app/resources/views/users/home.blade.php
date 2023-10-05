@@ -79,7 +79,7 @@
                     <ul class="nav nav-tabs" id="myTab" role="tablist">
                         <li class="nav-item" role="presentation">
                             <button class="nav-link active" id="nav-tab-one" data-bs-toggle="tab" 
-                            data-bs-target="#tab-one" type="button" role="tab" aria-controls="tab-one" aria-selected="true">All Products</button>
+                            data-bs-target="#tab-one" type="button" role="tab" aria-controls="tab-one" aria-selected="true"> Products</button>
                         </li>
                         
                     </ul>
@@ -181,18 +181,7 @@
                 <!--End tab-content-->
             </div>
         </section>
-        <section class="banner-2 section-padding pb-0">
-            <div class="container">
-                <div class="banner-img banner-big wow fadeIn animated f-none">
-                    <img src="{{ asset('assets/imgs/banner/banner-4.png')}}" alt="">
-                    <div class="banner-text d-md-block d-none">
-                        <h4 class="mb-15 mt-40 text-brand">Repair Services</h4>
-                        <h1 class="fw-600 mb-20">We're an Apple <br>Authorised Service Provider</h1>
-                        <a href="shop-grid-right.html" class="btn">Learn More <i class="fi-rs-arrow-right"></i></a>
-                    </div>
-                </div>
-            </div>
-        </section> 
+        
         <section class="popular-categories section-padding mt-15 mb-25">
             <div class="container wow fadeIn animated">
                 <h3 class="section-title mb-20"><span>Popular</span> Categories</h3>
@@ -220,6 +209,7 @@
                 <h3 class="section-title mb-20"><span>Recently </span> Viewed</h3>
                 <div class="carausel-6-columns-cover position-relative">
                     <div class="slider-arrow slider-arrow-2 carausel-6-columns-arrow" id="carausel-6-columns-2-arrows"></div>
+                   
                     <div class="carausel-6-columns carausel-arrow-center" id="carausel-6-columns-2">
                         @foreach($recents as $recent)
                         <div class="product-cart-wrap small hover-up">
@@ -251,12 +241,10 @@
                             </div>
                         </div>
                         <!--End product-cart-wrap-2-->
-                                                           
-                                                           
-                        @endforeach
-                        
-                        
+                        @endforeach                             
+                                
                     </div>
+                    
                 </div>
             </div>
         </section>

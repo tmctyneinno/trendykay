@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>sofarsolar | Admin</title>
     <!-- Favicon -->
-    <link rel="shortcut icon" href="assets/media/image/favicon.png"/>
+    <link rel="shortcut icon" href=" {{ asset('/assets/logo.png')}}"/>
 
     <!-- Plugin styles -->
     <link rel="stylesheet" href="{{asset('/backend/vendors/bundle.css')}}" type="text/css">
@@ -30,7 +30,7 @@
 
 <div class="form-wrapper">
 
-                        <img class="logo" src="{{asset('/images/logo.png')}}" height="auto" width="120px">
+                        <img class="logo" src=" {{ asset('/assets/logo.png')}}" height="auto" width="120px">
                 
     <h5>Sign in</h5>
 

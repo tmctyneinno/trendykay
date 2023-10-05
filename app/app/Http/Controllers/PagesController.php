@@ -82,8 +82,9 @@ class PagesController extends Controller
     }
 
     public function StoreSlider(Request $request){
+       
         $valid = validator::make($request->all(), [
-            'image' => 'required'
+            'image' => 'required|mimes:jpeg,png,jpg|max:60048'
         ]);
        
         if($valid->fails()){
@@ -91,12 +92,14 @@ class PagesController extends Controller
             \Session::flash('message','Some fields are missing');
             return back(); 
         }
+       
         if($request->file('image')){ 
             $image = $request->file('image');
             $ex = $image->getClientOriginalExtension();
             $fileName = time().'.'.$ex;
             Image::make(request()->file('image'))->resize(731,470)->save('images/sliders/'.$fileName);
         }
+       
             Slider::create([ 
                 'image' => $fileName,
                 'name' => $request->name,
@@ -128,10 +131,10 @@ class PagesController extends Controller
                 ->with('recent', Project::take(5)->latest()->get());
                 break;
             case "products":
-                $productCount = Product::take(10)->orderBy('sale_price','ASC')->get();
-                $products['prod'] = Product::take(5)->orderBy('created_at','desc')->get();
-                $products['pro'] = Product::take(10)->orderBy('sale_price','ASC')->get();
-                $products['products'] = Product::orderBy('created_at','desc')->paginate(20);
+                $productCount = Product::inRandomOrder()->take(10)->orderBy('sale_price','ASC')->get();
+                $products['prod'] = Product::inRandomOrder()->take(5)->orderBy('created_at','desc')->get();
+                $products['pro'] = Product::inRandomOrder()->take(10)->orderBy('sale_price','ASC')->get();
+                $products['products'] = Product::inRandomOrder()->orderBy('created_at','desc')->paginate(20);
                 $cart['cart'] =  \Cart::content()->take(4);
                 $news['news'] = News::latest()->get();
 

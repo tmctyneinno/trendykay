@@ -54,7 +54,7 @@
                <li class="nav-item dropdown">
                 <a href="#" class="nav-link nav-link-notify" title="Notifications" data-toggle="dropdown">
                     <i data-feather="bell"></i> <span style="color:red"> {{count($unread_notify)}}</span>
-                </a>
+                </a> 
                 <div class="dropdown-menu dropdown-menu-right dropdown-menu-big">
                     <div class="p-4 text-center d-flex justify-content-between"
                          data-backround-image="assets/media/image/image1.jpg">

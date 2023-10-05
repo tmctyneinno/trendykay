@@ -12,7 +12,7 @@
                                 <div>
                                     <h2 class="font-weight-bold mb-2">{{$products}}</h2>
                                     <div>Total Products</div>
-                                </div>
+                                </div> 
                                 <div>
                                     <span class="dashboard-pie-1">{{$products}}/100</span>
                                 </div>

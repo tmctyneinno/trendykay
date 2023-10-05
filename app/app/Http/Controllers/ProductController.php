@@ -35,7 +35,7 @@ class ProductController extends Controller
     {
         $cart =  \Cart::content()->take(4);
         return view('manage.products.index')
-             ->with('products', Product::latest()->get())
+             ->with('products', Product::inRandomOrder()->latest()->get())
              ->with('bheading', 'Product')
              ->with('cart', $cart)
              ->with('breadcrumb', 'Product');

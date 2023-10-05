@@ -49,14 +49,15 @@ class HomeController extends Controller
         }
         $cart =  \Cart::content()->take(4);
         $prod = Product::take(10)->orderBy('created_at','desc')->get();
+        Product::inRandomOrder()->limit(20)->get();
         return view('users.home', $data )
             ->with('title', 'Index') 
             ->with('prod', $prod)
             ->with('cart', $cart) 
             ->with('news', News::latest()->get())
-            ->with('products', Product::latest()->simplePaginate(50))
+            ->with('products', Product::inRandomOrder()->latest()->simplePaginate(16))
             ->with('sliders', Slider::get())
-            ->with('categories', Category::take(4)->get()); 
+            ->with('categories', Category::inRandomOrder()->take(4)->get()); 
     } 
 
     public function productDetails($id){

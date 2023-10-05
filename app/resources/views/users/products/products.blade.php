@@ -676,7 +676,7 @@
             
 
             addToCartButton.on('click', function() {
-               // var sizeId = $(this).data('size-id'); 
+                var sizeId = $(this).data('size-id'); 
                 alert(sizeId);
                 cartId = {!! json_encode($product->id) !!}
                 $.ajaxSetup({ 

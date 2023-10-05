@@ -99,7 +99,7 @@ Route::post('/pay/checkout', 'PaymentController@initiatePayCheckout')->name('pay
 
 Route::get('success', 'PaymentController@handlePaymentSuccess')->name('payment.success');
 Route::get('error', 'PaymentController@errorpayment')->name('payment.cancel');
-
+ 
 Route::get('user/orders', 'HomeController@myOrders')->name('users.orders');
 Route::get('user/transactions', 'HomeController@myTransactions')->name('user.transactions');
 Route::get('/users/order/details/{id}', 'HomeController@OrderDetails')->name('users.order-details');

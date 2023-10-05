@@ -14,7 +14,7 @@
                                
                               <div class="col-md-6">
                                 <div class="form-group">
-                                <input type="text" name="name" placeholder="Enter Slider First Text" value="{{old('name')}}" class="form-control @error('name') is-invalid @enderror" >
+                                <input type="text" required name="name" placeholder="Enter Slider First Text" value="{{old('name')}}" class="form-control @error('name') is-invalid @enderror" >
                                     <small id="emailHelp" class="form-text text-muted">Enter Slider First Text
                                     </small>
                                     @error('name')
@@ -24,7 +24,7 @@
                               </div>
                               <div class="col-md-6">
                                 <div class="form-group">
-                                <input type="text" name="secondname" placeholder="Enter Slider Third Text" value="{{old('name')}}" class="form-control @error('name') is-invalid @enderror" >
+                                <input type="text" required name="secondname" placeholder="Enter Slider Third Text" value="{{old('name')}}" class="form-control @error('name') is-invalid @enderror" >
                                     <small id="emailHelp" class="form-text text-muted">Enter Slider Second Text
                                     </small>
                                     @error('secondname')
@@ -34,12 +34,12 @@
                               </div>  
                                        
                             </div> 
-
+ 
                             <div class="row">
                                
                               <div class="col-md-6">
                                 <div class="form-group">
-                                <input type="text" name="thirdname" placeholder="Enter Slider Second Text" value="{{old('thirdname')}}" class="form-control @error('name') is-invalid @enderror" >
+                                <input type="text" name="thirdname" required placeholder="Enter Slider Second Text" value="{{old('thirdname')}}" class="form-control @error('name') is-invalid @enderror" >
                                     <small id="emailHelp" class="form-text text-muted">Enter Slider Third Text
                                     </small>
                                     @error('thirdname')
@@ -50,7 +50,7 @@
                               
                               <div class="col-md-6">
                                 <div class="custom-file">
-                                  <input type="file"name="image" class="custom-file-input  @error('image') is-invalid @enderror" id="customFile">
+                                  <input type="file"name="image" required class="custom-file-input  @error('image') is-invalid @enderror" id="customFile">
                                   <label class="custom-file-label" for="customFile">Choose Image</label>
                                 </div>
                                 <small id="emailHelp" class="form-text text-muted">Upload Slider Image.. Image must be 1920 by 590 pixels
