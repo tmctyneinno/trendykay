@@ -11,7 +11,7 @@
                         <div class="card-body">
                             <h6 class="card-title">Add New Slider</h6>
                             <div class="row">
-                               
+{{--                                
                               <div class="col-md-6">
                                 <div class="form-group">
                                 <input type="text" required name="name" placeholder="Enter Slider First Text" value="{{old('name')}}" class="form-control @error('name') is-invalid @enderror" >
@@ -21,11 +21,11 @@
                                     <span class="invalid-feedback"> <small> * </small> </span>
                                     @enderror
                                 </div>
-                              </div>
+                              </div> --}}
                               <div class="col-md-6">
                                 <div class="form-group">
                                 <input type="text" required name="secondname" placeholder="Enter Slider Third Text" value="{{old('name')}}" class="form-control @error('name') is-invalid @enderror" >
-                                    <small id="emailHelp" class="form-text text-muted">Enter Slider Second Text
+                                    <small id="emailHelp" class="form-text text-muted">Enter Slider First Text
                                     </small>
                                     @error('secondname')
                                     <span class="invalid-feedback"> <small> * </small> </span>
@@ -40,7 +40,7 @@
                               <div class="col-md-6">
                                 <div class="form-group">
                                 <input type="text" name="thirdname" required placeholder="Enter Slider Second Text" value="{{old('thirdname')}}" class="form-control @error('name') is-invalid @enderror" >
-                                    <small id="emailHelp" class="form-text text-muted">Enter Slider Third Text
+                                    <small id="emailHelp" class="form-text text-muted">Enter Slider Second Text
                                     </small>
                                     @error('thirdname')
                                     <span class="invalid-feedback"> <small> * </small> </span>

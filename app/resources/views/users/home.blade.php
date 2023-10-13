@@ -10,10 +10,9 @@
                         <div class="row align-items-center slider-animated-1">
                             <div class="col-lg-5 col-md-6">
                                 <div class="hero-slider-content-2">
-                                    <h4 class="animated">{{ $slider->name }}</h4>
                                     <h2 class="animated fw-900">{{ $slider->secondname }}</h2>
                                     <h1 class="animated fw-900 text-brand">{{ $slider->thirdname }}</h1>
-                                    <p class="animated">Save more with up to 70% off</p>
+                                    
                                     <a class="animated btn btn-brush btn-brush-3" href="{{ url('pages/products') }}"> Shop Now </a>
                               
                                 </div>
@@ -192,25 +191,7 @@
             </div>
         </section>
         
-        <section class="popular-categories section-padding mt-15 mb-25">
-            <div class="container wow fadeIn animated">
-                <h3 class="section-title mb-20"><span>Popular</span> Categories</h3>
-                <div class="carausel-6-columns-cover position-relative">
-                    <div class="slider-arrow slider-arrow-2 carausel-6-columns-arrow" id="carausel-6-columns-arrows"></div>
-                    <div class="carausel-6-columns" id="carausel-6-columns">
-                        @foreach($menu_categories as $cat )
-                        <div class="card-1">
-                            <figure class=" img-hover-scale overflow-hidden"> 
-                                <a href="{{route('user.category', encrypt($cat->id))}}"><img src="{{asset('/images/category/'.$cat->image)}}" alt=""></a>
-                                {{-- <a href=""><img src="{{asset('/images/category/'.$cat->image)}}" alt=""></a> --}}
-                            </figure>
-                            <h5><a href="{{route('user.category', encrypt($cat->id))}}"> {{$cat->name}}</a></h5>
-                        </div>
-                        @endforeach
-                    </div>
-                </div>
-            </div>
-        </section>
+        
 
        
         @if(count($recents) > 0)
