@@ -29,29 +29,57 @@
                             </thead>
                             <tbody>
                                 @foreach ($cart as $carts )
+                               
                                 <tr> 
                                     <td class="image product-thumbnail"><img src="{{asset('images/products/' .$carts->model->image)}}" alt="#"></td>
                                     <td class="product-des product-name">
                                         <h5 class="product-name"><a href="#">{{$carts->model->name}}</a></h5>
-                                        <p class="font-xs">{{$carts->model->size}}  </p>
+                                        <p class="font-xs">Sizes: {{ $carts->options->size }}  </p>
                                     </td>
                                     <td class="price" data-title="Price">
                                         <span>C${{number_format($carts->price)}} </span>
                                         <p class="font-xs old-price" style="text-decoration: line-through; color:red">C${{number_format($carts->model->price)}}</p>
                                        
                                     </td>
-                                    <td class="text-center" data-title="Stock">
-                                        <div class="detail-qty border radius  m-auto">
-                                            <a href="#" class="qty-down"><i class="fi-rs-angle-small-down"></i></a>
-                                            <span class="qty-val">{{$carts->qty}}</span>
-                                            <a href="#" class="qty-up"><i class="fi-rs-angle-small-up"></i></a>
+                                    <td class="text-center cart-item" data-title="Quantity" data-cart-item-id="{{ $carts->rowId }}">
+                                        <div class="detail-qty  radius  m-auto">
+                                            <a href="#" class="qty-down"><i class="fi-rs-angle-small-down decrement-btn"></i></a>
+                                            <input type="number" class="border mr-2 qty-val quantity-input" data-qty="{{ $carts->qty }}" value="{{ $carts->qty }}">
+                                            {{-- <span class="qty-val quantity-input" data-qty="{{ $carts->qty }}">{{$carts->qty}}</span> --}}
+                                            <a href="#" class="qty-up"><i class="fi-rs-angle-small-up increment-btn"></i></a>
                                         </div>
                                     </td>
+                                    <style>
+                                        /* Adjust spacing between buttons and input field */
+                                        .quantity-controls {
+                                            display: flex; /* Display the elements in a horizontal row */
+                                            align-items: center; /* Vertically align the elements in the center */
+                                        }
+
+                                        .qty-down,
+                                        .qty-up {
+                                            margin: 4px 7px; /* Adjust the margin to control spacing between buttons and input field */
+                                            padding: 5px;
+                                        }
+
+                                        /* Hide the up and down arrows in number input */
+                                        input[type=number]::-webkit-inner-spin-button,
+                                        input[type=number]::-webkit-outer-spin-button {
+                                            -webkit-appearance: none;
+                                            margin: 0;
+                                        }
+
+                                        /* Hide the up and down arrows in Firefox */
+                                        input[type=number] {
+                                            -moz-appearance: textfield;
+                                            padding-left: 6px;
+                                        }
+                                    </style>
                                     <td class="text-right" data-title="Cart">
                                         <span>C${{number_format($carts->price*$carts->qty )}} </span>
                                     </td>
-                                    <td class="action" data-title="Remove">
-                                        <a href="{{route('carts.delete',encrypt($carts->rowId))}}" class="text-muted"><i class="fi-rs-trash"></i></a>
+                                    <td class="action" data-title="Remove"> 
+                                        <a href="{{route('carts.delete', $carts->rowId)}}" class="text-muted"><i class="fi-rs-trash"></i></a>
                                     </td>
                                 </tr>
                                 @endforeach
@@ -77,6 +105,11 @@
                                         <tbody>
                                             <tr>
                                                 <td class="cart_total_label">Cart Subtotal</td>
+                                                @php
+                                                    $subTotal = Cart::subTotal();
+                                                    $tax = $subTotal * 0.12; // Calculate the tax amount (12% of the subtotal)
+                                                    $totalPrice = $subTotal + $tax; // Add the tax to the subtotal to get the total price
+                                                @endphp
                                                 <td class="cart_total_amount"><span class="font-lg fw-900 text-brand">C${{Cart::subTotal()}}</span></td>
                                             </tr>
                                             <tr>
@@ -89,8 +122,15 @@
                                             </tr>
                                             <tr>
                                                 <td class="cart_total_label">Total</td>
-                                                <td class="cart_total_amount"><strong><span class="font-xl fw-900 text-brand">C${{Cart::priceTotal()}}</span></strong></td>
+                                                @php
+                                                    $priceTotal = Cart::priceTotal();
+                                                    $tax = $priceTotal * 0.12; // Calculate the tax amount (12% of the subtotal)
+                                                    $totalPrice = $priceTotal + $tax; // Add the tax to the subtotal to get the total price
+                                                @endphp
+                                                <td class="cart_total_amount"><strong><span class="font-xl fw-900 text-brand">C${{ number_format($totalPrice, 2) }}</span></strong></td>
                                             </tr>
+                                            
+                                            
                                         </tbody>
                                     </table>
                                 </div>
@@ -113,6 +153,71 @@
         </div>
     </section>
 </main>
-        
+@if(session('message'))
+<script>
+    toastr.success('{{ session('message') }}');
+</script>
+@endif
+<script>
+     jQuery(document).ready(function ($) {
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+    // Find all cart items
+        $('.cart-item').each(function() {
+            var quantityInput = $(".quantity-input");
+            var decrementBtn = $('.decrement-btn');
+            var incrementBtn = $(".increment-btn");
+            
+            incrementBtn.click(function() {
+                var tdElement = $(this).closest("td");
+                var cartItemId = tdElement.data("cart-item-id");              
+                var currentQuantity = parseInt(quantityInput.val());
+                quantityInput.val(currentQuantity + 1);
+                updateCart(quantityInput);
+            });
+
+            decrementBtn.click(function() {
+                var currentQuantity = parseInt(quantityInput.val());
+                if (currentQuantity > 1) {
+                quantityInput.val(currentQuantity - 1);
+                // Call a function to update the cart or perform any other action
+                updateCart(quantityInput);
+                }
+            });
+        });
+
+        // Function to update the cart
+        function updateCart(quantityInput) {
+            var quantity = parseInt(quantityInput.val());
+            var cartItemId = quantityInput.closest('.cart-item').data('cart-item-id');
+           // alert(cartItemId);
+            //alert(quantity);
+            // Send an AJAX request to update the cart item quantity in the server
+            $.ajax({
+                url: '{{ route('cart.updatequantity') }}',
+                type: 'POST',
+                data: { 
+                    quantity: quantity, 
+                    cartItemId: cartItemId 
+                },
+                success: function(response) {
+                // Handle the response from the server if needed
+                setTimeout(() => {
+                    location.reload();
+                }, 100);
+                toastr.success('Cart item quantity updated successfully');
+                //location.reload();
+                
+                },
+                error: function(xhr, status, error) {
+                alert(error);
+                }
+            });
+        }
+    });
+</script>
 @endsection
 

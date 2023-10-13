@@ -63,7 +63,7 @@
                         <div class="divider mt-50 mb-50"></div>
                     </div>
                 </div>
-                {{Form::open(['action'=>'CheckoutController@store', 'method'=>'post', 'class'=>'js-validate', 'novalidate'=>'novalidate'])}}
+                {{-- {{Form::open(['action'=>'CheckoutController@store', 'method'=>'post', 'class'=>'js-validate', 'novalidate'=>'novalidate'])}} --}}
                      
                 <div class="row">
                       
@@ -127,7 +127,6 @@
                                     <h5>Payment Method</h5>
                                 </div>
                                 <div class="payment_option">
-                                    
                                     <div class="custome-radio">
                                         <input class="form-check-input" required="" type="radio" name="payment_method" id="exampleRadios3" checked="" value="card">
                                         <label class="form-check-label" for="exampleRadios3" data-bs-toggle="collapse" data-target="#bankTranfer" aria-controls="bankTranfer">Pay With Debit Card</label>
@@ -148,6 +147,7 @@
                             <div class="mb-20">
                                 <h4>Your Orders ({{count($cart)}} items)</h4>
                             </div>
+
                             <div class="table-responsive order_table text-center">
                                        
                                 <table class="table">
@@ -192,16 +192,17 @@
                             </div>
                             <div class="bt-1 border-color-1 mt-30 mb-30"></div>
                             
-                            <button href="#" class="btn btn-fill-out btn-block mt-10">Process to Payment</button>
+                            <button type="submit" class="btn btn-fill-out btn-block mt-10">Process to Payment</button>
                            
                         </div>
                     </div>
                     
                 </div>
-                {{Form::close()}}
+                {{-- {{Form::close()}} --}}
             </div>
         </section>
-
+        {{Form::open(['action'=>'CheckoutController@store', 'method'=>'post', 'class'=>'js-validate', 'novalidate'=>'novalidate'])}}
+                
         <!-- Quick view -->
         <div class="modal fade custom-modal" id="quickViewModal" tabindex="-1" aria-labelledby="quickViewModalLabel" aria-hidden="true">
             <div class="modal-dialog">
@@ -252,7 +253,7 @@
                 </div>
             </div>
         </div>
-
+        {{Form::close()}}
     </main>
 
 

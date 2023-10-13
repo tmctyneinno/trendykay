@@ -15,6 +15,14 @@
             <div class="row">
                 <div class="col-lg-11 m-auto">
                     <div class="row">
+                        @if(Cart::count()> 0) 
+                            <div class="form-group"> 
+                                <a href="{{ route('user.checkoutout') }}" class="btn btn-fill-out btn-block hover-up" >Continue as Guest</a>
+                            </div> 
+                        @else  
+                            
+                        @endif
+                       
                         <div class="col-lg-6">
                             <div class="login_wrap widget-taber-content p-20 background-white border-radius-10 mb-md-5 mb-lg-0 mb-sm-5">
                                 <div class="padding_eight_all bg-white">

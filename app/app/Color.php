@@ -12,4 +12,4 @@ class Color extends Model
         'product_id', 'name',
     ];
 
-}
+} 

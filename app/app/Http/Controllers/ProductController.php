@@ -7,6 +7,8 @@ use App\CurrencyExchange;
 use App\Http\Requests\ProductRequest;
 use App\Product;
 use App\Color;
+use App\Colorproduct;
+use App\Sizeproduct;
 use App\Size;
 use Illuminate\Support\Facades\DB;
 use App\SubCategory;
@@ -102,9 +104,11 @@ class ProductController extends Controller
      */
     public function create()
     {
-        return view('manage.products.create')
+        return view('manage.products.create') 
                     ->with('bheading', 'Products')
                     ->with('breadcrumb', 'Create Product')
+                    ->with('colorproduct', Colorproduct::all())
+                    ->with('sizeproduct', Sizeproduct::all())
                     ->with('category', Category::all());
     }
 
@@ -120,7 +124,7 @@ class ProductController extends Controller
             'name' => 'required',
             'colors' => 'required',
             'sizes' => 'required',
-            'variants' => 'required',
+           // 'variants' => 'required',
             'category_id' => 'required|integer',
             'image' => 'required',
             'images' => 'required',
@@ -169,6 +173,7 @@ class ProductController extends Controller
                 $ext = $file->getClientOriginalExtension();
                 $time = time().$FileName;
                 $fileName = $time.'.'.$ext;
+               // Image::make(request()->file('image'))->save('images/products/'.$fileName);
                 Image::make(request()->file('image'))->resize(1100, 1100)->save('images/products/'.$fileName);
                 $prod->image = $fileName;
             }
@@ -211,12 +216,12 @@ class ProductController extends Controller
                 }
                 $prod->size = json_encode($sizes);
     
-                foreach ($variations as $key => $variationname) {
-                    $variation = new ProductVariation;
-                    $variation->name = $variationname;
-                    $variation->product_id = $productIds;
-                    $variation->save();
-                }
+                // foreach ($variations as $key => $variationname) {
+                //     $variation = new ProductVariation;
+                //     $variation->name = $variationname;
+                //     $variation->product_id = $productIds;
+                //     $variation->save();
+                // }
                 $prod->variation = json_encode($variations);
                 if (request()->has('qty')) {
                     $pric = explode(',', $request->amount);
@@ -270,6 +275,8 @@ class ProductController extends Controller
     {
         return view('manage.products.edit')
             ->with('product', Product::where('id', decrypt($id))->first())
+            ->with('colorproduct', Colorproduct::all())
+            ->with('sizeproduct', Sizeproduct::all())
             ->with('category', Category::all())
             ->with('breadcrumb', 'Product Edit')
             ->with('bheading', 'Products');

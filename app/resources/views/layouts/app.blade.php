@@ -2,7 +2,7 @@
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
 <!-- Mirrored from wp.alithemes.com/html/evara/evara-frontend/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 04 Sep 2023 12:35:10 GMT -->
-<head>
+<head> 
     <meta charset="utf-8">
     <title>Trendy Kay Collections</title>
     <meta http-equiv="x-ua-compatible" content="ie=edge">
@@ -12,6 +12,7 @@
     <meta property="og:type" content="">
     <meta property="og:url" content="">
     <meta property="og:image" content="">
+    <meta name="csrf-token" content="{{ csrf_token() }}" />
     <!-- Favicon -->
     <link rel="shortcut icon" type="image/x-icon" href="{{ asset('/assets/logo.png')}}">
     <!-- Template CSS -->
@@ -57,7 +58,26 @@
     <!-- Template  JS -->
     <script src="{{ asset('assets/js/maind134.js?v=3.4')}}"></script>
     <script src="{{ asset('assets/js/shopd134.js?v=3.4')}}"></script>
-
+    <script type="text/javascript">
+        toastr.options = {
+             "closeButton": true,
+             "debug": false,
+             "newestOnTop": false,
+             "progressBar": true,
+             "positionClass": "toast-top-right",
+             "preventDuplicates": true,
+             "onclick": null,
+             "showDuration": "300",
+             "hideDuration": "1000",
+             "timeOut": "5000",
+             "extendedTimeOut": "1000",
+             "showEasing": "swing",
+             "hideEasing": "linear",
+             "showMethod": "fadeIn",
+             "hideMethod": "fadeOut"
+         };
+         
+     </script>
 
     @yield('scripts')
 </body>

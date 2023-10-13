@@ -74,19 +74,29 @@ Auth::routes();
 Route::get('/', 'HomeController@index')->name('index');
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/products/details/{id}', 'HomeController@productDetails')->name('product-details'); 
-Route::get('/cart/{id}', 'CartController@add')->name('carts.add'); 
+Route::get('/cart/{id}', 'CartController@add')->name('carts.add');
+//Route::post('/carts/add/', 'CartController@addToCart')->name('carts.add');
+
 Route::resource('/carts', 'CartController');
-Route::get('/delete/{id}', 'CartController@remove')->name('carts.delete');
+Route::get('/delete/{id}', 'CartController@destroy')->name('carts.delete');
+Route::post('updatecart', 'CartController@updateQuantity')->name('cart.updatequantity');
 Route::resource('/products', 'ProductController');
 Route::get('pages/{slug}', 'PagesController@Pages')->name('pages');
 Route::get('/page/search', 'HomeController@search')->name('search');
 Route::get('/category/{id}', 'HomeController@Categories')->name('user.category'); 
 Route::post('/add-review/{id}', 'HomeController@Addreview');
 Route::get('news/details/{id}', 'PagesController@newsDetails')->name('news.details');
+Route::get('/user/checkout', 'CheckoutController@guest')->name('user.checkoutout');
+Route::post('/guestaddress', 'CheckoutController@modalguest');
+Route::post('/pay/checkoutguest', 'PaymentController@initiatePayCheckoutguest')->name('pay.checkoutguest');
+
 Route::middleware('auth')->group( function(){
 Route::post('/newaddress', 'CheckoutController@modal');
-Route::post('/checkouts', 'CheckoutController@Add');
+Route::post('/checkouts', 'CheckoutController@Add'); 
+
+
 Route::resource('/checkout', 'CheckoutController')->middleware('auth');
+//Route::resource('/checkout', 'CheckoutController')->middleware('auth');
 Route::get('/payment/{trxref}', 'CheckoutController@verify')->name('verify.pay');
 Route::post('/checkout/payments', 'CheckoutController@storeOrder');
 Route::get('/address/checkout', 'CheckoutController@addNew')->name('checkout.addNew');

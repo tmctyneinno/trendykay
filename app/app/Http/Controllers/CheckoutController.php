@@ -156,11 +156,50 @@ class CheckoutController extends Controller
             $order_list->save();
         }
         $shipping= Shipping::where(['user_id' => auth()->user()->id, 'is_default' => 1])->get();
+       // $guestRecord = Shipping::latest()->first();
+        // Retrieve the latest record
+        $lastRecord = Record::latest()->first();
+
+        // Store it in the session
+        session(['lastRecord' => $lastRecord]);
+
+        // Later in your application, you can retrieve it from the session
+        $$guestRecord = session('lastRecord');
         return view('users.products.checkout')
         ->with('shipping', $shipping)
+       
         ->with('news', News::latest()->get())
         ->with('cart', \Cart::content());
     }
+
+    public function guest(){
+        $cart= \Cart::content();
+        if(count($cart) == null){
+            return redirect()->route('index');
+        }
+
+        $orderNo = rand(111111111,99999999);
+        foreach($cart as $cat){
+            $order_list = new orderItem;
+            $order_list->order_No = $orderNo;
+            $order_list->product_name = $cat->model->name;
+            $order_list->product_name = $cat->name;
+            $order_list->qty = $cat->qty;
+            $order_list->price = $cat->price;
+            $order_list->image = $cat->model->image;
+            $order_list->payable = $cat->qty*$order_list->price;
+            $order_list->user_id = auth()->user()->id ?? 0;
+            $order_list->save();
+        }
+        $shipping= Shipping::where(['order_No' => $orderNo])->get();
+        $guestRecord = Shipping::latest()->first();
+        return view('users.products.checkoutguest')
+        ->with('shipping', $shipping)
+        ->with('guestRecord', $guestRecord)
+        ->with('news', News::latest()->get())
+        ->with('cart', \Cart::content());
+    }
+    
 
 
     public function modal(Request $request){
@@ -170,33 +209,62 @@ class CheckoutController extends Controller
             'phone' => 'required',
         ]);
               
-    if($request->name){
-        $shipping = new Shipping;
-        $shipping->user_id = auth()->user()->id;
-        $shipping->address = $request->address;
-        $shipping->user_id = auth()->user()->id;
-        $shipping->receiver_phone = $request->phone;
-        $shipping->receiver_name = $request->name;
-        $shipping->receiver_email = $request->email;
-        $shipping->is_default = $request->default;
-        if($request->default)
-        {
-            $update = [
-                'is_default' => 0
-            ];
-        DB::table('shippings')
-        ->where(['user_id'=>  auth()->user()->id, 'is_default' => '1'])
-        ->update($update);
+        if($request->name){
+            $shipping = new Shipping;
+            $shipping->user_id = auth()->user()->id;
+            $shipping->address = $request->address;
+            $shipping->user_id = auth()->user()->id;
+            $shipping->receiver_phone = $request->phone;
+            $shipping->receiver_name = $request->name;
+            $shipping->receiver_email = $request->email;
+            $shipping->is_default = $request->default;
+            if($request->default)
+            {
+                $update = [
+                    'is_default' => 0
+                ];
+            DB::table('shippings')
+            ->where(['user_id'=>  auth()->user()->id, 'is_default' => '1'])
+            ->update($update);
+            }
+            $shipping->zip_code = $request->postal_code;
+            $shipping->city = $request->city;
+            $shipping->state = $request->state;
+            if( $shipping->save()){
+                return redirect()->back()->with('success', 'Address Updated Successfully');
+            }
+                
         }
-        $shipping->zip_code = $request->postal_code;
-        $shipping->city = $request->city;
-        $shipping->state = $request->state;
-        if( $shipping->save()){
-            return redirect()->back()->with('success', 'Address Updated Successfully');
-        }
-            
     }
-}
+
+    public function modalguest(Request $request){
+        $this->validate($request, [
+            'name' => 'required',
+            'address'=>'required',
+            'city' => 'required',
+            'state' => 'required',
+            'email' => 'required',
+            'phone' => 'required',
+        ]);
+              
+        if($request->name){
+            $shipping = new Shipping;
+            $shipping->user_id = 0;
+            $shipping->address = $request->address;
+            $shipping->receiver_phone = $request->phone;
+            $shipping->receiver_name = $request->name;
+            $shipping->receiver_email = $request->email;
+            $shipping->is_default = 0;
+            $shipping->zip_code = '';
+            $shipping->city = $request->city;
+            $shipping->state = $request->state;
+            if( $shipping->save()){
+                return redirect()->back()->with('success', 'Address Updated Successfully');
+            }
+                
+        }
+    }
+  
   
    
      public function store(Request $request){

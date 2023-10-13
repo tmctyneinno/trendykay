@@ -30,29 +30,61 @@ class CartController extends Controller
     }
         return $images;
      }
-    public function add(Request $request, $id)
-    { 
-        
+     public function add(Request $request, $id)
+     { 
+         
+         $product = Product::find($id);
+         $response = \Cart::add([
+             'id' => $product->id,
+             'name' => $product->name,
+             'price' => $product->sale_price,
+             'options' => [
+                'size' => $request->size,
+              ],
+             'qty' => $request->qty,
+             'image' => $product->image,
+             'weight'=>1, 
+         ])->associate('App\Product');
+     
+         if($response){
+          //   dd($res);
+             return response()->json($response);
+         }
+     }
+
+    public function addToCart(Request $request)
+    {
+        // Retrieve data from the request, including qty and size
+        $qty = $request->input('qty');
+        $size = $request->input('size');
+        $id = $request->input('cartId');
+
         $product = Product::find($id);
-        $res = \Cart::add([
+        // Perform logic to add the product to the cart
+        $response = \Cart::add([
             'id' => $product->id,
+            'options' => [
+                'size' => $request->size,
+            ],
             'name' => $product->name,
             'price' => $product->sale_price,
             'qty' => $request->qty,
             'image' => $product->image,
             'weight'=>1, 
         ])->associate('App\Product');
-    
-        if($res){
-         //   dd($res);
-            return response()->json($res);
+
+       
+        if($response){
+        //   dd($res);
+            return response()->json($response);
         }
     }
+
 
     public function index()
     { 
       //  dd(\Cart::content());
-        return view('users.products.carts')
+        return view('users.products.carts') 
         ->with('cart', \Cart::content())
         ->with('news', News::latest()->get())
         ->with('breadcrumb', 'Shopping Cart');
@@ -132,11 +164,21 @@ class CartController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Request $request, $id)
+    public function destroy( $id)
     {
       //dd($id.' '.$request->rowId);
         \Cart::remove($id);
-        \Session()->flash('message', 'Cart Deleted Successfully');
+        Session()->flash('message', 'Cart Deleted Successfully');
         return back();
+    }
+
+    public function updateQuantity(Request $request){
+        $cartItemId = $request->cartItemId;
+        $quantity = $request->quantity;
+
+        // Update the cart item quantity
+        \Cart::update($cartItemId, $quantity);
+        session()->flash('success_message', 'Cart item quantity updated successfully');
+        return response()->json(['message' => 'Cart item quantity updated successfully']);
     }
 }

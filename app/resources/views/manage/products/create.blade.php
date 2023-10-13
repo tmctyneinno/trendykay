@@ -49,15 +49,11 @@
 
                                         <div class="col-md-6">
                                           <div class="form-group">
+                                            <label>Color of product</label>
                                             <select name="colors[]" id="color"  multiple required>
-                                                {{-- <option value="">Select Color</option> --}}
-                                                <option value="Red">Red</option>
-                                                <option value="black">Black</option>
-                                                <option value="blue">Blue</option>
-                                                <option value="white">White</option>
-                                                <option value="green">Green</option>
-                                                <option value="purple">Purple</option>
-                                                <option value="wine">Wine</option>
+                                              @foreach ($colorproduct as $color )
+                                                <option value="{{$color->name}}">{{$color->name}}</option>
+                                              @endforeach
                                             </select>
                                             <small id="emailHelp" class="form-text text-muted">Select Color 
                                             </small>
@@ -69,22 +65,12 @@
 
                                         <div class="col-md-6">
                                           <div class="form-group">
+                                            <label>Size of product</label>
                                             <select name="sizes[]" id="size"  multiple required>
-                                                {{-- <option value="">Select Color</option> --}}
-                                                <option value="S">S</option>
-                                                <option value="M">M</option>
-                                                <option value="L">L</option>
-                                                <option value="XL">XL</option>
-                                                <option value="XXL">XXL</option>
-                                                <option value="3XL">3XL</option>
-                                                <option value="4XL">4XL</option>
-                                                <option value="5XL">5XL</option>
-                                                <option value="38">38</option>
-                                                <option value="44">44</option>
-                                                <option value="46">46</option>
-                                                <option value="48">48</option>
-                                                <option value="50">50</option>
-                                                <option value="52">52</option>
+                                                @foreach ($sizeproduct as $size )
+                                                  <option value="{{$size->name}}">{{$size->name}}</option>
+                                                @endforeach
+                                               
                                             </select>
                                             <small id="emailHelp" class="form-text text-muted">Select Size 
                                             </small>
@@ -119,14 +105,14 @@
                                         </div> --}}
 
                                         <script>
-                                            new MultiSelectTag('variants', {
-                                                rounded: true,    // default true
-                                                shadow: true,      // default false
-                                                placeholder: 'Search',  // default Search...
-                                                onChange: function(values) {
-                                                    console.log(values)
-                                                }
-                                            });
+                                            // new MultiSelectTag('variants', {
+                                            //     rounded: true,    // default true
+                                            //     shadow: true,      // default false
+                                            //     placeholder: 'Search',  // default Search...
+                                            //     onChange: function(values) {
+                                            //         console.log(values)
+                                            //     }
+                                            // });
                                             new MultiSelectTag('color', {
                                                 rounded: true,    // default true
                                                 shadow: true,      // default false

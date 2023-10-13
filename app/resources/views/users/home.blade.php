@@ -13,11 +13,9 @@
                                     <h4 class="animated">{{ $slider->name }}</h4>
                                     <h2 class="animated fw-900">{{ $slider->secondname }}</h2>
                                     <h1 class="animated fw-900 text-brand">{{ $slider->thirdname }}</h1>
-                                    <p class="animated">Save more with coupons & up to 70% off</p>
-                                    <a class="animated btn btn-brush btn-brush-3" href="shop-product-right.html"> Shop Now </a>
+                                    <p class="animated">Save more with up to 70% off</p>
+                                    <a class="animated btn btn-brush btn-brush-3" href="{{ url('pages/products') }}"> Shop Now </a>
                               
-                                    <p class="animated">Save more with coupons & up to 20% off</p>
-                                    {{-- <a class="animated btn btn-brush btn-brush-3" href="{{route('shops')}}"> Shop Now </a> --}}
                                 </div>
                             </div>
                             <div class="col-lg-7 col-md-6">
@@ -96,10 +94,11 @@
                 <div class="tab-content wow fadeIn animated" id="myTabContent">
                     <div class="tab-pane fade show active" id="tab-one" role="tabpanel" aria-labelledby="tab-one">
                         <div class="row product-grid-4">
-                            @foreach ($products as $pro )
+                            @forelse ($products as $pro )
+                            
                             <div class="col-lg-3 col-md-4 col-12 col-sm-6">
-                                <div class="product-cart-wrap mb-30">
-                                    <div class="product-img-action-wrap">
+                                <div class="product-cart-wrap mb-30" >
+                                    <div class="product-img-action-wrap" >
                                         <div class="product-img product-img-zoom">
                                             <a href="{{route('product-details', $pro->id )}}">
                                                 <img class="default-img" src="{{asset('/images/products/'.$pro->image)}}" alt="">
@@ -133,7 +132,9 @@
                                 </div>
                            
                             </div>
-                            @endforeach
+                            @empty
+                                <p>No Product</p>
+                            @endforelse
                         </div>
                         <!--End product-grid-4-->
                     </div>
@@ -144,7 +145,7 @@
                     <!--En tab two (Popular)-->
                     <div class="tab-pane fade" id="tab-three" role="tabpanel" aria-labelledby="tab-three">
                         <div class="row product-grid-4">
-                            @foreach ($prod as $prods )
+                            @forelse ($prod as $prods )
                             <div class="col-lg-3 col-md-4 col-12 col-sm-6">
                                 <div class="product-cart-wrap mb-30"> 
                                     <div class="product-img-action-wrap">
@@ -178,7 +179,9 @@
                                     </div>
                                 </div>
                             </div>
-                            @endforeach
+                            @empty
+                                <p>No Product</p>
+                            @endforelse
                             
                         </div>
                         <!--End product-grid-4-->
@@ -228,21 +231,18 @@
                                     </a>
                                 </div>
                                 <div class="product-action-1">
-                                    <a aria-label="Quick view" class="action-btn small hover-up" data-bs-toggle="modal" data-bs-target="#quickViewModal">
+                                    <a href="{{route('product-details', $recent->id )}}" aria-label="Quick view" class="action-btn small hover-up" >
                                     <i class="fi-rs-eye"></i></a>
                                 </div>
                                 <div class="product-badges product-badges-position product-badges-mrg">
-                                    <span class="hot">-25%</span>
+                                    <span class="hot">{{$recent->discount}}%</span>
                                 </div>
                             </div>
                             <div class="product-content-wrap">
-                                <h2><a href="C${{route('product-details', $recent->id )}}">Curabitur porta</a></h2>
-                                <div class="rating-result" title="90%">
-                                    <span>
-                                    </span>
-                                </div>
+                                <h2><a href="{{route('product-details', $recent->id )}}"> {{$recent->name}}</a></h2>
+                                
                                 <div class="product-price">
-                                    <span>{{number_format($recent->sale_price)}} </span>
+                                    <span>C${{number_format($recent->sale_price)}} </span>
                                     <span class="old-price">C${{number_format($recent->price)}}</span>
                                 </div>
                             </div>
