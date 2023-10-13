@@ -17,9 +17,9 @@ class PaymentController extends Controller
 {
    
     public function initiatePayCheckoutguest(Request $request){
-        $custemail = auth()->user()->email;
-        $custphone = auth()->user()->phone;
-        $custname = auth()->user()->name;
+        $custemail = $request->email;
+        $custphone =  $request->phone;
+        $custname =  $request->name;
         $amount = $request->total;
        // $orderNo = $request->orderNo;
         // Set your Stripe API key

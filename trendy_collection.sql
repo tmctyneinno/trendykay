@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 05, 2023 at 01:20 PM
+-- Generation Time: Oct 13, 2023 at 10:51 AM
 -- Server version: 10.1.38-MariaDB
 -- PHP Version: 7.2.15
 
@@ -126,8 +126,8 @@ INSERT INTO `categories` (`id`, `name`, `image`, `deleted_at`, `created_at`, `up
 (16, 'Denim', '5d601b112173c41c0f50f4fafc955a56.jfif', NULL, '2023-09-14 22:28:05', '2023-10-03 10:52:25'),
 (17, 'Clothing', 'f918ad23f94d9afa540e71e101ff2fdf.jpg', NULL, '2023-09-14 22:30:49', '2023-10-03 10:53:12'),
 (18, 'Swinwear', 'a41c0f50d420f21bdde7d32c9603d2b0.jpg', NULL, '2023-09-14 22:33:10', '2023-10-03 10:54:25'),
-(19, 'Shoes&Acc', '5c6aa56e2020a691d20a6c9e49a6219b.jfif', NULL, '2023-09-14 22:34:26', '2023-10-03 10:55:51'),
-(20, 'My Design', '9cd02468b29030e6dfc987180e758b2a.png', NULL, '2023-09-14 22:37:46', '2023-10-03 10:59:00'),
+(19, 'Shoes&Acc', 'e60c901ec6b4500e1e239646b933ef17.jfif', NULL, '2023-09-14 22:34:26', '2023-10-10 03:04:17'),
+(20, 'My Design', '61a275f65898d311745641a957e59ca8.jpg', NULL, '2023-09-14 22:37:46', '2023-10-10 03:06:46'),
 (21, 'Sale', '6f1467fc05ec924e6fe639d658dec49e.jfif', NULL, '2023-09-14 22:39:23', '2023-10-03 10:59:36');
 
 -- --------------------------------------------------------
@@ -149,30 +149,37 @@ CREATE TABLE `colors` (
 --
 
 INSERT INTO `colors` (`id`, `product_id`, `name`, `created_at`, `updated_at`) VALUES
-(13, 61, 'black', '2023-09-18 10:23:57', '2023-09-18 10:23:57'),
-(14, 61, 'green', '2023-09-18 10:23:57', '2023-09-18 10:23:57'),
-(15, 62, 'black', '2023-09-18 10:32:36', '2023-09-18 10:32:36'),
-(16, 62, 'green', '2023-09-18 10:32:37', '2023-09-18 10:32:37'),
-(17, 63, 'black', '2023-09-18 10:38:40', '2023-09-18 10:38:40'),
-(18, 63, 'white', '2023-09-18 10:38:40', '2023-09-18 10:38:40'),
-(19, 64, 'blue', '2023-09-18 10:47:33', '2023-09-18 10:47:33'),
-(20, 64, 'white', '2023-09-18 10:47:33', '2023-09-18 10:47:33'),
-(23, 65, 'black', '2023-09-18 11:15:26', '2023-09-18 11:15:26'),
-(24, 65, 'wine', '2023-09-18 11:15:26', '2023-09-18 11:15:26'),
-(25, 66, 'white', '2023-09-18 11:22:53', '2023-09-18 11:22:53'),
-(26, 66, 'green', '2023-09-18 11:22:53', '2023-09-18 11:22:53'),
-(36, 74, 'wine', '2023-09-22 04:34:16', '2023-09-22 04:34:16'),
-(37, 75, 'wine', '2023-09-22 04:37:24', '2023-09-22 04:37:24'),
-(38, 76, 'green', '2023-09-22 07:39:21', '2023-09-22 07:39:21'),
-(39, 77, 'blue', '2023-09-22 07:51:23', '2023-09-22 07:51:23'),
-(40, 78, 'green', '2023-09-22 07:58:45', '2023-09-22 07:58:45'),
-(41, 79, 'red', '2023-09-22 08:04:32', '2023-09-22 08:04:32'),
-(42, 80, 'white', '2023-09-22 11:00:53', '2023-09-22 11:00:53'),
-(46, 84, 'black', '2023-09-22 11:34:09', '2023-09-22 11:34:09'),
-(47, 85, 'black', '2023-09-22 12:06:27', '2023-09-22 12:06:27'),
-(49, 85, 'blue', '2023-10-04 15:12:31', '2023-10-04 15:12:31'),
-(50, 85, 'blue', '2023-10-04 15:28:59', '2023-10-04 15:28:59'),
-(51, 85, 'blue', '2023-10-05 09:38:39', '2023-10-05 09:38:39');
+(1, 1, 'Wine', '2023-10-09 08:08:10', '2023-10-09 08:08:10'),
+(2, 2, 'Green', '2023-10-09 08:11:49', '2023-10-09 08:11:49'),
+(7, 2, 'Wine', '2023-10-09 08:39:06', '2023-10-09 08:39:06'),
+(8, 3, 'Blue', '2023-10-09 08:43:31', '2023-10-09 08:43:31'),
+(9, 4, 'Blue', '2023-10-09 08:55:20', '2023-10-09 08:55:20'),
+(10, 5, 'Blue', '2023-10-09 09:04:16', '2023-10-09 09:04:16'),
+(11, 6, 'Green', '2023-10-09 09:09:16', '2023-10-09 09:09:16'),
+(12, 7, 'Green', '2023-10-09 09:20:25', '2023-10-09 09:20:25'),
+(13, 8, 'Wine', '2023-10-09 09:24:49', '2023-10-09 09:24:49'),
+(14, 9, 'Blue', '2023-10-09 09:32:47', '2023-10-09 09:32:47'),
+(15, 10, 'Blue', '2023-10-09 09:36:27', '2023-10-09 09:36:27'),
+(16, 11, 'Green', '2023-10-09 09:45:58', '2023-10-09 09:45:58'),
+(17, 12, 'Red', '2023-10-09 09:57:59', '2023-10-09 09:57:59'),
+(18, 13, 'Black', '2023-10-09 10:09:27', '2023-10-09 10:09:27'),
+(19, 14, 'White', '2023-10-09 10:25:03', '2023-10-09 10:25:03'),
+(20, 15, 'Black', '2023-10-09 10:46:52', '2023-10-09 10:46:52'),
+(21, 16, 'Black', '2023-10-09 12:00:05', '2023-10-09 12:00:05'),
+(22, 17, 'Black', '2023-10-09 12:09:02', '2023-10-09 12:09:02'),
+(23, 18, 'Green', '2023-10-09 12:25:53', '2023-10-09 12:25:53'),
+(24, 19, 'Black', '2023-10-09 12:39:35', '2023-10-09 12:39:35'),
+(25, 20, 'Black', '2023-10-09 12:55:00', '2023-10-09 12:55:00'),
+(26, 21, 'Black', '2023-10-09 12:55:03', '2023-10-09 12:55:03'),
+(27, 22, 'Black', '2023-10-09 12:55:08', '2023-10-09 12:55:08'),
+(28, 23, 'Olive Green', '2023-10-09 13:18:41', '2023-10-09 13:18:41'),
+(29, 24, 'Pink', '2023-10-09 13:28:05', '2023-10-09 13:28:05'),
+(30, 25, 'Wine', '2023-10-09 13:48:20', '2023-10-09 13:48:20'),
+(31, 26, 'Black', '2023-10-09 13:58:01', '2023-10-09 13:58:01'),
+(32, 27, 'Blue', '2023-10-09 14:05:05', '2023-10-09 14:05:05'),
+(33, 28, 'Blue', '2023-10-09 14:13:46', '2023-10-09 14:13:46'),
+(34, 29, 'Blue', '2023-10-09 16:41:19', '2023-10-09 16:41:19'),
+(35, 30, 'Black', '2023-10-09 16:49:11', '2023-10-09 16:49:11');
 
 -- --------------------------------------------------------
 
@@ -182,9 +189,6 @@ INSERT INTO `colors` (`id`, `product_id`, `name`, `created_at`, `updated_at`) VA
 
 CREATE TABLE `color_product` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `product_id` int(11) DEFAULT NULL,
-  `color_id` int(11) DEFAULT NULL,
-  `color_product` int(11) DEFAULT NULL,
   `name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -194,11 +198,16 @@ CREATE TABLE `color_product` (
 -- Dumping data for table `color_product`
 --
 
-INSERT INTO `color_product` (`id`, `product_id`, `color_id`, `color_product`, `name`, `created_at`, `updated_at`) VALUES
-(5, NULL, 13, NULL, NULL, NULL, NULL),
-(6, NULL, 14, NULL, NULL, NULL, NULL),
-(7, NULL, 19, NULL, NULL, NULL, NULL),
-(8, NULL, 20, NULL, NULL, NULL, NULL);
+INSERT INTO `color_product` (`id`, `name`, `created_at`, `updated_at`) VALUES
+(1, 'Red', '2023-10-08 23:00:00', '2023-07-03 13:03:09'),
+(2, 'Blue', '2023-10-08 23:00:00', '2023-10-08 23:00:00'),
+(3, 'White', '2023-10-08 23:00:00', '2023-10-08 23:00:00'),
+(4, 'Green', '2023-10-08 23:00:00', '2023-10-08 23:00:00'),
+(5, 'Wine', '2023-10-08 23:00:00', '2023-10-08 23:00:00'),
+(6, 'Black', '2023-10-08 23:00:00', '2023-10-08 23:00:00'),
+(7, 'Champagne', '2023-10-08 23:00:00', '2023-10-08 23:00:00'),
+(8, 'Olive Green', '2023-10-08 23:00:00', '2023-10-08 23:00:00'),
+(9, 'Pink\r\n', '2023-10-08 23:00:00', '2023-10-08 23:00:00');
 
 -- --------------------------------------------------------
 
@@ -339,26 +348,7 @@ CREATE TABLE `migrations` (
 --
 
 INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
-(1, '2021_06_02_131037_create_deliveries_table', 1),
-(2, '2022_09_09_165946_create_sub_categories_table', 2),
-(3, '2022_09_09_170533_add_field_to_products', 2),
-(4, '2022_09_09_171644_create_news_table', 2),
-(5, '2022_09_09_172534_create_projects_table', 2),
-(6, '2022_09_09_172852_create_companies_table', 2),
-(7, '2022_09_10_134628_create_sliders_table', 3),
-(8, '2022_09_11_162156_add_field_to_news', 4),
-(9, '2022_09_13_123719_create_news_table', 5),
-(10, '2022_09_13_143859_create_about_us_table', 5),
-(11, '2022_09_13_145439_create_contact_us_table', 5),
-(12, '2022_09_15_012006_add_field_to_shipping', 6),
-(14, '2022_09_23_232930_add_field_to_menus', 7),
-(15, '2022_09_24_021333_add_field_to_reviews', 8),
-(16, '2022_09_26_114516_add_field_to_contacts', 9),
-(17, '2022_09_28_131041_add_new_field_to_products', 10),
-(18, '2022_11_11_130859_add_fielsd_to_products', 11),
-(19, '2023_03_24_123421_create_currency_exchanges_table', 12),
-(20, '2023_09_18_095639_create_colors_table', 13),
-(21, '2023_09_18_095919_create_sizes_table', 14);
+(1, '2023_10_10_042646_create_size_product_table', 1);
 
 -- --------------------------------------------------------
 
@@ -876,7 +866,58 @@ INSERT INTO `order_items` (`id`, `user_id`, `order_No`, `product_name`, `price`,
 (342, 57, 102775271, 'Alevva Sunray Dress', 80, 1, 80, '1695373124Product_4.jpg', NULL, NULL, NULL, '2023-09-22 08:55:39', '2023-09-22 08:55:39'),
 (343, 57, 105441684, 'Botton Down Smocked Denim Dress', 60, 1, 60, '1695372681Product_3.jpg', NULL, NULL, NULL, '2023-10-05 09:48:00', '2023-10-05 09:48:00'),
 (344, 57, 108697413, 'Botton Down Smocked Denim Dress', 60, 1, 60, '1695372681Product_3.jpg', NULL, NULL, NULL, '2023-10-05 09:48:33', '2023-10-05 09:48:33'),
-(345, 57, 108868785, 'Botton Down Smocked Denim Dress', 60, 1, 60, '1695372681Product_3.jpg', NULL, NULL, NULL, '2023-10-05 10:16:13', '2023-10-05 10:16:13');
+(345, 57, 108868785, 'Botton Down Smocked Denim Dress', 60, 1, 60, '1695372681Product_3.jpg', NULL, NULL, NULL, '2023-10-05 10:16:13', '2023-10-05 10:16:13'),
+(346, 57, 110078487, 'EYDIS Dress', 80, 1, 80, '1694750258Product_6.jpg', NULL, NULL, NULL, '2023-10-06 11:37:14', '2023-10-06 11:37:14'),
+(347, 0, 101965028, 'Jeans  Dress', 90, 1, 90, '1696435951produt_19_3.jpg', NULL, NULL, NULL, '2023-10-06 12:25:11', '2023-10-06 12:25:11'),
+(348, 0, 101054500, 'Jeans  Dress', 90, 1, 90, '1696435951produt_19_3.jpg', NULL, NULL, NULL, '2023-10-06 12:28:14', '2023-10-06 12:28:14'),
+(349, 0, 110651802, 'KAYLA Sweat Dress', 50, 1, 50, '1696861118product_15_1.jpg', NULL, NULL, NULL, '2023-10-13 02:49:08', '2023-10-13 02:49:08'),
+(350, 0, 110651802, 'Jeans  Dress', 90, 1, 90, '1696864422product_20_1.jpg', NULL, NULL, NULL, '2023-10-13 02:49:08', '2023-10-13 02:49:08'),
+(351, 0, 102187979, 'KAYLA Sweat Dress', 50, 1, 50, '1696861118product_15_1.jpg', NULL, NULL, NULL, '2023-10-13 02:52:23', '2023-10-13 02:52:23'),
+(352, 0, 102187979, 'Jeans  Dress', 90, 1, 90, '1696864422product_20_1.jpg', NULL, NULL, NULL, '2023-10-13 02:52:23', '2023-10-13 02:52:23'),
+(353, 0, 101768110, 'KAYLA Sweat Dress', 50, 1, 50, '1696861118product_15_1.jpg', NULL, NULL, NULL, '2023-10-13 02:52:43', '2023-10-13 02:52:43'),
+(354, 0, 101768110, 'Jeans  Dress', 90, 1, 90, '1696864422product_20_1.jpg', NULL, NULL, NULL, '2023-10-13 02:52:43', '2023-10-13 02:52:43'),
+(355, 0, 108443813, 'KAYLA Sweat Dress', 50, 1, 50, '1696861118product_15_1.jpg', NULL, NULL, NULL, '2023-10-13 02:52:54', '2023-10-13 02:52:54'),
+(356, 0, 108443813, 'Jeans  Dress', 90, 1, 90, '1696864422product_20_1.jpg', NULL, NULL, NULL, '2023-10-13 02:52:54', '2023-10-13 02:52:54'),
+(357, 0, 103566444, 'KAYLA Sweat Dress', 50, 1, 50, '1696861118product_15_1.jpg', NULL, NULL, NULL, '2023-10-13 02:56:28', '2023-10-13 02:56:28'),
+(358, 0, 103566444, 'Jeans  Dress', 90, 1, 90, '1696864422product_20_1.jpg', NULL, NULL, NULL, '2023-10-13 02:56:28', '2023-10-13 02:56:28'),
+(359, 0, 106523768, 'KAYLA Sweat Dress', 50, 1, 50, '1696861118product_15_1.jpg', NULL, NULL, NULL, '2023-10-13 02:56:52', '2023-10-13 02:56:52'),
+(360, 0, 106523768, 'Jeans  Dress', 90, 1, 90, '1696864422product_20_1.jpg', NULL, NULL, NULL, '2023-10-13 02:56:52', '2023-10-13 02:56:52'),
+(361, 0, 103512557, 'KAYLA Sweat Dress', 50, 1, 50, '1696861118product_15_1.jpg', NULL, NULL, NULL, '2023-10-13 03:05:12', '2023-10-13 03:05:12'),
+(362, 0, 103512557, 'Jeans  Dress', 90, 1, 90, '1696864422product_20_1.jpg', NULL, NULL, NULL, '2023-10-13 03:05:12', '2023-10-13 03:05:12'),
+(363, 0, 110774099, 'KAYLA Sweat Dress', 50, 1, 50, '1696861118product_15_1.jpg', NULL, NULL, NULL, '2023-10-13 03:06:13', '2023-10-13 03:06:13'),
+(364, 0, 110774099, 'Jeans  Dress', 90, 1, 90, '1696864422product_20_1.jpg', NULL, NULL, NULL, '2023-10-13 03:06:13', '2023-10-13 03:06:13'),
+(365, 0, 102753312, 'KAYLA Sweat Dress', 50, 1, 50, '1696861118product_15_1.jpg', NULL, NULL, NULL, '2023-10-13 03:07:50', '2023-10-13 03:07:50'),
+(366, 0, 102753312, 'Jeans  Dress', 90, 1, 90, '1696864422product_20_1.jpg', NULL, NULL, NULL, '2023-10-13 03:07:51', '2023-10-13 03:07:51'),
+(367, 0, 108508520, 'KAYLA Sweat Dress', 50, 1, 50, '1696861118product_15_1.jpg', NULL, NULL, NULL, '2023-10-13 03:08:53', '2023-10-13 03:08:53'),
+(368, 0, 108508520, 'Jeans  Dress', 90, 1, 90, '1696864422product_20_1.jpg', NULL, NULL, NULL, '2023-10-13 03:08:53', '2023-10-13 03:08:53'),
+(369, 0, 108624653, 'KAYLA Sweat Dress', 50, 1, 50, '1696861118product_15_1.jpg', NULL, NULL, NULL, '2023-10-13 03:09:27', '2023-10-13 03:09:27'),
+(370, 0, 108624653, 'Jeans  Dress', 90, 1, 90, '1696864422product_20_1.jpg', NULL, NULL, NULL, '2023-10-13 03:09:27', '2023-10-13 03:09:27'),
+(371, 0, 100654457, 'KAYLA Sweat Dress', 50, 1, 50, '1696861118product_15_1.jpg', NULL, NULL, NULL, '2023-10-13 03:12:21', '2023-10-13 03:12:21'),
+(372, 0, 100654457, 'Jeans  Dress', 90, 1, 90, '1696864422product_20_1.jpg', NULL, NULL, NULL, '2023-10-13 03:12:21', '2023-10-13 03:12:21'),
+(373, 0, 101890529, 'KAYLA Sweat Dress', 50, 1, 50, '1696861118product_15_1.jpg', NULL, NULL, NULL, '2023-10-13 03:23:13', '2023-10-13 03:23:13'),
+(374, 0, 101890529, 'Jeans  Dress', 90, 1, 90, '1696864422product_20_1.jpg', NULL, NULL, NULL, '2023-10-13 03:23:13', '2023-10-13 03:23:13'),
+(375, 0, 104308000, 'KAYLA Sweat Dress', 50, 1, 50, '1696861118product_15_1.jpg', NULL, NULL, NULL, '2023-10-13 03:24:01', '2023-10-13 03:24:01'),
+(376, 0, 104308000, 'Jeans  Dress', 90, 1, 90, '1696864422product_20_1.jpg', NULL, NULL, NULL, '2023-10-13 03:24:01', '2023-10-13 03:24:01'),
+(377, 0, 102200494, 'KAYLA Sweat Dress', 50, 1, 50, '1696861118product_15_1.jpg', NULL, NULL, NULL, '2023-10-13 03:26:02', '2023-10-13 03:26:02'),
+(378, 0, 102200494, 'Jeans  Dress', 90, 1, 90, '1696864422product_20_1.jpg', NULL, NULL, NULL, '2023-10-13 03:26:02', '2023-10-13 03:26:02'),
+(379, 0, 103570334, 'KAYLA Sweat Dress', 50, 1, 50, '1696861118product_15_1.jpg', NULL, NULL, NULL, '2023-10-13 03:26:28', '2023-10-13 03:26:28'),
+(380, 0, 103570334, 'Jeans  Dress', 90, 1, 90, '1696864422product_20_1.jpg', NULL, NULL, NULL, '2023-10-13 03:26:28', '2023-10-13 03:26:28'),
+(381, 0, 101986065, 'KAYLA Sweat Dress', 50, 1, 50, '1696861118product_15_1.jpg', NULL, NULL, NULL, '2023-10-13 03:27:00', '2023-10-13 03:27:00'),
+(382, 0, 101986065, 'Jeans  Dress', 90, 1, 90, '1696864422product_20_1.jpg', NULL, NULL, NULL, '2023-10-13 03:27:00', '2023-10-13 03:27:00'),
+(383, 0, 109235938, 'KAYLA Sweat Dress', 50, 1, 50, '1696861118product_15_1.jpg', NULL, NULL, NULL, '2023-10-13 03:27:23', '2023-10-13 03:27:23'),
+(384, 0, 109235938, 'Jeans  Dress', 90, 1, 90, '1696864422product_20_1.jpg', NULL, NULL, NULL, '2023-10-13 03:27:24', '2023-10-13 03:27:24'),
+(385, 0, 102415208, 'KAYLA Sweat Dress', 50, 1, 50, '1696861118product_15_1.jpg', NULL, NULL, NULL, '2023-10-13 03:29:06', '2023-10-13 03:29:06'),
+(386, 0, 102415208, 'Jeans  Dress', 90, 1, 90, '1696864422product_20_1.jpg', NULL, NULL, NULL, '2023-10-13 03:29:06', '2023-10-13 03:29:06'),
+(387, 0, 102362967, 'KAYLA Sweat Dress', 50, 1, 50, '1696861118product_15_1.jpg', NULL, NULL, NULL, '2023-10-13 03:30:44', '2023-10-13 03:30:44'),
+(388, 0, 102362967, 'Jeans  Dress', 90, 1, 90, '1696864422product_20_1.jpg', NULL, NULL, NULL, '2023-10-13 03:30:44', '2023-10-13 03:30:44'),
+(389, 57, 109390481, 'KAYLA Sweat Dress', 50, 1, 50, '1696861118product_15_1.jpg', NULL, NULL, NULL, '2023-10-13 03:31:21', '2023-10-13 03:31:21'),
+(390, 57, 109390481, 'Jeans  Dress', 90, 1, 90, '1696864422product_20_1.jpg', NULL, NULL, NULL, '2023-10-13 03:31:21', '2023-10-13 03:31:21'),
+(391, 0, 109944255, 'FORESEE Dress', 80, 1, 80, '1696856401product_9_1.jpg', NULL, NULL, NULL, '2023-10-13 04:04:43', '2023-10-13 04:04:43'),
+(392, 0, 105726615, 'FORESEE Dress', 80, 1, 80, '1696856401product_9_1.jpg', NULL, NULL, NULL, '2023-10-13 04:05:20', '2023-10-13 04:05:20'),
+(393, 0, 107212521, 'FORESEE Dress', 80, 1, 80, '1696856401product_9_1.jpg', NULL, NULL, NULL, '2023-10-13 04:05:55', '2023-10-13 04:05:55'),
+(394, 0, 106546319, 'FORESEE Dress', 80, 1, 80, '1696856401product_9_1.jpg', NULL, NULL, NULL, '2023-10-13 04:24:49', '2023-10-13 04:24:49'),
+(395, 0, 108245859, 'FORESEE Dress', 80, 1, 80, '1696856401product_9_1.jpg', NULL, NULL, NULL, '2023-10-13 04:25:32', '2023-10-13 04:25:32'),
+(396, 0, 109317218, 'FORESEE Dress', 80, 1, 80, '1696856401product_9_1.jpg', NULL, NULL, NULL, '2023-10-13 04:28:40', '2023-10-13 04:28:40');
 
 -- --------------------------------------------------------
 
@@ -928,27 +969,29 @@ CREATE TABLE `products` (
 --
 
 INSERT INTO `products` (`id`, `category_id`, `name`, `color`, `size`, `variation`, `price`, `sale_price`, `discount`, `admin_id`, `image`, `gallery`, `status`, `percentage`, `description`, `design_fee`, `views`, `order_count`, `deleted_at`, `created_at`, `updated_at`, `sub_category_id`, `specification`, `exchange_rate`) VALUES
-(27, 1, 'EYDIS Dress', '', '', '', 100, 80, '20.00', '1', '1694750258Product_6.jpg', '[\"2a3ebef8a525e6717907559d8664a8ad.jpg\",\"0da0776d5fac396a5336a2cbf5f11cec.jpg\"]', NULL, 2.1621621621622, '<p><span style=\"color: rgb(51, 51, 51); font-family: monospace; font-size: 12px;\">This elegant dress meets new trends and style. Features designed arms in</span><br style=\"color: rgb(51, 51, 51); font-family: monospace; font-size: 12px;\"><span style=\"color: rgb(51, 51, 51); font-family: monospace; font-size: 12px;\">off white and black.</span><br></p>', NULL, 23, NULL, NULL, '2022-09-29 14:16:26', '2023-10-05 10:11:05', 1, '1694750258Product_6.jpg', '25138.888888889'),
-(29, 1, 'Alevva Gold  Dress', '', '', '', 100, 80, '20.00', '1', '1694751181produt_8_5.jpg', '[\"f5f405f69bf3ad53359079f13cedc457.jpg\",\"6356e803b3df56fb7ea632c68319dfcf.jpg\",\"9a852b2eb87e269e937d8e00a0673811.jpg\",\"78c0bea5f4dad18e1f2e6a6cdebbf6ee.jpg\"]', 1, 8.3333333333333, '<ul class=\" list-paddingleft-2\" style=\"font-family: &quot;Microsoft YaHei&quot;, &quot;Open Sans&quot;, Arial, sans-serif; font-size: 14px; width: 847.391px;\"><li style=\"\"><p style=\"margin: 10px 0px; margin-block: 1em; line-height: 22px;\"><span style=\"color: rgb(51, 51, 51); font-family: &quot;Times New Roman&quot;; font-size: 12px;\">The full length pleated chiffon dress meets new trends and styles.</span><br style=\"color: rgb(51, 51, 51); font-family: monospace; font-size: 12px;\"><span style=\"color: rgb(51, 51, 51); font-family: monospace; font-size: 12px;\">Features the bling of a stoned neck front. &nbsp;Very stylish and easy to wear.</span><span style=\"font-family: &quot;Times New Roman&quot;;\">﻿</span><br></p></li></ul>', NULL, 26, NULL, NULL, '2022-09-29 14:37:13', '2023-09-17 17:20:12', 3, '1694751181produt_8_2.jpg', '1527.7777777778'),
-(31, 1, 'FORESEE Dress', '', '', '', 100, 80, '20.00', '1', '1694751383produt_9_3.jpg', '[\"d7f9d11468f8d6c290d5ee33b8103adc.jpg\",\"1044b856d5ada2b731b68cdb4333b30e.jpg\",\"8cb6ef36c8e064f7372c378a48ccb8ab.jpg\"]', NULL, 11.764705882353, '<p><span style=\"color: rgb(51, 51, 51); font-family: monospace; font-size: 12px;\">This elegant dress meets new trends and style. Features 2 tiered A line</span><br style=\"color: rgb(51, 51, 51); font-family: monospace; font-size: 12px;\"><span style=\"color: rgb(51, 51, 51); font-family: monospace; font-size: 12px;\">designed with buttons and blings front chiffon dress.</span><br style=\"color: rgb(51, 51, 51); font-family: monospace; font-size: 12px;\"><br></p>', NULL, 33, NULL, NULL, '2022-10-17 20:06:12', '2023-10-03 11:10:17', 1, '1694751383produt_9_2.jpg', '2083.3333333333'),
-(32, 1, 'Miss Iyall', '', '', '', 80, 60, '25.00', '1', '1694751679produt_10_2.jpg', '[\"96b94e8125c97d4408e23d68c09bd02c.jpg\",\"a3c098388f9e8e8941cc7ae79da03777.jpg\"]', NULL, 14.285714285714, '<p><span style=\"color: rgb(51, 51, 51); font-family: monospace; font-size: 12px;\">This elegant 2 piece suit sets is classy for multipurpose. Perfect for</span><br style=\"color: rgb(51, 51, 51); font-family: monospace; font-size: 12px;\"><span style=\"color: rgb(51, 51, 51); font-family: monospace; font-size: 12px;\">office, outing, and occasions with rumpled sides design.</span><br></p>', NULL, 46, NULL, NULL, '2022-10-17 20:13:57', '2023-10-05 10:15:00', 1, '1694751679produt_10_1.jpg', '3333.3333333333'),
-(52, 1, 'Velvet Hoodie and Pant set', '', '', '', 90, 70, '22.22', '1', '1694755022produt_12_2.jpg', '[\"49f3fdf7831da17ccc770fce19cb409d.jpg\"]', NULL, 22.222222222222, '<p>Velvet Hoodie and Pant set<br></p>', NULL, NULL, NULL, NULL, '2023-09-15 03:48:02', '2023-09-15 04:17:02', 1, '1694753282produt_12_2.jpg', NULL),
-(53, 1, 'KAYLA Sweat Dress', '', '', '', 80, 50, '37.50', '1', '1694753546produt_13_1.jpg', '[\"8e410688f9bd849c0c8118cf376be2d4.jpg\",\"f886a751627f0c6b1510e0996ee5be86.jpg\",\"7bd6d0fb0a1b4a29eed4352dcd7d48e1.jpg\"]', NULL, 37.5, '<p><span style=\"color: rgb(51, 51, 51); font-family: monospace; font-size: 12px;\">KAYLA Sweat Dress</span><br></p>', NULL, 125, NULL, NULL, '2023-09-15 03:52:27', '2023-09-17 15:21:32', 1, '1694753546produt_13_2.jpg', NULL),
-(54, 1, 'KAYLA Sweat Dress', '', '', '', 80, 50, '37.50', '1', '1694753858produt_14_3.jpg', '[\"887015ded3c7c230e228b1e0d3f28bfe.jpg\",\"1291c51ea92b62c47229237b44e7cd34.jpg\",\"8b365242a932eae98b5630918b60996e.jpg\",\"603a3a66ef67b024da6bcd8986597afa.jpg\"]', NULL, 37.5, '<p>KAYLA Sweat Dress<br></p>', NULL, 6, NULL, NULL, '2023-09-15 03:57:38', '2023-09-17 19:41:20', 1, '1694753858produt_14_4.jpg', NULL),
-(55, 1, 'KAYLA Sweat Dress', '', '', '', 80, 30, '62.50', '1', '1694755250produt_15_1.jpg', '[\"a649a35440894ddf9a6f3474d2070508.jpg\"]', NULL, 62.5, '<p>KAYLA Sweat Dress<br></p>', NULL, 8, NULL, NULL, '2023-09-15 04:01:23', '2023-09-17 18:05:22', 1, '1694754083produt_15_1.jpg', NULL),
-(56, 1, 'Velvet Jumpsuit 2pcs set', '', '', '', 80, 50, '37.50', '1', '1694755153produt_16_1.jpg', '[\"1e70bfbb800252de8a7b9679473c6c0d.jpg\",\"81107d48ae610fbf6672e66daf7dc769.jpg\",\"9fe60aa4a9a99dfa64ccdee742f0dc76.jpg\"]', NULL, 37.5, '<p>Velvet Jumpsuit 2pcs set<br></p>', NULL, 8, NULL, NULL, '2023-09-15 04:04:00', '2023-09-18 21:23:09', 1, '1694754239produt_16_1.jpg', NULL),
-(57, 1, 'Velvet Jumpsuit 2psc set', '', '', '', 100, 80, '20.00', '1', '1694801584produt_17_2.jpg', '[\"0b6277603713927ed8a37a38ff24603d.jpg\",\"fd8273c4ff1bacd6d28a0c1dd5774076.jpg\",\"3ac94216864e5b0920e5140b99609889.jpg\",\"400ab87e398b3b3d080a9bc29c17f208.jpg\",\"e74196cd7d6f3ebff185d534a7b8633f.jpg\"]', NULL, 20, '<p>Velvet Jumpsuit 2psc set<br></p>', NULL, 71, NULL, NULL, '2023-09-15 04:11:11', '2023-09-17 19:44:32', 1, '1694754671produt_17_3.jpg', NULL),
-(58, 1, 'Velvet Hoodie and Pant set', '', '', '', 90, 70, '22.22', '1', '1694801358produt_18_2.jpg', '[\"d55e60a57e6ceb7e5d567e8ff79018e2.jpg\",\"b5423a6b87eb1d88c599a33181e8fabf.jpg\",\"a53f18e39c8f98580c4c36c8bc287079.jpg\"]', NULL, 22.222222222222, '<p>Velvet Hoodie and Pant set<br></p>', NULL, 10, NULL, NULL, '2023-09-15 16:59:16', '2023-09-22 03:08:00', 1, NULL, NULL),
-(59, 16, 'Jeans  Dress', '[\"blue\"]', '[\"44\",\"46\",\"48\",\"50\"]', '', 120, 90, '25.00', '1', '1696435951produt_19_3.jpg', '[\"c8fef6048529ef2eae3963855faa2c59.jpg\",\"be9ed06e9da7c668728a8e5122cdef4c.jpg\",\"06a8bd5ffd8294605db73174924d326a.jpg\"]', NULL, 99.555555555556, '<p>Jeans Dress</p>', NULL, 3, NULL, NULL, '2023-09-18 09:17:51', '2023-10-04 15:13:30', 1, NULL, NULL),
-(62, 1, 'Jeans  2pcs set', '[\"blue\"]', '[\"S\",\"M\",\"L\"]', '', 150, 120, '20.00', '1', '1696436939produt_20_2.jpg', '[\"437b5d036fd2737d8cb7439996f67774.jpg\",\"87a3ce3b4e96a1bb2db648651a69ff61.jpg\",\"1202bc8f8b174931ad9c778b135846ea.jpg\",\"ff59f4ced72628221bae52dda4229b78.jpg\",\"3e60d6d586c973ad9b9c99bf446bc2e5.jpg\"]', NULL, 99.555555555556, '<p><span style=\"color: rgb(51, 51, 51); font-family: monospace; font-size: 12px;\">Jeans &nbsp;2pcs set</span><br></p>', NULL, 16, NULL, NULL, '2023-09-18 10:23:58', '2023-10-04 15:29:02', 1, NULL, NULL),
-(75, 1, 'Tracksuit', '[\"wine\"]', '[\"L\",\"XL\",\"XXL\",\"3XL\",\"4XL\",\"5XL\"]', '[\"L-0\",\"XL-1\",\"XXL-1\",\"3XL-1\",\"4XL-0\",\"5XL-1\"]', 120, 60, '50.00', '1', '1695361042Product_1.jpg', '[\"e6e7fb31bd21708c6db7ea75f04eb032.jpg\"]', NULL, 50, '<p><span style=\"color: rgb(51, 51, 51); font-family: monospace; font-size: 12px;\">The original tracksuits and sweatsuits 2-piece set sports outfit Zipper and</span><br style=\"color: rgb(51, 51, 51); font-family: monospace; font-size: 12px;\"><span style=\"color: rgb(51, 51, 51); font-family: monospace; font-size: 12px;\">pull-on closure shirt and a strip-line pant set\'s joggers. &nbsp;Made from</span><br style=\"color: rgb(51, 51, 51); font-family: monospace; font-size: 12px;\"><span style=\"color: rgb(51, 51, 51); font-family: monospace; font-size: 12px;\">95% polyester and &nbsp;5% elastane material, &nbsp;quite stylish and comfortable</span><br style=\"color: rgb(51, 51, 51); font-family: monospace; font-size: 12px;\"><span style=\"color: rgb(51, 51, 51); font-family: monospace; font-size: 12px;\">to wear. Perfect for sports, and daily leisure,</span><br></p>', NULL, 77, NULL, NULL, '2023-09-22 04:37:24', '2023-09-29 13:57:43', 1, NULL, NULL),
-(76, 1, 'Tracksuitt', '[\"green\"]', '[\"L\",\"XL\",\"XXL\",\"3XL\",\"4XL\",\"5XL\"]', '[\"L-0\",\"XL-1\",\"XXL-1\",\"3XL-1\",\"4XL-0\",\"5XL-1\"]', 120, 60, '50.00', '1', '1695371957Product_2.jpg', '[\"b43054399122570c6c5ce7b9e699dfb7.jpg\"]', NULL, 50, '<p><span style=\"color: rgb(51, 51, 51); font-family: monospace; font-size: 12px;\">The original tracksuits and sweatsuits 2 piece set sports outfit Zipper and</span><br style=\"color: rgb(51, 51, 51); font-family: monospace; font-size: 12px;\"><span style=\"color: rgb(51, 51, 51); font-family: monospace; font-size: 12px;\">pull-on closure shirt and a strip-line pant set\'s joggers. Made from</span><br style=\"color: rgb(51, 51, 51); font-family: monospace; font-size: 12px;\"><span style=\"color: rgb(51, 51, 51); font-family: monospace; font-size: 12px;\">95% polyester and 5% elastane material is quite stylish and comfortable to</span><br style=\"color: rgb(51, 51, 51); font-family: monospace; font-size: 12px;\"><span style=\"color: rgb(51, 51, 51); font-family: monospace; font-size: 12px;\">wear. Perfect for sports, and daily leisure.</span><br></p>', NULL, 71, NULL, NULL, '2023-09-22 07:39:20', '2023-10-03 13:02:46', 1, NULL, NULL),
-(77, 16, 'Botton Down Smocked Denim Dress', '[\"blue\"]', '[\"38\",\"44\",\"46\"]', '[\"L-0\",\"XL-1\",\"XXL-1\",\"3XL-1\",\"4XL-0\",\"5XL-1\"]', 80, 60, '25.00', '1', '1695372681Product_3.jpg', '[\"797b92e5692f5f150eb69784d25d3fa3.jpg\"]', NULL, 25, '<p><span style=\"color: rgb(51, 51, 51); font-family: monospace; font-size: 12px;\">The classic shirt dress meets new trends with a tiered denim style.&nbsp;</span><span style=\"color: rgb(51, 51, 51); font-family: monospace; font-size: 12px;\">Features buttons down the front, A-line silhouette, and belt loops</span><br style=\"color: rgb(51, 51, 51); font-family: monospace; font-size: 12px;\"><span style=\"color: rgb(51, 51, 51); font-family: monospace; font-size: 12px;\">attached. Made from 100% cotton material, it is quite healthy and comfortable&nbsp;</span><span style=\"color: rgb(51, 51, 51); font-family: monospace; font-size: 12px;\">to wear. Perfect for daily leisure, date, party, beach, vacation, at&nbsp;</span><span style=\"color: rgb(51, 51, 51); font-family: monospace; font-size: 12px;\">home, and other occasions.</span><br></p>', NULL, 6, NULL, NULL, '2023-09-22 07:51:23', '2023-10-05 09:46:38', 1, NULL, NULL),
-(78, 12, 'Alevva Sunray Dress', '[\"green\"]', '[\"M\",\"L\",\"XL\"]', '[\"L-0\",\"XL-1\",\"XXL-1\"]', 100, 80, '20.00', '1', '1695373124Product_4.jpg', '[\"d67f4286f5f03b6645c8f1ecbcbf1b64.jpg\"]', NULL, 20, '<p><span style=\"color: rgb(51, 51, 51); font-family: monospace; font-size: 12px;\">The classic beaded chiffon dress is a unique style with skin-friendly&nbsp;</span><span style=\"color: rgb(51, 51, 51); font-family: monospace; font-size: 12px;\">materials. Features buttons up the front and a straight line dress.</span><br style=\"color: rgb(51, 51, 51); font-family: monospace; font-size: 12px;\"><span style=\"color: rgb(51, 51, 51); font-family: monospace; font-size: 12px;\">Made from 100% chiffon material, quite healthy and comfortable to wear.&nbsp;</span><span style=\"color: rgb(51, 51, 51); font-family: monospace; font-size: 12px;\">Perfect for daily leisure, outings, date, party, Dinner wear, and other&nbsp;</span><span style=\"color: rgb(51, 51, 51); font-family: monospace; font-size: 12px;\">occasions.</span><br></p>', NULL, 5, NULL, NULL, '2023-09-22 07:58:45', '2023-09-22 08:55:27', 1, NULL, NULL),
-(79, 12, 'EYDIS Dress', '[\"red\"]', '[\"M\",\"L\",\"XL\"]', '[\"L-0\",\"XL-1\"]', 100, 80, '20.00', '1', '1695373470Product_5.jpg', '[\"7eff861ddad3f283671b054261bb1b80.jpg\",\"66332f5f07883c9e991d988f64cf12a6.jpg\"]', NULL, 20, '<p><span style=\"color: rgb(51, 51, 51); font-family: monospace; font-size: 12px;\">This elegant dress meets new trends and styles. Features designed arms in&nbsp;</span><span style=\"color: rgb(51, 51, 51); font-family: monospace; font-size: 12px;\">off-white and black.</span><br></p>', NULL, 2, NULL, NULL, '2023-09-22 08:04:32', '2023-10-03 09:07:31', 1, NULL, NULL),
-(80, 12, 'Nzambi Dress', '[\"white\"]', '[\"38\",\"44\",\"46\",\"50\",\"52\"]', '[\"4XL-0\",\"44-1\",\"46-1\",\"48-1\",\"50-1\"]', 140, 80, '98.00', '1', '1695384047produt_7_1.jpg', '[\"059042f6226f37e83a4785e277b406c5.jpg\",\"a92d6f0cd9812c66d904af181946b0c3.jpg\",\"15da6cb62736830ea372a1d21246bdbd.jpg\"]', NULL, 20, '<p><span style=\"color: rgb(51, 51, 51); font-family: monospace; font-size: 12px;\">This elegant dress meets new trends and styles. Features designed arms in&nbsp;</span><span style=\"color: rgb(51, 51, 51); font-family: monospace; font-size: 12px;\">off-white and black.</span><br></p>', NULL, 5, NULL, NULL, '2023-09-22 11:00:52', '2023-09-22 11:24:07', 1, NULL, NULL),
-(84, 2, 'EYDIS Dress', '[\"black\"]', '[\"38\",\"44\",\"46\",\"50\",\"52\"]', '[\"44-1\",\"46-1\",\"48-1\",\"50-1\",\"52-0\"]', 100, 80, '20.00', '1', '1695386045produt_6_1.jpg', '[\"134f40e28e4926a48d8a45f26eb0587c.jpg\",\"8c905d1b565055833aa1b2b84a850888.jpg\",\"c2cb304f4584b4570aa9cf8fb17a5d29.jpg\"]', NULL, 20, '<p><span style=\"color: rgb(51, 51, 51); font-family: monospace; font-size: 12px;\">This elegant dress meets new trends and style. Features designed arms in&nbsp;</span><span style=\"color: rgb(51, 51, 51); font-family: monospace; font-size: 12px;\">off white and black.</span><br></p>', NULL, 20, NULL, NULL, '2023-09-22 11:34:09', '2023-10-03 14:26:23', 1, NULL, NULL),
-(85, 12, 'Alevva Gold  Dress', '[\"black\"]', '[\"38\",\"44\",\"46\",\"50\",\"52\"]', '[\"44-1\",\"46-1\",\"48-1\",\"50-1\",\"52-0\"]', 100, 80, '20.00', '1', '1695387978produt_8_1.jpg', '[\"c672ba233e0ed38c24ff7956068722b0.jpg\",\"d6ad9b6ddda91c8fc9f4be4160e29532.jpg\",\"a6477c2cd017012b2a2a564b9f98e2b5.jpg\",\"28c128d8f5c6c3cac6f979e16ef68273.jpg\",\"446dc86e19d31f0fb80417b1b0fd06de.jpg\"]', NULL, 20, '<p><span style=\"color: rgb(51, 51, 51); font-family: monospace; font-size: 12px;\">The full-length pleated chiffon dress meets new trends and styles.&nbsp;</span><span style=\"color: rgb(51, 51, 51); font-family: monospace; font-size: 12px;\">Features the bling of stoned neck front. Very stylish and easy to wear.</span><br></p>', NULL, 9, NULL, NULL, '2023-09-22 12:06:26', '2023-10-05 10:01:38', 1, NULL, NULL);
+(7, 2, 'Tracksuit', '[\"Green\"]', '[\"L\",\"XL\",\"XXL\",\"3XL\",\"4XL\",\"5XL\"]', 'null', 120, 60, '50.00', '1', '1696846824product_3_1.jpg', '[\"e50a7bce2a042b452ea03f6983c85c91.jpg\"]', NULL, 50, '<p><span style=\"color: rgb(51, 51, 51); font-family: monospace; font-size: 12px;\">The original tracksuits and sweatsuits 2 piece set sports outfit Zipper and</span><br style=\"color: rgb(51, 51, 51); font-family: monospace; font-size: 12px;\"><span style=\"color: rgb(51, 51, 51); font-family: monospace; font-size: 12px;\">pull-on closure shirt and a strip-line pant set\'s joggers. Made from</span><br style=\"color: rgb(51, 51, 51); font-family: monospace; font-size: 12px;\"><span style=\"color: rgb(51, 51, 51); font-family: monospace; font-size: 12px;\">95% polyester and 5% elastane material, quite stylish and comfortable to</span><br style=\"color: rgb(51, 51, 51); font-family: monospace; font-size: 12px;\"><span style=\"color: rgb(51, 51, 51); font-family: monospace; font-size: 12px;\">wear. Perfect for sports, and daily leisure,</span><br></p>', NULL, 2, NULL, NULL, '2023-10-09 09:20:25', '2023-10-09 10:52:13', 1, NULL, NULL),
+(8, 21, 'Tracksuit', '[\"Wine\"]', '[\"L\",\"XL\",\"XXL\",\"3XL\",\"4XL\",\"5XL\"]', 'null', 120, 60, '50.00', '1', '1696847087product_2.jpg', '[\"b28feb247958b6071d39ce8f1870d724.jpg\"]', NULL, 50, '<p><span style=\"color: rgb(51, 51, 51); font-family: monospace; font-size: 12px;\">The original Tracksuits/Sweatsuits 2-piece set sports outfit zipper and&nbsp;</span><span style=\"color: rgb(51, 51, 51); font-family: monospace; font-size: 12px;\">pull-on closure shirt and a strip-line pant set\'s joggers Made from&nbsp;</span><span style=\"color: rgb(51, 51, 51); font-family: monospace; font-size: 12px;\">95% polyester and 5% elastane material, it is quite stylish and comfortable to</span><br style=\"color: rgb(51, 51, 51); font-family: monospace; font-size: 12px;\"><span style=\"color: rgb(51, 51, 51); font-family: monospace; font-size: 12px;\">wear. Perfect for sports, and daily leisure,</span><br></p>', NULL, NULL, NULL, NULL, '2023-10-09 09:24:49', '2023-10-09 09:24:49', 1, NULL, NULL),
+(10, 2, 'Botton Down Smocked Denim ', '[\"Blue\"]', '[\"38\",\"44\",\"46\",\"48\",\"50\"]', 'null', 120, 80, '33.33', '1', '1696847786product_1.jpg', '[\"2067393e19d5a1448f6ec73589df7589.jpg\"]', NULL, 33.333333333333, '<p><span style=\"color: rgb(51, 51, 51); font-family: monospace; font-size: 12px;\">The classic shirt dress meets new trends with a tiered Denim style.&nbsp;</span><span style=\"color: rgb(51, 51, 51); font-family: monospace; font-size: 12px;\">Features buttons down the front, an A-line silhouette, and belt loops&nbsp;</span><span style=\"color: rgb(51, 51, 51); font-family: monospace; font-size: 12px;\">attached. Made from 100% cotton material, it is quite healthy and comfortable&nbsp;</span><span style=\"color: rgb(51, 51, 51); font-family: monospace; font-size: 12px;\">to wear. Perfect for daily leisure, date, party, beach, vacation, at&nbsp;</span><span style=\"color: rgb(51, 51, 51); font-family: monospace; font-size: 12px;\">home, and other occasions.</span><br></p>', NULL, NULL, NULL, NULL, '2023-10-09 09:36:27', '2023-10-09 09:36:27', 1, NULL, NULL),
+(11, 11, 'Alevva Sunray Dress', '[\"Green\"]', '[\"38\",\"44\",\"46\",\"48\"]', 'null', 100, 80, '20.00', '1', '1696848355product_4.jpg', '[\"87e1eaf6dedbfd981e3eb642920a567a.jpg\"]', NULL, 20, '<p><span style=\"color: rgb(51, 51, 51); font-family: monospace; font-size: 12px;\">The classic beaded chiffon dress is a unique style with skin-friendly</span><span style=\"color: rgb(51, 51, 51); font-family: monospace; font-size: 12px;\">&nbsp;material. Features buttons up the front and a straight-line dress.&nbsp;</span><span style=\"color: rgb(51, 51, 51); font-family: monospace; font-size: 12px;\">Made from 100% chiffon material, it is quite healthy and comfortable to wear.&nbsp;</span><span style=\"color: rgb(51, 51, 51); font-family: monospace; font-size: 12px;\">Perfect for daily leisure, outings, dates, parties, dinner wear, and other&nbsp;</span><span style=\"color: rgb(51, 51, 51); font-family: monospace; font-size: 12px;\">occasions</span><br></p>', NULL, 1, NULL, NULL, '2023-10-09 09:45:58', '2023-10-09 09:47:40', 1, NULL, NULL),
+(12, 12, 'EYDIS Dress', '[\"Red\"]', '[\"44\",\"46\",\"48\",\"50\",\"52\"]', 'null', 100, 80, '20.00', '1', '1696849077product_5_1.jpg', '[\"93354a9606d8b53f0e998829674a2c05.jpg\",\"38c00fdab540712c2f28f1d2079a3b75.jpg\",\"7cda5a43a027a071e445efc1a8572a1a.jpg\"]', NULL, 20, '<p><span style=\"color: rgb(51, 51, 51); font-family: monospace; font-size: 12px;\">This elegant dress meets new trends and styles. Features designed arms in&nbsp;</span><span style=\"color: rgb(51, 51, 51); font-family: monospace; font-size: 12px;\">off white and black</span><br></p>', NULL, 4, NULL, NULL, '2023-10-09 09:57:59', '2023-10-09 10:52:23', 1, NULL, NULL),
+(13, 12, 'EYDIS Dress', '[\"Black\"]', '[\"44\",\"46\",\"48\",\"50\",\"52\"]', 'null', 100, 80, '20.00', '1', '1696849765product_6_1.jpg', '[\"def9b10f54e5e07c100e40ec30df3641.jpg\",\"488a31146ad2f12701c2f20ed2c32f8e.jpg\",\"fcaf5983e6e41d1bafe2b76d1aa9e3fc.jpg\"]', NULL, 20, '<p><span style=\"color: rgb(51, 51, 51); font-family: monospace; font-size: 12px;\">This elegant dress meets new trends and styles. Features designed arms in&nbsp;</span><span style=\"color: rgb(51, 51, 51); font-family: monospace; font-size: 12px;\">off-white and black.</span><br></p>', NULL, 67, NULL, NULL, '2023-10-09 10:09:27', '2023-10-10 14:33:46', 1, NULL, NULL),
+(14, 12, 'Nzambi Dress', '[\"White\"]', '[\"44\",\"46\",\"48\",\"50\",\"52\"]', 'null', 140, 98, '30.00', '1', '1696850701product_7_1.jpg', '[\"9cd4af840fadb212231d32d26a42abc8.jpg\",\"1d99690780ccb99e151568f6a5977adb.jpg\",\"efd4957bb48890e5879f83161cf2d275.jpg\"]', NULL, 30, '<p><span style=\"color: rgb(51, 51, 51); font-family: monospace; font-size: 12px;\">This gorgeously fitted dress meets new trends and styles. shaped with a belt&nbsp;</span><span style=\"color: rgb(51, 51, 51); font-family: monospace; font-size: 12px;\">to fit.</span><br></p>', NULL, 2, NULL, NULL, '2023-10-09 10:25:03', '2023-10-09 10:26:58', 1, NULL, NULL),
+(15, 1, 'Alevva Gold  Dress', '[\"Black\"]', '[\"44\",\"46\",\"48\",\"50\",\"52\"]', 'null', 100, 80, '20.00', '1', '1696852008product_8_2.jpg', '[\"d90614f26755193d2056f9b336dfb1ad.jpg\",\"7022ad2153685210152ae55a1041ba16.jpg\",\"5887d90c25fa94b4ba16933e61b2fd43.jpg\",\"ce10dfa4c90845a854150813344f9b6d.jpg\",\"3030dbf665d09824e2ac7a02f5f1b5b1.jpg\"]', NULL, 20, '<p><span style=\"color: rgb(51, 51, 51); font-family: monospace; font-size: 12px;\">The full length pleated chiffon dress meets new trends and styles.&nbsp;</span><span style=\"color: rgb(51, 51, 51); font-family: monospace; font-size: 12px;\">Features the bling of a stoned neck front. &nbsp;Very stylish and easy to wear.</span><br></p>', NULL, 1, NULL, NULL, '2023-10-09 10:46:52', '2023-10-09 12:00:29', 1, NULL, NULL),
+(16, 12, 'FORESEE Dress', '[\"Black\"]', '[\"44\",\"46\",\"48\",\"50\",\"52\"]', 'null', 100, 80, '20.00', '1', '1696856401product_9_1.jpg', '[\"b580a60330913cd5372449aba69d4eac.jpg\",\"cc8e64dbc5ca6d2540b1c50cfed11171.jpg\",\"7f02ab7f2a712e5e5927126df18c767d.jpg\"]', NULL, 20, '<p><span style=\"color: rgb(51, 51, 51); font-family: monospace; font-size: 12px;\">This elegant dress meets new trends and styles. Features two tiered A-line&nbsp;</span><span style=\"color: rgb(51, 51, 51); font-family: monospace; font-size: 12px;\">designs with buttons and bling on the front chiffon dress.</span><br></p>', NULL, 4, NULL, NULL, '2023-10-09 12:00:05', '2023-10-13 04:03:52', 1, NULL, NULL),
+(17, 1, 'Miss Iyall', '[\"Black\"]', '[\"44\",\"46\",\"48\",\"50\",\"52\"]', 'null', 80, 60, '25.00', '1', '1696856937product_10_1.jpg', '[\"02482b4cafa4fab94e7d8088d478ee27.jpg\",\"66a1e2923eb6cd95b99927fcd64ab91a.jpg\"]', NULL, 25, '<p><span style=\"color: rgb(51, 51, 51); font-family: monospace; font-size: 12px;\">This elegant 2-piece suit set is classy and multipurpose. Perfect for o</span><span style=\"color: rgb(51, 51, 51); font-family: monospace; font-size: 12px;\">ffice, outings, and occasions with a rumpled side design.</span><br></p>', NULL, NULL, NULL, NULL, '2023-10-09 12:09:02', '2023-10-09 12:09:02', 1, NULL, NULL),
+(18, 15, 'Miyakki Jumpsuit', '[\"Green\"]', '[\"44\",\"46\",\"48\",\"50\"]', 'null', 80, 60, '25.00', '1', '1696857944product_11_2.jpg', '[\"f55c3c41d48e5a673c611ef4efdea38b.jpg\",\"96be63a22c4dd895fe6dae3cc8097834.jpg\",\"687df60cdb5857724916e29cd3e9da45.jpg\",\"06d4048e5a02c2b6866d89799ce09196.jpg\",\"9b2c46fe5d27a5fa9f09495698bcf993.jpg\"]', NULL, 25, '<p><span style=\"color: rgb(51, 51, 51); font-family: monospace; font-size: 12px;\">Miyakki Jumpsuit</span><br></p>', NULL, 11, NULL, NULL, '2023-10-09 12:25:53', '2023-10-10 15:09:24', 1, NULL, NULL),
+(19, 2, 'Velvet Hoodie and Pant set.', '[\"Black\"]', '[\"44\",\"46\",\"48\",\"50\"]', 'null', 90, 70, '22.22', '1', '1696858770product_12_3.jpg', '[\"84642a86ee3a84aecba4377009481e9e.jpg\",\"d253c96f0f210ad785c497d4c406a041.jpg\",\"87bc59fc92a138e136a4ac690a5bae53.jpg\"]', NULL, 22.222222222222, '<p><span style=\"color: rgb(51, 51, 51); font-family: monospace; font-size: 12px;\">Velvet Hoodie and Pant Set</span><br></p>', NULL, 1, NULL, NULL, '2023-10-09 12:39:35', '2023-10-09 12:40:30', 1, NULL, NULL),
+(20, 12, 'KAYLA Sweat Dress', '[\"Black\"]', '[\"44\",\"46\",\"48\",\"50\",\"52\"]', 'null', 80, 50, '37.50', '1', '1696859697product_14_3.jpg', '[\"997eaba217d3de7b8ac978d93a328f03.jpg\",\"af6ad96bd3e24339746067ff8b0fc111.jpg\",\"96eba49481c8caf0052f974cf558193d.jpg\"]', NULL, 37.5, '<p><span style=\"color: rgb(51, 51, 51); font-family: monospace; font-size: 12px;\">KAYLA Sweat Dress</span><br></p>', NULL, NULL, NULL, NULL, '2023-10-09 12:55:00', '2023-10-09 12:55:00', 1, NULL, NULL),
+(21, 12, 'KAYLA Sweat Dress', '[\"Black\"]', '[\"44\",\"46\",\"48\",\"50\",\"52\"]', 'null', 80, 50, '37.50', '1', '1696859698product_14_3.jpg', '[\"06a5500c376643bc39c773d5eb7bba17.jpg\",\"fb080fe90dec1bd387d7c865e3bb24b2.jpg\",\"94728bca9893e9b280ac5fff49fe3f53.jpg\"]', NULL, 37.5, '<p><span style=\"color: rgb(51, 51, 51); font-family: monospace; font-size: 12px;\">KAYLA Sweat Dress</span><br></p>', NULL, NULL, NULL, NULL, '2023-10-09 12:55:03', '2023-10-09 12:55:03', 1, NULL, NULL),
+(22, 12, 'KAYLA Sweat Dress', '[\"Black\"]', '[\"44\",\"46\",\"48\",\"50\",\"52\"]', 'null', 80, 50, '37.50', '1', '1696859704product_14_3.jpg', '[\"25b17fce66a46c1ee47c8492f2feff10.jpg\",\"91dd779421f73cc8829e227d7e690f01.jpg\",\"b303215521d72810a5c3a55cf3eea5f0.jpg\"]', NULL, 37.5, '<p><span style=\"color: rgb(51, 51, 51); font-family: monospace; font-size: 12px;\">KAYLA Sweat Dress</span><br></p>', NULL, 1, NULL, NULL, '2023-10-09 12:55:08', '2023-10-09 12:56:35', 1, NULL, NULL),
+(23, 12, 'KAYLA Sweat Dress', '[\"Olive Green\"]', '[\"44\",\"46\",\"48\",\"50\",\"52\"]', 'null', 80, 50, '37.50', '1', '1696861118product_15_1.jpg', '[\"726618bb1acb15013ce5f718b1982ed0.jpg\",\"73ce3e21efd4d0c4465cd05763e85595.jpg\",\"2495d59a015245c69448705241131146.jpg\"]', NULL, 37.5, '<p><span style=\"color: rgb(51, 51, 51); font-family: monospace; font-size: 12px;\">KAYLA Sweat Dress</span><br></p>', NULL, 107, NULL, NULL, '2023-10-09 13:18:41', '2023-10-13 02:46:41', 1, NULL, NULL),
+(24, 12, 'KAYLA Sweat Dress', '[\"Pink\"]', '[\"44\",\"46\",\"48\",\"50\",\"52\"]', 'null', 80, 50, '37.50', '1', '1696861684product_16_1.jpg', '[\"5938f3ab379bdb946234e249f449d534.jpg\"]', NULL, 37.5, '<p>KAYLA Sweat Dress<br></p>', NULL, NULL, NULL, NULL, '2023-10-09 13:28:05', '2023-10-09 13:28:05', 1, NULL, NULL),
+(25, 15, 'Velvet Jumpsuit 2pcs set', '[\"Wine\"]', '[\"44\",\"46\",\"48\",\"50\"]', 'null', 80, 50, '37.50', '1', '1696862890product_17_2.jpg', '[\"fdd29e35a4093b780839ae61af407db4.jpg\",\"e1ac4e3424fa21ed8cea34a0da97aa25.jpg\",\"ead9ec82999c973be0ff92ac639cce02.jpg\",\"29455736935ece9296896da5be108d82.jpg\",\"23b20bd4f0444f7a3ddc1273f7d94eac.jpg\",\"294cf74e9b4ef873693a89337f214e9c.jpg\"]', NULL, 37.5, '<p><span style=\"color: rgb(51, 51, 51); font-family: monospace; font-size: 12px;\">Velvet Jumpsuit 2 Piece Set</span><br></p>', NULL, 2, NULL, NULL, '2023-10-09 13:48:20', '2023-10-10 03:09:45', 1, NULL, NULL),
+(26, 15, 'Velvet Jumpsuit 2psc set', '[\"Black\"]', '[\"44\",\"46\",\"48\",\"50\"]', 'null', 100, 80, '20.00', '1', '1696863478product_18_3.jpg', '[\"dcabe2377d0c3c54ed04359838b04fc6.jpg\",\"9dd752acd14d210279b126195caa150b.jpg\",\"a1ca8f5343285411a39e13cf8c19a73f.jpg\",\"57f4553d6358d9b7130d812d96c215c9.jpg\"]', NULL, 20, '<p><span style=\"color: rgb(51, 51, 51); font-family: monospace; font-size: 12px;\">Velvet Jumpsuit 2PC set</span><br></p>', NULL, NULL, NULL, NULL, '2023-10-09 13:58:01', '2023-10-09 13:58:01', 1, NULL, NULL),
+(27, 2, 'Velvet Hoodie and Pant set', '[\"Blue\"]', '[\"44\",\"46\",\"48\",\"50\"]', 'null', 90, 70, '22.22', '1', '1696863902product_19_3.jpg', '[\"694ee823c65c2d715440900b48cdf017.jpg\",\"4b82dc78dab715ff9c4e61935a26bb9e.jpg\",\"d49e47a17a2c5119ef3cc4d0979e8cba.jpg\"]', NULL, 22.222222222222, '<p>Velvet Hoodie and Pant set<br></p>', NULL, NULL, NULL, NULL, '2023-10-09 14:05:05', '2023-10-09 14:05:05', 1, NULL, NULL),
+(28, 16, 'Jeans  Dress', '[\"Blue\"]', '[\"44\",\"46\",\"48\",\"50\"]', 'null', 120, 90, '25.00', '1', '1696864422product_20_1.jpg', '[\"f54f07fd312fc835d44ed43009de99d7.jpg\",\"344550d1b4dbfb8d75f691449929623d.jpg\",\"c5975d27b6a97505de9dbf6cd0f750df.jpg\",\"5232083208ad760a91f695d779f1e016.jpg\",\"da7f10ae09742eeabdbdaff7e2397dda.jpg\"]', NULL, 25, '<p>Jeans&nbsp; Dress<br></p>', NULL, 3, NULL, NULL, '2023-10-09 14:13:46', '2023-10-13 02:48:12', 1, NULL, NULL),
+(29, 16, 'Jeans, 2 2pcs set', '[\"Blue\"]', '[\"44\",\"46\",\"48\",\"50\"]', 'null', 150, 120, '20.00', '1', '1696873271product_21_2.jpg', '[\"3186f638f661b8ab6e9daf82ff85e0e4.jpg\",\"ffbf8ba445daff4b77a13d6e332ec801.jpg\",\"c18213e7a1951a3e50558c9c3438e904.jpg\",\"a2135d05f35f5b24af91f4fdbf2a9d2e.jpg\",\"1ca01b3d76d9cd2fb4a43b5f913c5555.jpg\",\"218cce80e8f0df3cd8121b95eccaf5f4.jpg\",\"70c4d99baf9dac20544facdd30e3bc59.jpg\",\"141368aa89ed1fc0f52eb77583354f92.jpg\"]', NULL, 20, '<p><span style=\"color: rgb(51, 51, 51); font-family: monospace; font-size: 12px;\">Jeans, 2 2pcs set</span><br></p>', NULL, 1, NULL, NULL, '2023-10-09 16:41:19', '2023-10-09 16:41:47', 1, NULL, NULL),
+(30, 1, 'Blings short 2 pcs set', '[\"Black\"]', '[\"44\",\"46\",\"48\",\"50\"]', 'null', 80, 60, '25.00', '1', '1696873749product_22_1.jpg', '[\"0bda3724ef56668a68109da6ccda63f8.jpg\",\"32ff61402118c7e733b98ececbe17e6b.jpg\",\"e6ac9d72c82e7c69b700382155e6d0b1.jpg\"]', NULL, 25, '<p><span style=\"color: rgb(51, 51, 51); font-family: monospace; font-size: 12px;\">Blings short, 2 pieces set&nbsp;</span><br></p>', NULL, NULL, NULL, NULL, '2023-10-09 16:49:11', '2023-10-09 16:49:11', 1, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -963,50 +1006,6 @@ CREATE TABLE `product_variations` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `product_variations`
---
-
-INSERT INTO `product_variations` (`id`, `product_id`, `name`, `created_at`, `updated_at`) VALUES
-(43, 75, 'L-0', '2023-09-22 04:37:24', '2023-09-22 04:37:24'),
-(44, 75, 'XL-1', '2023-09-22 04:37:25', '2023-09-22 04:37:25'),
-(45, 75, 'XXL-1', '2023-09-22 04:37:25', '2023-09-22 04:37:25'),
-(46, 75, '3XL-1', '2023-09-22 04:37:25', '2023-09-22 04:37:25'),
-(47, 75, '4XL-0', '2023-09-22 04:37:25', '2023-09-22 04:37:25'),
-(48, 75, '5XL-1', '2023-09-22 04:37:25', '2023-09-22 04:37:25'),
-(49, 76, 'L-0', '2023-09-22 07:39:21', '2023-09-22 07:39:21'),
-(50, 76, 'XL-1', '2023-09-22 07:39:21', '2023-09-22 07:39:21'),
-(51, 76, 'XXL-1', '2023-09-22 07:39:21', '2023-09-22 07:39:21'),
-(52, 76, '3XL-1', '2023-09-22 07:39:21', '2023-09-22 07:39:21'),
-(53, 76, '4XL-0', '2023-09-22 07:39:21', '2023-09-22 07:39:21'),
-(54, 76, '5XL-1', '2023-09-22 07:39:21', '2023-09-22 07:39:21'),
-(55, 77, 'L-0', '2023-09-22 07:51:23', '2023-09-22 07:51:23'),
-(56, 77, 'XL-1', '2023-09-22 07:51:23', '2023-09-22 07:51:23'),
-(57, 77, 'XXL-1', '2023-09-22 07:51:23', '2023-09-22 07:51:23'),
-(58, 77, '3XL-1', '2023-09-22 07:51:23', '2023-09-22 07:51:23'),
-(59, 77, '4XL-0', '2023-09-22 07:51:23', '2023-09-22 07:51:23'),
-(60, 77, '5XL-1', '2023-09-22 07:51:23', '2023-09-22 07:51:23'),
-(61, 78, 'L-0', '2023-09-22 07:58:45', '2023-09-22 07:58:45'),
-(62, 78, 'XL-1', '2023-09-22 07:58:45', '2023-09-22 07:58:45'),
-(63, 78, 'XXL-1', '2023-09-22 07:58:45', '2023-09-22 07:58:45'),
-(64, 79, 'L-0', '2023-09-22 08:04:32', '2023-09-22 08:04:32'),
-(65, 79, 'XL-1', '2023-09-22 08:04:32', '2023-09-22 08:04:32'),
-(66, 80, '4XL-0', '2023-09-22 11:00:53', '2023-09-22 11:00:53'),
-(68, 80, '44-1', '2023-09-22 11:00:53', '2023-09-22 11:00:53'),
-(70, 80, '46-1', '2023-09-22 11:00:53', '2023-09-22 11:00:53'),
-(73, 80, '48-1', '2023-09-22 11:00:54', '2023-09-22 11:00:54'),
-(74, 80, '50-1', '2023-09-22 11:00:54', '2023-09-22 11:00:54'),
-(86, 84, '44-1', '2023-09-22 11:34:09', '2023-09-22 11:34:09'),
-(87, 84, '46-1', '2023-09-22 11:34:09', '2023-09-22 11:34:09'),
-(88, 84, '48-1', '2023-09-22 11:34:09', '2023-09-22 11:34:09'),
-(89, 84, '50-1', '2023-09-22 11:34:09', '2023-09-22 11:34:09'),
-(90, 84, '52-0', '2023-09-22 11:34:09', '2023-09-22 11:34:09'),
-(91, 85, '44-1', '2023-09-22 12:06:27', '2023-09-22 12:06:27'),
-(92, 85, '46-1', '2023-09-22 12:06:27', '2023-09-22 12:06:27'),
-(93, 85, '48-1', '2023-09-22 12:06:27', '2023-09-22 12:06:27'),
-(94, 85, '50-1', '2023-09-22 12:06:27', '2023-09-22 12:06:27'),
-(95, 85, '52-0', '2023-09-22 12:06:27', '2023-09-22 12:06:27');
 
 -- --------------------------------------------------------
 
@@ -1029,8 +1028,8 @@ CREATE TABLE `projects` (
 --
 
 INSERT INTO `projects` (`id`, `title`, `content`, `image`, `images`, `created_at`, `updated_at`) VALUES
-(9, 'Solar installation Ikeja', '<p><span style=\"font-size: 13.36px;\">Lagos Solar energy installation done in az company in ikeja, lagos. this solar can power up to 5.1kva equipments</span><br></p>', '1664414039.jpeg', '[\"1664414039.jpeg\",\"1664414041.jpeg\"]', '2022-09-29 07:14:02', '2022-09-29 07:14:02'),
-(12, 'Solar installation in ibadan', '<p><span style=\"font-size: 13.36px;\">This 5.1kva solar energy was installed in clients site in Ibadan. It power up to 5.1kva company equipements</span><br></p>', '1664414178.jpeg', '[\"1664414178.jpeg\",\"1664414179.jpeg\",\"1664414180.jpeg\"]', '2022-09-29 07:16:21', '2022-09-29 07:16:21');
+(9, 'S', '<p><span style=\"font-size: 13.36px;\">Lagos Solar energy installation done in az company in ikeja, lagos. this solar can power up to 5.1kva equipments</span><br></p>', '1664414039.jpeg', '[\"1664414039.jpeg\",\"1664414041.jpeg\"]', '2022-09-29 07:14:02', '2022-09-29 07:14:02'),
+(12, 'S', '<p><span style=\"font-size: 13.36px;\">This 5.1kva solar energy was installed in clients site in Ibadan. It power up to 5.1kva company equipements</span><br></p>', '1664414178.jpeg', '[\"1664414178.jpeg\",\"1664414179.jpeg\",\"1664414180.jpeg\"]', '2022-09-29 07:16:21', '2022-09-29 07:16:21');
 
 -- --------------------------------------------------------
 
@@ -1081,7 +1080,7 @@ CREATE TABLE `roles` (
 
 CREATE TABLE `shippings` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `user_id` bigint(20) UNSIGNED NOT NULL,
+  `user_id` bigint(20) UNSIGNED DEFAULT NULL,
   `order_No` varchar(222) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `receiver_name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `receiver_email` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
@@ -1108,7 +1107,8 @@ INSERT INTO `shippings` (`id`, `user_id`, `order_No`, `receiver_name`, `receiver
 (2, 55, NULL, 'yuuyouyyunew defual', 'yuyuyuuy@mgail.comdd', '08039366207', '10 Razeem adabayo street, igando', 'sdfsd', 'ksdjfsk', NULL, '6.535889', '3.2483058', NULL, 'home_delivery', '2022-09-14 22:43:11', '2022-09-23 02:55:42', 0),
 (5, 55, NULL, 'MICHAEL', 'michaelozoudeh@gmail.com', '2340987676567', 'lagos', 'lagos', 'ksdjfsk', NULL, NULL, NULL, NULL, NULL, '2022-09-23 02:37:43', '2022-09-23 02:55:52', 0),
 (6, 55, NULL, NULL, 'jesmikky@gmail.com', 'user@email.com', '2111w West Churchill Street', 'lagos', 'ksdjfsk', NULL, NULL, NULL, NULL, NULL, '2022-10-17 13:43:53', '2022-10-17 13:43:53', 1),
-(9, 57, NULL, 'name', 'user@gmail.com', '08139267960', 'ikorodu, Lagos', 'Lagos', 'Delta', NULL, NULL, NULL, NULL, NULL, '2023-09-17 17:29:11', '2023-09-17 17:29:11', 1);
+(9, 57, NULL, 'name', 'user@gmail.com', '08139267960', 'ikorodu, Lagos', 'Lagos', 'Delta', NULL, NULL, NULL, NULL, NULL, '2023-09-17 17:29:11', '2023-09-17 17:29:11', 1),
+(10, 0, NULL, 'name', 'kk@gmail.com', '08139267960', 'ikorodu, Lagos', 'Lagos', 'Delta', NULL, NULL, NULL, '', NULL, '2023-10-13 03:12:21', '2023-10-13 03:12:21', 0);
 
 -- --------------------------------------------------------
 
@@ -1129,126 +1129,184 @@ CREATE TABLE `sizes` (
 --
 
 INSERT INTO `sizes` (`id`, `product_id`, `name`, `created_at`, `updated_at`) VALUES
-(1, NULL, 'S', '2023-09-18 10:23:57', '2023-09-18 10:23:57'),
-(2, NULL, '3XL', '2023-09-18 10:23:57', '2023-09-18 10:23:57'),
-(3, NULL, 'S', '2023-09-18 10:32:37', '2023-09-18 10:32:37'),
-(4, NULL, 'XL', '2023-09-18 10:32:37', '2023-09-18 10:32:37'),
-(5, NULL, 'S', '2023-09-18 10:38:40', '2023-09-18 10:38:40'),
-(6, NULL, 'L', '2023-09-18 10:38:40', '2023-09-18 10:38:40'),
-(7, NULL, 'M', '2023-09-18 10:47:33', '2023-09-18 10:47:33'),
-(8, NULL, 'L', '2023-09-18 10:47:33', '2023-09-18 10:47:33'),
-(11, NULL, 'S', '2023-09-18 11:15:27', '2023-09-18 11:15:27'),
-(12, NULL, 'XL', '2023-09-18 11:15:27', '2023-09-18 11:15:27'),
-(13, 66, 'green', '2023-09-18 11:22:53', '2023-09-18 11:22:53'),
-(14, 66, 'green', '2023-09-18 11:22:53', '2023-09-18 11:22:53'),
-(15, 67, 'L', '2023-09-22 03:31:19', '2023-09-22 03:31:19'),
-(16, 67, 'XL', '2023-09-22 03:31:19', '2023-09-22 03:31:19'),
-(17, 67, 'XXL', '2023-09-22 03:31:19', '2023-09-22 03:31:19'),
-(18, 67, '3XL', '2023-09-22 03:31:19', '2023-09-22 03:31:19'),
-(19, 67, '4XL', '2023-09-22 03:31:19', '2023-09-22 03:31:19'),
-(20, 67, '5XL', '2023-09-22 03:31:19', '2023-09-22 03:31:19'),
-(33, 67, 'L', '2023-09-22 03:44:58', '2023-09-22 03:44:58'),
-(34, 67, 'XL', '2023-09-22 03:44:58', '2023-09-22 03:44:58'),
-(35, 67, 'XXL', '2023-09-22 03:44:58', '2023-09-22 03:44:58'),
-(36, 67, '3XL', '2023-09-22 03:44:58', '2023-09-22 03:44:58'),
-(37, 67, '4XL', '2023-09-22 03:44:58', '2023-09-22 03:44:58'),
-(38, 67, '5XL', '2023-09-22 03:44:58', '2023-09-22 03:44:58'),
-(39, 68, 'L', '2023-09-22 03:51:45', '2023-09-22 03:51:45'),
-(40, 68, 'XL', '2023-09-22 03:51:45', '2023-09-22 03:51:45'),
-(41, 68, 'XXL', '2023-09-22 03:51:45', '2023-09-22 03:51:45'),
-(42, 68, '3XL', '2023-09-22 03:51:45', '2023-09-22 03:51:45'),
-(43, 68, '4XL', '2023-09-22 03:51:45', '2023-09-22 03:51:45'),
-(44, 68, '5XL', '2023-09-22 03:51:45', '2023-09-22 03:51:45'),
-(45, 69, 'L', '2023-09-22 03:58:03', '2023-09-22 03:58:03'),
-(46, 69, 'XL', '2023-09-22 03:58:03', '2023-09-22 03:58:03'),
-(47, 69, 'XXL', '2023-09-22 03:58:03', '2023-09-22 03:58:03'),
-(48, 69, '3XL', '2023-09-22 03:58:03', '2023-09-22 03:58:03'),
-(49, 69, '4XL', '2023-09-22 03:58:03', '2023-09-22 03:58:03'),
-(50, 69, '5XL', '2023-09-22 03:58:03', '2023-09-22 03:58:03'),
-(51, 70, 'L', '2023-09-22 04:04:34', '2023-09-22 04:04:34'),
-(52, 70, 'XL', '2023-09-22 04:04:34', '2023-09-22 04:04:34'),
-(53, 70, 'XXL', '2023-09-22 04:04:34', '2023-09-22 04:04:34'),
-(54, 70, '3XL', '2023-09-22 04:04:34', '2023-09-22 04:04:34'),
-(55, 70, '4XL', '2023-09-22 04:04:34', '2023-09-22 04:04:34'),
-(56, 70, '5XL', '2023-09-22 04:04:34', '2023-09-22 04:04:34'),
-(57, 67, 'L', '2023-09-22 04:08:37', '2023-09-22 04:08:37'),
-(58, 67, 'XL', '2023-09-22 04:08:37', '2023-09-22 04:08:37'),
-(59, 67, 'XXL', '2023-09-22 04:08:37', '2023-09-22 04:08:37'),
-(60, 67, '3XL', '2023-09-22 04:08:37', '2023-09-22 04:08:37'),
-(61, 67, '4XL', '2023-09-22 04:08:37', '2023-09-22 04:08:37'),
-(62, 67, '5XL', '2023-09-22 04:08:37', '2023-09-22 04:08:37'),
-(69, 74, 'L', '2023-09-22 04:34:16', '2023-09-22 04:34:16'),
-(70, 74, 'XL', '2023-09-22 04:34:16', '2023-09-22 04:34:16'),
-(71, 74, 'XXL', '2023-09-22 04:34:16', '2023-09-22 04:34:16'),
-(72, 74, '3XL', '2023-09-22 04:34:16', '2023-09-22 04:34:16'),
-(73, 74, '4XL', '2023-09-22 04:34:16', '2023-09-22 04:34:16'),
-(74, 74, '5XL', '2023-09-22 04:34:16', '2023-09-22 04:34:16'),
-(75, 75, 'L', '2023-09-22 04:37:24', '2023-09-22 04:37:24'),
-(76, 75, 'XL', '2023-09-22 04:37:24', '2023-09-22 04:37:24'),
-(77, 75, 'XXL', '2023-09-22 04:37:24', '2023-09-22 04:37:24'),
-(78, 75, '3XL', '2023-09-22 04:37:24', '2023-09-22 04:37:24'),
-(79, 75, '4XL', '2023-09-22 04:37:24', '2023-09-22 04:37:24'),
-(80, 75, '5XL', '2023-09-22 04:37:24', '2023-09-22 04:37:24'),
-(81, 76, 'L', '2023-09-22 07:39:21', '2023-09-22 07:39:21'),
-(82, 76, 'XL', '2023-09-22 07:39:21', '2023-09-22 07:39:21'),
-(83, 76, 'XXL', '2023-09-22 07:39:21', '2023-09-22 07:39:21'),
-(84, 76, '3XL', '2023-09-22 07:39:21', '2023-09-22 07:39:21'),
-(85, 76, '4XL', '2023-09-22 07:39:21', '2023-09-22 07:39:21'),
-(86, 76, '5XL', '2023-09-22 07:39:21', '2023-09-22 07:39:21'),
-(87, 77, 'S', '2023-09-22 07:51:23', '2023-09-22 07:51:23'),
-(88, 77, 'M', '2023-09-22 07:51:23', '2023-09-22 07:51:23'),
-(89, 77, 'L', '2023-09-22 07:51:23', '2023-09-22 07:51:23'),
-(90, 77, 'XL', '2023-09-22 07:51:23', '2023-09-22 07:51:23'),
-(91, 77, 'XXL', '2023-09-22 07:51:23', '2023-09-22 07:51:23'),
-(92, 77, '3XL', '2023-09-22 07:51:23', '2023-09-22 07:51:23'),
-(93, 77, '4XL', '2023-09-22 07:51:23', '2023-09-22 07:51:23'),
-(94, 77, '5XL', '2023-09-22 07:51:23', '2023-09-22 07:51:23'),
-(95, 78, 'M', '2023-09-22 07:58:45', '2023-09-22 07:58:45'),
-(96, 78, 'L', '2023-09-22 07:58:45', '2023-09-22 07:58:45'),
-(97, 78, 'XL', '2023-09-22 07:58:45', '2023-09-22 07:58:45'),
-(98, 79, 'M', '2023-09-22 08:04:32', '2023-09-22 08:04:32'),
-(99, 79, 'L', '2023-09-22 08:04:32', '2023-09-22 08:04:32'),
-(100, 79, 'XL', '2023-09-22 08:04:32', '2023-09-22 08:04:32'),
-(101, 80, '38', '2023-09-22 11:00:53', '2023-09-22 11:00:53'),
-(102, 80, '44', '2023-09-22 11:00:53', '2023-09-22 11:00:53'),
-(103, 80, '46', '2023-09-22 11:00:53', '2023-09-22 11:00:53'),
-(104, 80, '50', '2023-09-22 11:00:53', '2023-09-22 11:00:53'),
-(105, 80, '52', '2023-09-22 11:00:53', '2023-09-22 11:00:53'),
-(106, 83, '38', '2023-09-22 11:00:53', '2023-09-22 11:00:53'),
-(107, 83, '44', '2023-09-22 11:00:53', '2023-09-22 11:00:53'),
-(108, 83, '46', '2023-09-22 11:00:53', '2023-09-22 11:00:53'),
-(109, 83, '50', '2023-09-22 11:00:53', '2023-09-22 11:00:53'),
-(110, 83, '52', '2023-09-22 11:00:53', '2023-09-22 11:00:53'),
-(111, 81, '38', '2023-09-22 11:00:53', '2023-09-22 11:00:53'),
-(112, 81, '44', '2023-09-22 11:00:53', '2023-09-22 11:00:53'),
-(113, 81, '46', '2023-09-22 11:00:53', '2023-09-22 11:00:53'),
-(114, 81, '50', '2023-09-22 11:00:53', '2023-09-22 11:00:53'),
-(115, 81, '52', '2023-09-22 11:00:53', '2023-09-22 11:00:53'),
-(116, 82, '38', '2023-09-22 11:00:54', '2023-09-22 11:00:54'),
-(117, 82, '44', '2023-09-22 11:00:54', '2023-09-22 11:00:54'),
-(118, 82, '46', '2023-09-22 11:00:54', '2023-09-22 11:00:54'),
-(119, 82, '50', '2023-09-22 11:00:54', '2023-09-22 11:00:54'),
-(120, 82, '52', '2023-09-22 11:00:54', '2023-09-22 11:00:54'),
-(121, 84, '38', '2023-09-22 11:34:09', '2023-09-22 11:34:09'),
-(122, 84, '44', '2023-09-22 11:34:09', '2023-09-22 11:34:09'),
-(123, 84, '46', '2023-09-22 11:34:09', '2023-09-22 11:34:09'),
-(124, 84, '50', '2023-09-22 11:34:09', '2023-09-22 11:34:09'),
-(125, 84, '52', '2023-09-22 11:34:09', '2023-09-22 11:34:09'),
-(126, 85, '38', '2023-09-22 12:06:27', '2023-09-22 12:06:27'),
-(127, 85, '44', '2023-09-22 12:06:27', '2023-09-22 12:06:27'),
-(128, 85, '46', '2023-09-22 12:06:27', '2023-09-22 12:06:27'),
-(129, 85, '50', '2023-09-22 12:06:27', '2023-09-22 12:06:27'),
-(130, 85, '52', '2023-09-22 12:06:27', '2023-09-22 12:06:27'),
-(131, 85, '44', '2023-10-04 15:12:31', '2023-10-04 15:12:31'),
-(132, 85, '46', '2023-10-04 15:12:31', '2023-10-04 15:12:31'),
-(133, 85, '48', '2023-10-04 15:12:31', '2023-10-04 15:12:31'),
-(134, 85, '50', '2023-10-04 15:12:31', '2023-10-04 15:12:31'),
-(135, 85, 'S', '2023-10-04 15:28:59', '2023-10-04 15:28:59'),
-(136, 85, 'M', '2023-10-04 15:28:59', '2023-10-04 15:28:59'),
-(137, 85, 'L', '2023-10-04 15:28:59', '2023-10-04 15:28:59'),
-(138, 85, '38', '2023-10-05 09:38:39', '2023-10-05 09:38:39'),
-(139, 85, '44', '2023-10-05 09:38:39', '2023-10-05 09:38:39'),
-(140, 85, '46', '2023-10-05 09:38:39', '2023-10-05 09:38:39');
+(1, 1, 'L', '2023-10-09 08:08:10', '2023-10-09 08:08:10'),
+(2, 1, 'XL', '2023-10-09 08:08:10', '2023-10-09 08:08:10'),
+(3, 1, 'XXL', '2023-10-09 08:08:10', '2023-10-09 08:08:10'),
+(4, 1, '3XL', '2023-10-09 08:08:10', '2023-10-09 08:08:10'),
+(5, 1, '4XL', '2023-10-09 08:08:10', '2023-10-09 08:08:10'),
+(6, 1, '5XL', '2023-10-09 08:08:10', '2023-10-09 08:08:10'),
+(7, 2, 'L', '2023-10-09 08:11:49', '2023-10-09 08:11:49'),
+(8, 2, 'XL', '2023-10-09 08:11:49', '2023-10-09 08:11:49'),
+(9, 2, 'XXL', '2023-10-09 08:11:49', '2023-10-09 08:11:49'),
+(10, 2, '3XL', '2023-10-09 08:11:49', '2023-10-09 08:11:49'),
+(11, 2, '4XL', '2023-10-09 08:11:49', '2023-10-09 08:11:49'),
+(26, 2, 'XL', '2023-10-09 08:18:44', '2023-10-09 08:18:44'),
+(27, 2, 'XXL', '2023-10-09 08:18:44', '2023-10-09 08:18:44'),
+(28, 2, 'L', '2023-10-09 08:39:06', '2023-10-09 08:39:06'),
+(29, 2, 'XL', '2023-10-09 08:39:06', '2023-10-09 08:39:06'),
+(30, 3, '44', '2023-10-09 08:43:31', '2023-10-09 08:43:31'),
+(31, 3, '46', '2023-10-09 08:43:31', '2023-10-09 08:43:31'),
+(32, 3, '48', '2023-10-09 08:43:31', '2023-10-09 08:43:31'),
+(33, 4, '44', '2023-10-09 08:55:20', '2023-10-09 08:55:20'),
+(34, 4, '46', '2023-10-09 08:55:20', '2023-10-09 08:55:20'),
+(35, 4, '48', '2023-10-09 08:55:20', '2023-10-09 08:55:20'),
+(36, 4, '50', '2023-10-09 08:55:20', '2023-10-09 08:55:20'),
+(37, 5, '44', '2023-10-09 09:04:16', '2023-10-09 09:04:16'),
+(38, 5, '46', '2023-10-09 09:04:16', '2023-10-09 09:04:16'),
+(39, 5, '48', '2023-10-09 09:04:16', '2023-10-09 09:04:16'),
+(40, 5, '50', '2023-10-09 09:04:16', '2023-10-09 09:04:16'),
+(41, 5, '52', '2023-10-09 09:04:16', '2023-10-09 09:04:16'),
+(42, 6, 'L', '2023-10-09 09:09:16', '2023-10-09 09:09:16'),
+(43, 6, 'XL', '2023-10-09 09:09:16', '2023-10-09 09:09:16'),
+(44, 6, 'XXL', '2023-10-09 09:09:16', '2023-10-09 09:09:16'),
+(45, 6, '3XL', '2023-10-09 09:09:16', '2023-10-09 09:09:16'),
+(46, 6, '4XL', '2023-10-09 09:09:16', '2023-10-09 09:09:16'),
+(47, 6, '5XL', '2023-10-09 09:09:16', '2023-10-09 09:09:16'),
+(48, 7, 'L', '2023-10-09 09:20:25', '2023-10-09 09:20:25'),
+(49, 7, 'XL', '2023-10-09 09:20:25', '2023-10-09 09:20:25'),
+(50, 7, 'XXL', '2023-10-09 09:20:25', '2023-10-09 09:20:25'),
+(51, 7, '3XL', '2023-10-09 09:20:25', '2023-10-09 09:20:25'),
+(52, 7, '4XL', '2023-10-09 09:20:25', '2023-10-09 09:20:25'),
+(53, 7, '5XL', '2023-10-09 09:20:25', '2023-10-09 09:20:25'),
+(54, 8, 'L', '2023-10-09 09:24:49', '2023-10-09 09:24:49'),
+(55, 8, 'XL', '2023-10-09 09:24:49', '2023-10-09 09:24:49'),
+(56, 8, 'XXL', '2023-10-09 09:24:49', '2023-10-09 09:24:49'),
+(57, 8, '3XL', '2023-10-09 09:24:49', '2023-10-09 09:24:49'),
+(58, 8, '4XL', '2023-10-09 09:24:49', '2023-10-09 09:24:49'),
+(59, 8, '5XL', '2023-10-09 09:24:49', '2023-10-09 09:24:49'),
+(60, 9, '44', '2023-10-09 09:32:47', '2023-10-09 09:32:47'),
+(61, 9, '46', '2023-10-09 09:32:47', '2023-10-09 09:32:47'),
+(62, 9, '48', '2023-10-09 09:32:47', '2023-10-09 09:32:47'),
+(63, 9, '50', '2023-10-09 09:32:47', '2023-10-09 09:32:47'),
+(64, 9, '52', '2023-10-09 09:32:47', '2023-10-09 09:32:47'),
+(65, 10, '38', '2023-10-09 09:36:27', '2023-10-09 09:36:27'),
+(66, 10, '44', '2023-10-09 09:36:27', '2023-10-09 09:36:27'),
+(67, 10, '46', '2023-10-09 09:36:27', '2023-10-09 09:36:27'),
+(68, 10, '48', '2023-10-09 09:36:27', '2023-10-09 09:36:27'),
+(69, 10, '50', '2023-10-09 09:36:27', '2023-10-09 09:36:27'),
+(70, 11, '38', '2023-10-09 09:45:58', '2023-10-09 09:45:58'),
+(71, 11, '44', '2023-10-09 09:45:58', '2023-10-09 09:45:58'),
+(72, 11, '46', '2023-10-09 09:45:58', '2023-10-09 09:45:58'),
+(73, 11, '48', '2023-10-09 09:45:58', '2023-10-09 09:45:58'),
+(74, 12, '44', '2023-10-09 09:57:59', '2023-10-09 09:57:59'),
+(75, 12, '46', '2023-10-09 09:57:59', '2023-10-09 09:57:59'),
+(76, 12, '48', '2023-10-09 09:57:59', '2023-10-09 09:57:59'),
+(77, 12, '50', '2023-10-09 09:57:59', '2023-10-09 09:57:59'),
+(78, 12, '52', '2023-10-09 09:57:59', '2023-10-09 09:57:59'),
+(79, 13, '44', '2023-10-09 10:09:27', '2023-10-09 10:09:27'),
+(80, 13, '46', '2023-10-09 10:09:27', '2023-10-09 10:09:27'),
+(81, 13, '48', '2023-10-09 10:09:27', '2023-10-09 10:09:27'),
+(82, 13, '50', '2023-10-09 10:09:27', '2023-10-09 10:09:27'),
+(83, 13, '52', '2023-10-09 10:09:27', '2023-10-09 10:09:27'),
+(84, 14, '44', '2023-10-09 10:25:03', '2023-10-09 10:25:03'),
+(85, 14, '46', '2023-10-09 10:25:03', '2023-10-09 10:25:03'),
+(86, 14, '48', '2023-10-09 10:25:03', '2023-10-09 10:25:03'),
+(87, 14, '50', '2023-10-09 10:25:03', '2023-10-09 10:25:03'),
+(88, 14, '52', '2023-10-09 10:25:03', '2023-10-09 10:25:03'),
+(89, 15, '44', '2023-10-09 10:46:52', '2023-10-09 10:46:52'),
+(90, 15, '46', '2023-10-09 10:46:52', '2023-10-09 10:46:52'),
+(91, 15, '48', '2023-10-09 10:46:52', '2023-10-09 10:46:52'),
+(92, 15, '50', '2023-10-09 10:46:52', '2023-10-09 10:46:52'),
+(93, 15, '52', '2023-10-09 10:46:52', '2023-10-09 10:46:52'),
+(94, 16, '44', '2023-10-09 12:00:05', '2023-10-09 12:00:05'),
+(95, 16, '46', '2023-10-09 12:00:05', '2023-10-09 12:00:05'),
+(96, 16, '48', '2023-10-09 12:00:05', '2023-10-09 12:00:05'),
+(97, 16, '50', '2023-10-09 12:00:05', '2023-10-09 12:00:05'),
+(98, 16, '52', '2023-10-09 12:00:05', '2023-10-09 12:00:05'),
+(99, 17, '44', '2023-10-09 12:09:02', '2023-10-09 12:09:02'),
+(100, 17, '46', '2023-10-09 12:09:02', '2023-10-09 12:09:02'),
+(101, 17, '48', '2023-10-09 12:09:02', '2023-10-09 12:09:02'),
+(102, 17, '50', '2023-10-09 12:09:02', '2023-10-09 12:09:02'),
+(103, 17, '52', '2023-10-09 12:09:02', '2023-10-09 12:09:02'),
+(104, 18, '44', '2023-10-09 12:25:53', '2023-10-09 12:25:53'),
+(105, 18, '46', '2023-10-09 12:25:53', '2023-10-09 12:25:53'),
+(106, 18, '48', '2023-10-09 12:25:53', '2023-10-09 12:25:53'),
+(107, 18, '50', '2023-10-09 12:25:53', '2023-10-09 12:25:53'),
+(108, 19, '44', '2023-10-09 12:39:35', '2023-10-09 12:39:35'),
+(109, 19, '46', '2023-10-09 12:39:35', '2023-10-09 12:39:35'),
+(110, 19, '48', '2023-10-09 12:39:35', '2023-10-09 12:39:35'),
+(111, 19, '50', '2023-10-09 12:39:35', '2023-10-09 12:39:35'),
+(112, 20, '44', '2023-10-09 12:55:00', '2023-10-09 12:55:00'),
+(113, 20, '46', '2023-10-09 12:55:00', '2023-10-09 12:55:00'),
+(114, 20, '48', '2023-10-09 12:55:00', '2023-10-09 12:55:00'),
+(115, 20, '50', '2023-10-09 12:55:01', '2023-10-09 12:55:01'),
+(116, 20, '52', '2023-10-09 12:55:01', '2023-10-09 12:55:01'),
+(117, 21, '44', '2023-10-09 12:55:03', '2023-10-09 12:55:03'),
+(118, 21, '46', '2023-10-09 12:55:04', '2023-10-09 12:55:04'),
+(119, 21, '48', '2023-10-09 12:55:04', '2023-10-09 12:55:04'),
+(120, 21, '50', '2023-10-09 12:55:04', '2023-10-09 12:55:04'),
+(121, 21, '52', '2023-10-09 12:55:04', '2023-10-09 12:55:04'),
+(122, 22, '44', '2023-10-09 12:55:08', '2023-10-09 12:55:08'),
+(123, 22, '46', '2023-10-09 12:55:08', '2023-10-09 12:55:08'),
+(124, 22, '48', '2023-10-09 12:55:08', '2023-10-09 12:55:08'),
+(125, 22, '50', '2023-10-09 12:55:08', '2023-10-09 12:55:08'),
+(126, 22, '52', '2023-10-09 12:55:08', '2023-10-09 12:55:08'),
+(127, 23, '44', '2023-10-09 13:18:41', '2023-10-09 13:18:41'),
+(128, 23, '46', '2023-10-09 13:18:41', '2023-10-09 13:18:41'),
+(129, 23, '48', '2023-10-09 13:18:41', '2023-10-09 13:18:41'),
+(130, 23, '50', '2023-10-09 13:18:41', '2023-10-09 13:18:41'),
+(131, 23, '52', '2023-10-09 13:18:41', '2023-10-09 13:18:41'),
+(132, 24, '44', '2023-10-09 13:28:05', '2023-10-09 13:28:05'),
+(133, 24, '46', '2023-10-09 13:28:05', '2023-10-09 13:28:05'),
+(134, 24, '48', '2023-10-09 13:28:05', '2023-10-09 13:28:05'),
+(135, 24, '50', '2023-10-09 13:28:05', '2023-10-09 13:28:05'),
+(136, 24, '52', '2023-10-09 13:28:05', '2023-10-09 13:28:05'),
+(137, 25, '44', '2023-10-09 13:48:20', '2023-10-09 13:48:20'),
+(138, 25, '46', '2023-10-09 13:48:20', '2023-10-09 13:48:20'),
+(139, 25, '48', '2023-10-09 13:48:20', '2023-10-09 13:48:20'),
+(140, 25, '50', '2023-10-09 13:48:20', '2023-10-09 13:48:20'),
+(141, 26, '44', '2023-10-09 13:58:01', '2023-10-09 13:58:01'),
+(142, 26, '46', '2023-10-09 13:58:01', '2023-10-09 13:58:01'),
+(143, 26, '48', '2023-10-09 13:58:01', '2023-10-09 13:58:01'),
+(144, 26, '50', '2023-10-09 13:58:01', '2023-10-09 13:58:01'),
+(145, 27, '44', '2023-10-09 14:05:05', '2023-10-09 14:05:05'),
+(146, 27, '46', '2023-10-09 14:05:05', '2023-10-09 14:05:05'),
+(147, 27, '48', '2023-10-09 14:05:05', '2023-10-09 14:05:05'),
+(148, 27, '50', '2023-10-09 14:05:05', '2023-10-09 14:05:05'),
+(149, 28, '44', '2023-10-09 14:13:46', '2023-10-09 14:13:46'),
+(150, 28, '46', '2023-10-09 14:13:46', '2023-10-09 14:13:46'),
+(151, 28, '48', '2023-10-09 14:13:46', '2023-10-09 14:13:46'),
+(152, 28, '50', '2023-10-09 14:13:46', '2023-10-09 14:13:46'),
+(153, 29, '44', '2023-10-09 16:41:19', '2023-10-09 16:41:19'),
+(154, 29, '46', '2023-10-09 16:41:19', '2023-10-09 16:41:19'),
+(155, 29, '48', '2023-10-09 16:41:19', '2023-10-09 16:41:19'),
+(156, 29, '50', '2023-10-09 16:41:19', '2023-10-09 16:41:19'),
+(157, 30, '44', '2023-10-09 16:49:11', '2023-10-09 16:49:11'),
+(158, 30, '46', '2023-10-09 16:49:11', '2023-10-09 16:49:11'),
+(159, 30, '48', '2023-10-09 16:49:11', '2023-10-09 16:49:11'),
+(160, 30, '50', '2023-10-09 16:49:11', '2023-10-09 16:49:11');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `size_product`
+--
+
+CREATE TABLE `size_product` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `size_product`
+--
+
+INSERT INTO `size_product` (`id`, `name`, `created_at`, `updated_at`) VALUES
+(1, 'S', '2023-10-09 23:00:00', '2023-10-09 23:00:00'),
+(2, 'M', '2023-10-09 23:00:00', '2023-10-09 23:00:00'),
+(3, 'L', '2023-10-09 23:00:00', '2023-10-09 23:00:00'),
+(4, 'XL', '2023-10-09 23:00:00', '2023-10-09 23:00:00'),
+(5, 'XXL', '2023-10-09 23:00:00', '2023-10-09 23:00:00'),
+(6, '3XL', '2023-10-09 23:00:00', '2023-10-09 23:00:00'),
+(7, '4XL', '2023-10-09 23:00:00', '2023-10-09 23:00:00'),
+(8, '5XL', '2023-10-09 23:00:00', '2023-10-09 23:00:00'),
+(9, '44', '2023-10-09 23:00:00', '2023-10-09 23:00:00'),
+(10, '46', '2023-10-09 23:00:00', '2023-10-09 23:00:00'),
+(11, '48', '2023-10-09 23:00:00', '2023-10-09 23:00:00'),
+(12, '50', '2023-10-09 23:00:00', '2023-10-09 23:00:00'),
+(13, '52', '2023-10-09 23:00:00', '2023-10-09 23:00:00');
 
 -- --------------------------------------------------------
 
@@ -1271,9 +1329,9 @@ CREATE TABLE `sliders` (
 --
 
 INSERT INTO `sliders` (`id`, `name`, `secondname`, `thirdname`, `image`, `created_at`, `updated_at`) VALUES
-(33, 'Hot promotions', 'Fashion Trending', 'Great Collection', '1694799831.png', '2023-09-15 16:43:51', '2023-09-15 16:43:51'),
-(34, 'Upcoming Offer', 'Big Deals From', 'Manufacturer', '1694799865.png', '2023-09-15 16:44:26', '2023-09-15 16:44:26'),
-(35, 'Trade-in Offer', 'text', 'Trade-in Offer', '1696501526.jpg', '2023-10-05 09:25:30', '2023-10-05 09:25:30');
+(36, 'New Arrivals', 'Explore the latest and greatest', 'Shop customer favorites', '1696875823.png', '2023-10-09 17:23:44', '2023-10-09 17:23:44'),
+(38, 'Limited-Time Deals', 'Hurry, special offers won\'t last!', 'Best Sellers', '1696909095.png', '2023-10-10 02:38:16', '2023-10-10 02:38:16'),
+(39, 'Discover Our Latest Arrivals', 'Summer Vibes', 'Get ready for sunshine and fun', '1696909784.png', '2023-10-10 02:49:45', '2023-10-10 02:49:45');
 
 -- --------------------------------------------------------
 
@@ -1421,7 +1479,7 @@ INSERT INTO `users` (`id`, `name`, `email`, `phone`, `email_verified_at`, `passw
 (54, 'MICHAEL', 'danniesjamie@gmail.com', '2340987676567', NULL, '$2y$10$QZFJUB.SFHNpu9gSb6/D.O36TRmqcLP4bQARtGkukIhDTSNjH7dS6', NULL, NULL, NULL, NULL, NULL, '2022-09-14 21:14:50', '2022-09-14 21:14:50'),
 (55, 'Michael K', 'mikkynoble@gmail.com', '2340987676567', NULL, '$2y$10$QssgXa56CvAiln8wcRe5NOrOM1pZoDSsOJX6OlMvB9a32UJluH1pC', 10000, '2022-11-05 21:00:25', NULL, '102.89.34.124', NULL, '2022-09-14 22:42:58', '2022-11-06 03:00:25'),
 (56, 'MICHAEL', 'mikkynoble12@gmail.com', '234098s7676567', NULL, '$2y$10$wqHbbqidvqPag/XCiPMC0.i2oT4ler3IIVJc85r93gPX5.ALGCmUG', NULL, NULL, NULL, NULL, NULL, '2022-09-26 19:34:16', '2022-09-26 19:34:16'),
-(57, 'Name11', 'user@gmail.com', '08139267960', NULL, '$2y$10$xLt/3mrOP.ZujyABZrbao.1jT094WX.//NuW.mEn226RzdlryB9n2', NULL, '2023-10-05 10:47:58', NULL, '::1', NULL, '2023-09-17 14:37:45', '2023-10-05 09:47:58');
+(57, 'Name11', 'user@gmail.com', '08139267960', NULL, '$2y$10$xLt/3mrOP.ZujyABZrbao.1jT094WX.//NuW.mEn226RzdlryB9n2', NULL, '2023-10-13 04:31:20', NULL, '::1', NULL, '2023-09-17 14:37:45', '2023-10-13 03:31:20');
 
 -- --------------------------------------------------------
 
@@ -1594,6 +1652,12 @@ ALTER TABLE `sizes`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `size_product`
+--
+ALTER TABLE `size_product`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `sliders`
 --
 ALTER TABLE `sliders`
@@ -1657,13 +1721,13 @@ ALTER TABLE `categories`
 -- AUTO_INCREMENT for table `colors`
 --
 ALTER TABLE `colors`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
 
 --
 -- AUTO_INCREMENT for table `color_product`
 --
 ALTER TABLE `color_product`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `contact_us`
@@ -1705,7 +1769,7 @@ ALTER TABLE `menus`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `news`
@@ -1729,19 +1793,19 @@ ALTER TABLE `orders`
 -- AUTO_INCREMENT for table `order_items`
 --
 ALTER TABLE `order_items`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=346;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=397;
 
 --
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=86;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
 -- AUTO_INCREMENT for table `product_variations`
 --
 ALTER TABLE `product_variations`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=96;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `projects`
@@ -1765,19 +1829,25 @@ ALTER TABLE `roles`
 -- AUTO_INCREMENT for table `shippings`
 --
 ALTER TABLE `shippings`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `sizes`
 --
 ALTER TABLE `sizes`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=141;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=161;
+
+--
+-- AUTO_INCREMENT for table `size_product`
+--
+ALTER TABLE `size_product`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `sliders`
 --
 ALTER TABLE `sliders`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
 
 --
 -- AUTO_INCREMENT for table `sub_categories`
