@@ -84,7 +84,7 @@
                                             </div> 
                                             <div class="product_sort_info font-xs mb-30">
                                                 <ul>
-                                                    <li class="mb-10"><i class="fi-rs-crown mr-5"></i> 1 Year Brand Warranty</li>
+                                                    {{-- <li class="mb-10"><i class="fi-rs-crown mr-5"></i> 1 Year Brand Warranty</li> --}}
                                                     <li class="mb-10"><i class="fi-rs-refresh mr-5"></i> 14 Day Return Policy</li>
                                                 </ul>
                                             </div>
