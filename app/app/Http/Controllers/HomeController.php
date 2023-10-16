@@ -13,6 +13,10 @@ use App\Notification;
 use App\User;
 use App\Menu;
 use App\News;
+use App\Colorproduct;
+use App\Color;
+use App\Sizeproduct;
+use App\Size;
 use App\Slider;
 use App\Shipping;
 use App\Transaction;
@@ -54,6 +58,12 @@ class HomeController extends Controller
             ->with('title', 'Index') 
             ->with('prod', $prod)
             ->with('cart', $cart) 
+            ->with('colorproduct', Colorproduct::all())
+            ->with('sizeproduct', Sizeproduct::all())
+            ->with('jumpsuitproducts',  Product::where('category_id', 15)->simplePaginate(20))
+            ->with('denimproducts',  Product::where('category_id', 16)->simplePaginate(20))
+            ->with('dressproducts',  Product::where('category_id', 12)->simplePaginate(20))
+            ->with('bestsallersproducts',  Product::where('category_id', 2)->simplePaginate(20))
             ->with('news', News::latest()->get())
             ->with('products', Product::inRandomOrder()->latest()->simplePaginate(15))
             ->with('sliders', Slider::get())
@@ -277,6 +287,44 @@ class HomeController extends Controller
     }
     
     public function Categories($id){ 
+        $id = decrypt($id);
+        $productCount = Product::where('category_id', $id)->simplePaginate(20);
+
+        return view('users.pages.products')
+
+            ->with('products',  Product::where('category_id', $id)->simplePaginate(20))
+            ->with('news', News::latest()->get())
+            ->with('prod', Product::latest()->take(5)->get())
+            ->with('productCount', $productCount->count());
+    }
+
+    public function filterColor(Request $request){
+        $selectedColor = $request->input('color'); 
+        
+        $products  = Product::whereHas('colors', function ($query) use ($selectedColor) {
+            $query->where('name', $selectedColor);
+        })->simplePaginate(20);
+        $productCount = $products ->count();
+        $prod = Product::latest()->take(5)->get();
+        $news = News::latest()->get();
+        return view('users.pages.products',
+         compact('productCount','products','prod', 'news'));
+    }
+
+    public function filterSize(Request $request){
+        $selectedSize = $request->input('size'); 
+        //dd($selectedSize);
+        $products  = Product::whereHas('sizes', function ($query) use ($selectedSize) {
+            $query->where('name', $selectedSize);
+        })->simplePaginate(20);
+        $productCount = $products ->count();
+        $prod = Product::latest()->take(5)->get();
+        $news = News::latest()->get();
+        return view('users.pages.products',
+         compact('productCount','products','prod', 'news'));
+    }
+
+    public function Color($id){ 
         $id = decrypt($id);
         $productCount = Product::where('category_id', $id)->simplePaginate(20);
 

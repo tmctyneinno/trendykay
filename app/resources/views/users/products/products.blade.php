@@ -100,22 +100,21 @@
                                                 <style>
                                                     /* Style the checkboxes */
                                                     .list-color input[type="checkbox"] {
-                                                        width: 16px; /* Adjust the width as needed */
-                                                        height: 16px; /* Adjust the height as needed */
-                                                        margin-right: 5px; /* Adjust the spacing between checkboxes and labels */
+                                                        width: 16px; 
+                                                        height: 16px; 
+                                                        margin-right: 5px; 
                                                     }
                                                 
-                                                    /* Style the labels (color names) */
                                                     .list-color label {
-                                                        font-size: 14px; /* Adjust the font size as needed */
+                                                        font-size: 14px; 
                                                     }
                                                     .product-color-wine {
-                                                        background-color: #722f37; /* Set the background color to the desired wine color */
+                                                        background-color: #722f37; 
                                                         font-size: 12px !important;
                                                     }
                                                     
                                                     .product-color-blue {
-                                                        background-color: rgb(9, 9, 199); /* Set the background color to the desired wine color */
+                                                        background-color: rgb(9, 9, 199); 
                                                     }
                                                     .product-color-black{
                                                         background-color: black;
@@ -178,7 +177,7 @@
                                                                 <li>
                                                                     <li><a  data-color="Red"><span class="product-color-red"></span></a> {{ Str::ucfirst($color->name) }}</li>
                                                                 </li>
-                                                            @endif
+                                                            @endif 
                                                             @if($color->name === 'Black')
                                                                 <li>
                                                                     <li><a  data-color="Black"><span class="product-color-black"></span></a> {{ Str::ucfirst($color->name) }}</li>
@@ -240,11 +239,7 @@
                                                         </div>
                                                     </div>
                                                 </div>                                                    
-                                                {{-- <div class="detail-qty border radius">
-                                                    <a href="#" class="qty-down"><i class="fi-rs-angle-small-down"></i></a>
-                                                    <span class="qty-val" id="qty2">1</span>
-                                                    <a href="#" class="qty-up"><i class="fi-rs-angle-small-up"></i></a>
-                                                </div> --}}
+                                               
                                                 <div class="product-extra-link2" style="height: 40px;">
                                                     <button class="button button-add-to-cart " id="add2cart">Add to cart</button>
                                                 </div>
@@ -252,9 +247,6 @@
                                             <span class="badge-success p-2 border-radius-5" hidden id="alerts"> Item added to cart successfully</span>
                                 
                                             <ul class="product-meta font-xs color-grey mt-50">
-                                                {{-- <li class="mb-5">SKU: <a href="#">FWM15VKT</a></li> --}}
-                                                {{-- <li class="mb-5">Tags: <a href="#" rel="tag">Cloth</a>, <a href="#" rel="tag">Women</a>, <a href="#" rel="tag">Dress</a> </li> --}}
-                                                {{-- <li>Availability:<span class="in-stock text-success ml-5">8 Items In Stock</span></li> --}}
                                             </ul>
                                         </div>
                                         <!-- Detail Info -->
@@ -277,9 +269,7 @@
                                             </div>
                                         </div>
                                         <div class="tab-pane fade" id="Additional-info">
-                                            {{-- @if(isset($product->specification))
-                                            <iframe src="{{asset('images/pdf/'.$product->specification)}}" width="800px" height="500px"> </iframe>
-                                            @endif --}}
+                                          
                                             <table class="font-md">
                                                 <tbody>
                                                     <tr class="stand-up">
@@ -683,8 +673,6 @@
                 if (checkbox.checked) {
                     // Update the selectedSize variable
                     selectedSize = String(checkbox.value);
-                    // Optionally, display the selected size in the "selected-size" div
-                    // document.getElementById('selected-size').textContent = 'Selected Size: ' + selectedSize;
                 }
             });
         });
@@ -718,8 +706,6 @@
                                 $('#alerts').hide();
                                 location.reload();
                             }, 5);
-                        
-                            
                         }else{
                             alert('no');
                         }
@@ -728,10 +714,7 @@
                         alert(error);
                     }
                 });
-                // Optionally, display the selectedSize in the "selected-size" div here if needed
-                // document.getElementById('selected-size').textContent = 'Selected Size: ' + selectedSize;
             } else {
-               // alert('Please select a size');
                 toastr.error('Please select a size');
             }
         });
@@ -753,9 +736,5 @@
         toastr.success('{{ session('success') }}');
     </script>
 @endif
-
-
-
-
 
 @endsection

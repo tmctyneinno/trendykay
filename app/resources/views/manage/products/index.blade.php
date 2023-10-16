@@ -77,8 +77,14 @@
                                                         </a>
                                                         <div class="dropdown-menu dropdown-menu-right">
                                                            
-                                                                 <a href="{{route('product.edit', encrypt($sp->id))}}" class="dropdown-item">Edit Product</a>
-                                                            @if($sp->status != 1) 
+                                                        <a href="{{route('product.edit', encrypt($sp->id))}}" class="dropdown-item">Edit Product</a>
+                                                        {{-- <a href="{{route('product.delete', encrypt($sp->id))}}" class="dropdown-item" style="color:red">Delete Product</a> --}}
+                                                        <form method="post" action="{{route('product.delete', encrypt($sp->id))}}" id="form1"> 
+                                                            @csrf    
+                                                             <input type="hidden" name="status" value="1">
+                                                              <button type="submit"  class="dropdown-item" style="color:red">Delete Product</button>
+                                                        </form>
+                                                        @if($sp->status != 1) 
                                                             <form method="post" action="{{route('product.status', encrypt($sp->id))}}" id="form1"> 
                                                             @csrf    
                                                              <input type="hidden" name="status" value="1">

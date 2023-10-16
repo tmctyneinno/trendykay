@@ -1,248 +1,432 @@
 @extends('layouts.app')
 @section('content')
 
-    <main class="main">
-        <section class="home-slider position-relative pt-50">
-            <div class="hero-slider-1 dot-style-1 dot-style-1-position-1">
-                @foreach ($sliders as $slider)
-                <div class="single-hero-slider single-animation-wrap">
-                    <div class="container">
-                        <div class="row align-items-center slider-animated-1">
-                            <div class="col-lg-5 col-md-6">
-                                <div class="hero-slider-content-2">
-                                    <h2 class="animated fw-900">{{ $slider->secondname }}</h2>
-                                    <h1 class="animated fw-900 text-brand">{{ $slider->thirdname }}</h1>
+<main class="main">
+    <section class="home-slider position-relative">
+        <div class="hero-slider-1 style-2 dot-style-1 dot-style-1-position-1">
+            @foreach ($sliders as $slider)
+            <div class="single-hero-slider single-animation-wrap">
+                <div class="container">
+                    <div class="slider-1-height-2 slider-animated-1">
+                        <div class="hero-slider-content-2">
+                            <h5 class="animated">{{ $slider->secondname }}</h5>
+                            {{-- <h3 class="animated fw-900"></h3> --}}
+                            <h3 class="animated fw-900 text-brand">{{ $slider->thirdname }}</h3>
+                            <a class="animated btn btn-brush btn-brush-1" href="{{ url('pages/products') }}"> Shop Now </a>
+                        </div>
+                        <div class="single-slider-img single-slider-img-1">
+                            <img class="animated" src="{{asset('/images/sliders/'.$slider->image)}}" alt="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            @endforeach
+        </div>
+        <div class="slider-arrow hero-slider-1-arrow"></div>
+    </section>
+
+    <section class="banners mb-20">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 col-md-6">
+                    <div class="banner-img wow fadeIn animated">
+                        <img src="{{ asset('assets/imgs/banner/banner-11.png ')}}" alt="">
+                        <div class="banner-text">
+                            <span>Discover Our Latest <br>Collection</span>
+                            <h4>Shop the<br> Trendiest<br> Styles Today</h4>
+                            <a href="{{ url('pages/products') }}">Shop Now <i class="fi-rs-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="banner-img wow fadeIn animated">
+                        <img src="{{ asset('assets/imgs/banner/banner-22.png  ')}}" alt="">
+                        <div class="banner-text">
+                            <span>Flash Sale: Up to 50% Off</span>
+                            <h4>Limited Time Only! <br> Don't Miss Out</h4>
+                            <a href="{{ url('pages/products') }}">Shop Now <i class="fi-rs-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 d-md-none d-lg-flex">
+                    <div class="banner-img wow fadeIn animated  mb-sm-0">
+                        <img src="{{ asset('assets/imgs/banner/banner-33.png  ')}}" alt="">
+                        <div class="banner-text">
+                            <span>New Arrivals for This Season</span>
+                            <h4>Explore Exciting <br> Fashion Trends</h4>
+                            <a href="{{ url('pages/products') }}">Shop Now <i class="fi-rs-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="product-tabs pt-25 pb-20 wow fadeIn animated">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3">
+                    <div class="widget-category mb-10">
+                        <h5 class="section-title style-1 mb-10 wow fadeIn animated">Category</h5>
+                        <ul class="categories">
+                            @foreach($menu_categories as $cat )
+                                <li>
+                                    <li><a href="{{route('user.category', encrypt($cat->id))}}">{{$cat->name}}</a></li>
+                                    {{-- <li><a href="{{route('user.category', $cat->id)}}">{{$cat->name}}</a></li> --}}
+                                </li>
+                            @endforeach
+                        </ul>
+                    </div>
+                   
+                    <div class="sidebar-widget price_range range mb-30">
+                        <div class="widget-header position-relative mb-20 pb-10">
+                            <h5 class="widget-title mb-10">Sort by</h5>
+                            <div class="bt-1 border-color-1"></div>
+                        </div>
+                       
+                        <div class="list-group">
+                            <div class="list-group-item mb-10 mt-10">
+                                <label class="fw-900">Color</label>
+                                <div class="custome-checkbox">
+                                    <form action="{{ route('filterColor') }}" method="GET">
+                                        <div class="form-group">
+                                            <label for="color">Select Color:</label>
+                                            <select name="color" id="color" class="form-control" required>
+                                                <option selected disabled>select color</option>
+                                                @foreach ($colorproduct as $color)
+                                                    <option value="{{ $color->name}}">{{ $color->name}}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                        <button type="submit" class="btn btn-sm btn-default"><i class="fi-rs-filter mr-5"></i>Apply Filter</button>
+                                    </form>
+                                </div>
+                                <label class="fw-900 mt-15">Size</label>
+                                <div class="custome-checkbox">
+                                   
+                                    <form action="{{ route('filterSize') }}" method="GET">
+                                        <div class="form-group">
+                                            <label for="size">Select Size:</label>
+                                            <select name="size" id="size" class="form-control" required>
+                                                <option selected disabled>select size</option>
+                                                @foreach ($sizeproduct as $size)
+                                                    <option value="{{ $size->name }}">{{ $size->name }}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                        <button type="submit" class="btn btn-sm btn-default"><i class="fi-rs-filter mr-5"></i>Apply Filter</button>
+                                    </form>
                                     
-                                    <a class="animated btn btn-brush btn-brush-3" href="{{ url('pages/products') }}"> Shop Now </a>
-                              
                                 </div>
-                            </div>
-                            <div class="col-lg-7 col-md-6">
-                                <div class="single-slider-img single-slider-img-1">
-                                    <img class="animated slider-1-1" src="{{asset('/images/sliders/'.$slider->image)}}" alt="">
-                                </div>
+                                
                             </div>
                         </div>
                     </div>
                 </div>
-                @endforeach
+                <div class="col-lg-9">
+                    <div class="tab-header">
+                        <ul class="nav nav-tabs" id="myTab" role="tablist">
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link active" id="nav-tab-one" data-bs-toggle="tab" data-bs-target="#tab-one" type="button" role="tab" aria-controls="tab-one" aria-selected="true">Product</button>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link" id="nav-tab-two" data-bs-toggle="tab" data-bs-target="#tab-two" type="button" role="tab" aria-controls="tab-two" aria-selected="false">Best Seller</button>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link" id="nav-tab-three" data-bs-toggle="tab" data-bs-target="#tab-three" type="button" role="tab" aria-controls="tab-three" aria-selected="false">Jumpsuit</button>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link" id="nav-tab-four" data-bs-toggle="tab" data-bs-target="#tab-four" type="button" role="tab" aria-controls="tab-four" aria-selected="false">Denim</button>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link" id="nav-tab-five" data-bs-toggle="tab" data-bs-target="#tab-five" type="button" role="tab" aria-controls="tab-five" aria-selected="false">Dress</button>
+                            </li>
+                        </ul>
+                        <a href="{{ url('pages/products') }}" class="view-more d-none d-md-flex">View More<i class="fi-rs-angle-double-small-right"></i></a>
+                    </div>
+                    <!--End nav-tabs-->
+                    <div class="tab-content wow fadeIn animated" id="myTabContent">
+                        <div class="tab-pane fade show active" id="tab-one" role="tabpanel" aria-labelledby="tab-one">
+                            <div class="row product-grid-4">
+                                @forelse ($products as $pro )
+                                    <div class="col-lg-4 col-md-4 col-12 col-sm-6">
+                                        <div class="product-cart-wrap mb-30" >
+                                            <div class="product-img-action-wrap" >
+                                                <div class="product-img product-img-zoom">
+                                                    <a href="{{route('product-details', $pro->id )}}">
+                                                        <img class="default-img" src="{{asset('/images/products/'.$pro->image)}}" alt="">
+                                                        <img class="hover-img" src="{{asset('/images/products/'.$pro->image)}}" alt="">
+                                                    </a>
+                                                </div>
+                                                <div class="product-action-1">
+                                                    <a aria-label="Quick view" href="{{route('product-details', $pro->id )}}" class="action-btn hover-up" >
+                                                        <i class="fi-rs-eye"></i>
+                                                    </a>
+                                                </div>
+                                                <div class="product-badges product-badges-position product-badges-mrg">
+                                                    <span class="hot">{{number_format($pro->discount,0)}}% </span>
+                                                </div>
+                                            </div>
+                                            <div class="product-content-wrap">
+                                                <div class="product-category">
+                                                    <a href="shop-grid-right.html">{{$pro->category->name}}</a>
+                                                </div>
+                                                <h2><a href="{{route('product-details', $pro->id )}}">{{$pro->name}}</a></h2>
+                                                <br>
+                                                <div class="product-price">
+                                                    <span>C${{number_format($pro->sale_price)}} </span> 
+                                                    <span class="old-price">₦{{number_format($pro->price)}}</span>
+                                                </div>
+                                                <div class="product-action-1 show">
+                                                    <a aria-label="Add To Cart" class="action-btn hover-up" href="{{route('product-details', $pro->id )}}">
+                                                        <i class="fi-rs-shopping-bag-add"></i></a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                
+                                    </div>
+                                @empty
+                                    <p class="text-danger">No product found</p>
+                                @endforelse
+                            </div>
+                            <!--End product-grid-4-->
+                        </div>
+                        <!--En tab one (Featured)-->
+                        <div class="tab-pane fade" id="tab-two" role="tabpanel" aria-labelledby="tab-two">
+                            <div class="row product-grid-4">
+                                @forelse ($bestsallersproducts as $pro )
+                                    <div class="col-lg-4 col-md-4 col-12 col-sm-6">
+                                        <div class="product-cart-wrap mb-30" >
+                                            <div class="product-img-action-wrap" >
+                                                <div class="product-img product-img-zoom">
+                                                    <a href="{{route('product-details', $pro->id )}}">
+                                                        <img class="default-img" src="{{asset('/images/products/'.$pro->image)}}" alt="">
+                                                        <img class="hover-img" src="{{asset('/images/products/'.$pro->image)}}" alt="">
+                                                    </a>
+                                                </div>
+                                                <div class="product-action-1">
+                                                    <a aria-label="Quick view" href="{{route('product-details', $pro->id )}}" class="action-btn hover-up" >
+                                                        <i class="fi-rs-eye"></i>
+                                                    </a>
+                                                </div>
+                                                <div class="product-badges product-badges-position product-badges-mrg">
+                                                    <span class="hot">{{number_format($pro->discount,0)}}% </span>
+                                                </div>
+                                            </div>
+                                            <div class="product-content-wrap">
+                                                <div class="product-category">
+                                                    <a href="shop-grid-right.html">{{$pro->category->name}}</a>
+                                                </div>
+                                                <h2><a href="{{route('product-details', $pro->id )}}">{{$pro->name}}</a></h2>
+                                                <br>
+                                                <div class="product-price">
+                                                    <span>C${{number_format($pro->sale_price)}} </span> 
+                                                    <span class="old-price">₦{{number_format($pro->price)}}</span>
+                                                </div>
+                                                <div class="product-action-1 show">
+                                                    <a aria-label="Add To Cart" class="action-btn hover-up" href="{{route('product-details', $pro->id )}}">
+                                                        <i class="fi-rs-shopping-bag-add"></i></a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                
+                                    </div>
+                                @empty
+                                    <p class="text-danger">No product found</p>
+                                @endforelse
+                            </div>
+                            <!--End product-grid-4-->
+                        </div>
+                        <!--En tab two (Popular)-->
+                        <div class="tab-pane fade" id="tab-three" role="tabpanel" aria-labelledby="tab-three">
+                            <div class="row product-grid-4">
+                                @forelse ($jumpsuitproducts as $pro )
+                                    <div class="col-lg-4 col-md-4 col-12 col-sm-6">
+                                        <div class="product-cart-wrap mb-30" >
+                                            <div class="product-img-action-wrap" >
+                                                <div class="product-img product-img-zoom">
+                                                    <a href="{{route('product-details', $pro->id )}}">
+                                                        <img class="default-img" src="{{asset('/images/products/'.$pro->image)}}" alt="">
+                                                        <img class="hover-img" src="{{asset('/images/products/'.$pro->image)}}" alt="">
+                                                    </a>
+                                                </div>
+                                                <div class="product-action-1">
+                                                    <a aria-label="Quick view" href="{{route('product-details', $pro->id )}}" class="action-btn hover-up" >
+                                                        <i class="fi-rs-eye"></i>
+                                                    </a>
+                                                </div>
+                                                <div class="product-badges product-badges-position product-badges-mrg">
+                                                    <span class="hot">{{number_format($pro->discount,0)}}% </span>
+                                                </div>
+                                            </div>
+                                            <div class="product-content-wrap">
+                                                <div class="product-category">
+                                                    <a href="shop-grid-right.html">{{$pro->category->name}}</a>
+                                                </div>
+                                                <h2><a href="{{route('product-details', $pro->id )}}">{{$pro->name}}</a></h2>
+                                                <br>
+                                                <div class="product-price">
+                                                    <span>C${{number_format($pro->sale_price)}} </span> 
+                                                    <span class="old-price">₦{{number_format($pro->price)}}</span>
+                                                </div>
+                                                <div class="product-action-1 show">
+                                                    <a aria-label="Add To Cart" class="action-btn hover-up" href="{{route('product-details', $pro->id )}}">
+                                                        <i class="fi-rs-shopping-bag-add"></i></a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                
+                                    </div>
+                                @empty
+                                    <p class="text-danger">No Product</p>
+                                @endforelse
+                            </div>
+                            <!--End product-grid-4-->
+                        </div>
+                        <!--En tab three (New added)-->
+                        <div class="tab-pane fade" id="tab-four" role="tabpanel" aria-labelledby="tab-four">
+                            <div class="row product-grid-4">
+                                @forelse ($denimproducts as $pro )
+                                    <div class="col-lg-4 col-md-4 col-12 col-sm-6">
+                                        <div class="product-cart-wrap mb-30" >
+                                            <div class="product-img-action-wrap" >
+                                                <div class="product-img product-img-zoom">
+                                                    <a href="{{route('product-details', $pro->id )}}">
+                                                        <img class="default-img" src="{{asset('/images/products/'.$pro->image)}}" alt="">
+                                                        <img class="hover-img" src="{{asset('/images/products/'.$pro->image)}}" alt="">
+                                                    </a>
+                                                </div>
+                                                <div class="product-action-1">
+                                                    <a aria-label="Quick view" href="{{route('product-details', $pro->id )}}" class="action-btn hover-up" >
+                                                        <i class="fi-rs-eye"></i>
+                                                    </a>
+                                                </div>
+                                                <div class="product-badges product-badges-position product-badges-mrg">
+                                                    <span class="hot">{{number_format($pro->discount,0)}}% </span>
+                                                </div>
+                                            </div>
+                                            <div class="product-content-wrap">
+                                                <div class="product-category">
+                                                    <a href="shop-grid-right.html">{{$pro->category->name}}</a>
+                                                </div>
+                                                <h2><a href="{{route('product-details', $pro->id )}}">{{$pro->name}}</a></h2>
+                                                <br>
+                                                <div class="product-price">
+                                                    <span>C${{number_format($pro->sale_price)}} </span> 
+                                                    <span class="old-price">₦{{number_format($pro->price)}}</span>
+                                                </div>
+                                                <div class="product-action-1 show">
+                                                    <a aria-label="Add To Cart" class="action-btn hover-up" href="{{route('product-details', $pro->id )}}">
+                                                        <i class="fi-rs-shopping-bag-add"></i></a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                
+                                    </div>
+                                @empty
+                                    <p class="text-danger">No product found</p>
+                                @endforelse
+                            </div>
+                            <!--End product-grid-4-->
+                        </div>
+                        <!--En tab four (New added)-->
+                        <div class="tab-pane fade" id="tab-five" role="tabpanel" aria-labelledby="tab-five">
+                            <div class="row product-grid-4">
+                                @forelse ($dressproducts as $pro )
+                                    <div class="col-lg-4 col-md-4 col-12 col-sm-6">
+                                        <div class="product-cart-wrap mb-30" >
+                                            <div class="product-img-action-wrap" >
+                                                <div class="product-img product-img-zoom">
+                                                    <a href="{{route('product-details', $pro->id )}}">
+                                                        <img class="default-img" src="{{asset('/images/products/'.$pro->image)}}" alt="">
+                                                        <img class="hover-img" src="{{asset('/images/products/'.$pro->image)}}" alt="">
+                                                    </a>
+                                                </div>
+                                                <div class="product-action-1">
+                                                    <a aria-label="Quick view" href="{{route('product-details', $pro->id )}}" class="action-btn hover-up" >
+                                                        <i class="fi-rs-eye"></i>
+                                                    </a>
+                                                </div>
+                                                <div class="product-badges product-badges-position product-badges-mrg">
+                                                    <span class="hot">{{number_format($pro->discount,0)}}% </span>
+                                                </div>
+                                            </div>
+                                            <div class="product-content-wrap">
+                                                <div class="product-category">
+                                                    <a href="shop-grid-right.html">{{$pro->category->name}}</a>
+                                                </div>
+                                                <h2><a href="{{route('product-details', $pro->id )}}">{{$pro->name}}</a></h2>
+                                                <br>
+                                                <div class="product-price">
+                                                    <span>C${{number_format($pro->sale_price)}} </span> 
+                                                    <span class="old-price">₦{{number_format($pro->price)}}</span>
+                                                </div>
+                                                <div class="product-action-1 show">
+                                                    <a aria-label="Add To Cart" class="action-btn hover-up" href="{{route('product-details', $pro->id )}}">
+                                                        <i class="fi-rs-shopping-bag-add"></i></a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                
+                                    </div>
+                                @empty
+                                    <p class="text-danger">No product found</p>
+                                @endforelse
+                            </div>
+                            <!--End product-grid-4-->
+                        </div>
+                        <!--En tab four (New added)-->
+                    </div>
+                    <!--End tab-content-->
+                </div>
+            </div>
+        </div>
+    </section>
+   
+    @if(count($recents) > 0)
+    <section class="section-padding">
+        <div class="container wow fadeIn animated">
+            <h3 class="section-title mb-20"><span>Recently </span> Viewed</h3>
+            <div class="carausel-6-columns-cover position-relative">
+                <div class="slider-arrow slider-arrow-2 carausel-6-columns-arrow" id="carausel-6-columns-2-arrows"></div>
+               
+                <div class="carausel-6-columns carausel-arrow-center" id="carausel-6-columns-2">
+                    @foreach($recents as $recent)
+                    <div class="product-cart-wrap small hover-up">
+                        <div class="product-img-action-wrap">
+                            <div class="product-img product-img-zoom">
+                                <a href="{{route('product-details', $recent->id)}}}">
+                                    <img class="default-img" src="{{asset('images/products/'.$recent->image)}}" alt="">
+                                    <img class="hover-img" src="{{asset('images/products/'.$recent->image)}}" alt="">
+                                </a>
+                            </div>
+                            <div class="product-action-1">
+                                <a href="{{route('product-details', $recent->id )}}" aria-label="Quick view" class="action-btn small hover-up" >
+                                <i class="fi-rs-eye"></i></a>
+                            </div>
+                            <div class="product-badges product-badges-position product-badges-mrg">
+                                <span class="hot">{{$recent->discount}}%</span>
+                            </div>
+                        </div>
+                        <div class="product-content-wrap">
+                            <h2><a href="{{route('product-details', $recent->id )}}"> {{$recent->name}}</a></h2>
+                            
+                            <div class="product-price">
+                                <span>C${{number_format($recent->sale_price)}} </span>
+                                <span class="old-price">C${{number_format($recent->price)}}</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!--End product-cart-wrap-2-->
+                    @endforeach                             
+                            
+                </div>
                 
             </div>
-            <div class="slider-arrow hero-slider-1-arrow"></div>
-        </section>
+        </div>
+    </section>
+    @endif
+ 
+</main>
 
-        <section class="featured section-padding position-relative">
-            <div class="container">
-                <div class="row">
-
-                    <div class="col-lg-2 col-md-4 mb-md-3 mb-lg-0">
-                        <div class="banner-features wow fadeIn animated hover-up">
-                            <img src="{{ asset('assets/imgs/theme/icons/feature-1.png')}}" alt="">
-                            <h4 class="bg-3">Standard Shiiping</h4>
-                        </div>
-                    </div>
-                   
-                    <div class="col-lg-2 col-md-4 mb-md-3 mb-lg-0">
-                        <div class="banner-features wow fadeIn animated hover-up">
-                            <img src="{{ asset('assets/imgs/theme/icons/feature-2.png')}}" alt="">
-                            <h4 class="bg-3">Online Order</h4>
-                        </div>
-                    </div>
-                    <div class="col-lg-2 col-md-4 mb-md-3 mb-lg-0">
-                        <div class="banner-features wow fadeIn animated hover-up">
-                            <img src="{{ asset('assets/imgs/theme/icons/feature-3.png')}}" alt="">
-                            <h4 class="bg-2">Save Money</h4>
-                        </div>
-                    </div>
-                    <div class="col-lg-2 col-md-4 mb-md-3 mb-lg-0">
-                        <div class="banner-features wow fadeIn animated hover-up">
-                            <img src="{{ asset('assets/imgs/theme/icons/feature-4.png')}}" alt="">
-                            <h4 class="bg-4">Promotions</h4>
-                        </div>
-                    </div>
-                    <div class="col-lg-2 col-md-4 mb-md-3 mb-lg-0">
-                        <div class="banner-features wow fadeIn animated hover-up">
-                            <img src="{{ asset('assets/imgs/theme/icons/feature-5.png')}}" alt="">
-                            <h4 class="bg-5">Happy Sell</h4>
-                        </div>
-                    </div>
-                    <div class="col-lg-2 col-md-4 mb-md-3 mb-lg-0">
-                        <div class="banner-features wow fadeIn animated hover-up">
-                            <img src="{{ asset('assets/imgs/theme/icons/feature-6.png')}}" alt="">
-                            <h4 class="bg-6">24/7 Support</h4>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section class="product-tabs section-padding position-relative wow fadeIn animated">
-            <div class="bg-square"></div>
-            <div class="container">
-                <div class="tab-header">
-                    <ul class="nav nav-tabs" id="myTab" role="tablist">
-                        <li class="nav-item" role="presentation">
-                            <button class="nav-link active" id="nav-tab-one" data-bs-toggle="tab" 
-                            data-bs-target="#tab-one" type="button" role="tab" aria-controls="tab-one" aria-selected="true"> Products</button>
-                        </li>
-                        
-                    </ul>
-                    <a href="{{ url('pages/products') }}" class="view-more d-none d-md-flex">View More<i class="fi-rs-angle-double-small-right"></i></a>
-                </div>
-                <!--End nav-tabs-->
-                <div class="tab-content wow fadeIn animated" id="myTabContent">
-                    <div class="tab-pane fade show active" id="tab-one" role="tabpanel" aria-labelledby="tab-one">
-                        <div class="row product-grid-4">
-                            @forelse ($products as $pro )
-                            
-                            <div class="col-lg-3 col-md-4 col-12 col-sm-6">
-                                <div class="product-cart-wrap mb-30" >
-                                    <div class="product-img-action-wrap" >
-                                        <div class="product-img product-img-zoom">
-                                            <a href="{{route('product-details', $pro->id )}}">
-                                                <img class="default-img" src="{{asset('/images/products/'.$pro->image)}}" alt="">
-                                                <img class="hover-img" src="{{asset('/images/products/'.$pro->image)}}" alt="">
-                                            </a>
-                                        </div>
-                                        <div class="product-action-1">
-                                            <a aria-label="Quick view" href="{{route('product-details', $pro->id )}}" class="action-btn hover-up" >
-                                                <i class="fi-rs-eye"></i>
-                                            </a>
-                                        </div>
-                                        <div class="product-badges product-badges-position product-badges-mrg">
-                                            <span class="hot">{{number_format($pro->discount,0)}}% </span>
-                                        </div>
-                                    </div>
-                                    <div class="product-content-wrap">
-                                        <div class="product-category">
-                                            <a href="shop-grid-right.html">{{$pro->category->name}}</a>
-                                        </div>
-                                        <h2><a href="{{route('product-details', $pro->id )}}">{{$pro->name}}</a></h2>
-                                        
-                                        <div class="product-price">
-                                            <span>C${{number_format($pro->sale_price)}} </span> 
-                                            <span class="old-price">₦{{number_format($pro->price)}}</span>
-                                        </div>
-                                        <div class="product-action-1 show">
-                                            <a aria-label="Add To Cart" class="action-btn hover-up" href="{{route('product-details', $pro->id )}}">
-                                                <i class="fi-rs-shopping-bag-add"></i></a>
-                                        </div>
-                                    </div>
-                                </div>
-                           
-                            </div>
-                            @empty
-                                <p>No Product</p>
-                            @endforelse
-                        </div>
-                        <!--End product-grid-4-->
-                    </div>
-                    <!--En tab one (Featured)-->
-                   
-
-                   
-                    <!--En tab two (Popular)-->
-                    <div class="tab-pane fade" id="tab-three" role="tabpanel" aria-labelledby="tab-three">
-                        <div class="row product-grid-4">
-                            @forelse ($prod as $prods )
-                            <div class="col-lg-3 col-md-4 col-12 col-sm-6">
-                                <div class="product-cart-wrap mb-30"> 
-                                    <div class="product-img-action-wrap">
-                                        <div class="product-img product-img-zoom">
-                                            <a href="{{route('product-details', $prods->id)}}">
-                                                <img class="hover-img" src="{{asset('images/products/'.$prods->image)}}" alt="">
-                                                <img class="default-img" src="{{asset('images/products/'.$prods->image)}}" alt="">
-                                            </a>
-                                        </div>
-                                        <div class="product-action-1">
-                                            <a aria-label="Quick view" href="{{route('product-details', $pro->id)}}" class="action-btn hover-up" >
-                                                <i class="fi-rs-eye"></i>
-                                            </a>
-                                        </div>
-                                        <div class="product-badges product-badges-position product-badges-mrg">
-                                            <span class="new">New</span>
-                                        </div>
-                                    </div>
-                                    <div class="product-content-wrap">
-                                        <div class="product-category">
-                                            <a href="shop-grid-right.html">{{$prods->category->name}}</a>
-                                        </div>
-                                        <h2><a href="{{route('product-details', $prods->id)}}">{{$prods->name}}</a></h2>
-                                       
-                                        <div class="product-price">
-                                            <span>C${{number_format($prods->price)}}</span>
-                                        </div>
-                                        <div class="product-action-1 show">
-                                            <a aria-label="Add To Cart" class="action-btn hover-up" href="{{route('product-details', $prods->id)}}"><i class="fi-rs-shopping-bag-add"></i></a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            @empty
-                                <p>No Product</p>
-                            @endforelse
-                            
-                        </div>
-                        <!--End product-grid-4-->
-                    </div>
-                    <!--En tab three (New added)-->
-                </div>
-                <!--End tab-content-->
-            </div>
-        </section>
-        
-        
-
-       
-        @if(count($recents) > 0)
-        <section class="section-padding">
-            <div class="container wow fadeIn animated">
-                <h3 class="section-title mb-20"><span>Recently </span> Viewed</h3>
-                <div class="carausel-6-columns-cover position-relative">
-                    <div class="slider-arrow slider-arrow-2 carausel-6-columns-arrow" id="carausel-6-columns-2-arrows"></div>
-                   
-                    <div class="carausel-6-columns carausel-arrow-center" id="carausel-6-columns-2">
-                        @foreach($recents as $recent)
-                        <div class="product-cart-wrap small hover-up">
-                            <div class="product-img-action-wrap">
-                                <div class="product-img product-img-zoom">
-                                    <a href="{{route('product-details', $recent->id)}}}">
-                                        <img class="default-img" src="{{asset('images/products/'.$recent->image)}}" alt="">
-                                        <img class="hover-img" src="{{asset('images/products/'.$recent->image)}}" alt="">
-                                    </a>
-                                </div>
-                                <div class="product-action-1">
-                                    <a href="{{route('product-details', $recent->id )}}" aria-label="Quick view" class="action-btn small hover-up" >
-                                    <i class="fi-rs-eye"></i></a>
-                                </div>
-                                <div class="product-badges product-badges-position product-badges-mrg">
-                                    <span class="hot">{{$recent->discount}}%</span>
-                                </div>
-                            </div>
-                            <div class="product-content-wrap">
-                                <h2><a href="{{route('product-details', $recent->id )}}"> {{$recent->name}}</a></h2>
-                                
-                                <div class="product-price">
-                                    <span>C${{number_format($recent->sale_price)}} </span>
-                                    <span class="old-price">C${{number_format($recent->price)}}</span>
-                                </div>
-                            </div>
-                        </div>
-                        <!--End product-cart-wrap-2-->
-                        @endforeach                             
-                                
-                    </div>
-                    
-                </div>
-            </div>
-        </section>
-        @endif
-
-      
-
-      
-       
-
-    </main>
 
 @endsection

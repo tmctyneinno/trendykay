@@ -108,7 +108,7 @@
                                                 @php
                                                     $subTotal = Cart::subTotal();
                                                     $tax = $subTotal * 0.12; // Calculate the tax amount (12% of the subtotal)
-                                                    $totalPrice = $subTotal + $tax; // Add the tax to the subtotal to get the total price
+                                                    $totalPrice = $subTotal + $tax; // I add the tax to the subtotal to get the total price
                                                 @endphp
                                                 <td class="cart_total_amount"><span class="font-lg fw-900 text-brand">C${{Cart::subTotal()}}</span></td>
                                             </tr>

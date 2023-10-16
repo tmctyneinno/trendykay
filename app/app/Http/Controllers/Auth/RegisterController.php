@@ -79,7 +79,7 @@ class RegisterController extends Controller
             $getUser = User::latest()->first();
             $notify = new Notification;
             $notify->user_id = $getUser->id;
-            $notify->title = 'welcome to sofarsolar';
+            $notify->title = 'welcome to Trendy Kay Collection';
             $notify->message = 'Dear '.$getUser->name. ', <br>'.'We are glad to have you with us, do enjoy our services';
             $notify->save();
             $admin = new AdminNotify;

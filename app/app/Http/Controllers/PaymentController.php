@@ -18,9 +18,10 @@ class PaymentController extends Controller
    
     public function initiatePayCheckoutguest(Request $request){
         $custemail = $request->email;
-        $custphone =  $request->phone;
+        // $custphone =  $request->phone;
         $custname =  $request->name;
-        $amount = $request->total;
+        $amount = $request->amount;
+        //dd($request->all());
        // $orderNo = $request->orderNo;
         // Set your Stripe API key
         
@@ -51,11 +52,11 @@ class PaymentController extends Controller
     }
 
     public function initiatePayCheckout(Request $request){
-        $custemail = auth()->user()->email;
-        $custphone = auth()->user()->phone;
-        $custname = auth()->user()->name;
+        $custemail = $request->email;
+        $custphone = $request->phone;
+        $custname = $request->name;
         $amount = $request->total;
-       // $orderNo = $request->orderNo;
+        $orderNo = $request->orderNo;
         // Set your Stripe API key
         
         Stripe::setApiKey('sk_test_51NgNdcEAO4xwJMdypdJNh2azXY9H1Aloq1V841Be4kkzTdxDAVRzkmpk1EsNDeyf3TFss6gr2jSG5JP7RTAlOdiL00P6uaN2dx');
@@ -89,6 +90,7 @@ class PaymentController extends Controller
 
     public function handlePaymentSuccess(Request $request)
     {
+        \Cart::destroy();
         Stripe::setApiKey('sk_test_51NgNdcEAO4xwJMdypdJNh2azXY9H1Aloq1V841Be4kkzTdxDAVRzkmpk1EsNDeyf3TFss6gr2jSG5JP7RTAlOdiL00P6uaN2dx');
         // $session =  $stripe->issuing->transactions->retrieve(
         //         'ipi_1GswaK2eZvKYlo2Co7wmNJhD',[]
@@ -103,9 +105,6 @@ class PaymentController extends Controller
         dd($session_id);
         // Capture the Payment Intent ID from the session
         $paymentIntentId = $session->payment_intent;
-
-        
-       
     }
 
 }

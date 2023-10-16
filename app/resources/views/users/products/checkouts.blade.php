@@ -107,7 +107,7 @@
                         <button type="button" onClick="makePayment()" id="btnsubmit2" class="btn btn-fill-out btn-block mt-10">Pay Now</button>
                     </form> --}}
                     
-                    <form action="{{ route('pay.checkout') }}" method="POST">
+                    <form action="{{ route('pay.checkout') }}" method="POST"> 
                         <a href="{{ url('/') }}" class="btn btn-danger"> <i class="fa fa-arrow-left"></i> Continue Shopping</a>
                         <input type="hidden" name="_token" value="{{csrf_token()}}">
                         <input type='hidden' name="total" value="{{ \Cart::Totalfloat() }}">

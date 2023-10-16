@@ -136,7 +136,7 @@ class CheckoutController extends Controller
      }
     }
 
-    public function index(){
+    public function indexx(){
         $cart= \Cart::content();
         if(count($cart) == null){
             return redirect()->route('index');
@@ -158,7 +158,7 @@ class CheckoutController extends Controller
         $shipping= Shipping::where(['user_id' => auth()->user()->id, 'is_default' => 1])->get();
        // $guestRecord = Shipping::latest()->first();
         // Retrieve the latest record
-        $lastRecord = Record::latest()->first();
+        $lastRecord = Shipping::latest()->first();
 
         // Store it in the session
         session(['lastRecord' => $lastRecord]);
@@ -171,6 +171,37 @@ class CheckoutController extends Controller
         ->with('news', News::latest()->get())
         ->with('cart', \Cart::content());
     }
+
+    public function index(){
+        $cart = \Cart::content();
+        if(count(\Cart::content())> 0){ 
+            if(auth()->user()){
+                $address = Shipping::where('user_id', auth()->user()->id)->latest()->first();
+                $geo = $this->getCustomerLocation($address->address.','.$address->city);
+                // dd($geo);
+                Shipping::where('user_id', auth()->user()->id)->latest()
+                      ->update([
+                      'lat' => $geo['lat'],
+                       'lng' => $geo['lng']
+                     ]);
+            
+            }else{
+                $address = '';
+            }
+            return view('users.products.checkout')
+            ->with('title', 'Checkout')
+            ->with('address', $address)
+            ->with('news', News::latest()->get())
+            ->with('carts', \Cart::content());
+        }else{
+            return view('users.products.carts')
+                ->with('title', 'Cart')
+                ->with('news', News::latest()->get())
+                ->with('cart', \Cart::content());
+        }
+    }
+
+    
 
     public function guest(){
         $cart= \Cart::content();
@@ -264,10 +295,172 @@ class CheckoutController extends Controller
                 
         }
     }
+    
+    public function StoreShippingAddress($request){
+        $shipping = new Shipping;
+        $shipping->user_id = 0;
+        $shipping->address = $request->address;
+        $shipping->receiver_name = $request->name;
+        $shipping->receiver_email = $request->email;
+        $shipping->is_default = 0;
+        $shipping->zip_code = '';
+        $shipping->city = $request->city;
+        $shipping->state = $request->state;
+        $shipping = $shipping->save();
+        return $shipping;
+    }
+
+    public function generatePassword($request){
+        $pp = substr($request,0,5);
+        $nm = rand(1111,9999).rand(1111,9999);
+        $password = $pp.$nm;
+        return $password;
+    }
+    public function createUser($request)
+    {
+        $create = User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'phone' => $request->phone,
+            'password' => $request['pass'],
+        ]);
+        if($create){
+            $getUser = User::latest()->first();
+            $notify = new Notification;
+            $notify->user_id = $getUser->id;
+            $notify->title = 'welcome to Trendy Kay Collection';
+            $notify->message = 'Dear '.$getUser->name. ', <br>'.'We are glad to have you with us, do enjoy our services';
+            $notify->save();
+            $admin = new AdminNotify;
+            $admin->message = 'New Customer Registered';
+            $admin->save();
+        }
+        return $create;
+    }
   
-  
-   
-     public function store(Request $request){
+    public function store(Request $request){
+      //  dd($request->all());
+        if(count(\Cart::content())>0){
+            $valid = $request->all(); 
+            if(!auth()->user()){
+                DB::beginTransaction();
+                try{
+                    $user = User::where('email', $request->email)->first();
+                    if($user){
+                        Session()->flash('alert', 'danger');
+                        Session()->flash('reset');
+                        Session()->flash('message', 'Opps!, The Customer email already exist on our System, Did you forget your Password?');
+                        return redirect()->back()->withInput($valid);
+                    }else{
+                        #================== CREATE NEW USER ACCOUNT================
+                        $pass = $this->generatePassword($request->name);
+                        $request['pass'] = hash::make($pass);
+                        $uu = $this->createUser($request);
+                        //dd($uu);
+                        #============= LOGIN USER =========================
+                        Auth::login($uu);
+
+                       
+                        // if($uu){
+                        //     $title = 'New Customer Registered';
+                        //     $message = 'Thanks for registrating on our system, do enjoy our services.';
+                        //     #============== SEND REGISTRATION DETAILS TO USE =======================
+                        //     $this->sendNotify($title, $message);
+                        //     $data = [
+                        //         'name' => $request->name,
+                        //         'email' => $request->email,
+                        //         'phone'=>$request->phone,
+                        //         'password'=> $pass,
+                        //      ];
+                        //     $this->send($data);
+                        // }
+                    }
+                    
+                }catch(\Exception $e){
+                    DB::rollBack();
+                    throw $e;
+                }   
+            }
+           
+            DB::beginTransaction();
+            $user = User::where('id', auth()->user()->id)->first();
+           
+           
+            try{
+                $orderNo = rand(1111111,9999999).rand(1111111,9999999);
+                $cart = \Cart::content();
+               
+                foreach($cart as $cat){
+                    $order_list = new OrderItem;
+                    $order_list->order_No = $orderNo;
+                    $order_list->product_name = $cat->model->name;
+                    $order_list->product_name = $cat->name;
+                    $order_list->qty = $cat->qty;
+                    $order_list->size = $cat->options->size;
+                    $order_list->price = $cat->price;
+                    $order_list->image = $cat->model->image;
+                    $order_list->payable = $cat->qty*$order_list->price;
+                    $order_list->user_id = $user->id;
+                    $order_list->save();
+
+                }
+                $address = Shipping::where('user_id', $user->id)->latest()->first();
+              
+                if(!$address){
+                    //  dd($request);
+                    //$user_address =  $this->StoreShippingAddress($request);
+                    //$ss= $this->Shipping->create($user_address); 
+                   
+                    $shipping = new Shipping;
+                    $shipping->user_id =  $user->id;
+                    $shipping->receiver_name = $request->name;
+                    $shipping->receiver_email = $request->email;
+                    $shipping->phone = $request->phone;
+                    $shipping->is_default = 0;
+                    $shipping->zip_code = '';
+                    $shipping->zip_code = $request->zip_code;
+                    $shipping->country = $request->country;
+                    $shipping->save();
+                   // dd( 'save');
+                }
+               
+                DB::commit();
+                
+ 
+            }catch(\Exception $e){
+                DB::rollBack();
+                throw $e;
+            }  
+           
+           $address = Shipping::where('user_id', $user->id)->latest()->first();
+           
+           $address = Shipping::where('user_id', auth()->user()->id)->latest()->first();
+          // dd(  $address);
+           $geo = $this->getCustomerLocation($address->address.','.$address->city);
+          // dd( $geo);
+           $shipping_price = $this->getShippingPrice($geo['lat'], $geo['lng']);
+          // $fare = Delivery::where('user_id', auth()->user()->id)->latest()->first();
+          // dd($fare);
+           Shipping::where('user_id', auth()->user()->id)->latest()
+            ->update([
+            'lat' => $geo['lat'],
+            'lng' => $geo['lng']
+            ]);
+            //dd('Gud');
+            return view('users.products.payment')
+            ->with('user', $user)
+            ->with('address', $address)
+            ->with('carts', $cart)
+            ->with('news', News::latest()->get())
+           // ->with('fare', $fare)
+            ->with('title', 'Checkout Payment');
+        }else{
+
+            return redirect()->route('carts.index');
+        }
+    }
+
+    public function storee(Request $request){
         $orderNo= DB::table('order_items')->where(['user_id'=> auth()->user()->id])->orderBy('created_at', 'desc')->first();
         $order_exist = order::where(['order_No' => $orderNo->order_No])->first();
         if($order_exist){ 

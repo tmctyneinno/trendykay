@@ -7,7 +7,7 @@
         <div class="container">
             <div class="breadcrumb">
                 <a href="{{route('index')}}" rel="nofollow">Home</a>
-                <span></span> Checkout
+                <span></span> {{$title}}
             </div>
         </div>
     </div>
@@ -18,31 +18,6 @@
                     <div class="toggle_info">
                         <span><i class="fi-rs-user mr-10"></i><span class="text-muted">Already have an account?</span> <a href="{{route('login')}}" >Click here to login</a></span>
                     </div>
-                    <div class="panel-collapse collapse login_form" id="loginform">
-                        <div class="panel-body">
-                            <p class="mb-30 font-sm">If you have shopped with us before, please enter your details below. If you are a new customer, please proceed to the Billing &amp; Shipping section.</p>
-                            <form method="post">
-                                <div class="form-group">
-                                    <input type="text" name="email" placeholder="Username Or Email">
-                                </div>
-                                <div class="form-group">
-                                    <input type="password" name="password" placeholder="Password">
-                                </div>
-                                <div class="login_footer form-group">
-                                    <div class="chek-form">
-                                        <div class="custome-checkbox">
-                                            <input class="form-check-input" type="checkbox" name="checkbox" id="remember" value="">
-                                            <label class="form-check-label" for="remember"><span>Remember me</span></label>
-                                        </div>
-                                    </div>
-                                    <a href="#">Forgot password?</a>
-                                </div>
-                                <div class="form-group">
-                                    <button class="btn btn-md" name="login">Log in</button>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
                 </div>
                 
             </div>
@@ -52,30 +27,31 @@
                 </div>
             </div>
            
-            <form action="{{ route('checkout.store')}}" method="POST" id='form1'>
+            <form action="{{ route('pay.checkout')}}" method="POST">
             @csrf
            
             <div class="row">
                 
                 <div class="col-md-6">
                     <div class="mb-25">
-                        <h4>Continue Shopping</h4>
+                        <h4>Customer Information</h4>
                     </div>
                     <span class="alert alert-{{Session::get('alert')}}" role="alert"> 
                         <span style="padding:5px">	{!! Session()->get('message')!!} 
                     </span>
                     <br>
                         <div class="form-group">
-                            
+                           
                             <input type="text" name="name" maxlength="64"@auth value=" {{auth()->user()->name}}" @endauth value="{{old('name')}}" class="@error('name') is-invalid @enderror" placeholder="Full Name" @auth readOnly @endauth> 
-                                @error('name')
-                                    <span class="btn-danger" role="alert">
-                                    <small> {{$message}}</small>
-                                    </span>
-                                @enderror
+                            @error('name')
+                                <span class="btn-danger" role="alert">
+                                <small> {{$message}}</small>
+                                </span>
+                            @enderror
                         </div>
                         <div class="form-group">
-                            <input required type="email" name="email" @auth  value="{{auth()->user()->email}}" @else value="{{old('email')}}"  @endauth class="@error('email') is-invalid @enderror" placeholder="Email Address" @auth readOnly @endauth>
+                           
+                            <input type="email" name="email" maxlength="64"@auth value=" {{auth()->user()->email}}" @endauth value="{{old('email')}}" class="@error('email') is-invalid @enderror" placeholder="Email" @auth readOnly @endauth> 
                             @error('email')
                                 <span class="btn-danger" role="alert">
                                 <small> {{$message}}</small>
@@ -91,11 +67,11 @@
                             @enderror
                         </div>
                         <div class="form-group">
-                            <input required type="text" name="zip_code"   @if(isset($address->zip_code)) value="{{$address->zip_code}}" @endif value="{{old('zip_code')}}"   class="@error('zip_code') is-invalid @enderror" placeholder="Zip Code">	
+                            <input required type="text" name="zip_code"   @if(isset($address->zip_code)) value="{{$address->zip_code}}" @endif value="{{old('zip_code')}}"   class="@error('zip_code') is-invalid @enderror" placeholder="Zip Code" @auth readOnly @endauth>	
 										
                         </div>
                         <div class="form-group">
-                            <input required type="text" name="country"  @if(isset($address->country)) value="{{$address->country}}" @endif value="{{old('country')}}"   class="@error('country') is-invalid @enderror" placeholder="Country">
+                            <input required type="text" name="country"  @if(isset($address->country)) value="{{$address->country}}" @endif value="{{old('country')}}"   class="@error('country') is-invalid @enderror" placeholder="Country" @auth readOnly @endauth>
                             @error('country')
                                 <span class="btn-danger" role="alert">
                                 <small> {{$message}}</small>
@@ -103,7 +79,7 @@
                             @enderror
                         </div>
                         <div class="form-group">
-                            <input required type="text" name="address"@if(isset($address->address)) value="{{$address->address}}" @endif value="{{old('address')}}"  class="@error('address') is-invalid @enderror"placeholder="Address">
+                            <input required type="text" name="address"@if(isset($address->address)) value="{{$address->address}}" @endif value="{{old('address')}}"  class="@error('address') is-invalid @enderror"placeholder="Address" @auth readOnly @endauth>
                                 @error('address')
                                     <span class="btn-danger" role="alert">
                                     <small> {{$message}}</small>
@@ -115,7 +91,7 @@
                 <div class="col-md-6">
                     <div class="order_review">
                         <div class="mb-20">
-                            <h4>Order Details</h4>
+                            <h4>Orders Details</h4>
                         </div>
                         <div class="table-responsive order_table text-center">
                             <table class="table">
@@ -168,22 +144,8 @@
                             </table>
                         </div>
                         <div class="bt-1 border-color-1 mt-30 mb-30"></div>
-                        <div class="payment_method">
-                            <div class="mb-25">
-                                <h5>Payment</h5>
-                            </div>
-                            <div class="payment_option">
-                                
-                                <div class="custome-radio">
-                                    <input class="form-check-input" required="" type="radio" name="payment_option" id="exampleRadios5" checked="">
-                                    <label class="form-check-label" for="exampleRadios5" data-bs-toggle="collapse" data-target="#paypal" aria-controls="paypal">Paypal</label>
-                                    <div class="form-group collapse in" id="paypal">
-                                        <p class="text-muted mt-5">Pay via PayPal; you can pay with your credit card if you don't have a PayPal account.</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <button type="submit" class="btn btn-fill-out btn-block mt-30">Place Order</button>
+                        
+                        <button type="submit" class="btn btn-fill-out btn-block mt-30">Complete Payment</button>
                     </div>
                 </div>
                
@@ -192,6 +154,8 @@
         </div>
     </section>
 </main>
+
+
 
 
 @endsection

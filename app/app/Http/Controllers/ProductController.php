@@ -69,6 +69,14 @@ class ProductController extends Controller
         }
 
     }
+    public function delete(Request $request, $id){
+        //dd( decrypt($id));
+        $id = Product::where('id', decrypt($id))->first();
+        $id->delete();
+        \Session::flash('alert', 'error');
+        \Session::flash('message','Product deleted Successfully');
+        return back();
+    }
     
     public function status(Request $request, $id){
         

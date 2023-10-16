@@ -15,7 +15,12 @@ class AddFielsdToProducts extends Migration
     {
         Schema::table('products', function (Blueprint $table) {
             //
-            $table->string('exchange_rate')->nullable();
+            $table->id();
+            $table->integer('category_id');
+            $table->string('name');
+            $table->string('color');
+            $table->string('size');
+            $table->timestamps();
             
         });
     }

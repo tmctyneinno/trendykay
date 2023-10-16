@@ -12,4 +12,9 @@ class Color extends Model
         'product_id', 'name',
     ];
 
+    public function products()
+    {
+        return $this->belongsToMany(Product::class, 'color_product'); // 'color_product' is the pivot table name
+    }
+
 } 

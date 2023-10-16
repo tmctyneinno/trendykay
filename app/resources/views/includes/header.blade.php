@@ -1,11 +1,11 @@
- <header class="header-area header-style-1 header-height-2">
+<header class="header-area header-style-2 header-height-2">
     <div class="header-top header-top-ptb-1 d-none d-lg-block">
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-xl-3 col-lg-4">
                     <div class="header-info">
                         <ul>
-                            <li><i class="fi-rs-smartphone"></i> <a href="#">(+01) - 2345 - 6789</a></li>
+                            <li><i class="fi-rs-smartphone"></i> <a href="#">+14317777816</a></li>
                             <li><i class="fi-rs-marker"></i><a  href="page-contact.html">Our location</a></li>
                         </ul>
                     </div>
@@ -16,19 +16,16 @@
                             <ul>
                                 @foreach ($news as $new)
                                 <li>{{$new->title}} </li>
-                                {{-- <li>{{$new->title}} <a href="{{route('news.details',encrypt($new->id))}}">View details</a></li> --}}
+                                
                                 @endforeach
-                               
+                               {{-- <li>{{$new->title}} <a href="{{route('news.details',encrypt($new->id))}}">View details</a></li> --}}
                             </ul>
                         </div>
                     </div>
                 </div>
-               
                 <div class="col-xl-3 col-lg-4">
-                    
                     <div class="header-info header-info-right">
                         <ul>
-
                             @guest
                                 <li><i class="fi-rs-user"></i><a href="{{route('login')}}">Log In / Sign Up</a></li>
                             @else
@@ -40,49 +37,43 @@
                                         <li><a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Log out</a></li>
                                         
                                     </ul>
-                                </li>
+                                </li> 
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                     @csrf
                                 </form> 
                             @endguest
-
                         </ul>
                     </div>
                 </div>
             </div>
         </div>
-    </div> 
+    </div>
     <div class="header-middle header-middle-ptb-1 d-none d-lg-block">
         <div class="container">
-            <div class="header-wrap"> 
+            <div class="header-wrap">
                 <div class="logo logo-width-1">
                     <a href="{{route('index')}}"><img src="{{ asset('/assets/logo.jpeg')}}" alt="logo"></a>
                 </div>
                 <div class="header-right">
                     <div class="search-style-2">
-						{{Form::open(['action' => 'HomeController@search', 'method'=>'get', 'class'=>'js-focus-state'])}}
-                            
-						 
-							<input type="text" value="@if(isset($search)) {{$search}} @endif" name="search" id="searchproduct-item" placeholder="Search for Products" 
-								aria-label="Search for Products" aria-describedby="searchProduct1" required>
-							<div class="form-group" style="">
-                              
-							    <button type="submit" class="btn btn-fill-out btn-block text-color "  style="background:#088178; color:#fff; margin-right: 290px;" id="searchProduct1"><i class="fi-rs-search"></i></button>
-							</div>
-                        </form>
+                        {{Form::open(['action' => 'HomeController@search', 'method'=>'get', 'class'=>'js-focus-state'])}}
+                            <div class="row">
+                                <div class="col-xl-6 col-lg-4">
+                                    <input type="text" value="@if(isset($search)) {{$search}} @endif" name="search" id="searchproduct-item" style="width: 200px" placeholder="Search for Products" 
+								    aria-label="Search for Products" aria-describedby="searchProduct1" required>
+                                </div>
+                                <div class="col-xl-6 col-lg-4">
+                                    <button type="submit" class="btn btn-fill-out btn-block text-color "  style="background:#088178; color:#fff; " id="searchProduct1"><i class="fi-rs-search"></i></button>
+                          
+                                </div>
+                            </div>
+                            {{ Form::close()}}
                     </div>
-                    <p class="cartReloads"></p>
                     <div class="header-action-right">
                         <div class="header-action-2">
-                            {{-- <div class="header-action-icon-2">
-                                <a href="shop-wishlist.html">
-                                    <img class="svgInject" alt="Evara" src="{{ asset('assets/imgs/theme/icons/icon-heart.svg')}}">
-                                    <span class="pro-count blue">4</span>
-                                </a>
-                            </div> --}}
                             <div class="header-action-icon-2">
                                 <a class="mini-cart-icon" href="{{route('carts.index')}}">
-                                    <img alt="Evara" src="{{ asset('assets/imgs/theme/icons/icon-cart.svg')}}">
+                                    <img alt="Trendy Kay Collection" src="{{ asset('assets/imgs/theme/icons/icon-cart.svg')}}">
                                     @if(Cart::count()> 0) 
                                         <span class="pro-count blue ">{{Cart::count()}}</span>  
                                     @else  
@@ -91,7 +82,6 @@
                                 </a>
                                 <div class="cart-dropdown-wrap cart-dropdown-hm2">
                                     <ul>
-                                       
                                         @if (Cart::count() > 0) 
                                             @foreach (Cart::content()->take(4) as $carts)
                                                 <li> 
@@ -112,9 +102,6 @@
                                         @else
                                             <span class="text-danger" style="color: red">No item in cart</span>
                                         @endif
-                                        
-                                        
-                                        
                                     </ul>
                                     @php
                                         $priceTotal = Cart::priceTotal();
@@ -149,35 +136,22 @@
                 </div>
                 <div class="header-nav d-none d-lg-flex">
                     <div class="main-categori-wrap d-none d-lg-block">
-                        <a class="categori-button-active" href="#">
+                        <a class="categori-button-active open" href="#">
                             <span class="fi-rs-apps"></span> Browse Categories
                         </a>
-                        <div class="categori-dropdown-wrap categori-dropdown-active-large">
-                            <ul>
-                                @foreach($menu_categories as $cat )
-                                {{-- <li class="has-children"> --}}
-                                <li class="">
-                                    <a href="{{route('user.category', encrypt($cat->id))}}">
-                                        {{-- <i class="evara-font-tshirt"></i> --}}
-                                        {{$cat->name}}
-                                    </a>
-                                    {{-- <div class="dropdown-menu">
-                                        <ul class="mega-menu ">
-                                            @foreach($cat->subCategory as $pro)
-                                                <li>
-                                                    <a class="dropdown-item nav-link nav_item" href="{{route('user.category', encrypt($pro->id))}}">
-                                                        {{$pro->name}}</a>
-                                                </li>
-                                            @endforeach
-                                        </ul>
-                                    </div> --}}
-                                </li>
-                                @endforeach
-{{--                               
-                                <li><a href="shop-grid-right.html"><i class="evara-font-desktop"></i>Dresses</a></li> --}}
-                               
-                            </ul>
-                            <div class="more_categories">Show more...</div>
+                        <div class=" {{ request()->path() === 'pages/home' ? 'categori-dropdown-wrap categori-dropdown-active-large open' : 'categori-dropdown-wrap categori-dropdown-active-large ' }}">
+                            <div class="">
+                                <ul class="mega-menu ">
+                                    @foreach($menu_categories as $cat )
+                                    <li class="mega-menu-col">
+                                        <a href="{{route('user.category', encrypt($cat->id))}}">
+                                            {{$cat->name}}
+                                        </a>
+                                        
+                                    </li>
+                                    @endforeach
+                                </ul>
+                            </div>
                         </div>
                     </div>
                     <div class="main-menu main-menu-padding-1 main-menu-lh-2 d-none d-lg-block">
@@ -185,29 +159,22 @@
                             <ul>
                                 @foreach ($menu as $mnu )
                                 <li>
-                                    <a class="active" href="{{route('pages',$mnu->slug)}}">{{$mnu->name}} </a>
+                                    <a class=" active" href="{{route('pages',$mnu->slug)}}">{{$mnu->name}} </a>
                                 </li>
                                 @endforeach
-                               
                             </ul>
                         </nav>
                     </div>
                 </div>
                 <div class="hotline d-none d-lg-block">
-                    <p><i class="fi-rs-headset"></i><span>Hotline</span> +14317777816 </p>
+                    <p><i class="fi-rs-headset"></i><span>Hotline</span> +14317777816</p>
                 </div>
-                <p class="mobile-promotion">Happy <span class="text-brand">Mother's Day</span>. Big Sale Up to 40%</p>
+                {{-- <p class="mobile-promotion">Happy <span class="text-brand">Mother's Day</span>. Big Sale Up to 40%</p> --}}
                 <div class="header-action-right d-block d-lg-none">
                     <div class="header-action-2">
-                        {{-- <div class="header-action-icon-2">
-                            <a href="shop-wishlist.html">
-                                <img alt="Evara" src="{{ asset('assets/imgs/theme/icons/icon-heart.svg')}}">
-                                <span class="pro-count white">4</span>
-                            </a>
-                        </div> --}}
                         <div class="header-action-icon-2">
-                            <a class="mini-cart-icon" href="{{route('carts.index')}}">
-                                <img alt="Evara" src="{{ asset('assets/imgs/theme/icons/icon-cart.svg')}}">
+                            <a class="mini-cart-icon" href="shop-cart.html">
+                                <img alt="Trendy Kay Collection" src="{{ asset('assets/imgs/theme/icons/icon-cart.svg')}}">
                                 <span class="pro-count white">
                                     @if(Cart::count() > 0)
                                         {{Cart::count()}}
@@ -223,7 +190,7 @@
                                     <li>
                                         <div class="shopping-cart-img">
                                             <a href="{{route('carts.index')}}">
-                                                <img alt="Evara" src="{{asset('images/products/' .$carts->model->image)}}">
+                                                <img alt="Trendy Kay Collection" src="{{asset('images/products/' .$carts->model->image)}}">
                                             </a>
                                         </div>
                                         <div class="shopping-cart-title">
@@ -239,9 +206,14 @@
                                         <span class="text-danger" style="color: red">No item in cart</span>
                                     @endif
                                 </ul>
+                                @php
+                                    $priceTotal = Cart::priceTotal();
+                                    $tax = $priceTotal * 0.12; // Calculate the tax amount (12% of the subtotal)
+                                    $totalPrice = $priceTotal + $tax; // Add the tax to the subtotal to get the total price
+                                @endphp
                                 <div class="shopping-cart-footer">
                                     <div class="shopping-cart-total">
-                                        <h4>Total <span>C${{Cart::priceTotalfloat()}}</span></h4>
+                                        <h4>Total <span>C${{ number_format($totalPrice, 2)  }}</span></h4>
                                     </div>
                                     <div class="shopping-cart-button">
                                         <a href="{{route('carts.index')}}">View cart</a>
@@ -263,6 +235,7 @@
         </div>
     </div>
 </header>
+
 <div class="mobile-header-active mobile-header-wrapper-style">
     <div class="mobile-header-wrapper-inner">
         <div class="mobile-header-top">
@@ -281,10 +254,9 @@
                 {{Form::open(['action' => 'HomeController@search', 'method'=>'get', 'class'=>'js-focus-state'])}}
                 <input type="text" value="@if(isset($search)) {{$search}} @endif" name="search" 
                 id="searchproduct-item" placeholder="Search for Products" 
-                    aria-label="Search for Products" aria-describedby="searchProduct1" required>    
-                    {{-- <input type="text" placeholder="Search for items…"> --}}
+                    aria-label="Search for Products" aria-describedby="searchProduct1" required> 
                     <button type="submit" id="searchProduct1"><i class="fi-rs-search"></i></button>
-                </form>
+                {{ Form::close()}}
             </div>
             <div class="mobile-menu-wrap mobile-header-border">
                 <div class="main-categori-wrap mobile-header-border">
@@ -310,30 +282,22 @@
                             <span class="menu-expand"></span><a href="{{route('pages',$mnu->slug)}}">{{$mnu->name}}</a>
                         </li>
                         @endforeach
-                       
                     </ul>
                 </nav>
                 <!-- mobile menu end -->
             </div>
             <div class="mobile-header-info-wrap mobile-header-border">
                 <div class="single-mobile-header-info mt-30">
-                    <a  href="page-contact.html"> Our location </a>
+                    <a  href="{{ url('pages/contacts')}}"> Our location </a>
                 </div>
                 <div class="single-mobile-header-info">
-                    <a href="page-login-register.html">Log In / Sign Up </a>
+                    <a href="{{route('login')}}">Log In / Sign Up </a>
                 </div>
                 <div class="single-mobile-header-info">
-                    <a href="#">(+01) - 2345 - 6789 </a>
+                    <a href="#">+14317777816 </a>
                 </div>
             </div>
-            <div class="mobile-social-icon">
-                <h5 class="mb-15 text-grey-4">Follow Us</h5>
-                <a href="#"><img src="{{ asset('assets/imgs/theme/icons/icon-facebook.svg')}}" alt=""></a>
-                <a href="#"><img src="{{ asset('assets/imgs/theme/icons/icon-twitter.svg')}}" alt=""></a>
-                <a href="#"><img src="{{ asset('assets/imgs/theme/icons/icon-instagram.svg')}}" alt=""></a>
-                <a href="#"><img src="{{ asset('assets/imgs/theme/icons/icon-pinterest.svg')}}" alt=""></a>
-                <a href="#"><img src="{{ asset('assets/imgs/theme/icons/icon-youtube.svg')}}" alt=""></a>
-            </div>
+           
         </div>
     </div>
 </div>

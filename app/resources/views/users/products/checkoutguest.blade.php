@@ -72,7 +72,7 @@
                             <div class="row">
                                 <div class="col-lg-6 mb-sm-15">
                                     <div class="mb-10">
-                                        <h4>Shipping Address </h4>
+                                        <h4>User Details </h4>
                                     </div>
                                 </div>
                                 {{-- <div class="col-lg-6 mb-sm-15">
@@ -107,7 +107,7 @@
                                         @else
                                             @if ($guestRecord)
                                                 <h5><a href="#"  style="display: none">Receiver:</a><span class="product-qty" style="display: none">{{$guestRecord->id}} </span></h5>
-                                                <h5><a href="#">Receiver:</a><span class="product-qty" style="font-weight: bold">{{$guestRecord->receiver_name}} </span></h5>
+                                                <h5><a href="#">Name:</a><span class="product-qty" style="font-weight: bold">{{$guestRecord->receiver_name}} </span></h5>
                                                 <br>
                                                 <h5><a href="#">Address:</a><span class="product-qty" style="font-weight: bold">{{$guestRecord->address}} </span></h5> 
                                                 <br>
@@ -177,6 +177,7 @@
                                     </thead>
                                     <tbody>
                                         @foreach($cart as $carts)
+                                           
                                         <tr>
                                             <td class="image product-thumbnail"><img src="{{asset('/images/products/'.$carts->model->image )}}" alt="#"></td>
                                             <td>
@@ -187,18 +188,31 @@
                                         </tr>
                                         @endforeach
                                         @php
-                                            $cart = \Cart::priceTotalFloat();
-                                           // $total = \Cart::priceTotalFloat() + 800;
-                                            $total = \Cart::priceTotalFloat();
+                                            $priceTotal = Cart::priceTotalFloat();
+                                            $tax = $priceTotal * 0.12; // Calculate the tax amount (12% of the subtotal)
+                                            $total = $priceTotal + $tax; // I added the tax to the subtotal to get the total price
                                         @endphp
-
-                                        {{-- <tr>
+                                        @php
+                                            $subTotal = Cart::subTotal();
+                                            $tax = $subTotal * 0.12; // Calculate the tax amount (12% of the subtotal)
+                                            $subtotalPrice = $subTotal + $tax; // I added the tax to the subtotal to get the total price
+                                        @endphp
+                                        @if ($guestRecord)
+                                            <input type="text" name="name" value="{{ $guestRecord->receiver_name }}" >
+                                            <input type="text" name="email" value="{{ $guestRecord->receiver_email }}" >
+                                            <input type="text" name="amount" value="{{$total}}">
+                                        @endif
+                                        <tr>
                                             <th>SubTotal</th>
-                                            <td class="product-subtotal" colspan="2">$280.00</td>
-                                        </tr> --}}
+                                            <td class="product-subtotal" colspan="2">C${{number_format($subtotalPrice, 2)}}</td>
+                                        </tr>
                                         <tr>
                                             <th>Shipping</th>
                                             <td colspan="2"><em>Standard Shipping</em></td>
+                                        </tr>
+                                        <tr>
+                                            <th>Tax</th>
+                                            <td colspan="2"><em> 12%</em></td>
                                         </tr>
                                         <tr>
                                             <th>Total</th>

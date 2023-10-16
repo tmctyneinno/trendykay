@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Intervention\Image\Facades\Image;
+use App\Color;
 
 class Product extends Model
 {
@@ -28,6 +29,11 @@ class Product extends Model
         return $this->hasMany(Color::class);
     }
 
+    public function color()
+    {
+        return $this->belongsToMany(Color::class, 'color_product'); // 'color_product' is the pivot table name
+    }
+
     public function sizes()
     {
         return $this->hasMany(Size::class);
@@ -46,4 +52,3 @@ class Product extends Model
         return $this->belongsTo(SubCategory::class, 'sub_category_id', 'id');
     }
 }
- 

@@ -19,7 +19,11 @@ Route::prefix('admin')->group(function(){
     Route::get('/', 'AdminController@index')->name('admin.index');
     Route::resource('/category', 'CategoryController');
     Route::resource('/product', 'ProductController'); 
+
     Route::post('/product/status/{id}', 'ProductController@status')->name('product.status');
+
+    Route::post('/product/delete/{id}', 'ProductController@delete')->name('product.delete');
+
     Route::get('/product/variation/{id}', 'ProductController@variation')->name('product.variation'); 
     Route::get('/variation/edit/{id}', 'ProductController@variationEdit')->name('variation.edit');  
     Route::post('/variation/update/{id}', 'ProductController@variationUpdate');  
@@ -87,29 +91,38 @@ Route::get('/category/{id}', 'HomeController@Categories')->name('user.category')
 Route::post('/add-review/{id}', 'HomeController@Addreview');
 Route::get('news/details/{id}', 'PagesController@newsDetails')->name('news.details');
 Route::get('/user/checkout', 'CheckoutController@guest')->name('user.checkoutout');
-Route::post('/guestaddress', 'CheckoutController@modalguest');
-Route::post('/pay/checkoutguest', 'PaymentController@initiatePayCheckoutguest')->name('pay.checkoutguest');
-
+//Route::post('/guestaddress', 'CheckoutController@modalguest');
+//Route::post('/pay/checkoutguest', 'PaymentController@initiatePayCheckoutguest')->name('pay.checkoutguest');
+//Route::post('/pay/checkoutguest', 'PaymentController@initiatePayCheckoutguest')->name('pay.checkoutguest');
+ 
+//Route::resource('/checkout', 'CheckoutController');
+Route::post('/checkout', 'CheckoutController@store')->name('checkout.store');
+Route::get('/checkout', 'CheckoutController@index')->name('checkout.index');
+//Color
+Route::get('/filter-color', 'HomeController@filterColor')->name('filterColor');
+//Size
+Route::get('/filter-size', 'HomeController@filterSize')->name('filterSize');
+//Payment
+Route::post('/pay/checkout', 'PaymentController@initiatePayCheckout')->name('pay.checkout');
+Route::get('success', 'PaymentController@handlePaymentSuccess')->name('payment.success');
+Route::get('error', 'PaymentController@errorpayment')->name('payment.cancel');
+ 
 Route::middleware('auth')->group( function(){
 Route::post('/newaddress', 'CheckoutController@modal');
 Route::post('/checkouts', 'CheckoutController@Add'); 
 
 
-Route::resource('/checkout', 'CheckoutController')->middleware('auth');
+
 //Route::resource('/checkout', 'CheckoutController')->middleware('auth');
 Route::get('/payment/{trxref}', 'CheckoutController@verify')->name('verify.pay');
-Route::post('/checkout/payments', 'CheckoutController@storeOrder');
+//Route::post('/checkout/payments', 'CheckoutController@storeOrder');//
+
 Route::get('/address/checkout', 'CheckoutController@addNew')->name('checkout.addNew');
 // Route::get('/confirm/payment/{id}','CheckoutController@verify')->name('confirm.payment'); 
 Route::post('/confirm/payment/','CheckoutController@verify')->name('confirm.payment'); 
 
 
-Route::post('/pay/checkout', 'PaymentController@initiatePayCheckout')->name('pay.checkout');
 
-
-Route::get('success', 'PaymentController@handlePaymentSuccess')->name('payment.success');
-Route::get('error', 'PaymentController@errorpayment')->name('payment.cancel');
- 
 Route::get('user/orders', 'HomeController@myOrders')->name('users.orders');
 Route::get('user/transactions', 'HomeController@myTransactions')->name('user.transactions');
 Route::get('/users/order/details/{id}', 'HomeController@OrderDetails')->name('users.order-details');
