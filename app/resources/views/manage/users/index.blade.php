@@ -55,7 +55,7 @@
                         <div class="card-body">
                             <div class="d-flex justify-content-between align-items-center">
                                 <div>
-                                    <h2 class="font-weight-bold mb-2">₦{{number_format($sales)}}</h2>
+                                    <h2 class="font-weight-bold mb-2">C${{number_format($sales)}}</h2>
                                     <div>Total Sales</div>
                                 </div>
                                 <div>

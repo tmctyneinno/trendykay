@@ -50,7 +50,7 @@
                                                     <a href="#">{{$sp->name}}</a>
                                                 </td>
                                                 <td>
-                                                    <a href="#">{{number_format($sp->sale_price,2)}}</a>
+                                                    <a href="#">C${{number_format($sp->sale_price,2)}}</a>
                                                 </td> 
                                                 <td>
                                                     <a href="#">{{number_format($sp->discount,0)}}%</a>

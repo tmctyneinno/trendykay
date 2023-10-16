@@ -54,7 +54,7 @@
                                                     <a href="#">{{$sp->payment_method == 'card'? 'Card Payment' : 'Cash on Delivery'}}</a>
                                                 </td>
                                                  <td>
-                                                    <a href="#">{{number_format($sp->amount,2)}}</a>
+                                                    <a href="#">C${{number_format($sp->amount,2)}}</a>
                                                 </td>
                                                  <td>
                                                     @if($sp->is_paid == 1) <span  class="badge badge-success">Paid</span> @else <span type="span" class="badge badge-light">Pending</span> @endif</a>

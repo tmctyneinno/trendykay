@@ -57,16 +57,16 @@
                                                     <a href="#">{{$sp->payment_method}}</a>
                                                 </td>
                                                  <td>
-                                                    <a href="#">{{number_format($sp->amount,2)}}</a>
+                                                    <a href="#">C${{number_format($sp->amount,2)}}</a>
                                                 </td>
                                                 <td>
                                                     <a href="#">{{$sp->type}}</a>
                                                 </td>
                                                 <td>
-                                                    <a href="#">{{number_format($sp->prev_balance,2)}}</a>
+                                                    <a href="#">C${{number_format($sp->prev_balance,2)}}</a>
                                                 </td>
                                                 <td>
-                                                    <a href="#">{{number_format($sp->avail_balance,2)}}</a>
+                                                    <a href="#">C${{number_format($sp->avail_balance,2)}}</a>
                                                 </td>
                                                  
                                                 <td>
