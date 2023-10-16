@@ -16,7 +16,7 @@ class NewsController extends Controller
 
     public function Index(){
         return view('manage.news.index')
-        ->with('bheading', 'News Index')
+        ->with('bheading', 'Blog Index')
         ->with('breadcrumb', 'Index')
         ->with('news', News::get());
     }

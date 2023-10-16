@@ -287,21 +287,12 @@
                      <li>
                         <a  href="" data-toggle="tooltip" data-placement="right" title="View User's activities"
                            data-nav-target="#dashboards">
-                            <i data-feather="server"></i>&nbsp; News</a>
+                            <i data-feather="server"></i>&nbsp; Blog</a>
                             <ul>
-                                  <li><a href="{{route('admin.news.create')}}">Post News</a></li>
-                                  <li><a href="{{route('admin.news.index')}}">Manage News</a></li>
+                                  <li><a href="{{route('admin.blog.create')}}">Post Blog</a></li>
+                                  <li><a href="{{route('admin.blog.index')}}">Manage Blog</a></li>
                             </ul>
                         </li>
-                        <li>
-                            <a  href="" data-toggle="tooltip" data-placement="right" title="View User's activities"
-                               data-nav-target="#dashboards">
-                                <i data-feather="package"></i>&nbsp; Projects</a>
-                                <ul>
-                                      <li><a href="{{route('admin.project.create')}}">Add Projects</a></li>
-                                      <li><a href="{{route('admin.project.index')}}">Manage Projects</a></li>
-                                </ul>
-                            </li>
                      <li>
                         <a  href="" data-toggle="tooltip" data-placement="right" title="View User's activities"
                            data-nav-target="#dashboards">

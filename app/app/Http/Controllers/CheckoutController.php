@@ -407,10 +407,7 @@ class CheckoutController extends Controller
                 $address = Shipping::where('user_id', $user->id)->latest()->first();
               
                 if(!$address){
-                    //  dd($request);
-                    //$user_address =  $this->StoreShippingAddress($request);
-                    //$ss= $this->Shipping->create($user_address); 
-                   
+                    
                     $shipping = new Shipping;
                     $shipping->user_id =  $user->id;
                     $shipping->receiver_name = $request->name;
@@ -434,18 +431,18 @@ class CheckoutController extends Controller
            
            $address = Shipping::where('user_id', $user->id)->latest()->first();
            
-           $address = Shipping::where('user_id', auth()->user()->id)->latest()->first();
+          // $address = Shipping::where('user_id', auth()->user()->id)->latest()->first();
           // dd(  $address);
-           $geo = $this->getCustomerLocation($address->address.','.$address->city);
+          // $geo = $this->getCustomerLocation($address->address.','.$address->city);
           // dd( $geo);
-           $shipping_price = $this->getShippingPrice($geo['lat'], $geo['lng']);
+          // $shipping_price = $this->getShippingPrice($geo['lat'], $geo['lng']);
           // $fare = Delivery::where('user_id', auth()->user()->id)->latest()->first();
           // dd($fare);
-           Shipping::where('user_id', auth()->user()->id)->latest()
-            ->update([
-            'lat' => $geo['lat'],
-            'lng' => $geo['lng']
-            ]);
+        //    Shipping::where('user_id', auth()->user()->id)->latest()
+        //     ->update([
+        //     'lat' => $geo['lat'],
+        //     'lng' => $geo['lng']
+        //     ]);
             //dd('Gud');
             return view('users.products.payment')
             ->with('user', $user)

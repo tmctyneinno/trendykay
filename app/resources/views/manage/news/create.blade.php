@@ -7,13 +7,13 @@
               @csrf
               <div class="card">
                         <div class="card-body">
-                            <h6 class="card-title">Create News</h6>
+                            <h6 class="card-title">Create Blog</h6>
                             <div class="row">
                                 <div class="col-md-12">
                                         <div class="form-group">
                                             <input type="text" name="title"  value="{{old('title')}}" class="form-control @error('title') is-invalid @enderror" id="exampleInputEmail1"
                                                    aria-describedby="emailHelp" placeholder="News Title">
-                                            <small id="emailHelp" class="form-text text-muted">Enter News Title
+                                            <small id="emailHelp" class="form-text text-muted">Enter Blog Title
                                             </small>
                                             @error('tile')
                                             <span class="invalid-feedback"> <small> * </small> </span>
@@ -26,7 +26,7 @@
                                   <div class="form-group">
                                     
                                     <textarea id="summernote" class="@error('content') is-invalid @enderror" name="content">{{old('content')}}</textarea>
-                                     <small id="emailHelp" class="form-text text-muted">News Content
+                                     <small id="emailHelp" class="form-text text-muted">Blog Content
                                             </small>
                                             @error('content')
                                             <span class="invalid-feedback"> <small> *</small> </span>
@@ -42,7 +42,7 @@
                                             <input type="file"name="image" class="custom-file-input  @error('image') is-invalid @enderror" id="customFile">
                                                 <label class="custom-file-label" for="customFile">Choose Cover Image</label>
                                             </div>
-                                            <small id="emailHelp" class="form-text text-muted"> Choose News Cover Image
+                                            <small id="emailHelp" class="form-text text-muted"> Choose Blog Cover Image
                                             </small>
                                               @error('image')
                                             <span class="invalid-feedback"> <small> *</small> </span>
@@ -55,14 +55,14 @@
                                             <input type="file"name="images[]" multiple class="custom-file-input  @error('images') is-invalid @enderror" id="customFile">
                                                 <label class="custom-file-label" for="customFile">Choose More Image</label>
                                             </div>
-                                            <small id="emailHelp" class="form-text text-muted"> Choose more News slides
+                                            <small id="emailHelp" class="form-text text-muted"> Choose more Blog slides
                                             </small>
                                               @error('images')
                                             <span class="invalid-feedback"> <small> *</small> </span>
                                             @enderror
                                          </div>
                                       <p></p>
-                                         <button  type="submit" class="btn btn-primary w-50 p-3">Post News</button>
+                                         <button  type="submit" class="btn btn-primary w-50 p-3">Post Blog</button>
                             </div> 
                             
                         </div>

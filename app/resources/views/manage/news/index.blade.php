@@ -6,7 +6,7 @@
                      <div class="card">
                         <div class="card-body">
                             <div class="d-flex justify-content-between">
-                                <h6 class="card-title">News</h6>
+                                <h6 class="card-title">Blog</h6>
                                 <div>
                                     <a href="#" class="mr-3">
                                         <i class="fa fa-refresh"></i>
