@@ -289,8 +289,8 @@
                            data-nav-target="#dashboards">
                             <i data-feather="server"></i>&nbsp; Blog</a>
                             <ul>
-                                  <li><a href="{{route('admin.blog.create')}}">Post Blog</a></li>
-                                  <li><a href="{{route('admin.blog.index')}}">Manage Blog</a></li>
+                                  <li><a href="{{route('admin.news.create')}}">Post Blog</a></li>
+                                  <li><a href="{{route('admin.news.index')}}">Manage Blog</a></li>
                             </ul>
                         </li>
                      <li>

@@ -54,12 +54,12 @@ Route::prefix('admin')->group(function(){
     Route::get('/slider/create', 'PagesController@CreateSlider')->name('slider.create');
     Route::post('/slider/store', 'PagesController@StoreSlider');
     Route::get('/slider/delete/{id}', 'PagesController@DeleteSlider')->name('slider.delete');
-    Route::get('/blogs/index', 'BlogsController@Index')->name('admin.blog.index');
-    Route::get('/blogs/create/', 'BlogsController@Create')->name('admin.blog.create');
-    Route::post('/blogs/store', 'BlogsController@Store');
-    Route::get('/blogs/edit/{id}', 'BlogsController@Edit')->name('admin.edit.blog');
-    Route::post('/blogs/update/{id}', 'BlogsController@Update');
-    Route::post('/blogs/status/{id}', 'BlogsController@status')->name('blog.status');
+    Route::get('/news/index', 'NewsController@Index')->name('admin.news.index');
+    Route::get('/news/create/', 'NewsController@Create')->name('admin.news.create');
+    Route::post('/news/store', 'NewsController@Store');
+    Route::get('/news/edit/{id}', 'NewsController@Edit')->name('admin.edit.news');
+    Route::post('/news/update/{id}', 'NewsController@Update');
+    Route::post('/news/status/{id}', 'NewsController@status')->name('news.status');
     Route::get('/subcategory/index/{id}', 'SubcategoryController@index')->name('index.subcat');
     Route::get('/subcategory/create/{id}', 'SubcategoryController@create')->name('create.subcat');
     Route::get('/subcategory/edit/{id}', 'SubcategoryController@edit')->name('edit.subcat');
