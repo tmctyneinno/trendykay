@@ -91,9 +91,6 @@ Route::get('/category/{id}', 'HomeController@Categories')->name('user.category')
 Route::post('/add-review/{id}', 'HomeController@Addreview');
 Route::get('news/details/{id}', 'PagesController@newsDetails')->name('news.details');
 Route::get('/user/checkout', 'CheckoutController@guest')->name('user.checkoutout');
-//Route::post('/guestaddress', 'CheckoutController@modalguest');
-//Route::post('/pay/checkoutguest', 'PaymentController@initiatePayCheckoutguest')->name('pay.checkoutguest');
-//Route::post('/pay/checkoutguest', 'PaymentController@initiatePayCheckoutguest')->name('pay.checkoutguest');
  
 //Route::resource('/checkout', 'CheckoutController');
 Route::post('/checkout', 'CheckoutController@store')->name('checkout.store');
