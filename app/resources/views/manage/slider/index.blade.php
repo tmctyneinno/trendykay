@@ -41,7 +41,7 @@
                                             <tr>
                                      
                                                 <td>
-                                                    <a href="#">{{$sp->name}}</a>
+                                                    <a href="#">{{$sp->secondname}}</a>
                                                 </td> 
                                                 <td>
                                                     <a href="#"><img src="{{asset('/images/sliders/'.$sp->image)}}" width="50px" height="50px"></a> 

@@ -14,7 +14,7 @@
             <div class="row">
                 <div class="col-lg-9">
                     <div class="single-header mb-50">
-                        <h3 class="font-xxl text-brand">Our Blog</h3>
+                        <h3 class="font-xxl text-brand">Blog</h3>
                         <div class="entry-meta meta-1 font-xs mt-15 mb-15">
                         </div>
                     </div>
