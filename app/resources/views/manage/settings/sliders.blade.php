@@ -26,22 +26,25 @@
                             <div class="slider-for">
                                
                                 <div class="slick-slide-item">
-                                    <img src="{{asset('images/'.$ss->image)}}" class="img-fluid" style="width:100%"
+                                    <img src="{{asset('images/sliders/'.$ss->image)}}" class="img-fluid" style="width:100%"
                                          alt="image">
                                 </div>
                             </div>
                             <div class="slider-nav">
                               
                                 <div class="slick-slide-item">
-                                    <img src="{{asset('images/'.$ss->image)}}" class="img-fluid" alt="image">
+                                    <img src="{{asset('images/sliders/'.$ss->image)}}" class="img-fluid" alt="image">
                                 </div>
                             </div>
                             <div data-label="Slider Title Text" class="demo-code-preview">
-                                {{$ss->title}}
+                                {{$ss->secondname}}
                             </div>
-                            <div data-label="Slider Content Text" class="demo-code-preview">
+                            <div data-label="Slider Title Text" class="demo-code-preview">
+                                {{$ss->thirdname}}
+                            </div>
+                            {{-- <div data-label="Slider Content Text" class="demo-code-preview">
                                 {{$ss->content}}
-                            </div>
+                            </div> --}}
                         </div>
                         @empty         
                         @endforelse

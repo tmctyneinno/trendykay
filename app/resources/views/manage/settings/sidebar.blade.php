@@ -10,7 +10,7 @@
     </a>
    
     <a href="{{route('slider.index')}}" class="list-group-item">
-        <i data-feather="star" class="mr-2 width-15 height-15"></i>
+        <i data-feather="image" class="mr-2 width-15 height-15"></i>
         Page Sliders
     </a>
   

@@ -32,7 +32,7 @@ class SliderController extends Controller
             $image = $request->file('image');
             $ext = $image->getClientOriginalExtension();
             $fileName = time().'.'.$ext; 
-            $image->move('images',$fileName);
+            $image->move('images/sliders/',$fileName);
         
     }
     $link = route('subpages', encrypt($request->link));
@@ -67,16 +67,14 @@ class SliderController extends Controller
             $ext = $image->getClientOriginalExtension();
             $name = pathinfo($image, PATHINFO_FILENAME);
             $fileName = $name.time().'.'.$ext;
-            $image->move('images',$fileName);
+            $image->move('images/sliders/',$fileName);
     }else{
         $fileName = $sl->image;
     }
-    $link = route('subpages', encrypt($request->link));
         $data = [
             'image' =>  $fileName,
-            'content' => $request->content,
-            'title' =>  $request->title,
-            'links' => $link
+            'secondname' => $request->secondname,
+            'thirdname' =>  $request->thirdname
         ];
          $sl->fill($data)->save();
         \Session::flash('alert', 'success');

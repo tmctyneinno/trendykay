@@ -38,7 +38,7 @@
                                             <div class="text-muted d-flex justify-content-between">
                                                 <div class="text-truncate small"></div>
                                                 <div class="col-md-12">
-                                                    <img src="{{asset('images/'.$slider->image)}}" width="100px">
+                                                    <img src="{{asset('images/sliders/'.$slider->image)}}" width="100px">
                                                     <div class="custom-file">
                                                      
                                                         <input type="file" name="image" class="custom-file-input  @error('image') is-invalid @enderror">
@@ -67,11 +67,11 @@
                                             <div class="text-truncate small"></div>
                                             <div class="col-md-12">
                                                 <div class="form-group">
-                                                    <input type="text" name="title"  value="{{$slider->title}}" class="form-control @error('title') is-invalid @enderror" id="exampleInputEmail1"
+                                                    <input type="text" name="secondname"  value="{{$slider->secondname}}" class="form-control @error('title') is-invalid @enderror" id="exampleInputEmail1"
                                                            aria-describedby="emailHelp" placeholder="Slider Title">
                                                     <small id="emailHelp" class="form-text text-muted">Slider Title
                                                     </small>
-                                                    @error('title')
+                                                    @error('secondname')
                                                     <span class="invalid-feedback"> <small> * </small> </span>
                                                     @enderror
                                                 </div>
@@ -81,6 +81,7 @@
                                         </div>
                                     </div>
                                 </li>
+
                                 <li class="list-group-item">
                                     <div class="flex-grow-1 min-width-0">
                                         <div class="mb-1 d-flex justify-content-between align-items-center">
@@ -94,10 +95,10 @@
                                             <div class="text-truncate small"></div>
                                             <div class="col-md-12">
                                                 <div class="form-group">
-                                                    <textarea type="text"  name="content"   placeholder="Enter Slider content" value="{{old('content')}}" class="form-control @error('content') is-invalid @enderror"  >{{$slider->content}} </textarea>
+                                                    <input type="text"  name="thirdname"   placeholder="Enter Slider content" value="{{$slider->thirdname}}" class="form-control @error('content') is-invalid @enderror"  >{{$slider->content}} 
                                                     <small id="emailHelp" class="form-text text-muted">Slider Content
                                                     </small>
-                                                    @error('content')
+                                                    @error('thirdname')
                                                     <span class="invalid-feedback"> <small> * </small> </span>
                                                     @enderror
                                                 </div>
@@ -105,7 +106,6 @@
                                         </div>
                                     </div>              
                                 </li>
-
                               
                                 <div style="float:right" class="pr-5 pt-3">
                                     <button type="submit" class="btn btn-primary w-20">Update Slider</button>
