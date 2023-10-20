@@ -44,7 +44,7 @@ class SettingsController extends Controller
         $testim = Settings::first();
         $testim->fill($data)->save();
         Session::flash('alert', 'success');
-        Session::flash('message', 'Testimonial updated Successfully');
+        Session::flash('message', 'Socials updated Successfully');
         return back();
     }
 
