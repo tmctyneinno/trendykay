@@ -1,0 +1,116 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+use App\Slider;
+use Illuminate\Support\Facades\Validator;
+
+class SliderController extends Controller
+{
+    //
+
+    public function Index(){
+        return view('manage.settings.sliders', [
+            'sliders' => Slider::latest()->get()
+        ])
+        ->with('bheading', 'Website Settings')
+        ->with('breadcrumb', 'Website Settings');
+    }
+
+    public function Store(Request $request){
+        $request->validate([
+            'image' => 'required',
+            'content' => 'required',
+            'title' => 'required',
+            'link' => 'integer|required'
+        ]);
+
+       //dd(request()->file('images'));
+
+        if($request->file('image')){
+            $image = $request->file('image');
+            $ext = $image->getClientOriginalExtension();
+            $fileName = time().'.'.$ext; 
+            $image->move('images',$fileName);
+        
+    }
+    $link = route('subpages', encrypt($request->link));
+        $data = [
+            'image' =>   $fileName,
+            'content' => $request->content,
+            'title' =>  $request->title,
+            'status' => 1,
+            'links' => $link
+        ];
+
+       //dd($data);
+        Slider::create($data);
+        \Session::flash('alert', 'success');
+        \Session::flash('alert', 'Slider Added Successfully');
+        return back();
+    }
+
+    public function Edit($id){
+        $slider = Slider::where('id', decrypt($id))->first();
+        return view('manage.settings.edit_sliders',['slider'  => $slider ])
+        ->with('bheading', 'Website Settings')
+        ->with('breadcrumb', 'Website Settings');
+    }
+
+    public function Update(Request $request, $id){
+
+        $sl = Slider::where('id', decrypt($id))->first();
+        
+        if($request->file('image')){
+            $image = $request->file('image');
+            $ext = $image->getClientOriginalExtension();
+            $name = pathinfo($image, PATHINFO_FILENAME);
+            $fileName = $name.time().'.'.$ext;
+            $image->move('images',$fileName);
+    }else{
+        $fileName = $sl->image;
+    }
+    $link = route('subpages', encrypt($request->link));
+        $data = [
+            'image' =>  $fileName,
+            'content' => $request->content,
+            'title' =>  $request->title,
+            'links' => $link
+        ];
+         $sl->fill($data)->save();
+        \Session::flash('alert', 'success');
+        \Session::flash('alert', 'Slider Updated Successfully');
+        return back();
+    }
+
+    public function Delete($id){
+        $slider = Slider::where('id', decrypt($id))->first();
+        if($slider){
+            $slider->delete();
+            \Session::flash('alert', 'error');
+            \Session::flash('alert', 'Slider Deleted Successfully');
+            return back();
+        }
+        \Session::flash('alert', 'error');
+        \Session::flash('alert', 'Somthing went wrong');
+        return back();
+    }
+
+    public function Activate($id){
+        $slid = Slider::where('id', decrypt($id))->first();
+        $slid->update(['status' => 1]);
+        \Session::flash('alert', 'success');
+        \Session::flash('alert', 'Slider Activated Successfully');
+        return back();
+    }
+    
+    public function Deactivate($id){
+        $slid = Slider::where('id', decrypt($id))->first();
+        $slid->update(['status' => null]);
+        \Session::flash('alert', 'error');
+        \Session::flash('alert', 'Slider Deactivated Successfully');
+        return back();
+    }
+   
+}

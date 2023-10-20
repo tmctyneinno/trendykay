@@ -9,13 +9,15 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 */
 
+
 Route::prefix('admin')->group(function(){
-    Route::post('/manage/user/login', 'Auth\AdminLoginController@login')->name('admin.login.submit'); 
-    Route::get('/', 'AdminController@index')->middleware('auth:admin')->name('admin.index');
+    Route::get('/2fa', 'Check2faController@Index')->name('check2fa');
+
+    Route::post('/manage/login', 'Auth\AdminLoginController@login')->name('admin.login.submit'); 
     Route::get('/login', 'Auth\AdminLoginController@showLogin')->name('admin-login');
-   
-    Route::middleware('auth:admin')->group(function(){ 
-    Route::get('/index', 'AdminController@index')->name('admin.index')->middleware('auth:admin');
+
+    Route::middleware(['auth:admin'])->group(function(){ 
+    Route::get('/index', 'AdminController@index')->name('admin.index');
     Route::get('/', 'AdminController@index')->name('admin.index');
     Route::resource('/category', 'CategoryController');
     Route::resource('/product', 'ProductController'); 
@@ -50,10 +52,23 @@ Route::prefix('admin')->group(function(){
     Route::get('/menu/index/', 'PagesController@MenuIndex')->name('admin.MenuIndex');
     Route::get('/menu/edit/{id}', 'PagesController@EditMenu')->name('menuEdit');
     Route::post('/menu/update/{id}', 'PagesController@updateMenu');
-    Route::get('/slider/index', 'PagesController@SliderIndex')->name('slider.index');
-    Route::get('/slider/create', 'PagesController@CreateSlider')->name('slider.create');
-    Route::post('/slider/store', 'PagesController@StoreSlider');
-    Route::get('/slider/delete/{id}', 'PagesController@DeleteSlider')->name('slider.delete');
+
+
+    // Route::get('/slider/index', 'SliderController@SliderIndex')->name('slider.index');
+    // Route::get('/slider/create', 'SliderController@CreateSlider')->name('slider.create');
+    // Route::post('/slider/store', 'SliderController@StoreSlider');
+    // Route::get('/slider/delete/{id}', 'SliderController@DeleteSlider')->name('slider.delete');
+
+    Route::get('/website/settings/sliders/index', 'SliderController@Index')->name('slider.index');
+    Route::get('/website/settings/sliders/create', 'SliderController@Create')->name('admin.sliderCreate');
+    Route::post('/website/settings/sliders/store', 'SliderController@Store')->name('admin.sliderStore');
+    Route::get('/website/settings/sliders/edit/{id}', 'SliderController@Edit')->name('admin.sliderEdit');
+    Route::post('/website/settings/sliders/update/{id}', 'SliderController@Update')->name('admin.sliderUpdate');
+    Route::get('/website/settings/sliders/delete/{id}', 'SliderController@Delete')->name('admin.sliderDelete');
+    Route::get('/website/settings/sliders/activate/{id}', 'SliderController@Activate')->name('admin.sliderActivate');
+    Route::get('/website/settings/sliders/deactivate/{id}', 'SliderController@Deactivate')->name('admin.sliderDeactivate');
+
+
     Route::get('/news/index', 'NewsController@Index')->name('admin.news.index');
     Route::get('/news/create/', 'NewsController@Create')->name('admin.news.create');
     Route::post('/news/store', 'NewsController@Store');
@@ -70,8 +85,16 @@ Route::prefix('admin')->group(function(){
     Route::post('/project/store', 'AdminController@ProjectStore');
     Route::get('/project/delete/{id}', 'AdminController@ProjectDelete')->name('admin.project.delete');
     Route::post('/update/rates', 'AdminController@ExchangeRate')->name('updateDollarRate');
+
+        Route::get('/website/settings/index', 'SettingsController@Index')->name('admin.settings.index');
+        Route::get('/website/settings/socials', 'SettingsController@Socials')->name('admin.settings.socials');
+        Route::get('/website/settings/about', 'SettingsController@Abouts')->name('admin.settings.abouts');
+        Route::post('/website/settings/update/socials', 'SettingsController@UpdateSocials')->name('admin.settings.updateSocials');
+        Route::post('/website/settings/update/settings', 'SettingsController@UpdateSettings')->name('admin.settings.updateSettings');
+
 });
 }); 
+
 
 
 Auth::routes();

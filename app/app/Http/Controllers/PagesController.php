@@ -10,7 +10,7 @@ use App\Project;
 use App\Slider;
 use Illuminate\Http\Request;
 use Intervention\Image\Facades\Image;
-use Symfony\Component\HttpFoundation\Session\Session;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
 
 class PagesController extends Controller
@@ -29,15 +29,15 @@ class PagesController extends Controller
             'name' => 'required'
         ]);
         if($valid->fails()){
-            \Session::flash('alert', 'error');
-            \Session::flash('m','Some fields are missing');
+            Session::flash('alert', 'error');
+            Session::flash('m','Some fields are missing');
             return back();
         }
          Menu::create([
             'name' => $request->name
          ]);
-         \Session::flash('alert', 'success');
-         \Session::flash('message','Menu created successfully');
+         Session::flash('alert', 'success');
+         Session::flash('message','Menu created successfully');
          return back();
 
     }
@@ -62,64 +62,12 @@ class PagesController extends Controller
     public function updateMenu(Request $request, $id){
         $id = Menu::where('id', decrypt($id))->first()
         ->update(['name' => $request->name]);
-        \Session::flash('alert', 'success');
-        \Session::flash('message','Menu updated successfully');
+        Session::flash('alert', 'success');
+        Session::flash('message','Menu updated successfully');
         return back();
     }
 
-    public function SliderIndex(){
-        return view('manage.slider.index')
-        ->with('bheading', 'Sliders')
-        ->with('breadcrumb', 'Sliders')
-        ->with('sliders', Slider::get());
-    }
-
-    public function CreateSlider(){
-        return view('manage.slider.create') 
-         ->with('bheading', 'Create Slider')
-        ->with('breadcrumb', 'Create Slider');
-
-    }
-
-    public function StoreSlider(Request $request){
-       
-        $valid = validator::make($request->all(), [
-            'image' => 'required|mimes:jpeg,png,jpg|max:60048'
-        ]);
-       
-        if($valid->fails()){
-            \Session::flash('alert', 'error');
-            \Session::flash('message','Some fields are missing');
-            return back(); 
-        }
-       
-        if($request->file('image')){ 
-            $image = $request->file('image');
-            $ex = $image->getClientOriginalExtension();
-            $fileName = time().'.'.$ex;
-            Image::make(request()->file('image'))->resize(731,470)->save('images/sliders/'.$fileName);
-        }
-       
-            Slider::create([ 
-                'image' => $fileName,
-                'name' => $request->name,
-                'secondname' => $request->secondname,
-                'thirdname' => $request->thirdname
-            ]);
-            \Session::flash('alert', 'success');
-            \Session::flash('message','Slider Added Successfully');
-            return back(); 
-        
-
-    }
-
-    public function DeleteSlider($id){
-        $id = Slider::where('id', decrypt($id))->first();
-        $id->delete();
-        \Session::flash('alert', 'error');
-        \Session::flash('message','Slider deleted Successfully');
-        return back();
-    }
+    
 
     public function Pages($slug){
         switch($slug){

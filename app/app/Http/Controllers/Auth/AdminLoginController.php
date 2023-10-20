@@ -16,7 +16,9 @@ class AdminLoginController extends Controller
     }
 
     protected function guard(){
-
+        if(request()->user()->otp != null){
+            request()->user()->update(['otp' => null]);
+           }
         return Auth::guard('admin');
 
     }
