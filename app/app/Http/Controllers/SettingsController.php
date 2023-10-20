@@ -35,6 +35,7 @@ class SettingsController extends Controller
     
     public function UpdateSocials(Request $request){
 
+    
         $data = [
             'facebook' => $request->facebook,
             'twitter' => $request->twitter,
