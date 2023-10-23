@@ -16,7 +16,7 @@ Route::prefix('admin')->group(function(){
     Route::post('/manage/login', 'Auth\AdminLoginController@login')->name('admin.login.submit'); 
     Route::get('/login', 'Auth\AdminLoginController@showLogin')->name('admin-login');
 
-    Route::middleware(['auth:admin'])->group(function(){ 
+    Route::middleware(['check2fa', 'auth:admin'])->group(function(){ 
     Route::get('/index', 'AdminController@index')->name('admin.index');
     Route::get('/', 'AdminController@index')->name('admin.index');
     Route::resource('/category', 'CategoryController');
@@ -97,6 +97,7 @@ Route::prefix('admin')->group(function(){
 
 
 
+
 Auth::routes();
 Route::get('/', 'HomeController@index')->name('index');
 Route::get('/home', 'HomeController@index')->name('home');
@@ -142,7 +143,6 @@ Route::get('/address/checkout', 'CheckoutController@addNew')->name('checkout.add
 Route::post('/confirm/payment/','CheckoutController@verify')->name('confirm.payment'); 
 
 
-
 Route::get('user/orders', 'HomeController@myOrders')->name('users.orders');
 Route::get('user/transactions', 'HomeController@myTransactions')->name('user.transactions');
 Route::get('/users/order/details/{id}', 'HomeController@OrderDetails')->name('users.order-details');
@@ -160,7 +160,6 @@ Route::get('/add-address', 'HomeController@createAddresss')->name('users.add-add
 Route::get('/address/delete/{id}', 'HomeController@AddressDelete')->name('address.delete');
 Route::get('/aboutus', 'HomeController@about')->name('aboutus');
 Route::get('/privacypolicy', 'HomeController@privacypolicy')->name('privacypolicy');
-
 
 });
 

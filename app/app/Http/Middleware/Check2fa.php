@@ -17,9 +17,11 @@ class Check2fa
      */
     public function handle(Request $request, Closure $next)
     {
-        if(auth('admin')->user()->otp == null){
+        if(auth('admin')->user()){
+        if(auth('admin')->user()->otp != null){
             return redirect()->route('check2fa');
         }
+    }
         return $next($request);
     }
 }
