@@ -60,14 +60,14 @@ class HomeController extends Controller
             ->with('cart', $cart) 
             ->with('colorproduct', Colorproduct::all())
             ->with('sizeproduct', Sizeproduct::all())
-            ->with('jumpsuitproducts',  Product::where('category_id', 15)->simplePaginate(20))
-            ->with('denimproducts',  Product::where('category_id', 16)->simplePaginate(20))
-            ->with('dressproducts',  Product::where('category_id', 12)->simplePaginate(20))
-            ->with('bestsallersproducts',  Product::where('category_id', 2)->simplePaginate(20))
+            ->with('jumpsuitproducts',  Product::where('category_id', 9)->simplePaginate(9))
+            ->with('denimproducts',  Product::where('category_id', 9)->simplePaginate(9))
+            ->with('dressproducts',  Product::where('category_id', 9)->simplePaginate(9))
+            ->with('bestsallersproducts',  Product::simplePaginate(10))
             ->with('news', News::latest()->get())
-            ->with('products', Product::inRandomOrder()->latest()->simplePaginate(15))
+            ->with('products', Product::inRandomOrder()->latest()->simplePaginate(9))
             ->with('sliders', Slider::get())
-            ->with('categories', Category::inRandomOrder()->take(4)->get()); 
+            ->with('categories', Category::inRandomOrder()->where('name', 'Denim')->orWhere('name', 'Dresses')->orwhere('name', 'Jumpsuit')->orwhere('name', 'Swinwear')->get());
     } 
 
     public function productDetails($id){

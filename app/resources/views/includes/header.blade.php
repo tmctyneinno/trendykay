@@ -5,12 +5,14 @@
                 <div class="col-xl-3 col-lg-4">
                     <div class="header-info">
                         <ul>
-                            <li><i class="fi-rs-smartphone"></i> <a href="#">+14317777816</a></li>
-                            <li><i class="fi-rs-marker"></i><a  href="page-contact.html">Our location</a></li>
+                            <li><i class="fi-rs-smartphone"></i> 
+                                <a href="#">{{$settings->site_phone}} </a>
+                                </li>
+                            <li><i class="fi-rs-envelope"></i><a href="#">{{$settings->site_email}} </a></li>
                         </ul>
                     </div>
                 </div>
-                <div class="col-xl-6 col-lg-4">
+                <div class="col-xl-5 col-lg-3">
                     <div class="text-center">
                         <div id="news-flash" class="d-inline-block">
                             <ul>
@@ -23,9 +25,16 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-xl-3 col-lg-4">
+                <div class="col-xl-4 col-lg-4">
                     <div class="header-info header-info-right">
                         <ul>
+                            @foreach ($menu as $mnu )
+                            @if(strtolower($mnu->slug) != 'home' && strtolower($mnu->slug) != 'products' )
+                            <li>
+                                <a class=" " href="{{route('pages',$mnu->slug)}}">{{$mnu->name}} </a>
+                            </li>
+                            @endif
+                            @endforeach
                             @guest
                                 <li><i class="fi-rs-user"></i><a href="{{route('login')}}">Log In / Sign Up</a></li>
                             @else
@@ -135,7 +144,7 @@
                     <a href="{{route('index')}}"><img src="{{ asset('assets/logo.png')}}" alt="logo"></a>
                 </div>
                 <div class="header-nav d-none d-lg-flex">
-                    <div class="main-categori-wrap d-none d-lg-block">
+                    {{-- <div class="main-categori-wrap d-none d-lg-block">
                         <a class="categori-button-active open" href="#">
                             <span class="fi-rs-apps"></span> Browse Categories
                         </a>
@@ -153,22 +162,26 @@
                                 </ul>
                             </div>
                         </div>
-                    </div>
+                    </div> --}}
                     <div class="main-menu main-menu-padding-1 main-menu-lh-2 d-none d-lg-block">
                         <nav>
                             <ul>
-                                @foreach ($menu as $mnu )
-                                <li>
-                                    <a class=" active" href="{{route('pages',$mnu->slug)}}">{{$mnu->name}} </a>
+                                @foreach($menu_categories as $cat )
+                                <li class="mega-menu-col">
+                                    <a href="{{route('user.category', encrypt($cat->id))}}">
+                                        {{$cat->name}}
+                                    </a>
+                                    
                                 </li>
                                 @endforeach
+                               
                             </ul>
                         </nav>
                     </div>
                 </div>
-                <div class="hotline d-none d-lg-block">
+                {{-- <div class="hotline d-none d-lg-block">
                     <p><i class="fi-rs-headset"></i><span>Hotline</span> +14317777816</p>
-                </div>
+                </div> --}}
                 {{-- <p class="mobile-promotion">Happy <span class="text-brand">Mother's Day</span>. Big Sale Up to 40%</p> --}}
                 <div class="header-action-right d-block d-lg-none">
                     <div class="header-action-2">
@@ -294,7 +307,8 @@
                     <a href="{{route('login')}}">Log In / Sign Up </a>
                 </div>
                 <div class="single-mobile-header-info">
-                    <a href="#">+14317777816 </a>
+                    <a href="#">{{$settings->site_phone}} </a>
+                    <a href="#">{{$settings->site_email}} </a>
                 </div>
             </div>
            
