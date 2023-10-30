@@ -111,6 +111,14 @@
                                 @enderror
                         </div>
                         <div class="form-group">
+                            <input required type="text" name="city"@if(isset($address->state)) value="{{$address->state}}" @endif value="{{old('state')}}"  class="@error('state') is-invalid @enderror"placeholder="province">
+                                @error('city')
+                                    <span class="btn-danger" role="alert">
+                                    <small> {{$message}}</small>
+                                    </span>
+                                @enderror
+                        </div>
+                        <div class="form-group">
                             <input required type="text" name="country"  @if(isset($address->country)) value="{{$address->country}}" @endif value="{{old('country')}}"   class="@error('country') is-invalid @enderror" placeholder="Country">
                             @error('country')
                                 <span class="btn-danger" role="alert">
@@ -118,8 +126,6 @@
                                 </span>
                             @enderror
                         </div>
-                        
-                        
                 </div>
                 <div class="col-md-6">
                     <div class="order_review">
@@ -196,12 +202,9 @@
                         <button type="submit" class="btn btn-fill-out btn-block mt-30">Place Order</button>
                     </div>
                 </div>
-               
             </div>
             </form>
         </div>
     </section>
 </main>
-
-
 @endsection

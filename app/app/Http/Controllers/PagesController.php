@@ -67,8 +67,6 @@ class PagesController extends Controller
         return back();
     }
 
-    
-
     public function Pages($slug){
         switch($slug){
             case "home":
@@ -85,7 +83,6 @@ class PagesController extends Controller
                 $products['products'] = Product::inRandomOrder()->orderBy('created_at','desc')->paginate(20);
                 $cart['cart'] =  \Cart::content()->take(4);
                 $news['news'] = News::latest()->get();
-
                return view('users.pages.products', $products, $cart )->with('news', News::latest()->get())->with('productCount', $productCount->count());
                 break;
             case "news":
@@ -100,11 +97,9 @@ class PagesController extends Controller
                 ->with('contact', ContactUs::latest()->first())->with('news', News::latest()->get());
                 break;
             default:
-             
             return view('errors.404'); 
             break;
         }
-
     }
 
     public function newsDetails($id){

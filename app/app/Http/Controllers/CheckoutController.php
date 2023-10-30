@@ -57,11 +57,10 @@ class CheckoutController extends Controller
 
      public function __construct()
      {
-         $this->User = new User();
+         $this->user = new User();
          $this->OrderItem = new OrderItem();
          $this->Order = new Order();
          $this->Shipping = new Shipping();
-         $this->API_Token = env('FLUTTERWAVE_KEY');
      }
      public function getCustomerLocation($address){
         $key = 'AIzaSyCHsIJX1EHXN_tLXbQ75pMHcB60L3XVOeU';
@@ -74,14 +73,12 @@ class CheckoutController extends Controller
         curl_close($ch);
 
         $response = json_decode($responseJson, true);
-      //  dd($response);
+        dd($response);
         if ($response['status'] == 'OK') {
             $res['lat'] = $response['results']['0']['geometry']['location']['lat'];
             $res['lng'] = $response['results']['0']['geometry']['location']['lng'];
             return $res;
         }
-
-
      }
 
      public function getShippingPrice($lan, $lng){
