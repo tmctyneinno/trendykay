@@ -7,6 +7,7 @@ use App\CurrencyExchange;
 use App\Menu;
 use App\Notification;
 use App\Product;
+use App\News;
 use App\Settings;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\Facades\Cache;
@@ -39,5 +40,6 @@ class AppServiceProvider extends ServiceProvider
       view::share('read_notify', AdminNotify::where('is_read', 1)->latest()->take(2)->get());
       view::share('dollar_exchange_rate', CurrencyExchange::first());
       view::share('settings', Settings::latest()->first());
+      view::share('news', News::latest()->get());
     }
 }

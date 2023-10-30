@@ -34,58 +34,73 @@
                 
                 <div class="col-md-6">
                     <div class="mb-25">
-                        <h4>Customer Information</h4>
+                        <h4>Shipping Information</h4>
                     </div>
                     <span class="alert alert-{{Session::get('alert')}}" role="alert"> 
                         <span style="padding:5px">	{!! Session()->get('message')!!} 
                     </span>
                     <br>
-                        <div class="form-group">
-                           
-                            <input type="text" name="name" maxlength="64"@auth value=" {{auth()->user()->name}}" @endauth value="{{old('name')}}" class="@error('name') is-invalid @enderror" placeholder="Full Name" @auth readOnly @endauth> 
+                    <div class="form-group">
+                            
+                        <input type="text" name="name" maxlength="64" @if(isset($user->name)) value="{{$user->name}}"  @else value="{{old('name')}}"  @endif class="@error('name') is-invalid @enderror" placeholder="Full Name" @auth readOnly @endauth> 
                             @error('name')
                                 <span class="btn-danger" role="alert">
                                 <small> {{$message}}</small>
                                 </span>
                             @enderror
-                        </div>
-                        <div class="form-group">
-                           
-                            <input type="email" name="email" maxlength="64"@auth value=" {{auth()->user()->email}}" @endauth value="{{old('email')}}" class="@error('email') is-invalid @enderror" placeholder="Email" @auth readOnly @endauth> 
-                            @error('email')
+                    </div>
+                    <div class="form-group">
+                        <input required type="email" name="email" @if(isset($user->email)) value="{{$user->email}}"  @else value="{{old('email')}}"  @endif  class="@error('email') is-invalid @enderror" placeholder="Email Address" @auth readOnly @endauth>
+                        @error('email')
+                            <span class="btn-danger" role="alert">
+                            <small> {{$message}}</small>
+                            </span>
+                        @enderror
+                    </div>
+                    <div class="form-group"> 
+                        <input required type="text" name="phone"  @if(isset($user->phone)) value="{{$user->phone}}"  @else value="{{old('phone')}}"  @endif class="@error('phone') is-invalid @enderror" placeholder="Phone number" @auth readOnly @endauth>
+                        @error('phone')
+                            <span class="btn-danger" role="alert">
+                            <small> {{$message}}</small>
+                            </span>
+                        @enderror
+                    </div>
+                    <div class="form-group">
+                        <input required type="text" name="zip_code"   @if(isset($address->zip_code)) value="{{$address->zip_code}}" @else value="{{old('zip_code')}}"  @endif  class="@error('zip_code') is-invalid @enderror" placeholder="Zip Code" @auth readOnly @endauth>	
+                                    
+                    </div>
+                    <div class="form-group">
+                        <input required type="text" name="address"@if(isset($address->address)) value="{{$address->address}}" @else value="{{old('address')}}"  @endif class="@error('address') is-invalid @enderror"placeholder="Address" @auth readOnly @endauth>
+                            @error('address')
                                 <span class="btn-danger" role="alert">
                                 <small> {{$message}}</small>
                                 </span>
                             @enderror
-                        </div>
-                        <div class="form-group"> 
-                            <input required type="text" name="phone" @auth value=" {{auth()->user()->phone}} " @else value="{{old('phone')}}" @endauth class="@error('phone') is-invalid @enderror" placeholder="Phone number" @auth readOnly @endauth>
-                            @error('phone')
+                    </div>
+                    <div class="form-group">
+                        <input required type="text" name="city" @if(isset($address->city)) value="{{$address->city}}" @else value="{{old('city')}}"   @endif class="@error('city') is-invalid @enderror"placeholder="City" @auth readOnly @endauth>
+                            @error('city')
                                 <span class="btn-danger" role="alert">
                                 <small> {{$message}}</small>
                                 </span>
                             @enderror
-                        </div>
-                        <div class="form-group">
-                            <input required type="text" name="zip_code"   @if(isset($address->zip_code)) value="{{$address->zip_code}}" @endif value="{{old('zip_code')}}"   class="@error('zip_code') is-invalid @enderror" placeholder="Zip Code" @auth readOnly @endauth>	
-										
-                        </div>
-                        <div class="form-group">
-                            <input required type="text" name="country"  @if(isset($address->country)) value="{{$address->country}}" @endif value="{{old('country')}}"   class="@error('country') is-invalid @enderror" placeholder="Country" @auth readOnly @endauth>
-                            @error('country')
+                    </div>
+                    <div class="form-group">
+                        <input required type="text" name="state" @if(isset($address->state)) value="{{$address->state}}" @else value="{{old('state')}}"  @endif class="@error('state') is-invalid @enderror"placeholder="State/province" @auth readOnly @endauth>
+                            @error('city')
                                 <span class="btn-danger" role="alert">
                                 <small> {{$message}}</small>
                                 </span>
                             @enderror
-                        </div>
-                        <div class="form-group">
-                            <input required type="text" name="address"@if(isset($address->address)) value="{{$address->address}}" @endif value="{{old('address')}}"  class="@error('address') is-invalid @enderror"placeholder="Address" @auth readOnly @endauth>
-                                @error('address')
-                                    <span class="btn-danger" role="alert">
-                                    <small> {{$message}}</small>
-                                    </span>
-                                @enderror
-                        </div>
+                    </div>
+                    <div class="form-group">
+                        <input required type="text" name="country"  @if(isset($address->country)) value="{{$address->country}}" @else value="{{old('country')}}"  @endif  class="@error('country') is-invalid @enderror" placeholder="Country" @auth readOnly @endauth>
+                        @error('country')
+                            <span class="btn-danger" role="alert">
+                            <small> {{$message}}</small>
+                            </span>
+                        @enderror
+                    </div>
                         
                 </div>
                 <div class="col-md-6">

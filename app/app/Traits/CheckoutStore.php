@@ -39,11 +39,12 @@ trait CheckoutStore
 
         $data = [
             'user_id'=> auth()->user()->id,
-            'receiver_name' => $request->receiver_name,
-            'receiver_email' => $request->receiver_email,
-            'receiver_phone' => $request->receiver_phone,
+            'receiver_name' => $request->name,
+            'receiver_email' => $request->email,
+            'receiver_phone' => $request->phone,
             'address' => $request->address,
             'city' => $request->city,
+            'is_default' => 1,
             'state' => $request->state,
             'zip_code' =>$request->zip_code,
             'delivery_method'=>$request->delivery_method,
