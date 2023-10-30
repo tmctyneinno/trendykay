@@ -14,11 +14,14 @@
     <section class="mt-50 mb-50">
         <div class="container">
             <div class="row">
+                @if(!auth::user())
                 <div class="col-lg-6 mb-sm-15">
                     <div class="toggle_info">
+                        
                         <span><i class="fi-rs-user mr-10"></i><span class="text-muted">Already have an account?</span> <a href="{{route('login')}}" >Click here to login</a></span>
                     </div>
                 </div>
+                @endif
                 
             </div>
             <div class="row">
@@ -33,12 +36,19 @@
             <div class="row">
                 
                 <div class="col-md-6">
-                    <div class="mb-25">
-                        <h4>Shipping Information</h4>
+                    <div class="mb-2">
+                        <h5 style="display: inline">User Information</h5>
+                        @if(auth::user())
+                        <a   style="float: right" href="{{route('users.address')}}"> Update Info</a>
+                        @endif
                     </div>
+                    @if(Session::has('alert'))
+                    <div class="p-4">
                     <span class="alert alert-{{Session::get('alert')}}" role="alert"> 
-                        <span style="padding:5px">	{!! Session()->get('message')!!} 
+                        <span style="padding:5px">	{!! Session()->get('message')!!}  </span>
                     </span>
+                    </div>
+                    @endif
                     <br>
                     <div class="form-group">
                             
@@ -64,6 +74,13 @@
                             <small> {{$message}}</small>
                             </span>
                         @enderror
+                    </div>
+                    <hr>
+                    <div class="mb-25">
+                        <h5 style="display: inline">Shipping Information</h5>
+                        @if(auth::user())
+                        <a   style="float: right" href="{{route('users.address')}}"> Update Info</a>
+                        @endif
                     </div>
                     <div class="form-group">
                         <input required type="text" name="zip_code"   @if(isset($address->zip_code)) value="{{$address->zip_code}}" @else value="{{old('zip_code')}}"  @endif  class="@error('zip_code') is-invalid @enderror" placeholder="Zip Code" @auth readOnly @endauth>	
@@ -159,8 +176,24 @@
                                     </tr>
                                 </tbody>
                             </table>
+
                         </div>
                         <div class="bt-1 border-color-1 mt-30 mb-30"></div>
+
+                        <div class="payment_method">
+                            <div class="mb-25">
+                                <h5>Payment Method</h5>
+                            </div>
+                            <div class="payment_option">
+                                <div class="custome-radio">
+                                    <input class="form-check-input" required="" type="radio" name="payment_option" id="exampleRadios5" checked="">
+                                    <label class="form-check-label" for="exampleRadios5" data-bs-toggle="collapse" data-target="#paypal" aria-controls="paypal">Login to pay with Paypal</label>
+                                    <div class="form-group collapse in" id="paypal">
+                                        <p class=" mt-5">Pay via PayPal; you can pay with your credit card if you don't have a PayPal account.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                         
                         <button type="submit" class="btn btn-fill-out btn-block mt-30">Complete Payment</button>
                     </div>

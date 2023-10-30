@@ -14,11 +14,14 @@
     <section class="mt-50 mb-50">
         <div class="container">
             <div class="row">
+                @if(!auth::user())
                 <div class="col-lg-6 mb-sm-15">
+
                     <div class="toggle_info">
                         <span><i class="fi-rs-user mr-10"></i><span class="text-muted">Already have an account?</span> <a href="{{route('login')}}" >Click here to login</a></span>
                     </div>
                 </div>
+                @endif
                 
             </div>
             <div class="row">
@@ -34,9 +37,9 @@
                 
                 <div class="col-md-6">
                     <div class="mb-25">
-                        <h4>Shipping Details</h4>
+                        <h5 style="display: inline">User Information</h5>
                         @if(auth::user())
-                        <a   style="float: right" href="{{route('users.address')}}"> Change Address</a>
+                        <a   style="float: right" href="{{route('users.address')}}"> Update Info</a>
                         @endif
                     </div>
              
@@ -73,6 +76,13 @@
                                 <small> {{$message}}</small>
                                 </span>
                             @enderror
+                        </div>
+                        <hr>
+                        <div class="mb-25">
+                            <h5 style="display: inline">Shipping Information</h5>
+                            @if(auth::user())
+                            <a   style="float: right" href="{{route('users.address')}}"> Change Address</a>
+                            @endif
                         </div>
                         <div class="form-group">
                             <input required type="text" name="zip_code"   @if(isset($address->zip_code)) value="{{$address->zip_code}}" @else value="{{old('zip_code')}}"  @endif  class="@error('zip_code') is-invalid @enderror" placeholder="Zip Code" @auth readOnly @endauth>	
