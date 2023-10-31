@@ -10,7 +10,7 @@ class ShippingController extends CheckoutController
 
     public function getCustomerLocation($address){
         $key = 'AIzaSyCHsIJX1EHXN_tLXbQ75pMHcB60L3XVOeU';
-        $url = "https://maps.google.com/maps/api/geocode/json?key=$key&address=".urlencode($address);
+        $url = "https://maps.google.com/maps/api/geocode/json?key=AIzaSyCHsIJX1EHXN_tLXbQ75pMHcB60L3XVOeU&address=".urlencode($address);
 
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $url);
@@ -19,7 +19,6 @@ class ShippingController extends CheckoutController
         curl_close($ch);
 
         $response = json_decode($responseJson, true);
-        dd($response);
         if ($response['status'] == 'OK') {
             $res['lat'] = $response['results']['0']['geometry']['location']['lat'];
             $res['lng'] = $response['results']['0']['geometry']['location']['lng'];

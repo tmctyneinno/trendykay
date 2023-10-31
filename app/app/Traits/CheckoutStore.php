@@ -48,6 +48,7 @@ trait CheckoutStore
             'state' => $request->state,
             'zip_code' =>$request->zip_code,
             'delivery_method'=>$request->delivery_method,
+            'country' => $request->country
         ];
         return $data;
     }

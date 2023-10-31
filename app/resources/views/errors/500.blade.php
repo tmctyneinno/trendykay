@@ -11,7 +11,6 @@
 				<nav aria-label="breadcrumb">
 					<ol class="breadcrumb mb-3 flex-nowrap flex-xl-wrap overflow-auto overflow-xl-visble">
 						<li class="breadcrumb-item flex-shrink-0 flex-xl-shrink-1"><a href="">Home</a></li>
-						<li class="breadcrumb-item flex-shrink-0 flex-xl-shrink-1 active" aria-current="page">Errors</li>
 					</ol>
 				</nav>
 			</div>
@@ -25,7 +24,7 @@
                             <div >
                                 <div class="bg-gray-1 rounded-lg p-2">
                                         <div class=" mb-5">
-                                            <p class=" mb-0 p-3 "><i class="fa fa-check"></i> Something went wrong, refresh page</p>
+                                            <p class=" mb-0 p-3 "><i class="fa fa-check"></i> Server Error - Something went wrong, refresh page</p>
 											<a href="{{route('index')}}" class="btn btn-primary btn-sm p-2"> Return Home</a>
 									
                                         </div>

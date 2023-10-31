@@ -232,9 +232,8 @@ class HomeController extends Controller
 
     public function Updateship($id){
         $addresses = shipping::find(decrypt($id));
-        $news['news'] = News::latest()->get();
         $addresses['addresses']= DB::table('shippings')->where(['id'=>  $addresses->id])->get();
-        return view('users.accounts.update-address',$addresses)->with('news', News::latest()->get());
+        return view('users.accounts.update-address',$addresses);
     }
 
     public function AddressDelete($id){
