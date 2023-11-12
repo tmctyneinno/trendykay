@@ -1,9 +1,9 @@
 <?php 
-namespace App\Traits;
+namespace App\Services;
 
 use GuzzleHttp\Client;
 
-trait baseUrl {
+class baseUrl {
 
     public $url;
     public $method;
@@ -22,7 +22,7 @@ trait baseUrl {
     $client = new Client();
     $res = $client->request($this->method, $this->url, [
         'headers' => [
-            'Authorization' => 'Bearer '.$this->apiKey,
+            'authorization' => 'Bearer '.$this->apiKey,
             'Content-Type' => 'application/json',
         ],
         'json' => $this->jsonBody

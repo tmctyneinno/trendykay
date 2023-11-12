@@ -171,6 +171,7 @@
                                         @endphp
                                         <th>Total</th>
                                         <input required type="hidden" name="total" value="{{number_format($total, 2)}}"  >
+                                        <input type="hidden" name="order" value="{{$carts->qty}}">
                              
                                         <td colspan="2" class="product-subtotal"><span class="font-xl text-brand fw-900">C${{number_format($total, 2)}}</span></td>
                                     </tr>
@@ -187,9 +188,9 @@
                             <div class="payment_option">
                                 <div class="custome-radio">
                                     <input class="form-check-input" required="" type="radio" name="payment_option" id="exampleRadios5" checked="">
-                                    <label class="form-check-label" for="exampleRadios5" data-bs-toggle="collapse" data-target="#paypal" aria-controls="paypal">Login to pay with Paypal</label>
+                                    <label class="form-check-label" for="exampleRadios5" data-bs-toggle="collapse" data-target="#paypal" aria-controls="paypal">Pay with Stripe</label>
                                     <div class="form-group collapse in" id="paypal">
-                                        <p class=" mt-5">Pay via PayPal; you can pay with your credit card if you don't have a PayPal account.</p>
+                                        <p class=" mt-5">Pay via Stripe; you can pay with your credit card if you don't have a Stripe account.</p>
                                     </div>
                                 </div>
                             </div>

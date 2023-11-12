@@ -18,6 +18,7 @@ use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use App\Traits\password;
 use Illuminate\Support\Facades\Auth;
+use App\Services\baseUrl;
 use App\Traits\notify;
 use Illuminate\Support\Facades\DB;
 use Symfony\Component\HttpFoundation\Session\Session;
@@ -143,13 +144,22 @@ class CheckoutController extends Controller
                     $order_list->image = $cat->model->image;
                     $order_list->payable = $cat->qty*$order_list->price;
                     $order_list->user_id = $user->id;
-                    $order_list->save();
+                    $order_list->save(); 
 
                 }
                 $address = Shipping::where(['user_id' => $user->id, 'is_default' => 1])->first();
                 if(!$address){   
                     $address = Shipping::create($this->StoreShippingAddress($request));
                 }
+
+                //get shipping information 
+
+                $test = new baseUrl("https://api.easyship.com/2023-01/addresses", "get", "sand_7Kq0UOMKfMN25wnc6PWAGpLupRyI2Ee4fOauyItMJkM=");
+                 $tests = $test->Client();
+               
+               $ss =  json_decode($tests->getBody(), true);
+
+               dd($ss);
                 DB::commit();
             }catch(\Exception $e){
                 DB::rollBack();
