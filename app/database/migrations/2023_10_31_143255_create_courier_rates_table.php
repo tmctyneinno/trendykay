@@ -15,6 +15,8 @@ class CreateCourierRatesTable extends Migration
     {
         Schema::create('courier_rates', function (Blueprint $table) {
             $table->id();
+            $table->integer('user_id')->nullable();
+            $table->string('order_no')->nullable();
             $table->string('courier_id')->nullable();
             $table->string('courier_name')->nullable();
             $table->string('min_delivery_time')->nullable();

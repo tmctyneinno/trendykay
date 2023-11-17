@@ -15,7 +15,7 @@ class AddfieldToAdmins extends Migration
     {
         Schema::table('admins', function (Blueprint $table) {
             //
-            $table->string('otp')->nullable();
+            // $table->string('otp')->nullable();
         });
     }
 

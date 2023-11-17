@@ -10,7 +10,8 @@ class baseUrl {
     public $jsonBody;
     public $apiKey;
 
-    public function __construct($url, $method, $apiKey,  $jsonBody = [])
+
+    public function __construct($url, $method, $apiKey,  $jsonBody)
     {
         $this->url = $url;
         $this->method = $method;
@@ -24,6 +25,7 @@ class baseUrl {
         'headers' => [
             'authorization' => 'Bearer '.$this->apiKey,
             'Content-Type' => 'application/json',
+            'Accept' => 'application/json',
         ],
         'json' => $this->jsonBody
     ]);

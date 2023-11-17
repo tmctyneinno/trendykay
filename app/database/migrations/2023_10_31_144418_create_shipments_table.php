@@ -16,7 +16,7 @@ class CreateShipmentsTable extends Migration
         Schema::create('shipments', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained();
-            $table->foreignId('order_No')->constrained();
+            $table->string('order_No')->nullable();
             $table->string('easyship_shipment_id')->nullable();
             $table->string('destination_name')->nullable();
             $table->string('destination_address_line_1')->nullable();

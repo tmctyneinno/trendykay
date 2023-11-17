@@ -1,7 +1,9 @@
 <?php
+
 namespace App\Http\Controllers;
 
 use App\AdminNotify;
+use App\CourierRates;
 use App\User;
 use App\Shipping;
 use App\News;
@@ -21,6 +23,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Services\baseUrl;
 use App\Traits\notify;
 use Illuminate\Support\Facades\DB;
+use App\Traits\GetRates;
 use Symfony\Component\HttpFoundation\Session\Session;
 
 use Illuminate\Http\Request;
@@ -29,6 +32,7 @@ class CheckoutController extends Controller
 {
     use CheckoutStore;
     use notify;
+    use GetRates;
     use password;
     private $user;
     private $OrderItem;
@@ -40,64 +44,69 @@ class CheckoutController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function send($data){
-     //  dd($data);
+    public function send($data)
+    {
+        //  dd($data);
         Mail::to($data['email'])->send(new UserMail($data));
     }
-    
-    public function sendMail($data){
+
+    public function sendMail($data)
+    {
         Mail::to($data['email'],  'orders@sofarsolar.ng')->send(new PaymentMail($data));
     }
-     public function OrderMail($data){
+    public function OrderMail($data)
+    {
         Mail::to($data['email'], 'orders@sofarsolar.ng')->send(new OrderMail($data));
     }
 
-     public function __construct()
-     {
-         $this->user = new User();
-         $this->OrderItem = new OrderItem();
-         $this->Order = new Order();
-         $this->Shipping = new Shipping();
-     }
-  
+    public function __construct()
+    {
+        $this->user = new User();
+        $this->OrderItem = new OrderItem();
+        $this->Order = new Order();
+        $this->Shipping = new Shipping();
+    }
 
-    public function index(){
 
-        if(auth::user()){
+    public function index()
+    {
+
+        if (auth::user()) {
             $users = auth()->user();
-            $shipping= Shipping::where(['user_id' => $users->id, 'is_default' => 1])->first();
+            $shipping = Shipping::where(['user_id' => $users->id, 'is_default' => 1])->first();
             $user = User::where('id', auth()->user()->id)->first();
-        }else{
+        } else {
             $users = 0;
         }
-        if(count(\Cart::content()) == null){
+        if (count(\Cart::content()) == null) {
             return redirect()->route('index');
         }
 
         return view('users.products.checkout')
-        ->with('carts', \Cart::content())
-        ->with('title', 'Checkout')
-        ->with('address', $shipping??null)
-        ->with('user', $user??null);
+            ->with('carts', \Cart::content())
+            ->with('title', 'Checkout')
+            ->with('address', $shipping ?? null)
+            ->with('user', $user ?? null);
     }
 
 
 
-  
-    public function store(Request $request){
 
-        if(count(\Cart::content())>0){
-            $valid = $request->all(); 
-            if(!auth()->user()){
+    public function store(Request $request)
+    {
+
+        if (count(\Cart::content()) > 0) {
+            $valid = $request->all();
+            if (!auth()->user()) {
                 DB::beginTransaction();
-                try{
+                try {
                     $user = User::where('email', $request->email)->first();
-                    if($user){
+                    if ($user) {
                         Session()->flash('alert', 'danger');
                         Session()->flash('reset');
                         Session()->flash('message', 'Opps!, This customer email already exist, did you forget your Password?');
                         return redirect()->back()->withInput($valid);
-                    }else{
+                    } else {
                         #================== CREATE NEW USER ACCOUNT================
                         $pass = $this->generatePassword($request->name);
                         $request['pass'] = hash::make($pass);
@@ -105,7 +114,7 @@ class CheckoutController extends Controller
                         //dd($uu);
                         #============= LOGIN USER =========================
                         Auth::login($users);
-                       
+
                         // if($users){
                         //     $title = 'New Customer Registered';
                         //     $message = 'Thanks for registrating on our system, do enjoy our services.';
@@ -120,20 +129,19 @@ class CheckoutController extends Controller
                         //     $this->send($data);
                         // }
                     }
-                    
-                }catch(\Exception $e){
+                } catch (\Exception $e) {
                     DB::rollBack();
                     throw $e;
-                }   
+                }
             }
-           
+
             DB::beginTransaction();
             $user = User::where('id', auth()->user()->id)->first();
-            try{
-                $orderNo = rand(1111111,9999999).rand(1111111,9999999);
+            try {
+                $orderNo = rand(1111111, 9999999) . rand(1111111, 9999999);
                 $cart = \Cart::content();
-               
-                foreach($cart as $cat){
+
+                foreach ($cart as $cat) {
                     $order_list = new OrderItem;
                     $order_list->order_No = $orderNo;
                     $order_list->product_name = $cat->model->name;
@@ -142,39 +150,67 @@ class CheckoutController extends Controller
                     $order_list->size = $cat->options->size;
                     $order_list->price = $cat->price;
                     $order_list->image = $cat->model->image;
-                    $order_list->payable = $cat->qty*$order_list->price;
+                    $order_list->payable = $cat->qty * $order_list->price;
                     $order_list->user_id = $user->id;
-                    $order_list->save(); 
-
+                    $order_list->save();
                 }
                 $address = Shipping::where(['user_id' => $user->id, 'is_default' => 1])->first();
-                if(!$address){   
+                if (!$address) {
                     $address = Shipping::create($this->StoreShippingAddress($request));
                 }
 
                 //get shipping information 
 
-                $test = new baseUrl("https://api.easyship.com/2023-01/addresses", "get", "sand_7Kq0UOMKfMN25wnc6PWAGpLupRyI2Ee4fOauyItMJkM=");
-                 $tests = $test->Client();
-               
-               $ss =  json_decode($tests->getBody(), true);
+                //     $test = new baseUrl("https://api.easyship.com/2023-01/addresses", "get", "sand_7Kq0UOMKfMN25wnc6PWAGpLupRyI2Ee4fOauyItMJkM=",  null);
+                //     $tests = $test->Client();
 
-               dd($ss);
+                //    $ss =  json_decode($tests->getBody(), true);
+                //    dd($ss);
+                //     //get shipping rates 
+
+                $res = $this->SendRequest('M4C 4Y7', "CA", $request->zip_code ?? "M4C 4Y7", "Sender", false, 1.2, 5, 10, 10, "fashion", "CAD", 100);
+
+                $ss = json_decode($res->getBody(), true);;
+
+                dd($ss);
+                if ($ss['rates']) {
+                    foreach ($ss['rates'] as $rate) {
+                        CourierRates::create([
+                            'user_id' => $user->id,
+                            'order_no' =>$orderNo,
+                            'courier_id'=>$ss['courier_id'],
+                            'courier_name' => $ss['courier_name'],
+                            'min_delivery_time' => $ss['min_delivery_time'],
+                            'max_delivery_time' => $ss['max_delivery_time'],
+                            'value_for_money_rank' => $ss['value_for_money_rank'],
+                            'delivery_time_rank' => $ss['delivery_time_rank'],
+                            'shipment_charge' => $ss['shipment_charge'],
+                            'shipment_charge_total' => $ss['shipment_charge_total'],
+                            'effective_incoterms' => $ss['effective_incoterms'],
+                            'courier_does_pickup' => $ss['courier_does_pickup'],
+                            'courier_dropoff_url' => $ss['courier_dropoff_url'],
+                            'tracking_rating' => $ss['tracking_rating'],
+                            'currency' => $ss['currency'],
+                            'payment_recipient' => $ss['payment_recipient'],
+                            'courier_remarks' => $ss['courier_remarks'],
+                        ]);
+                    }
+                }
+
+
                 DB::commit();
-            }catch(\Exception $e){
+            } catch (\Exception $e) {
                 DB::rollBack();
                 throw $e;
-            }  
-        
+            }
+
             return view('users.products.payment')
-            ->with('user', $user)
-            ->with('address', $address)
-            ->with('carts', $cart)
-            ->with('title', 'Checkout Payment');
-        }else{
+                ->with('user', $user)
+                ->with('address', $address)
+                ->with('carts', $cart)
+                ->with('title', 'Checkout Payment');
+        } else {
             return redirect()->route('carts.index');
         }
     }
-
-
 }

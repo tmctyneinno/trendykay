@@ -23,17 +23,13 @@ class CreateShippingCollectionsTable extends Migration
             $table->string('easyship_shipment_ids')->nullable();
             $table->string('easyship_pickup_id')->nullable();
             $table->string('preferred_min_time')->nullable();
-            $table->string('')->nullable();
-            $table->string('')->nullable();
-            $table->string('')->nullable();
-            $table->string('')->nullable();
-            $table->string('')->nullable();
-            $table->string('')->nullable();
-            $table->string('')->nullable();
-            $table->string('')->nullable();
-            $table->string('')->nullable();
-            $table->string('')->nullable();
-            $table->string('')->nullable();
+            $table->string('preferred_max_time')->nullable();
+            $table->string('pickup_reference_number')->nullable();
+            $table->string('pickup_fee')->nullable();
+            $table->string('provider_name')->nullable();
+            $table->string('provider_customer_service_phone')->nullable();
+            $table->string('shipments_count')->nullable();
+            $table->string('address')->nullable();
             $table->timestamps();
         });
     }
