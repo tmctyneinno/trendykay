@@ -94,7 +94,6 @@ class CheckoutController extends Controller
 
     public function store(Request $request)
     {
-
         if (count(\Cart::content()) > 0) {
             $valid = $request->all();
             if (!auth()->user()) {
@@ -138,7 +137,7 @@ class CheckoutController extends Controller
             DB::beginTransaction();
             $user = User::where('id', auth()->user()->id)->first();
             try {
-                $orderNo = rand(1111111, 9999999) . rand(1111111, 9999999);
+                $orderNo = rand(1111111, 9999999).rand(1111111, 9999999);
                 $cart = \Cart::content();
 
                 foreach ($cart as $cat) {
@@ -159,22 +158,13 @@ class CheckoutController extends Controller
                     $address = Shipping::create($this->StoreShippingAddress($request));
                 }
 
-                //get shipping information 
-
-                //     $test = new baseUrl("https://api.easyship.com/2023-01/addresses", "get", "sand_7Kq0UOMKfMN25wnc6PWAGpLupRyI2Ee4fOauyItMJkM=",  null);
-                //     $tests = $test->Client();
-
-                //    $ss =  json_decode($tests->getBody(), true);
-                //    dd($ss);
-                //     //get shipping rates 
-
-                $res = $this->SendRequest('M4C 4Y7', "CA", $request->zip_code ?? "M4C 4Y7", "Sender", false, 1.2, 5, 10, 10, "fashion", "CAD", 100);
-
-                $ss = json_decode($res->getBody(), true);;
-
-                dd($ss);
-                if ($ss['rates']) {
-                    foreach ($ss['rates'] as $rate) {
+                $check = CourierRates::where('order_no', $orderNo)->first();
+                if(!$check){
+                    $res = $this->SendRequest('M4C 4Y7', "CA", $request->zip_code ?? "M4C 4Y7", "Sender", false, 1.2, 5, 10, 10, "fashion", "CAD", 100);
+                $wss = json_decode($res->getBody(), true);;
+                if ($wss['rates']) {
+                    foreach ($wss['rates'] as $ss) {
+                       ;
                         CourierRates::create([
                             'user_id' => $user->id,
                             'order_no' =>$orderNo,
@@ -191,13 +181,13 @@ class CheckoutController extends Controller
                             'courier_dropoff_url' => $ss['courier_dropoff_url'],
                             'tracking_rating' => $ss['tracking_rating'],
                             'currency' => $ss['currency'],
-                            'payment_recipient' => $ss['payment_recipient'],
                             'courier_remarks' => $ss['courier_remarks'],
+                            'total_charge' => $ss['total_charge'],
+                            'full_description' => $ss['full_description']
                         ]);
                     }
                 }
-
-
+            }
                 DB::commit();
             } catch (\Exception $e) {
                 DB::rollBack();
@@ -208,7 +198,8 @@ class CheckoutController extends Controller
                 ->with('user', $user)
                 ->with('address', $address)
                 ->with('carts', $cart)
-                ->with('title', 'Checkout Payment');
+                ->with('title', 'Checkout Payment')
+                ->with('shipping_rates',  CourierRates::where('order_no', $orderNo)->take(3)->get());
         } else {
             return redirect()->route('carts.index');
         }

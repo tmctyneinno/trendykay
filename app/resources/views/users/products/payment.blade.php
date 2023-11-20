@@ -1,7 +1,27 @@
 @extends('layouts.app')
 @section('content')
 @section('title', $title)
+@section('styles')
 
+<style>
+.labl {
+    display : block;
+}
+.labl > input{ /* HIDE RADIO */
+    visibility: hidden; /* Makes input not-clickable */
+    position: absolute; /* Remove input from document flow */
+}
+.labl > input + div{ /* DIV STYLES */
+    cursor:pointer;
+    border:2px solid transparent;
+}
+.labl > input:checked + div{ /* (RADIO CHECKED) DIV STYLES */
+    background-color: #ffd6bb;
+    border: 1px solid #ff6600;
+}
+
+</style>
+@endsection
 <main class="main">
     <div class="page-header breadcrumb-wrap">
         <div class="container">
@@ -13,112 +33,48 @@
     </div>
     <section class="mt-50 mb-50">
         <div class="container">
-            <div class="row">
-                @if(!auth::user())
-                <div class="col-lg-6 mb-sm-15">
-                    <div class="toggle_info">
-                        
-                        <span><i class="fi-rs-user mr-10"></i><span class="text-muted">Already have an account?</span> <a href="{{route('login')}}" >Click here to login</a></span>
-                    </div>
-                </div>
-                @endif
-                
-            </div>
-            <div class="row">
-                <div class="col-12">
-                    <div class="divider mt-50 mb-50"></div>
-                </div>
-            </div>
-           
             <form action="{{ route('pay.checkout')}}" method="POST">
             @csrf
            
             <div class="row">
-                
                 <div class="col-md-6">
                     <div class="mb-2">
-                        <h5 style="display: inline">User Information</h5>
-                        @if(auth::user())
-                        <a   style="float: right" href="{{route('users.address')}}"> Update Info</a>
-                        @endif
-                    </div>
-                    @if(Session::has('alert'))
-                    <div class="p-4">
-                    <span class="alert alert-{{Session::get('alert')}}" role="alert"> 
-                        <span style="padding:5px">	{!! Session()->get('message')!!}  </span>
-                    </span>
-                    </div>
-                    @endif
-                    <br>
-                    <div class="form-group">
-                            
-                        <input type="text" name="name" maxlength="64" @if(isset($user->name)) value="{{$user->name}}"  @else value="{{old('name')}}"  @endif class="@error('name') is-invalid @enderror" placeholder="Full Name" @auth readOnly @endauth> 
-                            @error('name')
-                                <span class="btn-danger" role="alert">
-                                <small> {{$message}}</small>
-                                </span>
-                            @enderror
-                    </div>
-                    <div class="form-group">
-                        <input required type="email" name="email" @if(isset($user->email)) value="{{$user->email}}"  @else value="{{old('email')}}"  @endif  class="@error('email') is-invalid @enderror" placeholder="Email Address" @auth readOnly @endauth>
-                        @error('email')
-                            <span class="btn-danger" role="alert">
-                            <small> {{$message}}</small>
-                            </span>
-                        @enderror
-                    </div>
-                    <div class="form-group"> 
-                        <input required type="text" name="phone"  @if(isset($user->phone)) value="{{$user->phone}}"  @else value="{{old('phone')}}"  @endif class="@error('phone') is-invalid @enderror" placeholder="Phone number" @auth readOnly @endauth>
-                        @error('phone')
-                            <span class="btn-danger" role="alert">
-                            <small> {{$message}}</small>
-                            </span>
-                        @enderror
-                    </div>
-                    <hr>
-                    <div class="mb-25">
-                        <h5 style="display: inline">Shipping Information</h5>
-                        @if(auth::user())
-                        <a   style="float: right" href="{{route('users.address')}}"> Update Info</a>
-                        @endif
-                    </div>
-                    <div class="form-group">
-                        <input required type="text" name="zip_code"   @if(isset($address->zip_code)) value="{{$address->zip_code}}" @else value="{{old('zip_code')}}"  @endif  class="@error('zip_code') is-invalid @enderror" placeholder="Zip Code" @auth readOnly @endauth>	
-                                    
-                    </div>
-                    <div class="form-group">
-                        <input required type="text" name="address"@if(isset($address->address)) value="{{$address->address}}" @else value="{{old('address')}}"  @endif class="@error('address') is-invalid @enderror"placeholder="Address" @auth readOnly @endauth>
-                            @error('address')
-                                <span class="btn-danger" role="alert">
-                                <small> {{$message}}</small>
-                                </span>
-                            @enderror
-                    </div>
-                    <div class="form-group">
-                        <input required type="text" name="city" @if(isset($address->city)) value="{{$address->city}}" @else value="{{old('city')}}"   @endif class="@error('city') is-invalid @enderror"placeholder="City" @auth readOnly @endauth>
-                            @error('city')
-                                <span class="btn-danger" role="alert">
-                                <small> {{$message}}</small>
-                                </span>
-                            @enderror
-                    </div>
-                    <div class="form-group">
-                        <input required type="text" name="state" @if(isset($address->state)) value="{{$address->state}}" @else value="{{old('state')}}"  @endif class="@error('state') is-invalid @enderror"placeholder="State/province" @auth readOnly @endauth>
-                            @error('city')
-                                <span class="btn-danger" role="alert">
-                                <small> {{$message}}</small>
-                                </span>
-                            @enderror
-                    </div>
-                    <div class="form-group">
-                        <input required type="text" name="country"  @if(isset($address->country)) value="{{$address->country}}" @else value="{{old('country')}}"  @endif  class="@error('country') is-invalid @enderror" placeholder="Country" @auth readOnly @endauth>
-                        @error('country')
-                            <span class="btn-danger" role="alert">
-                            <small> {{$message}}</small>
-                            </span>
-                        @enderror
+                    <div class="mb-25 pt-3 pb-3 pr-2 pl-2" style="background: #fff; border-radius:10px; border:1px solid #0000002d">
+                        <p class="m-4" style="color:#777373"> <i class="fa fa-check-square-o" style="color:rgba(77, 129, 77, 0.112)"></i>  Shipping Address <span style="float:right"> 
+                            <a href=""> {{_('Change >')}}  </a> </span></p> 
+                        <hr>
+                        <div class="ps-categogy--ist  p-2">
+                            <p style="color:#322f37">{{$address->name}}</p>
+                            <p>{{$address->address}}, {{$address->city}} |  {{$address->state}}, {{$address->country}} 
+                                | {{$address->phone}} </p>
+                        </div>
                     </div>
                         
+                </div>
+                <div class="mb-2" style="background: #fff; border-radius:10px; border:1px solid #0000002d">
+                    <p class="m-4" >  
+                        Select Shipping Method 
+                    </p> 
+                    <hr>
+                    @forelse ($shipping_rates as  $rate)
+                    <label class="labl"> 
+                    {{-- <div class="ps-categogyt m-5 p-3" style="border: 1px solid #4e4a4a51; border-radius: 10px" > --}}
+                  
+                      <table class="table table-responsive" > 
+                        <tr> 
+                            <td style="border:none">     <input type="radio"  id="courier_id" name="defaul_address" value="{{$rate->courier_id}}">  </td>
+                            <td  style="border:none"><p style="color:#322f37">{{$rate->courier_name}}</p>
+                                <p>C${{$rate->total_charge}},  <br> {{$rate->full_description}} </p>
+                            </td>
+                        </tr> 
+                      </table>
+                     
+                        {{-- </div> --}}
+                    </label>
+                    <hr>
+                    @empty
+                    @endforelse
+                </div>
                 </div>
                 <div class="col-md-6">
                     <div class="order_review">

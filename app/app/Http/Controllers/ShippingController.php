@@ -26,6 +26,7 @@ class ShippingController extends CheckoutController
         }
      }
      
+     
 
     public function StoreShippingAddress($request){
         $shipping = new Shipping;
