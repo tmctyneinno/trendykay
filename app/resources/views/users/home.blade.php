@@ -535,11 +535,6 @@
                 </div>
             </div>
         </section>
-
-
-
-        
-
         @if (count($recents) > 4)
             <section class="section-padding">
                 <div class="container wow fadeIn animated">

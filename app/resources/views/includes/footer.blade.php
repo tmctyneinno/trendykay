@@ -111,7 +111,7 @@
     </div>
 </footer>
 <!-- Preloader Start -->
-{{-- <div id="preloader-active">
+ <div id="preloader-active">
     <div class="preloader d-flex align-items-center justify-content-center">
         <div class="preloader-inner position-relative">
             <div class="text-center">
@@ -124,4 +124,8 @@
             </div>
         </div>
     </div>
-</div> --}}
+</div> 
+
+@if(isset($splash))
+@include('includes.flashmsg')
+@endif

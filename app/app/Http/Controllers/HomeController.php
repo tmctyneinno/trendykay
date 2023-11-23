@@ -16,6 +16,7 @@ use App\News;
 use Illuminate\Support\Facades\Validator;
 use App\Colorproduct;
 use App\Color;
+use App\FlashMsg;
 use App\Sizeproduct;
 use App\Size;
 use App\Slider;
@@ -68,6 +69,7 @@ class HomeController extends Controller
             ->with('news', News::latest()->get())
             ->with('products', Product::inRandomOrder()->latest()->simplePaginate(9))
             ->with('sliders', Slider::get())
+            ->with('splash', FlashMsg::latest()->latest()->first())
             ->with('categories', Category::inRandomOrder()->where('name', 'Denim')->orWhere('name', 'Dresses')->orwhere('name', 'Jumpsuit')->orwhere('name', 'Swinwear')->get());
     } 
 
