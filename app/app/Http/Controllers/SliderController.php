@@ -27,9 +27,8 @@ class SliderController extends Controller
     public function Store(Request $request){
         $request->validate([
             'image' => 'required',
-            'content' => 'required',
-            'title' => 'required',
-            'link' => 'integer|required'
+            'secondname' => 'required',
+            'thirdname' => 'required',
         ]);
 
        //dd(request()->file('images'));
@@ -41,13 +40,11 @@ class SliderController extends Controller
             $image->move('images/sliders/',$fileName);
         
     }
-    $link = route('subpages', encrypt($request->link));
         $data = [
             'image' =>   $fileName,
-            'content' => $request->content,
-            'title' =>  $request->title,
+            'secondname' => $request->secondname,
+            'thirdname' =>  $request->thirdname,
             'status' => 1,
-            'links' => $link
         ];
 
        //dd($data);
