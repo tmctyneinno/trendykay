@@ -161,7 +161,7 @@ class CheckoutController extends Controller
                 $check = CourierRates::where('order_no', $orderNo)->first();
                 if(!$check){
                     $res = $this->SendRequest('M4C 4Y7', "CA", $request->zip_code ?? "M4C 4Y7", "Sender", false, 1.2, 5, 10, 10, "fashion", "CAD", 100);
-                $wss = json_decode($res->getBody(), true);;
+                $wss = json_decode($res->getBody(), true);
                 if ($wss['rates']) {
                     foreach ($wss['rates'] as $ss) {
                        ;
@@ -193,13 +193,13 @@ class CheckoutController extends Controller
                 DB::rollBack();
                 throw $e;
             }
-
             return view('users.products.payment')
                 ->with('user', $user)
                 ->with('address', $address)
                 ->with('carts', $cart)
+                ->with('orderNo', $orderNo)
                 ->with('title', 'Checkout Payment')
-                ->with('shipping_rates',  CourierRates::where('order_no', $orderNo)->take(3)->get());
+                ->with('shipping_rates',  CourierRates::where('user_id', $user->id)->latest()->take(3)->get());
         } else {
             return redirect()->route('carts.index');
         }

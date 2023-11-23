@@ -45,6 +45,10 @@
                         <hr>
                         <div class="ps-categogy--ist  p-2">
                             <p style="color:#322f37">{{$address->name}}</p>
+                            <input type="hidden" name="email" value="{{auth()->user()->email}}">
+                            <input type="hidden" name="name" value="{{$address->name}}">
+                            <input type="hidden" name="phone" value="{{$address->phone}}">
+                            <input type="hidden" name="orderNo" value="{{$orderNo}}">
                             <p>{{$address->address}}, {{$address->city}} |  {{$address->state}}, {{$address->country}} 
                                 | {{$address->phone}} </p>
                         </div>
@@ -59,12 +63,13 @@
                     @forelse ($shipping_rates as  $rate)
                     <label class="labl"> 
                     {{-- <div class="ps-categogyt m-5 p-3" style="border: 1px solid #4e4a4a51; border-radius: 10px" > --}}
-                  
                       <table class="table table-responsive" > 
                         <tr> 
-                            <td style="border:none">     <input type="radio"  id="courier_id" name="defaul_address" value="{{$rate->courier_id}}">  </td>
+                            <td style="border:none">     
+                            <input    type="radio"  id="courier_id" data-courier-id="{{$rate->courier_id}}" name="selected_courier_id" value="{{$rate->courier_id}}" /> 
+                         </td>
                             <td  style="border:none"><p style="color:#322f37">{{$rate->courier_name}}</p>
-                                <p>C${{$rate->total_charge}},  <br> {{$rate->full_description}} </p>
+                                <p   onclick="getPrice(this)" id="total_charge" value="{{$rate->total_charge}}" data-charge-amount="{{$rate->total_charge}}">C${{$rate->total_charge}}</p>  <p> {{$rate->full_description}} </p>
                             </td>
                         </tr> 
                       </table>
@@ -126,10 +131,10 @@
                                             $total = $priceTotal + $tax; // I added the tax to the subtotal to get the total price
                                         @endphp
                                         <th>Total</th>
-                                        <input required type="hidden" name="total" value="{{number_format($total, 2)}}"  >
-                                        <input type="hidden" name="order" value="{{$carts->qty}}">
+                                        <input required type="hidden" name="total" value="{{number_format($total, 2)}}">
+                                        <input type="hidden" name="qty" value="{{$carts->qty}}">
                              
-                                        <td colspan="2" class="product-subtotal"><span class="font-xl text-brand fw-900">C${{number_format($total, 2)}}</span></td>
+                                        <td colspan="2" class="product-subtotal"><span class="font-xl text-brand fw-900" id="price_total" data-price-total="{{$total}}">C${{number_format($total, 2)}}</span></td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -161,8 +166,35 @@
         </div>
     </section>
 </main>
+@endsection
+
+@section('scripts')
+
+<script> 
 
 
 
+let price = {!! json_encode(Cart::priceTotalFloat()) !!}
+let tax = parseFloat(price) * 0.12;
+let priceTotal = price + tax;
+
+function getPrice(data){
+    let id = $(data).attr('data-courier-id');
+    let charge = $(data).attr('data-charge-amount');
+    let total = parseFloat(charge) + parseFloat(priceTotal);
+    $('#price_total').html('C$' + formats(total.toFixed(2)))
+    $('#total').val(parseFloat(charge)  + parseFloat(priceTotal))
+};
+
+function formats(num)
+    {
+        var num_parts = num.toString().split(".");
+        num_parts[0] = num_parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        return num_parts.join(".");
+    }
+
+
+</script>
 
 @endsection
+
