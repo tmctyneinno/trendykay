@@ -16,40 +16,9 @@
                     <div class="row mb-8">
                         <div class="col-lg-12 m-auto">
                             <div class="row">
-                                <div class="col-md-4">
-                                    {{-- @include('includes.accountNav') --}}
-                                    <div class="dashboard-menu">
-                                        <ul class="nav flex-column" role="tablist">
-                                            <li class="nav-item">
-                                                <a class="nav-link " id="dashboard-tab"  href="{{route('users.account')}}"  
-                                                aria-controls="dashboard" aria-selected="false">Account details</a>
-                                            </li>
-                                            <li class="nav-item">
-                                                <a class="nav-link " id="orders-tab"  href="{{route('users.orders')}}"  
-                                                aria-controls="orders" aria-selected="false"><i class="fi-rs-shoppingg-bag mr-10"></i>Orders</a>
-                                            </li>
-                                            <li class="nav-item">
-                                                <a class="nav-link active" id="track-orders-tab"  href="{{route('users.address')}}"  
-                                                aria-controls="track-orders" aria-selected="false"><i class="fi-rs-markerr mr-10"></i>My Address Book</a>
-                                            </li>
-                                            <li class="nav-item">
-                                                <a class="nav-link"  href="{{route('users.recentViews')}}" 
-                                                ><i class="fi-rs-eyes mr-10"></i>Recently Viewed</a>
-                                            </li>
-                                            <li class="nav-item">
-                                                <a class="nav-link" id="account-detail-tab"  href="{{route('user.transactions')}}"  
-                                                aria-controls="account-detail" ><i class="fi-rs-atm mr-10"></i>Card Payments</a>
-                                            </li>
-                                            <li class="nav-item">
-                                                <a class="nav-link" id="account-detail-tab"  href="{{route('user.account.details')}}"  
-                                                aria-controls="update-detail" ><i class="fi-rs-atm mr-10"></i>Update Account</a>
-                                            </li>
-                                            
-                                        </ul>
-                                    </div>
-                                </div>
+                                @include('users.accounts.sidebar')
 
-                                
+                               
                                 <div class="col-md-8">
                                     @if(count($addresses)>0)
                                     @foreach($addresses as $addres)
@@ -58,13 +27,12 @@
                                             <h5 class="mb-0">
                                                 @if($addres->is_default == 1)
                                                         <th>Billing Address 
-                                                            <a class="btn btn-outline btn-sm btn-brand-outline font-weight-bold text-brand bg-white text-hover-white  border-radius-5 
-                                                            btn-shadow-brand ">  Default</a>
+                                                            <a class="" style="float:right; color:chocolate">  Default</a>
                                                         </th>
                                                 @else
                                                     <th>Billing Address
                                                         <a href="{{route('users.update-address', encrypt($addres->id))}}" class="btn btn-outline btn-sm btn-brand-outline font-weight-bold text-brand bg-white text-hover-white  border-radius-5 
-                                                            btn-shadow-brand ">  Default</a>
+                                                            btn-shadow-brand " style="float:right"> Edit</a>
                                                     </th>
                                                 @endif
                                             </h5>
@@ -77,14 +45,17 @@
                                                 <p> City: {{$addres->city . " , " . strtoupper($addres->state)}} </p>
                                                 <p> Phone: {{$addres->receiver_phone}}</p>
                                             <br><br>
-                                            @endforeach
-                                            @else
-                                                <p>Shipping Address</p>
-                                                <h6> You dont have any Default shipping Address yet</h6>
+                                          
                                        
                                     </div>
+                                    @endforeach
+                                    @else
+                                        <p>Shipping Address</p>
+                                        <h6> You dont have any Default shipping Address yet</h6>
                                     @endif
-                                    <a href="{{url('customer.add-address')}}" class="btn btn-small">Add New</a>
+                                <div class="p-2">
+                                    <a href="{{route('users.add-address')}}" class="btn btn-lg">Add New</a>
+                                </div>
                                 </div> 
                                 <!-- End Tab Content -->
                             </div>

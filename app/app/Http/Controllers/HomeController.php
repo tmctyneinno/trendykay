@@ -13,6 +13,7 @@ use App\Notification;
 use App\User;
 use App\Menu;
 use App\News;
+use Illuminate\Support\Facades\Validator;
 use App\Colorproduct;
 use App\Color;
 use App\Sizeproduct;
@@ -119,7 +120,7 @@ class HomeController extends Controller
         public function UserAddress(){
             $title = "My Details";
            $cart =  \Cart::content()->take(4);
-            $addresses= DB::table('shippings')->where(['user_id'=> auth()->user()->id])->paginate(4); 
+            $addresses= DB::table('shippings')->where(['user_id'=> auth()->user()->id])->latest()->paginate(4); 
             $news = News::latest()->get(); 
             return view('users.accounts.address', compact('addresses', 'title', 'cart', 'news'));
         }
@@ -232,8 +233,8 @@ class HomeController extends Controller
 
     public function Updateship($id){
         $addresses = shipping::find(decrypt($id));
-        $addresses['addresses']= DB::table('shippings')->where(['id'=>  $addresses->id])->get();
-        return view('users.accounts.update-address',$addresses);
+        $address['address']= DB::table('shippings')->where(['id'=>  $addresses->id])->first();
+        return view('users.accounts.update-address',$address);
     }
 
     public function AddressDelete($id){
@@ -242,7 +243,17 @@ class HomeController extends Controller
         return redirect()->back()->with('error', 'Address Deleted Successfully')->with('news', News::latest()->get());
     }
 
-    public function Shipping(Request $request, $id){  
+    public function Shipping(Request $request, $id){ 
+        
+        $valid = Validator::make($request->all(), [
+            'name' => 'required',
+            'address' => 'required',
+            'phone' => 'required',
+            'email' => 'required'
+        ]);
+        if($valid->fails()){
+            return back()->withInput($request->all())->withErrors($valid);
+        }
         if($request->input('update')){
             $shipping = shipping::find($id);
             $shipping->receiver_name = $request->name;
