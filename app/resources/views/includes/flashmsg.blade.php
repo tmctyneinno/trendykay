@@ -13,7 +13,7 @@
                     </div>
                     <div class="deal-bottom">
                         <p>Hurry Up! Offer End In:</p>
-                        <div class="deals-countdown" data-countdown="{{$splash->timer->format('yy/m/d h:m:s')}}2025/03/25 00:00:00"><span class="countdown-section">
+                        <div class="deals-countdown" data-countdown="{{$splash->timer->format('yy/m/d h:m:s')}}"><span class="countdown-section">
                             @php 
                             $days = \Carbon::now()->addHours($splash->timer)
                             @endphp
