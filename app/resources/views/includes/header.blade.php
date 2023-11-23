@@ -58,7 +58,7 @@
     </div>
     <div class="header-middle header-middle-ptb-1 d-none d-lg-block">
         <div class="container">
-            <div class="header-wrap">
+            <div class="header-wrap"> 
                 <div class="logo logo-width-1" >
                    <a href="{{route('index')}}"><img style="width:200px"  src="{{ asset('/assets/logo.jpeg')}}" alt="logo"></a>
                 </div>
