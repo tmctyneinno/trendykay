@@ -25,7 +25,7 @@
                             <span class="countdown-period"> mins </span></span><span class="countdown-section">
                                 <span class="countdown-amount hover-up">32</span>
                                 <span class="countdown-period"> sec </span></span></div>
-                        <a href="shop-grid-right.html" class="btn hover-up">Shop Now <i class="fi-rs-arrow-right"></i></a>
+                        <a href="{{route('home')}}" class="btn hover-up">Shop Now <i class="fi-rs-arrow-right"></i></a>
                     </div>
                 </div>
             </div>
