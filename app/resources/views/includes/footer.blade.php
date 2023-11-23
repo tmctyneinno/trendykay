@@ -32,16 +32,13 @@
                         </div>
                         <h5 class="mt-20 mb-10 fw-600 text-grey-4 wow fadeIn animated">Contact</h5>
                         <p class="wow fadeIn animated">
-                            <strong>Address: </strong>Winnipeg, Manitoba, Canada
+                            <strong>Address: </strong>{{$settings->address}}
                         </p>
                         <p class="wow fadeIn animated">
-                            <strong>Phone: </strong>+14317777816
+                            <strong>Phone: </strong>{{$settings->site_phone}}
                         </p>
                         <p class="wow fadeIn animated">
-                            <strong>Email: </strong>trendykaycollections@gmail.com
-                        </p>
-                        <p class="wow fadeIn animated">
-                            <strong>Hours: </strong>10:00 - 18:00
+                            <strong>Email: </strong>{{$settings->site_email}}
                         </p>
                         
                     </div>
@@ -83,11 +80,10 @@
                         </div>
                         <h5 class="mb-10 mt-30 fw-600 text-grey-4 wow fadeIn animated">Follow Us</h5>
                         <div class="mobile-social-icon wow fadeIn animated mb-sm-5 mb-md-0">
-                            <a href="#"><img src="{{ asset('assets/imgs/theme/icons/icon-facebook.svg')}}" alt=""></a>
-                            <a href="#"><img src="{{ asset('assets/imgs/theme/icons/icon-twitter.svg')}}" alt=""></a>
-                            <a href="#"><img src="{{ asset('assets/imgs/theme/icons/icon-instagram.svg')}}" alt=""></a>
-                            <a href="#"><img src="{{ asset('assets/imgs/theme/icons/icon-pinterest.svg')}}" alt=""></a>
-                            <a href="#"><img src="{{ asset('assets/imgs/theme/icons/icon-youtube.svg')}}" alt=""></a>
+                            <a href="{{$settings->facebook}}"><img src="{{ asset('assets/imgs/theme/icons/icon-facebook.svg')}}" alt=""></a>
+                            <a href="{{$settings->twitter}}"><img src="{{ asset('assets/imgs/theme/icons/icon-twitter.svg')}}" alt=""></a>
+                            <a href="{{$settings->instagram}}"><img src="{{ asset('assets/imgs/theme/icons/icon-instagram.svg')}}" alt=""></a>
+                            <a href="{{$settings->linkedin}}"><img src="{{ asset('assets/imgs/theme/icons/icon-linkedin.svg')}}" alt=""></a>
                         </div>
                     </div>
                 </div>
