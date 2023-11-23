@@ -95,7 +95,7 @@
                                             <div class="text-truncate small"></div>
                                             <div class="col-md-12">
                                                 <div class="form-group">
-                                                    <input type="text"  name="thirdname"   placeholder="Enter Slider content" value="{{old('thirdname')}}" class="form-control @error('content') is-invalid @enderror"  >{{$slider->content}} 
+                                                    <input type="text"  name="thirdname"   placeholder="Enter Slider content" value="{{old('thirdname')}}" class="form-control @error('content') is-invalid @enderror"  > 
                                                     <small id="emailHelp" class="form-text text-muted">Slider Content
                                                     </small>
                                                     @error('thirdname')
