@@ -18,6 +18,12 @@ class SliderController extends Controller
         ->with('breadcrumb', 'Website Settings');
     }
 
+
+    public function Create(){
+    return view('manage.settings.create_sliders')
+    ->with('bheading', 'Website Settings')
+    ->with('breadcrumb', 'Website Settings');
+    }
     public function Store(Request $request){
         $request->validate([
             'image' => 'required',
@@ -50,6 +56,8 @@ class SliderController extends Controller
         \Session::flash('alert', 'Slider Added Successfully');
         return back();
     }
+
+
 
     public function Edit($id){
         $slider = Slider::where('id', decrypt($id))->first();
