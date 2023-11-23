@@ -3,13 +3,13 @@
     <div class="modal-content">
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             <div class="modal-body">
-                <div class="deal" style="background-image: url('{{asset('assets/images/'.$splash->image)}}')">
+                <div class="deal" style="background-image: url('{{ asset('images/products/'. $splash->image) }}')">
                     <div class="deal-top">
                         <h2 class="text-brand">{{$splash->title}}</h2>
                         <h5>{{$splash->sub_title}}</h5>
                     </div>
                     <div class="deal-content">
-                        <h6 class="product-title"><a href="shop-product-right.html">{{$splash->content}}</a></h6>
+                        <h6 class="product-title"><a href="">{{$splash->content}}</a></h6>
                     </div>
                     <div class="deal-bottom">
                         <p>Hurry Up! Offer End In:</p>
