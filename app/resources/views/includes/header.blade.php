@@ -59,8 +59,8 @@
     <div class="header-middle header-middle-ptb-1 d-none d-lg-block">
         <div class="container">
             <div class="header-wrap">
-                <div class="logo logo-width-1">
-                   <a href="{{route('index')}}"><img src="{{ asset('/assets/logo.jpeg')}}" alt="logo"></a>
+                <div class="logo logo-width-1" >
+                   <a href="{{route('index')}}"><img style="width:200px"  src="{{ asset('/assets/logo.jpeg')}}" alt="logo"></a>
                 </div>
                 <div class="header-right">
                     <div class="search-style-2">
@@ -200,50 +200,51 @@
                 <div class="header-action-right d-block d-lg-none">
                     <div class="header-action-2">
                         <div class="header-action-icon-2">
-                            <a href="shop-wishlist.html">
-                                <img alt="Evara" src="assets/imgs/theme/icons/icon-heart.svg">
-                                <span class="pro-count white">4</span>
-                            </a>
-                        </div>
-                        <div class="header-action-icon-2">
                             <a class="mini-cart-icon" href="shop-cart.html">
-                                <img alt="Evara" src="assets/imgs/theme/icons/icon-cart.svg">
-                                <span class="pro-count white">2</span>
+                                <img alt="Trendy Kay Collection" src="{{ asset('assets/imgs/theme/icons/icon-cart.svg')}}">
+                                <span class="pro-count white">
+                                    @if(Cart::count() > 0)
+                                        {{Cart::count()}}
+                                    @else
+                                        0
+                                    @endif
+                                </span>
                             </a>
                             <div class="cart-dropdown-wrap cart-dropdown-hm2">
                                 <ul>
+                                    @if (Cart::count() > 0) 
+                                        @foreach (Cart::content()->take(4) as $carts)
                                     <li>
                                         <div class="shopping-cart-img">
-                                            <a href="shop-product-right.html"><img alt="Evara" src="assets/imgs/shop/thumbnail-3.jpg"></a>
+                                            <a href="{{route('carts.index')}}">
+                                                <img alt="Trendy Kay Collection" src="{{asset('images/products/' .$carts->model->image)}}">
+                                            </a>
                                         </div>
                                         <div class="shopping-cart-title">
-                                            <h4><a href="shop-product-right.html">Plain Striola Shirts</a></h4>
-                                            <h3><span>1 × </span>$800.00</h3>
+                                            <h4><a href="{{route('carts.index')}}">{{$carts->model->name}}</a></h4>
+                                            <h3><span>{{$carts->qty}} × </span>C${{number_format($carts->model->price)}}</h3>
                                         </div>
                                         <div class="shopping-cart-delete">
                                             <a href="#"><i class="fi-rs-cross-small"></i></a>
                                         </div>
                                     </li>
-                                    <li>
-                                        <div class="shopping-cart-img">
-                                            <a href="shop-product-right.html"><img alt="Evara" src="assets/imgs/shop/thumbnail-4.jpg"></a>
-                                        </div>
-                                        <div class="shopping-cart-title">
-                                            <h4><a href="shop-product-right.html">Macbook Pro 2022</a></h4>
-                                            <h3><span>1 × </span>$3500.00</h3>
-                                        </div>
-                                        <div class="shopping-cart-delete">
-                                            <a href="#"><i class="fi-rs-cross-small"></i></a>
-                                        </div>
-                                    </li>
+                                    @endforeach
+                                    @else
+                                        <span class="text-danger" style="color: red">No item in cart</span>
+                                    @endif
                                 </ul>
+                                @php
+                                    $priceTotal = Cart::priceTotal();
+                                    $tax = $priceTotal * 0.12; // Calculate the tax amount (12% of the subtotal)
+                                    $totalPrice = $priceTotal + $tax; // Add the tax to the subtotal to get the total price
+                                @endphp
                                 <div class="shopping-cart-footer">
                                     <div class="shopping-cart-total">
-                                        <h4>Total <span>$383.00</span></h4>
+                                        <h4>Total <span>C${{ number_format($totalPrice, 2)  }}</span></h4>
                                     </div>
                                     <div class="shopping-cart-button">
-                                        <a href="shop-cart.html">View cart</a>
-                                        <a href="shop-checkout.html">Checkout</a>
+                                        <a href="{{route('carts.index')}}">View cart</a>
+                                        <a href="{{route('checkout.index')}}">Checkout</a>
                                     </div>
                                 </div>
                             </div>
