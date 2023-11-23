@@ -162,10 +162,6 @@
                                         <td colspan="2"><em>Standard Shipping</em></td>
                                     </tr>
                                     <tr>
-                                        <th>Tax</th>
-                                        <td colspan="2"><em> 12%</em></td>
-                                    </tr>
-                                    <tr>
                                         @php
                                             $priceTotal = Cart::priceTotalFloat();
                                             $tax = $priceTotal * 0.12; // Calculate the tax amount (12% of the subtotal)
