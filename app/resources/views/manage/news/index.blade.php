@@ -8,6 +8,7 @@
                             <div class="d-flex justify-content-between">
                                 <h6 class="card-title">Blog</h6>
                                 <div>
+                                    <a href="{{route('admin.news.create')}}" class="btn btn-info">Create New Blog</a>
                                     <a href="#" class="mr-3">
                                         <i class="fa fa-refresh"></i>
                                     </a>

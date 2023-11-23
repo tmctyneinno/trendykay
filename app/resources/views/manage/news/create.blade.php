@@ -1,13 +1,16 @@
 @extends('layouts.admin')
 @section('content')
  <div class="container-fluid">
+    {{Form::open(['action' => 'NewsController@Store', 'method'=>'post', 'enctype' => 'multipart/form-data'])}}
+    @csrf
             <div class="row">
+            
                 <div class="col-md-12">
-                {{Form::open(['action' => 'NewsController@Store', 'method'=>'post', 'enctype' => 'multipart/form-data'])}}
-              @csrf
+              
               <div class="card">
                         <div class="card-body">
-                            <h6 class="card-title">Create Blog</h6>
+                            <h6 class="card-title">Create Blog  <a onclick="history.back()" class="btn btn-secondary" style="float:right"> return back</a></h6> 
+                           
                             <div class="row">
                                 <div class="col-md-12">
                                         <div class="form-group">
@@ -64,24 +67,11 @@
                                       <p></p>
                                          <button  type="submit" class="btn btn-primary w-50 p-3">Post Blog</button>
                             </div> 
-                            
-                        </div>
-                      
-                        
-                         
-                    </div>
-                         
-                     
-                            
-                          
-                    
-                    {{Form::close()}}
-
-    </div>
                         </div>
                     </div>
-                   
-
+    {{Form::close()}}
+                        </div>
+                    </div>
 @endsection
 @section('script')
 <script>
