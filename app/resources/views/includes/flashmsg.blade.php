@@ -3,7 +3,7 @@
     <div class="modal-content">
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             <div class="modal-body">
-                <div class="deal" style="background-image: url('{{ asset('images/products/'. $splash->image) }}')">
+                <div class="deal" style="background-image: url('{{ asset('images/products/'.$splash->image) }}')">
                     <div class="deal-top">
                         <h2 class="text-brand">{{$splash->title}}</h2>
                         <h5>{{$splash->sub_title}}</h5>
@@ -13,10 +13,8 @@
                     </div>
                     <div class="deal-bottom">
                         <p>Hurry Up! Offer End In:</p>
-                        <div class="deals-countdown" data-countdown="{{$splash->timer->format('yy/m/d h:m:s')}}"><span class="countdown-section">
-                            @php 
-                            $days = \Carbon::now()->addHours($splash->timer)
-                            @endphp
+                        <div class="deals-countdown" data-countdown="2023/11/27 22:2:3"><span class="countdown-section">
+                           
                             <span class="countdown-amount hover-up">4</span>
                             <span class="countdown-period"> days </span></span>
                             <span class="countdown-section"><span class="countdown-amount hover-up">09</span>
