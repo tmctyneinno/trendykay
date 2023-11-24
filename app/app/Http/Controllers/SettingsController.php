@@ -35,12 +35,14 @@ class SettingsController extends Controller
     
     public function UpdateSocials(Request $request){
 
-    
+     
         $data = [
             'facebook' => $request->facebook,
             'twitter' => $request->twitter,
             'instagram' => $request->instagram,
             'linkedIn' => $request->linkedIn,
+            'tiktok' => $request->tiktok,
+            'pinterest' => $request->pinterest,
         ];
         $testim = Settings::first();
         $testim->fill($data)->save();

@@ -4,12 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title> {{config('app.name')}}</title>
+    <title>Trendy Kay Collections</title>
     <!-- Favicon -->
     <link rel="stylesheet" href="{{asset('/backend/vendors/dataTable/dataTables.min.css')}}" type="text/css">
     <link rel="shortcut icon" type="image/x-icon" href="{{ asset('/assets/logo.png')}}">
     <link rel="stylesheet" href="{{asset('/backend/vendors/dataTable/dataTables.min.css')}}" type="text/css">
-    <link rel="icon" href="{{asset('/images/fav.png')}}">
+    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('/assets/logo.png')}}">
     <!-- Plugin styles -->
     <link rel="stylesheet" href="{{asset('/backend/vendors/bundle.css')}}" type="text/css">
     <!-- Datepicker -->

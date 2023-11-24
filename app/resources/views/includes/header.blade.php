@@ -21,10 +21,6 @@
                                 @foreach ($news as $new)
                                     <li>{{$new->title}} </li>
                                 @endforeach
-                                <li>{{$new->title}} </li>
-                                
-                                @endforeach
-                               {{-- <li>{{$new->title}} <a href="{{route('news.details',encrypt($new->id))}}">View details</a></li> --}}
                             </ul>
                         </div>
                     </div>

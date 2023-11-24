@@ -137,6 +137,58 @@
                                         </div>
                                     </div>
                                 </li>
+
+                                <li class="list-group-item">
+                                    <div class="flex-grow-1 min-width-0">
+                                        <div class="mb-1 d-flex justify-content-between align-items-center">
+                                            <div class="text-truncate app-list-title">Change Pinterest  Link</div>
+                                            <div class="pl-3 d-flex">
+                                                <span class="text-nowrap text-muted"></span>
+                                                
+                                            </div>
+                                        </div>
+                                        <div class="text-muted d-flex justify-content-between">
+                                            <div class="text-truncate small"></div>
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <input type="text" name="pinterest"  value="{{$settings->pinterest }}" class="form-control @error('pinterest') is-invalid @enderror" id="exampleInputEmail1"
+                                                           aria-describedby="emailHelp" placeholder="Change Pinterest Link">
+                                                    <small id="emailHelp" class="form-text text-muted">Update Pinterest  Link
+                                                    </small>
+                                                    @error('pinterest')
+                                                    <span class="invalid-feedback"> <small> * </small> </span>
+                                                    @enderror
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+
+                                <li class="list-group-item">
+                                    <div class="flex-grow-1 min-width-0">
+                                        <div class="mb-1 d-flex justify-content-between align-items-center">
+                                            <div class="text-truncate app-list-title">Change TIKTOK   Link</div>
+                                            <div class="pl-3 d-flex">
+                                                <span class="text-nowrap text-muted"></span>
+                                                
+                                            </div>
+                                        </div>
+                                        <div class="text-muted d-flex justify-content-between">
+                                            <div class="text-truncate small"></div>
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <input type="text" name="tiktok"  value="{{$settings->tiktok }}" class="form-control @error('tiktok') is-invalid @enderror" id="exampleInputEmail1"
+                                                           aria-describedby="emailHelp" placeholder="Change TIKTOK  Link">
+                                                    <small id="emailHelp" class="form-text text-muted">Update TIKTOK   Link
+                                                    </small>
+                                                    @error('tiktok')
+                                                    <span class="invalid-feedback"> <small> * </small> </span>
+                                                    @enderror
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
                                
                                 <div style="float:right" class="pl-5 pt-3">
 
