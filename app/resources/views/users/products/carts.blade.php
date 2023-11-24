@@ -43,16 +43,9 @@
                                     </td>
                                     <td class="text-center cart-item" data-title="Quantity" data-cart-item-id="{{ $carts->rowId }}">
                                         <div class="detail-qty  radius  m-auto">
-<<<<<<< HEAD
                                             <a href="#" class="qty-down" data-cart-item-id="{{ $carts->rowId }}"><i class="fi-rs-angle-small-down decrement-btn"></i></a>
                                             <input type="number" class="border mr-2 qty-val quantity-input" data-qty="{{ $carts->qty }}" value="{{ $carts->qty }}">
                                             <a href="#" class="qty-up" data-cart-item-id="{{ $carts->rowId }}"><i class="fi-rs-angle-small-up increment-btn"></i></a>
-=======
-                                            <a href="#" class="qty-down"><i class="fi-rs-angle-small-down decrement-btn"></i></a>
-                                            <input type="number" class="border mr-2 qty-val quantity-input" data-qty="{{ $carts->qty }}" value="{{ $carts->qty }}">
-                                            {{-- <span class="qty-val quantity-input" data-qty="{{ $carts->qty }}">{{$carts->qty}}</span> --}}
-                                            <a href="#" class="qty-up"><i class="fi-rs-angle-small-up increment-btn"></i></a>
->>>>>>> 22c04a2289fd617c155aca4e6d7584606495c233
                                         </div>
                                     </td>
                                     <style>

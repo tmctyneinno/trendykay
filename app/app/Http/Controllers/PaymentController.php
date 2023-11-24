@@ -71,4 +71,12 @@ class PaymentController extends Controller
         $paymentIntentId = $session->payment_intent;
     }
 
+    public function errorpayment(){
+        return  view('users.home')
+        ->with('news', News::latest()->get())
+        ->with('news', News::latest()->get())
+        ->with('aboutus',Settings::pluck('about')[0])
+        ->with('categories', Category::inRandomOrder()->get());
+    }
+
 }

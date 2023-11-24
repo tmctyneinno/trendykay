@@ -9,7 +9,7 @@
                         <span></span> {{$product->category->name}}
                         <span></span> {{$title}}
                     </div>
-                </div>
+                </div> 
             </div> 
             <section class="mt-50 mb-50">
                 <div class="container">
@@ -712,7 +712,7 @@
                         }
                     },
                     error: function(xhr, status, error) {
-                       // alert(error);
+                       //alert(error);
                     }
                 });
             } else {

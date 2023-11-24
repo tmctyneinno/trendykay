@@ -142,7 +142,7 @@
         <div class="container">
             <div class="header-wrap header-space-between position-relative">
                 <div class="logo logo-width-1 d-block d-lg-none">
-                    <a href="index.html"><img src="assets/imgs/theme/logo.svg" alt="logo"></a>
+                    <a href="{{route('index')}}"><img src="{{ asset('assets/logo.png')}}" alt="logo"></a>
                 </div>
                 <div class="header-nav d-none d-lg-flex">
                    
@@ -164,20 +164,9 @@
                 </div>
                 <div class="header-action-right d-block d-lg-none">
                     <div class="header-action-2">
+                       
                         <div class="header-action-icon-2">
-                            <a href="shop-wishlist.html">
-                                <img alt="Trendy Kay Collection" src="{{ asset('assets/imgs/theme/icons/icon-cart.svg')}}">
-                                <span class="pro-count white cartCount"> 
-                                    @if(Cart::count() > 0)
-                                        {{Cart::count()}}
-                                    @else
-                                        0
-                                    @endif
-                                </span> 
-                            </a>
-                        </div>
-                        <div class="header-action-icon-2">
-                            <a class="mini-cart-icon" href="shop-cart.html">
+                            <a class="mini-cart-icon" href="#">
                                 <img alt="Trendy Kay Collection" src="{{ asset('assets/imgs/theme/icons/icon-cart.svg')}}">
                                 <span class="pro-count white cartCount"> 
                                     @if(Cart::count() > 0)
@@ -323,10 +312,10 @@
             </div>
             <div class="mobile-social-icon">
                 <h5 class="mb-15 text-grey-4">Follow Us</h5>
-                <a href="{{ $settings->facebook}}"><img src="assets/imgs/theme/icons/icon-facebook.svg" alt=""></a>
-                <a href="#"><img src="assets/imgs/theme/icons/icon-instagram.svg" alt=""></a>
-                <a href="#"><img src="assets/imgs/theme/icons/icon-pinterest.svg" alt=""></a>
-                <a href="#"><img src="assets/imgs/theme/icons/icon-youtube.svg" alt=""></a>
+                <a href="{{ $settings->facebook}}"><img src="{{ asset('assets/imgs/theme/icons/icon-facebook.svg')}}" alt=""></a>
+                <a href="{{ $settings->instagram }}"><img src="{{ asset('assets/imgs/theme/icons/icon-instagram.svg')}}" alt=""></a>
+                <a href="{{ $settings->pinterest}}"><img src="{{ asset('assets/imgs/theme/icons/icon-pinterest.svg')}}" alt=""></a>
+                <a href="{{ $settings->tiktok}}"><img src="{{ asset('assets/imgs/theme/icons/icon-tiktok.svg')}}" alt=""></a>
             </div>
         </div>
     </div>

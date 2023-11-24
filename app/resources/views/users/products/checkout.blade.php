@@ -161,10 +161,10 @@
                                         <th>Shipping</th>
                                         <td colspan="2"><em>Standard Shipping</em></td>
                                     </tr>
-                                    <tr>
+                                    {{-- <tr>
                                         <th>Tax</th>
                                         <td colspan="2"><em> 12%</em></td>
-                                    </tr>
+                                    </tr> --}}
                                     <tr>
                                         @php
                                             $priceTotal = Cart::priceTotalFloat();
