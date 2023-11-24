@@ -70,7 +70,7 @@ class HomeController extends Controller
             ->with('products', Product::inRandomOrder()->latest()->simplePaginate(9))
             ->with('sliders', Slider::get())
             ->with('splash', FlashMsg::latest()->latest()->first())
-            ->with('categories', Category::inRandomOrder()->where('name', 'Denim')->orWhere('name', 'Dresses')->orwhere('name', 'Jumpsuit')->orwhere('name', 'Swinwear')->get());
+            ->with('categories', Category::inRandomOrder()->where('name', 'Denim')->orWhere('name', 'Dresses')->orwhere('name', 'Jumpsuit')->orwhere('name', 'Swinwear')->orwhere('name', 'Graphic')->orwhere('name', 'Swinwear')->get());
     } 
 
     public function productDetails($id){
@@ -364,7 +364,7 @@ class HomeController extends Controller
         $search = null;
         $products = null;
         $productCount = 0;
-        
+
         if(isset($request->search)){
             $search = $request->get('search');
             $products = Product::where('name', 'LIKE', "%$search%")->simplePaginate(18);
