@@ -69,7 +69,7 @@
                             <select class="select-active">
                                 <option>All Categories</option>
                             </select>
-                            <input type="text" placeholder="Search for items...">
+                            <input type="text" name="search" placeholder="Search for items...">
                             {{ Form::close()}}
                     </div>
                     <div class="header-action-right">

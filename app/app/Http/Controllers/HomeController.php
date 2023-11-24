@@ -364,7 +364,7 @@ class HomeController extends Controller
         $search = null;
         $products = null;
         $productCount = 0;
-
+        
         if(isset($request->search)){
             $search = $request->get('search');
             $products = Product::where('name', 'LIKE', "%$search%")->simplePaginate(18);

@@ -31,16 +31,16 @@
                                                 <span><i class="fi-rs-apps"></i>Show:</span>
                                             </div>
                                             <div class="sort-by-dropdown-wrap">
-                                                <span> 50 <i class="fi-rs-angle-small-down"></i></span>
+                                                {{-- <span> 50 <i class="fi-rs-angle-small-down"></i></span> --}}
                                             </div>
                                         </div>
                                         <div class="sort-by-dropdown">
                                             <ul>
-                                                <li><a class="active" href="#">50</a></li>
+                                                {{-- <li><a class="active" href="#">50</a></li>
                                                 <li><a href="#">100</a></li>
                                                 <li><a href="#">150</a></li>
                                                 <li><a href="#">200</a></li>
-                                                <li><a href="#">All</a></li>
+                                                <li><a href="#">All</a></li> --}}
                                             </ul>
                                         </div>
                                     </div>
@@ -66,7 +66,7 @@
                                 </div>
                             </div>
                             <div class="row product-grid-3">
-                                
+                                @if(count($products) > 0)
                                 @forelse ($products as $product ) 
                                 <div class="col-lg-4 col-md-4 col-12 col-sm-6">
                                     <div class="product-cart-wrap mb-30">
@@ -108,6 +108,7 @@
                                 @empty
                                 <h4>No product found</h4>
                                 @endforelse
+                                @endif
                             </div>
                             <!--pagination-->
                             <div class="pagination-area mt-15 mb-sm-5 mb-lg-0">
@@ -139,7 +140,7 @@
                                     <h5 class="widget-title mb-10">New products</h5>
                                     <div class="bt-1 border-color-1"></div>
                                 </div>
-                                @foreach($prod as $prods)
+                                @forelse($prod as $prods)
                                 <div class="single-post clearfix">
                                     <div class="image">
                                         <img src="{{asset('images/products/'.$prods->image)}}" alt="#">
@@ -150,7 +151,8 @@
                                        
                                     </div>
                                 </div>
-                                @endforeach
+                                @empty
+                                @endforelse
                             </div>
                             
                         </div>
