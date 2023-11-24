@@ -11,9 +11,9 @@
                             <div class="col-lg-5 col-md-6">
                                 <div class="hero-slider-content-2">
                                     {{-- <h4 class="animated">{{ $slider->title }}</h4> --}}
-                                    <h2 class="animated fw-900">{{ $slider->title }}</h2>
+                                    <h2 class="animated fw-900">{{ $slider->secondname }}</h2>
                                     {{-- <h1 class="animated fw-900 text-8">{{ $slider->content }}</h1> --}}
-                                    <p class="animated">{{ $slider->content }}.</p>
+                                    <p class="animated">{{ $slider->thirdname }}.</p>
                                     <a class="animated btn btn-brush btn-brush-1" href="{{ url('pages/products')}}"> Shop Now </a>
                                 </div>
                             </div>
