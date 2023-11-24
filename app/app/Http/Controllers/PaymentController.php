@@ -54,6 +54,7 @@ class PaymentController extends Controller
 
     public function handlePaymentSuccess(Request $request)
     {
+        return redirect()->intended(route('home'));
         \Cart::destroy();
         Stripe::setApiKey('sk_test_51NgNdcEAO4xwJMdypdJNh2azXY9H1Aloq1V841Be4kkzTdxDAVRzkmpk1EsNDeyf3TFss6gr2jSG5JP7RTAlOdiL00P6uaN2dx');
         // $session =  $stripe->issuing->transactions->retrieve(
