@@ -2,9 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Category;
-use App\Order; 
-use App\Product;
+
 use Illuminate\Http\Request;
 use App\OrderItem;
 use Illuminate\Support\Carbon;
@@ -23,6 +21,9 @@ use App\Transaction;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
+use App\Category;
+use App\Order; 
+use App\Product;
 
 class HomeController extends Controller
 {

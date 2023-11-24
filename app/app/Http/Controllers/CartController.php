@@ -45,6 +45,7 @@ class CartController extends Controller
              'image' => $product->image,
              'weight'=>1, 
          ])->associate('App\Product');
+
         // Fetch the updated cart content count
         $cartCount = \Cart::count();
         $cartcontent = \Cart::content();
@@ -57,6 +58,10 @@ class CartController extends Controller
                 'cartCount' => $cartCount,
                 'cartcontent' => $cartcontent
             ]);
+     
+         if($response){
+          //   dd($res);
+             return response()->json($response);
          }
      }
 
@@ -91,6 +96,7 @@ class CartController extends Controller
                 'message' => 'Cart item quantity updated successfully',
                 'cartCount' => $cartCount
             ]);
+            return response()->json($response);
         }
     }
 
@@ -206,5 +212,9 @@ class CartController extends Controller
      public function getCartCount() {
         $cartCount = \Cart::count();
         return response()->json(['cartCount' => $cartCount]);
+        // Update the cart item quantity
+        \Cart::update($cartItemId, $quantity);
+        session()->flash('success_message', 'Cart item quantity updated successfully');
+        return response()->json(['message' => 'Cart item quantity updated successfully']);
     }
 }

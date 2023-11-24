@@ -10,7 +10,7 @@
                             <a href="{{route('admin.sliderCreate')}}" class="badge badge-info p-2"  style="color:#fff">
                                 Add New Slider
                             </a>
-                        </div> 
+                        </div>
                         <div class="app-sidebar-menu">
                             @include('manage.settings.sidebar')
                            
@@ -155,7 +155,7 @@ toastr.options = {
         hideDuration: 200
     };
 if(message != null && msg == 'success'){
-toastr.success(message);
+    toastr.success(message);
 }else if(message != null && msg == 'error'){
     toastr.error(message);
 }

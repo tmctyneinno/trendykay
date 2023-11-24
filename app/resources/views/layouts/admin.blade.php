@@ -8,9 +8,11 @@
     <!-- Favicon -->
     <link rel="stylesheet" href="{{asset('/backend/vendors/dataTable/dataTables.min.css')}}" type="text/css">
     <link rel="shortcut icon" type="image/x-icon" href="{{ asset('/assets/logo.png')}}">
+    <link rel="stylesheet" href="{{asset('/backend/vendors/dataTable/dataTables.min.css')}}" type="text/css">
+    <link rel="icon" href="{{asset('/images/fav.png')}}">
     <!-- Plugin styles -->
     <link rel="stylesheet" href="{{asset('/backend/vendors/bundle.css')}}" type="text/css">
-  <!-- Datepicker -->
+    <!-- Datepicker -->
     <link rel="stylesheet" href="{{asset('/backend/vendors/clockpicker/bootstrap-clockpicker.min.css')}}" type="text/css">
     <link rel="stylesheet" href="{{asset('/backend/vendors/datepicker/daterangepicker.css')}}">
     <link rel="stylesheet" href="{{asset('/backend/vendors/slick/slick.css')}}" type="text/css">

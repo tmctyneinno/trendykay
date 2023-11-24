@@ -115,6 +115,8 @@ Route::resource('/products', 'PagesController');
 
 Route::get('pages/{slug}', 'PagesController@Pages')->name('pages');
 
+Route::resource('/products', 'ProductController');
+Route::get('pages/{slug}', 'PagesController@Pages')->name('pages');
 Route::get('/page/search', 'HomeController@search')->name('search');
 Route::get('/category/{id}', 'HomeController@Categories')->name('user.category'); 
 Route::post('/add-review/{id}', 'HomeController@Addreview');
