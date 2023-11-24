@@ -74,7 +74,7 @@ class HomeController extends Controller
     } 
 
     public function productDetails($id){
-        $id = $id;
+        $id = decrypt($id);
         $cart =  \Cart::content()->take(4);
         $product = Product::where('id', $id)->first();
         session()->push('products.recently_viewed', $product->getKey());

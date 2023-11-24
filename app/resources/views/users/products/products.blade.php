@@ -511,7 +511,7 @@
                                                 <div class="product-cart-wrap small hover-up">
                                                     <div class="product-img-action-wrap">
                                                         <div class="product-img product-img-zoom">
-                                                            <a href="{{route('product-details',$recents->id)}}" tabindex="0">
+                                                            <a href="{{route('product-details',encrypt($recents->id))}}" tabindex="0">
                                                                 <img class="default-img" src="{{asset('images/products/'.$recents->image)}}" 
                                                                 alt="">
                                                                 <img class="hover-img" src="{{asset('images/products/'.$recents->image)}}" alt="">
