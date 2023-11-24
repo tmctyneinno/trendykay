@@ -64,14 +64,15 @@ class SettingsController extends Controller
         if($request->file('image')){
             $image = $request->file('image');
             $ext = $image->getClientOriginalExtension();
-            $fileName = 'logo'.'.'.$ext;
+            $fileName = 'logo2'.'.'.$ext;
             $image->move('assets',$fileName);
             $data['logo'] = $fileName;
         }
+       
         $testim = Settings::first();
-        $testim->fill($data)->save();
+        $testim->update($data);
         Session::flash('alert', 'success');
-        Session::flash('message', 'Testimonial updated Successfully');
+        Session::flash('message', 'Logo pdated Successfully');
         return back();
     }
 }
