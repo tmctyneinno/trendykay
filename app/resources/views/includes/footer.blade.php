@@ -40,7 +40,6 @@
                         <p class="wow fadeIn animated">
                             <strong>Email: </strong>{{$settings->site_email}}
                         </p>
-                        
                     </div>
                 </div>
                 <div class="col-lg-2 col-md-3">
