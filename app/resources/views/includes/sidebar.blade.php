@@ -25,7 +25,7 @@
 					<div id="headerSidebarContent" class="u-sidebar__content u-header-sidebar__content">
 						<!-- Logo -->
 						<a class="navbar-brand u-header__navbar-brand u-header__navbar-brand-center mb-3" href="{{asset('index')}}" aria-label="">
-						   <img src="{{asset('/images/logo.png')}}">
+						   <img src="{{ asset('/assets/'.$settings->logo)}}">
 						</a>
 						<!-- End Logo -->
 
