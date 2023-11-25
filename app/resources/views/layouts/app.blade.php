@@ -14,7 +14,7 @@
     <meta property="og:image" content="">
     <meta name="csrf-token" content="{{ csrf_token() }}" />
     <!-- Favicon -->
-    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('/assets/logo.png')}}">
+    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('/assets/'.$settings->logo)}}">
     <!-- Template CSS -->
     <link rel="stylesheet" href="{{ asset('assets/css/maind134.css?v=3.4')}}">
      <!--leaflet map-->
