@@ -76,7 +76,7 @@
                         <div class="header-action-2">
                             <div class="header-action-icon-2">
                                 <a class="mini-cart-icon" href="{{route('carts.index')}}">
-                                    <img alt="Trendy Kay Collection" src="{{ asset('assets/imgs/theme/icons/icon-cart.svg')}}">
+                                    <img alt="Trendy Kay Collection" src="{{ asset('/assets/'.$settings->logo)}}">
                                     @if(Cart::count()> 0) 
                                         <span class="pro-count blue ">{{Cart::count()}}</span>  
                                     @else  
