@@ -266,7 +266,7 @@
     <div class="mobile-header-wrapper-inner">
         <div class="mobile-header-top">
             <div class="mobile-header-logo">
-                <a href="{{route('index')}}"><img src="{{asset('/assets/'.$settings->logo)}}}" alt="logo"></a>
+                <a href="{{route('index')}}"><img src="{{asset('/assets/'.$settings->logo)}}" alt="logo"></a>
             </div>
             <div class="mobile-menu-close close-style-wrap close-style-position-inherit">
                 <button class="close-style search-close">
