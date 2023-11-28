@@ -30,58 +30,43 @@
                                         </div>
                                     </div>
 
-                                    <div class="card-body">
-                                        <div class="table-responsive">
-                                            <table class="table">
-                                                <thead>
-                                                    <tr>
-                                                        <th>Order No</th>
-                                                        <th>Detials</th>
-                                                        <th>Status</th>
-                                                        <th>Action</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    @if(count($orders)>0)
-                                                        @foreach($orders as $order)
-                                                        <tr>
-                                                            <td class="image product-thumbnail">
-                                                                #{{$order->order_No}}
-                                                            </td>
-                                
-                                                            <td> 
-                                                                <p>{{$order->product_name}} </p>
-                                                                <p>Placed On: {{ \Carbon\Carbon::parse($order->created_at)->format('d M, Y') }}</p>
-                                                                <p> QTY: {{$order->qty}}</p>
-                                                                <p>Amount: C${{$order->amount > 0? number_format($order->amount,2): 0}}</p>
-                                                            </td>
-                                                            <td>
-                                                                <p>Payment Status:  
-                                                                    @if($order->is_paid == 1) 
-                                                                    <span class="badge badge-success ">
-                                                                        &nbsp; Paid &nbsp; &nbsp; 
-                                                                    </span>@else 
-                                                                    <span class="badge badge-warning" >&nbsp; Pending &nbsp;</span> @endif</span>
-                                                                </p>
-                                                                <p>
-                                                                    <span>Delivery Status:  
-                                                                        @if($order->is_delivered == 1) <span class="badge badge-success"> &nbsp;Delivered &nbsp;</span>@else
-                                                                         <span  class="badge badge-warning  ">&nbsp; Pending  &nbsp;</span> @endif</span><br>
+                                    <div class="col-lg-12 col-md-6 mb-sm-5 mb-md-0" >
+                                        <h4 class="section-title style-1 mb-30 wow fadeIn animated animated animated" style="visibility: visible;"></h4>
+                                        <div class="product-list-small wow fadeIn animated animated animated" style="visibility: visible;">
+                                            
+                                            @foreach ($orders as $order )
+                                            
+                                            <article class="row align-items-center" style="border-bottom: 1px solid #a8a3a3">
+                                                <figure class="col-md-2 mb-0">
+                                                    <a href="{{route('users.order-details',encrypt($order->order_No))}}"><img src="{{asset('/images/products/'.$order->image)}}" alt=""></a>
+                                                </figure>
+                                                <div class="col-md-8 mb-0">
+                                                    <h2 class="title-small">
+                                                        <a href="{{route('users.order-details',encrypt($order->order_No))}}">{{$order->product_name}}</a>
+                                                    </h2>
+                                                    <h4 class="title-small">
+                                                        <a href="{{route('users.order-details',encrypt($order->order_No))}}">Order No: #{{$order->order_No}}</a>
+                                                    </h4>
+                                                    <h4 class="title-small">
+                                                        <a href="{{route('users.order-details',encrypt($order->order_No))}}">QTY: {{$order->qty}}</a>
+                                                    </h4>
+                                                    <div class="product-price">
+                                                        <span>C${{number_format($order->amount,2)}} </span>
+                                                    </div>
+                                                    <div class="product-price">
+                                                        <span>@if($order->is_paid ==1) <span class="badge bg-success"> Paid</span> @else <span class="badge badge-success"> Pending</span>@endif </span>
+                                                    </div>
+                                                    
+                                                </div>
+                                                <div class="col-md-2"> 
+                                                    <span style="float:right"> <a href="{{route('users.order-details',encrypt($order->order_No))}}" class="btn btn-primary btn-sm"> View Details</a> </span>
+                                                </div>
                                                
-                                                                </p>
-                                                            </td>
-                                                            <td>
-                                                                <a href="{{route('users.order-details',encrypt($order->order_No))}}"  class="btn btn-fill-out submit " style="  padding: 5px 10px;">&nbsp; View Details &nbsp;</a>
-                                                                
-                                                            </td>
-                                                        </tr>
-                                                        @endforeach
-                                                        @else
-                                                        
-                                                        <tr>You have not done any transaction yet</tr>
-                                                        @endif
-                                                </tbody>
-                                            </table>
+                                            </article>
+
+                                                
+                                            @endforeach
+                                
                                         </div>
                                     </div>
 

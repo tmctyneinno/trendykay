@@ -77,10 +77,10 @@
                                                             <p> Transaction Ref: {{$orders->payment_ref}}</p>
                                                             <p><b> Amount: C${{number_format($orders->amount)}} </b> </p>
                                                             <p> Payment Status: @if($orders->is_paid == 1) 
-                                                                <span class="badge badge-success ">&nbsp; Success &nbsp;</span>@else <span  class="badge badge-warning ">Pending</span>@endif
+                                                                <span class="badge bg-success ">&nbsp; Success &nbsp;</span>@else <span  class="badge bg-warning ">Pending</span>@endif
                                                             </p>
-                                                            <p>Delivery Status:  @if($orders->is_delivered == 1) <span class="badge badge-success ">&nbsp; Delivered &nbsp;</span>@else 
-                                                                <span class="badge badge-warning ">Pending </span> @endif</p>
+                                                            <p>Delivery Status:  @if($orders->is_delivered == 1) <span class="badge bg-success ">&nbsp; Delivered &nbsp;</span>@else 
+                                                                <span class="badge bg-warning ">Pending </span> @endif</p>
                                                             <br>
                                                             <br>
                                                         </div>
@@ -98,7 +98,7 @@
                                                             <p> Address:  {{$orders->shipping->address}}</p>
                                                             <p> City: {{$orders->shipping->city . " , " . strtoupper($item->state)}} </p>
                                                             <p> Phone:{{$orders->shipping->receiver_phone}}</p>
-                                                            <p> Delivery Method:{{$orders->shipping->delivery_method}}</p>
+                                                    
                                                             <br><br>
                                                         </div>
                                                     </div>

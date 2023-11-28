@@ -2,6 +2,9 @@
 
 namespace App\Traits;
 
+use App\Shipping;
+use App\Order;
+
 trait CheckoutStore
 {
 /**
@@ -34,7 +37,7 @@ trait CheckoutStore
 
     }
 
-    private function StoreShippingAddress($request)
+    public function StoreShippingAddress($request)
     {
 
         $data = [
@@ -53,12 +56,22 @@ trait CheckoutStore
         return $data;
     }
 
-
-
-
-
-
-
+    public function StoreOrders($orderNo){
+    $address = Shipping::where(['user_id' => auth()->user()->id, 'is_default' => 1])->first();
+$data = [
+    'user_id' => auth()->user()->id, 
+    'order_No' => $orderNo, 
+    'external_ref' => null, 
+    'payment_ref' => null, 
+    'payment_method' => null, 
+    'amount' => \Cart::priceTotalFloat(), 
+    'shipping_id'  => $address->id,
+    'is_delivered', 
+    'is_paid'
+   
+];
+Order::create($data);
+    }
 
 
 

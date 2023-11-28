@@ -35,7 +35,6 @@ class CreateShipment implements ShouldQueue
 
         $settings = Settings::latest()->first();
         $destination = Shipping::where(['user_id' => auth()->user()->id, 'is_default' => 1])->first();
-        $orderDetails = OrderItem::where('order_no', $event->orderNo)->first();
 
         $data = [
             "platform_name" => $settings->site_name,
@@ -52,8 +51,8 @@ class CreateShipment implements ShouldQueue
             "destination_email_address" => $destination->receiver_email,
             "items" =>  [
                 [
-                    "description" =>  $orderDetails->product_name,
-                    "sku" => $orderDetails->orderNo,
+                    "description" =>  'fashion',
+                    "sku" => $event->orderNo,
                     "actual_weight" =>  0.1,
                     "height" =>  2,
                     "width" => 2,

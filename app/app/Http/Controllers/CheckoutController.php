@@ -82,6 +82,23 @@ class CheckoutController extends Controller
             return redirect()->route('index');
         }
 
+        $orderNo = rand(1111111, 9999999).rand(1111111, 9999999);
+        $cart = \Cart::content();
+
+        foreach ($cart as $cat) {
+            $order_list = new OrderItem;
+            $order_list->order_No = $orderNo;
+            $order_list->product_name = $cat->model->name;
+            $order_list->product_name = $cat->name;
+            $order_list->qty = $cat->qty;
+            $order_list->size = $cat->options->size;
+            $order_list->price = $cat->price;
+            $order_list->image = $cat->model->image;
+            $order_list->payable = $cat->qty * $order_list->price;
+            $order_list->user_id = $user->id;
+            $order_list->save();
+        }
+
         return view('users.products.checkout')
             ->with('carts', \Cart::content())
             ->with('title', 'Checkout')
@@ -137,37 +154,22 @@ class CheckoutController extends Controller
             DB::beginTransaction();
             $user = User::where('id', auth()->user()->id)->first();
             try {
-                $orderNo = rand(1111111, 9999999).rand(1111111, 9999999);
-                $cart = \Cart::content();
-
-                foreach ($cart as $cat) {
-                    $order_list = new OrderItem;
-                    $order_list->order_No = $orderNo;
-                    $order_list->product_name = $cat->model->name;
-                    $order_list->product_name = $cat->name;
-                    $order_list->qty = $cat->qty;
-                    $order_list->size = $cat->options->size;
-                    $order_list->price = $cat->price;
-                    $order_list->image = $cat->model->image;
-                    $order_list->payable = $cat->qty * $order_list->price;
-                    $order_list->user_id = $user->id;
-                    $order_list->save();
-                }
+                $orderItems = OrderItem::where('user_id', $user->id)->latest()->first();
+           
                 $address = Shipping::where(['user_id' => $user->id, 'is_default' => 1])->first();
                 if (!$address) {
                     $address = Shipping::create($this->StoreShippingAddress($request));
                 }
-
-                $check = CourierRates::where('order_no', $orderNo)->first();
+                $this->StoreOrders($orderItems->order_No);
+                $check = CourierRates::where('order_no', $orderItems->order_No)->first();
                 if(!$check){
                     $res = $this->SendRequest('M4C 4Y7', "CA", $request->zip_code ?? "M4C 4Y7", "Sender", false, 1.2, 5, 10, 10, "fashion", "CAD", 100);
-                $wss = json_decode($res->getBody(), true);
-                if ($wss['rates']) {
-                    foreach ($wss['rates'] as $ss) {
+                if ($res['rates']) {
+                    foreach ($res['rates'] as $ss) {
                        ;
                         CourierRates::create([
                             'user_id' => $user->id,
-                            'order_no' =>$orderNo,
+                            'order_no' => $orderItems->order_No,
                             'courier_id'=>$ss['courier_id'],
                             'courier_name' => $ss['courier_name'],
                             'min_delivery_time' => $ss['min_delivery_time'],
@@ -196,8 +198,8 @@ class CheckoutController extends Controller
             return view('users.products.payment')
                 ->with('user', $user)
                 ->with('address', $address)
-                ->with('carts', $cart)
-                ->with('orderNo', $orderNo)
+                ->with('carts', \Cart::content())
+                ->with('orderNo', $orderItems->order_No)
                 ->with('title', 'Checkout Payment')
                 ->with('shipping_rates',  CourierRates::where('user_id', $user->id)->latest()->take(3)->get());
         } else {

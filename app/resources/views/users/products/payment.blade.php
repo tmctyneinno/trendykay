@@ -127,7 +127,7 @@
                                             $total = $priceTotal + $tax; // I added the tax to the subtotal to get the total price
                                         @endphp
                                         <th>Total</th>
-                                        <input required type="hidden" name="total" value="{{number_format($total, 2)}}">
+                                        <input required type="hidden" id="total" name="total" value="{{$total}}">
                                         <input type="hidden" name="qty" value="{{$carts->qty}}">
                              
                                         <td colspan="2" class="product-subtotal"><span class="font-xl text-brand fw-900" id="price_total" data-price-total="{{$total}}">C${{number_format($total, 2)}}</span></td>

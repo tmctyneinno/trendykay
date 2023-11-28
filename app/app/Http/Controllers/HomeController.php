@@ -132,7 +132,7 @@ class HomeController extends Controller
             $orders = DB::table('orders')
             ->join('order_items', 'orders.order_No', '=' ,'order_items.order_No')
             ->where('orders.user_id', auth()->user()->id)
-            ->latest('orders.created_at')
+            ->orderBy('orders.created_at', 'DESC')
             ->paginate(8);
             $news = News::latest()->get();
             return view('users.accounts.orders', compact('orders','cart', 'news'));
