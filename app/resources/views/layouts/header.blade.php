@@ -1,15 +1,11 @@
 <div class="header">
     <div>
           <ul class="navbar-nav">
-              <!-- begin::navigation-toggler -->
-              
               <li class="nav-item navigation-toggler mobile-toggler">
                   <a href="#" class="nav-link" title="Show navigation">
                       <i data-feather="menu"></i>
                   </a>
               </li>
-              <!-- end::navigation-toggler -->
-  
           </ul>
       </div>
       <div>
@@ -105,8 +101,6 @@
                    
                   </div>
               </li>
-              <!-- end::header notification dropdown -->
-              <!-- begin::user menu -->
               <li class="nav-item dropdown">
                   <a href="" class="nav-link" title="User menu" >
                       <i data-feather="settings"></i>

@@ -2,6 +2,10 @@
 
 namespace App\Providers;
 
+use App\Events\CourierEvent;
+use App\Events\ShipmentEvent;
+use App\Listeners\CreateCourier;
+use App\Listeners\CreateShipment;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
@@ -17,6 +21,12 @@ class EventServiceProvider extends ServiceProvider
     protected $listen = [
         Registered::class => [
             SendEmailVerificationNotification::class,
+        ],
+        ShipmentEvent::class => [
+            CreateShipment::class,
+        ],
+        CourierEvent::class => [
+            CreateCourier::class
         ],
     ];
 

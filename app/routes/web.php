@@ -125,7 +125,7 @@ Route::get('/filter-color', 'HomeController@filterColor')->name('filterColor');
 Route::get('/filter-size', 'HomeController@filterSize')->name('filterSize');
 //Payment
 Route::post('/pay/checkout', 'PaymentController@initiatePayCheckout')->name('pay.checkout');
-Route::get('success', 'PaymentController@handlePaymentSuccess')->name('payment.success');
+Route::get('success/', 'PaymentController@handlePaymentSuccess')->name('payment.success');
 Route::get('error', 'PaymentController@errorpayment')->name('payment.cancel');
  
 Route::middleware('auth')->group( function(){

@@ -33,7 +33,6 @@
     @yield('content')
     @include('includes.footer')
     
-     
     <!-- Vendor JS-->
     <script src="{{ asset('assets/js/vendor/modernizr-3.6.0.min.js')}}"></script>
     <script src="{{ asset('assets/js/vendor/jquery-3.6.0.min.js')}}"></script>
@@ -59,23 +58,24 @@
     <script src="{{ asset('assets/js/maind134.js?v=3.4')}}"></script>
     <script src="{{ asset('assets/js/shopd134.js?v=3.4')}}"></script>
     <script type="text/javascript">
-        toastr.options = {
-             "closeButton": true,
-             "debug": false,
-             "newestOnTop": false,
-             "progressBar": true,
-             "positionClass": "toast-top-right",
-             "preventDuplicates": true,
-             "onclick": null,
-             "showDuration": "300",
-             "hideDuration": "1000",
-             "timeOut": "5000",
-             "extendedTimeOut": "1000",
-             "showEasing": "swing",
-             "hideEasing": "linear",
-             "showMethod": "fadeIn",
-             "hideMethod": "fadeOut"
-         };
+
+let message = {!! json_encode(Session::get('message')) !!};
+let msg = {!! json_encode(Session::get('alert')) !!};
+
+
+toastr.options = {
+        timeOut: 3000,
+        progressBar: true,
+        showMethod: "slideDown",
+        hideMethod: "slideUp",
+        showDuration: 200,
+        hideDuration: 200
+    };
+if(message != null && msg == 'success'){
+toastr.success(message);
+}else if(message != null && msg == 'error'){
+    toastr.error(message);
+}
          
      </script>
 

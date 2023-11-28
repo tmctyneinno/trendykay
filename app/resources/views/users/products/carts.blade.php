@@ -149,11 +149,6 @@
         </div>
     </section>
 </main>
-@if(session('message'))
-<script>
-    toastr.success('{{ session('message') }}');
-</script>
-@endif
 <script>
      jQuery(document).ready(function ($) {
         $.ajaxSetup({

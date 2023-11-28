@@ -20,7 +20,8 @@ class baseUrl {
     }
 
     public function Client(){
-    $client = new Client();
+    try {
+        $client = new Client();
     $res = $client->request($this->method, $this->url, [
         'headers' => [
             'authorization' => 'Bearer '.$this->apiKey,
@@ -30,8 +31,13 @@ class baseUrl {
         'json' => $this->jsonBody
     ]);
   
-    return $res;
-    }
+    $resp = json_decode($res->getBody(),true);
+    return $resp;
+}catch(\Exception $e){
+//    return $e;
+}
+    
+}
 
 
 }

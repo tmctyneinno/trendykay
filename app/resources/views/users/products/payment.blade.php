@@ -58,7 +58,7 @@
                 <div class="mb-2" style="background: #fff; border-radius:10px; border:1px solid #0000002d">
                     <p class="m-4" >  
                         Select Shipping Method 
-                    </p> 
+                    </p>  
                     <hr>
                     @forelse ($shipping_rates as  $rate)
                     <label class="labl"> 
@@ -66,10 +66,10 @@
                       <table class="table table-responsive" > 
                         <tr> 
                             <td style="border:none">     
-                            <input    type="radio"  id="courier_id" data-courier-id="{{$rate->courier_id}}" name="selected_courier_id" value="{{$rate->courier_id}}" /> 
+                            <input type="radio" onchange="charge(this)" data-charge-amount="{{$rate->total_charge}}"  class="courier_id" data-courier-id="{{$rate->courier_id}}" name="selected_courier_id" value="{{$rate->courier_id}}" />
                          </td>
-                            <td  style="border:none"><p style="color:#322f37">{{$rate->courier_name}}</p>
-                                <p   onclick="getPrice(this)" id="total_charge" value="{{$rate->total_charge}}" data-charge-amount="{{$rate->total_charge}}">C${{$rate->total_charge}}</p>  <p> {{$rate->full_description}} </p>
+                            <td  style="border:none"><p style="color:#322f37; font-weight:bolder">{{$rate->courier_name}}</p>
+                                <p>C${{$rate->total_charge}}</p>  <p> {{$rate->full_description}} </p>
                             </td>
                         </tr> 
                       </table>
@@ -174,22 +174,14 @@ let price = {!! json_encode(Cart::priceTotalFloat()) !!}
 let tax = parseFloat(price) * 0.12;
 let priceTotal = price + tax;
 
-function getPrice(data){
-    let id = $(data).attr('data-courier-id');
-    let charge = $(data).attr('data-charge-amount');
-    let total = parseFloat(charge) + parseFloat(priceTotal);
-    $('#price_total').html('C$' + formats(total.toFixed(2)))
-    $('#total').val(parseFloat(charge)  + parseFloat(priceTotal))
-};
-
-function formats(num)
-    {
-        var num_parts = num.toString().split(".");
-        num_parts[0] = num_parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-        return num_parts.join(".");
-    }
-
-
+function charge(data){
+       let id = $(data).data('courier-id');
+       let charge = $(data).data('charge-amount');
+       let total = parseFloat(charge) + parseFloat(priceTotal);
+       
+       $('#price_total').html('C$' + total.toLocaleString('en-US', { minimumFractionDigits: 2 }))
+       $('#total').val(parseFloat(charge)  + parseFloat(priceTotal));
+}
 </script>
 
 @endsection

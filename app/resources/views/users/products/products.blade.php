@@ -699,12 +699,11 @@
                            // alert(response.count);
                             toastr.success('Cart item quantity updated successfully');
                             $('.cartReload').html(response.qty); 
-                            console.log(response);
                            // $('.cartReloads').html(thousands_separators(response));
                             $('#alerts').attr('hidden', false); 
                             setTimeout(function() {
                                 $('#alerts').hide();
-                                location.reload();
+                                // location.reload();
                             }, 5);
                         }else{
                             alert('no');
@@ -730,11 +729,6 @@
     }
 
 </script>
-@if(session('success'))
-    <script>
-        // Display Toastr success notification
-        toastr.success('{{ session('success') }}');
-    </script>
-@endif
+
 
 @endsection
