@@ -113,6 +113,14 @@
                                 @enderror
                         </div>
                         <div class="form-group">
+                            <input required type="text" name="landmark" @if(isset($address->landmark)) value="{{$address->landmark}}" @else value="{{old('landmark')}}"  @endif class="@error('landmark') is-invalid @enderror"placeholder="Landmark" @auth readOnly @endauth>
+                                @error('landmark')
+                                    <span class="btn-danger" role="alert">
+                                    <small> {{$message}}</small>
+                                    </span>
+                                @enderror
+                        </div>
+                        <div class="form-group">
                             <input required type="text" name="country"  @if(isset($address->country)) value="{{$address->country}}" @else value="{{old('country')}}"  @endif  class="@error('country') is-invalid @enderror" placeholder="Country" @auth readOnly @endauth>
                             @error('country')
                                 <span class="btn-danger" role="alert">

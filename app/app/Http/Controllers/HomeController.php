@@ -267,7 +267,7 @@ class HomeController extends Controller
             if(isset($request->default))
                 {
                 $check = Shipping::where('user_id', auth()->user()->id)->get();
-                if($check > 1){
+                if(count($check) > 1){
                 DB::table('shippings')
                 ->where(['user_id'=>  auth()->user()->id, 'is_default' => '1'])
                 ->update(['is_default' => 0]);

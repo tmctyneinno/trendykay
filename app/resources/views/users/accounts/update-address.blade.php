@@ -77,7 +77,7 @@
                                             <div class="js-form-message form-group mb-5">
                                                 <label class="form-label" for="RegisterSrEmailExample3">Country
                                                 </label>
-                                                <input type="text" placeholder="country" value="{{$address->landmark}}" name="country" class="form-control" required>
+                                                <input type="text" placeholder="country" value="{{$address->country}}" name="country" class="form-control" required>
                                             </div>
                                                <div style="display: flex; align-content:center">
                                                    <label  for="RegisterSrEmailExame3 pt-2">
