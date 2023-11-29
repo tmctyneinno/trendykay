@@ -17,6 +17,8 @@ use Illuminate\Support\Facades\Validator;
 use App\Colorproduct;
 use App\Color;
 use App\FlashMsg;
+use App\TermsConditions;
+use App\Privacypolicy;
 use App\Sizeproduct;
 use App\Size;
 use App\Slider;
@@ -403,9 +405,40 @@ class HomeController extends Controller
         }
     }
 
+  
+
+
     public function privacypolicy(){
-        return  view('users.pages.privacy-policy')->with('news', News::latest()->get())->with('categories', Category::inRandomOrder()->get());
+        $news = News::latest()->get();
+        $cat =  Category::inRandomOrder()->get();
+        $privacypolicy = Privacypolicy::first();
+        return  view('users.pages..privacy-policy')
+        ->with('privacypolicy', $privacypolicy)
+        ->with('news',$news)
+        ->with('categories', $cat);
     }
+
+    public function Terms(){
+        $news = News::latest()->get();
+        $cat =  Category::inRandomOrder()->get();
+        $termscondition = TermsConditions::first();
+        return  view('users.pages..privacy-policy')
+        ->with('termscondition', $termscondition)
+        ->with('news',$news)
+        ->with('categories', $cat);
+    }
+
+
+    public function about(){
+        $news = News::latest()->get();
+        $cat =  Category::inRandomOrder()->get();
+        return  view('users.pages.about-us')
+                ->with('news',$news)
+                ->with('news',$news)
+                ->with('categories', $cat);
+    }
+
+
                
 
 }

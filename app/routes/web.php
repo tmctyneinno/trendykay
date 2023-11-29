@@ -89,8 +89,34 @@ Route::prefix('admin')->group(function(){
         Route::get('/website/settings/index', 'SettingsController@Index')->name('admin.settings.index');
         Route::get('/website/settings/socials', 'SettingsController@Socials')->name('admin.settings.socials');
         Route::get('/website/settings/about', 'SettingsController@Abouts')->name('admin.settings.abouts');
+
+
+        Route::get('/website/settings/aboutus', 'SettingsController@Aboutus')->name('admin.settings.aboutus');
+        Route::get('/website/settings/aboutus/create', 'SettingsController@AboutusCreate')->name('admin.settings.createaboutus');
+        Route::post('/website/settings/aboutus/create', 'SettingsController@AboutusStore')->name('admin.settings.storeAboutus');
+        Route::get('/website/edit/aboutus/{id}', 'SettingsController@AboutusEdit')->name('admin.settings.aboutusEdit');
+        Route::post('/website/update/aboutus/{id}', 'SettingsController@AboutusUpdate')->name('admin.settings.aboutusUpdate');
+        Route::get('/website/delete/aboutus/{id}', 'SettingsController@AboutusDelete')->name('admin.settings.aboutusDelete');
+       
+        Route::get('/website/settings/privacypolicy', 'SettingsController@PrivacyPolicy')->name('admin.settings.privacyPolicy');
+        Route::get('/website/settings/privacypolicy/create', 'SettingsController@PrivacyPolicyCreate')->name('admin.settings.createprivacy');
+        Route::post('/website/settings/privacypolicy/create', 'SettingsController@PrivacyPolicyStore')->name('admin.settings.storePrivacy');
+        Route::get('/website/edit/privacypolicy/{id}', 'SettingsController@PrivacyPolicyEdit')->name('admin.settings.privaprivacyEdit');
+        Route::post('/website/update/privacypolicy/{id}', 'SettingsController@PrivaprivacyUpdate')->name('admin.settings.privaprivacyUpdate');
+        Route::get('/website/delete/privacypolicy/{id}', 'SettingsController@PrivacyPolicyDelete')->name('admin.settings.privaprivacyDelete');
+       
+        Route::get('/website/settings/terms/conditions', 'SettingsController@TermsConditions')->name('admin.settings.termsConditions');
+        Route::get('/website/settings/termsConditions/create', 'SettingsController@TermsConditionsCreate')->name('admin.settings.createtermsConditions');
+        Route::post('/website/settings/termsConditions/create', 'SettingsController@TermsConditionsStore')->name('admin.settings.storetermsConditions');
+        Route::get('/website/edit/termsConditions/{id}', 'SettingsController@TermsConditionsEdit')->name('admin.settings.termsConditionsEdit');
+        Route::post('/website/update/termsConditions/{id}', 'SettingsController@TermsConditionsUpdate')->name('admin.settings.termsConditionsUpdate');
+        Route::get('/website/delete/termsConditions/{id}', 'SettingsController@TermsConditionsDelete')->name('admin.settings.termsConditionsDelete');
+       
         Route::post('/website/settings/update/socials', 'SettingsController@UpdateSocials')->name('admin.settings.updateSocials');
         Route::post('/website/settings/update/settings', 'SettingsController@UpdateSettings')->name('admin.settings.updateSettings');
+    
+        Route::post('/website/settings/update/Aboutus', 'SettingsController@UpdateAboutus')->name('admin.settings.updateAboutus');
+        Route::post('/website/settings/termsandconditions', 'SettingsController@termsandconditions')->name('admin.termsandconditions.index');
 
 });
 }); 
@@ -160,6 +186,7 @@ Route::get('/add-address', 'HomeController@createAddresss')->name('users.add-add
 Route::get('/address/delete/{id}', 'HomeController@AddressDelete')->name('address.delete');
 Route::get('/aboutus', 'HomeController@about')->name('aboutus');
 Route::get('/privacypolicy', 'HomeController@privacypolicy')->name('privacypolicy');
+
 
 });
 

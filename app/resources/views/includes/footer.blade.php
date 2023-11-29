@@ -46,11 +46,10 @@
                     <h5 class="widget-title wow fadeIn animated">About</h5>
                     <ul class="footer-list wow fadeIn animated mb-sm-5 mb-md-0">
                         <li><a href="{{ route('aboutus')}}">About Us</a></li>
-                        <li><a href="#">Delivery Information</a></li>
                         <li><a href="{{ route('privacypolicy')}}">Privacy Policy</a></li>
-                        <li><a href="#">Terms &amp; Conditions</a></li>
+                        <li><a href="{{route('privacypolicy')}}">Terms &amp; Conditions</a></li>
                         <li><a href="{{ url('pages/contacts')}}">Contact Us</a></li>
-                       
+                        
                     </ul>
                 </div>
                 <div class="col-lg-2  col-md-3">
@@ -58,9 +57,8 @@
                     <ul class="footer-list wow fadeIn animated">
                         <li><a href="#">Sign In</a></li>
                         <li><a href="{{route('carts.index')}}">View Cart</a></li>
-                        <li><a href="#">Help</a></li>
                         <li><a href="{{route('users.orders')}}">Order</a></li>
-                        <li><a href="#">Support Center</a></li>
+                        <li><a href="tel:{{$settings->site_phone}}">Support Center</a></li>
                     </ul>
                 </div>
                 <div class="col-lg-4">

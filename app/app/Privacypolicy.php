@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class AboutUs extends Model
+class Privacypolicy extends Model
 {
     //
 

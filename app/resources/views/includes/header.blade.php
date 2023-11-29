@@ -12,7 +12,7 @@
                         </ul>
                     </div>
                 </div>
-                <div class="col-xl-6 col-lg-4">
+                <div class="col-xl-5 col-lg-4">
                     <div class="text-center">
                         <div id="news-flash" class="d-inline-block">
                             <ul>
@@ -25,15 +25,12 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-xl-3 col-lg-4">
+                <div class="col-xl-4 col-lg-4">
                     <div class="header-info header-info-right">
                         <ul>
-                            <li>
-                                <a class="language-dropdown-active" href="#"> <i class="fi-rs-world"></i> English <i class="fi-rs-angle-small-down"></i></a>
-                                <ul class="language-dropdown">
-                                
-                                </ul>
-                            </li>
+                          
+                            <li>  <a class="language-dropdown-active" href="{{route('aboutus')}}"> About Us</a></li>
+                            <li>  <a class="language-dropdown-active" href="{{ url('pages/contacts')}}"> Contact Us </a></li>
                             @guest
                             <li><i class="fi-rs-user"></i><a href="{{route('login')}}">Log In / Sign Up</a></li>
                         @else

@@ -52,11 +52,11 @@ class CheckoutController extends Controller
 
     public function sendMail($data)
     {
-        Mail::to($data['email'],  'orders@sofarsolar.ng')->send(new PaymentMail($data));
+        Mail::to($data['email'],  'orders@Trendykay.ng')->send(new PaymentMail($data));
     }
     public function OrderMail($data)
     {
-        Mail::to($data['email'], 'orders@sofarsolar.ng')->send(new OrderMail($data));
+        Mail::to($data['email'], 'orders@Trendykay.ng')->send(new OrderMail($data));
     }
 
     public function __construct()
