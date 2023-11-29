@@ -93,7 +93,7 @@
                                  <div class="table-responsive">
                                         <table id="myTable" class="table table-striped table-bordered">
                                            <thead>
-                                            <tr><th class="text-left">S/N</th>
+                                            <tr>
                                                 <th>User Email</th>
                                                 <th>Order No</th>
                                                 <th>Payment Ref</th>
@@ -109,7 +109,6 @@
                                         @if(count($orders) > 0)
                                         @foreach ($orders as  $sp)
                                             <tr>
-                                            <td>{{$sp->id}}</td>
                                                 <td>
                                                     <a href="#">{{substr($sp->user->email,0,15)}}..</a>
                                                 </td> 
