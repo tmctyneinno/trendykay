@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Trendy Kay Collection | Admin</title>
     <!-- Favicon -->
-    <link rel="shortcut icon" href=" {{ asset('/assets/logo.png')}}"/>
+    <link rel="shortcut icon" href="{{ asset('/assets/'.$settings->logo)}}"/>
 
     <!-- Plugin styles -->
     <link rel="stylesheet" href="{{asset('/backend/vendors/bundle.css')}}" type="text/css">
@@ -30,7 +30,7 @@
 
 <div class="form-wrapper">
 
-                        <img class="logo" src=" {{ asset('/assets/logo.png')}}" height="auto" width="120px">
+                        <img class="logo" src=" {{ asset('/assets/'.$settings->logo)}}" height="auto" width="120px">
                 
     <h5>Sign in</h5>
 
