@@ -239,9 +239,11 @@ class SettingsController extends Controller
             'site_phone' => $request->site_phone,
             'site_email' => $request->site_email,
             'address' => $request->address,
-            'opening_hours' => $request->opening_hours,
+            'city' => $request->city,
             'about' => $request->about_us,
-            'terms_conditions' => $request->terms_conditions
+            'state' => $request->state,
+            'country' => $request->country,
+            'postal_code' => $request->postal_code,
         ];
 
         if($request->file('image')){

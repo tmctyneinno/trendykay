@@ -23,8 +23,11 @@ class Settings extends Model
         'tiktok', 
         'pinterest',
         'instagram', 
-        'address', 
+        'address',
+        'city',
+        'postal_code',
+        'state',
+        'country', 
         'about', 
-        'terms_conditions'
     ];
 }

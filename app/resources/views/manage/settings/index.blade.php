@@ -169,33 +169,100 @@
                                 <li class="list-group-item">
                                     <div class="flex-grow-1 min-width-0">
                                         <div class="mb-1 d-flex justify-content-between align-items-center">
-                                            <div class="text-truncate app-list-title">Change Opening Hours</div>
+                                            <div class="text-truncate app-list-title">Update City</div>
                                             <div class="pl-3 d-flex">
                                                 <span class="text-nowrap text-muted"></span>
-                                                
                                             </div>
                                         </div>
                                         <div class="text-muted d-flex justify-content-between">
                                             <div class="text-truncate small"></div>
                                             <div class="col-md-12">
                                                 <div class="form-group">
-                                                    <input type="text" name="opening_hours"  value="{{$settings->opening_hours}}" class="form-control @error('opening_hours') is-invalid @enderror" id="exampleInputEmail1"
-                                                           aria-describedby="emailHelp" placeholder="Change Opening Hours">
-                                                    <small id="emailHelp" class="form-text text-muted">Change Opening Hours
+                                                    <input type="text" name="city"  value="{{$settings->city}}" class="form-control @error('city') is-invalid @enderror" id="exampleInputEmail1"
+                                                           aria-describedby="emailHelp" placeholder="Change City">
+                                                    <small id="emailHelp" class="form-text text-muted">Business City 
                                                     </small>
-                                                    @error('opening_hours')
+                                                    @error('city')
                                                     <span class="invalid-feedback"> <small> * </small> </span>
                                                     @enderror
                                                 </div>
                                             </div>
-                                                
-                                            
                                         </div>
-                                  
-                                       
+                                    </div>
+                                </li>
+                                <li class="list-group-item">
+                                    <div class="flex-grow-1 min-width-0">
+                                        <div class="mb-1 d-flex justify-content-between align-items-center">
+                                            <div class="text-truncate app-list-title">Update State</div>
+                                            <div class="pl-3 d-flex">
+                                                <span class="text-nowrap text-muted"></span>
+                                            </div>
+                                        </div>
+                                        <div class="text-muted d-flex justify-content-between">
+                                            <div class="text-truncate small"></div>
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <input type="text" name="state"  value="{{$settings->state}}" class="form-control @error('state') is-invalid @enderror" id="exampleInputEmail1"
+                                                           aria-describedby="emailHelp" placeholder="Change state">
+                                                    <small id="emailHelp" class="form-text text-muted">Business states 
+                                                    </small>
+                                                    @error('state')
+                                                    <span class="invalid-feedback"> <small> * </small> </span>
+                                                    @enderror
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </li>
 
+                                <li class="list-group-item">
+                                    <div class="flex-grow-1 min-width-0">
+                                        <div class="mb-1 d-flex justify-content-between align-items-center">
+                                            <div class="text-truncate app-list-title">Update Country</div>
+                                            <div class="pl-3 d-flex">
+                                                <span class="text-nowrap text-muted"></span>
+                                            </div>
+                                        </div>
+                                        <div class="text-muted d-flex justify-content-between">
+                                            <div class="text-truncate small"></div>
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <input type="text" name="country"  value="{{$settings->country}}" class="form-control @error('country') is-invalid @enderror" id="exampleInputEmail1"
+                                                           aria-describedby="emailHelp" placeholder="Change Country">
+                                                    <small id="emailHelp" class="form-text text-muted">Business City 
+                                                    </small>
+                                                    @error('country')
+                                                    <span class="invalid-feedback"> <small> * </small> </span>
+                                                    @enderror
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="list-group-item">
+                                    <div class="flex-grow-1 min-width-0">
+                                        <div class="mb-1 d-flex justify-content-between align-items-center">
+                                            <div class="text-truncate app-list-title">Update Postal Code</div>
+                                            <div class="pl-3 d-flex">
+                                                <span class="text-nowrap text-muted"></span>
+                                            </div>
+                                        </div>
+                                        <div class="text-muted d-flex justify-content-between">
+                                            <div class="text-truncate small"></div>
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <input type="text" name="postal_code"  value="{{$settings->postal_code}}" class="form-control @error('postal_code') is-invalid @enderror" id="exampleInputEmail1"
+                                                           aria-describedby="emailHelp" placeholder="Change Postal Code">
+                                                    <small id="emailHelp" class="form-text text-muted">Business City 
+                                                    </small>
+                                                    @error('postal_code')
+                                                    <span class="invalid-feedback"> <small> * </small> </span>
+                                                    @enderror
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
 
                                 <li class="list-group-item">
                                     <div class="flex-grow-1 min-width-0">
