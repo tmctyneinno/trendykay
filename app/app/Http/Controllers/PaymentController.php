@@ -10,14 +10,23 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 
 use App\Transaction;
+use Illuminate\Support\Facades\Validator;
 use Stripe\Stripe;
 use Stripe\PaymentIntent;
 
 class PaymentController extends Controller
 {
    
-
     public function initiatePayCheckout(Request $request){ 
+
+                        $valid = Validator::make($request->all(), [
+                                'selected_courier_id' => 'required'
+                        ]);
+                        if($valid->fails()){
+                            Session::flash('alert', 'error');
+                            Session::flash('msg', 'Please see shipping method');
+                            return back();
+                        }
         Stripe::setApiKey('sk_test_51NgNdcEAO4xwJMdypdJNh2azXY9H1Aloq1V841Be4kkzTdxDAVRzkmpk1EsNDeyf3TFss6gr2jSG5JP7RTAlOdiL00P6uaN2dx');
         
 
@@ -44,6 +53,7 @@ class PaymentController extends Controller
         
         Session::put('session_id',$session->id);
         Session::put('order_No', $request->orderNo);
+        Session::put('selected_courier_id', $request->selected_courier_id);
         return redirect()->away($session->url);
 
     }
@@ -54,14 +64,16 @@ class PaymentController extends Controller
         $stripe = new \Stripe\StripeClient('sk_test_51NgNdcEAO4xwJMdypdJNh2azXY9H1Aloq1V841Be4kkzTdxDAVRzkmpk1EsNDeyf3TFss6gr2jSG5JP7RTAlOdiL00P6uaN2dx');
         $session = $stripe->checkout->sessions->retrieve(Session::get('session_id'));
         $orderNo = Session::get('order_No');
+        $selected_courier_id = Session::get('selected_courier_id');
         $session->customer;
-        if($session->status == 'complete' && $session->customer_details->email == auth()->user()->email){
-            event(new ShipmentEvent($request->selected_courier_id, $request->orderNo));
+        if($session->status == 'complete'){
+            event(new ShipmentEvent($selected_courier_id, $orderNo));
            Order::where('Order_No', $orderNo)->update([
             'external_ref' => $session->payment_intent,
             'is_paid' => 1,
         ]);
         }
+        \Cart::destroy();
         Session::flash('alert', 'success');
         Session::flash('msg', 'Order Completed Successfully');
         return redirect()->intended(route('users.orders'));

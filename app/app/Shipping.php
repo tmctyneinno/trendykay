@@ -19,6 +19,7 @@ class Shipping extends Model
         'zip_code',
         'delivery_method',
         'lng',
+        'is_default',
         'lat'
     ];
 

@@ -14,7 +14,7 @@ trait CheckoutStore
 */
 
     private function CreateUser($request){
-        return $data = [
+        return  [
             'name' => $request->name,
             'email' => $request->email,
             'phone' => $request->phone,
@@ -58,6 +58,7 @@ trait CheckoutStore
 
     public function StoreOrders($orderNo){
     $address = Shipping::where(['user_id' => auth()->user()->id, 'is_default' => 1])->first();
+
 $data = [
     'user_id' => auth()->user()->id, 
     'order_No' => $orderNo, 
@@ -65,7 +66,7 @@ $data = [
     'payment_ref' => null, 
     'payment_method' => null, 
     'amount' => \Cart::priceTotalFloat(), 
-    'shipping_id'  => $address->id,
+    'shipping_id'  => $address->id??1,
     'is_delivered', 
     'is_paid'
    

@@ -24,7 +24,7 @@ use App\Services\baseUrl;
 use App\Traits\notify;
 use Illuminate\Support\Facades\DB;
 use App\Traits\GetRates;
-use Symfony\Component\HttpFoundation\Session\Session;
+use Illuminate\Support\Facades\Session;
 
 use Illuminate\Http\Request;
 
@@ -82,30 +82,12 @@ class CheckoutController extends Controller
             return redirect()->route('index');
         }
 
-        $orderNo = rand(1111111, 9999999).rand(1111111, 9999999);
-        $cart = \Cart::content();
-
-        foreach ($cart as $cat) {
-            $order_list = new OrderItem;
-            $order_list->order_No = $orderNo;
-            $order_list->product_name = $cat->model->name;
-            $order_list->product_name = $cat->name;
-            $order_list->qty = $cat->qty;
-            $order_list->size = $cat->options->size;
-            $order_list->price = $cat->price;
-            $order_list->image = $cat->model->image;
-            $order_list->payable = $cat->qty * $order_list->price;
-            $order_list->user_id = $user->id;
-            $order_list->save();
-        }
-
         return view('users.products.checkout')
             ->with('carts', \Cart::content())
             ->with('title', 'Checkout')
             ->with('address', $shipping ?? null)
             ->with('user', $user ?? null);
     }
-
 
 
 
@@ -127,49 +109,65 @@ class CheckoutController extends Controller
                         $pass = $this->generatePassword($request->name);
                         $request['pass'] = hash::make($pass);
                         $users = User::create($this->createUser($request));
-                        //dd($uu);
                         #============= LOGIN USER =========================
-                        Auth::login($users);
-
-                        // if($users){
-                        //     $title = 'New Customer Registered';
-                        //     $message = 'Thanks for registrating on our system, do enjoy our services.';
-                        //     #============== SEND REGISTRATION DETAILS TO USER =======================
-                        //     $this->sendNotify($title, $message);
-                        //     $data = [
-                        //         'name' => $request->name,
-                        //         'email' => $request->email,
-                        //         'phone'=>$request->phone,
-                        //         'password'=> $pass,
-                        //      ];
-                        //     $this->send($data);
-                        // }
+                      Auth::loginUsingId($users->id);
+                        if($users){
+                            $title = 'New Customer Registered';
+                            $message = 'Thanks for registrating on our system, do enjoy our services.';
+                            #============== SEND REGISTRATION DETAILS TO USER =======================
+                            // $this->sendNotify($title, $message);
+                            $data = [
+                                'name' => $request->name,
+                                'email' => $request->email,
+                                'phone'=>$request->phone,
+                                'password'=> $pass,
+                             ];
+                            // $this->send($data);
+                        Shipping::create($this->StoreShippingAddress($request));
+                        }
                     }
+                    DB::commit();
                 } catch (\Exception $e) {
                     DB::rollBack();
                     throw $e;
                 }
+                sleep(2);
             }
-
+           
             DB::beginTransaction();
-            $user = User::where('id', auth()->user()->id)->first();
             try {
-                $orderItems = OrderItem::where('user_id', $user->id)->latest()->first();
+                $user = User::where('id', auth()->user()->id)->first();
+           
+                $orderNo = rand(1111111, 9999999).rand(1111111, 9999999);
+                $cart = \Cart::content();   
+                foreach ($cart as $cat) {
+                    $order_list = new OrderItem;
+                    $order_list->order_No = $orderNo;
+                    $order_list->product_name = $cat->model->name;
+                    $order_list->product_name = $cat->name;
+                    $order_list->qty = $cat->qty;
+                    $order_list->size = $cat->options->size;
+                    $order_list->price = $cat->price;
+                    $order_list->image = $cat->model->image;
+                    $order_list->payable = $cat->qty * $order_list->price;
+                    $order_list->user_id = $user->id;
+                    $order_list->save();
+                }
            
                 $address = Shipping::where(['user_id' => $user->id, 'is_default' => 1])->first();
-                if (!$address) {
-                    $address = Shipping::create($this->StoreShippingAddress($request));
+                if(!$address || $address == null ){
+                    Session::flash('alert', 'error');
+                    Session::flash('msg', 'Please select a default address');
+                    return back();
                 }
-                $this->StoreOrders($orderItems->order_No);
-                $check = CourierRates::where('order_no', $orderItems->order_No)->first();
-                if(!$check){
-                    $res = $this->SendRequest('M4C 4Y7', "CA", $request->zip_code ?? "M4C 4Y7", "Sender", false, 1.2, 5, 10, 10, "fashion", "CAD", 100);
-                if ($res['rates']) {
+                $this->StoreOrders($orderNo);
+                 $res = $this->SendRequest('M4C 4Y7', "CA", $address->zip_code??"M4C 4Y7", "Sender", false, 1.2, 5, 10, 10, "fashion", "CAD", 100);
+
+                 if ($res['rates']) {
                     foreach ($res['rates'] as $ss) {
-                       ;
                         CourierRates::create([
                             'user_id' => $user->id,
-                            'order_no' => $orderItems->order_No,
+                            'order_no' => $orderNo,
                             'courier_id'=>$ss['courier_id'],
                             'courier_name' => $ss['courier_name'],
                             'min_delivery_time' => $ss['min_delivery_time'],
@@ -189,19 +187,19 @@ class CheckoutController extends Controller
                         ]);
                     }
                 }
-            }
                 DB::commit();
             } catch (\Exception $e) {
                 DB::rollBack();
                 throw $e;
             }
+            
             return view('users.products.payment')
                 ->with('user', $user)
                 ->with('address', $address)
                 ->with('carts', \Cart::content())
-                ->with('orderNo', $orderItems->order_No)
+                ->with('orderNo', $orderNo)
                 ->with('title', 'Checkout Payment')
-                ->with('shipping_rates',  CourierRates::where('user_id', $user->id)->latest()->take(3)->get());
+                ->with('shipping_rates',  CourierRates::where('user_id', $user->id)->latest()->take(4)->orderBy('shipment_charge_total', 'ASC')->get());
         } else {
             return redirect()->route('carts.index');
         }

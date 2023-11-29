@@ -50,6 +50,9 @@
                                                     <h4 class="title-small">
                                                         <a href="{{route('users.order-details',encrypt($order->order_No))}}">QTY: {{$order->qty}}</a>
                                                     </h4>
+                                                    <h4 class="title-small">
+                                                        <a href="{{route('users.order-details',encrypt($order->order_No))}}"> {{$order->created_at}}</a>
+                                                    </h4>
                                                     <div class="product-price">
                                                         <span>C${{number_format($order->amount,2)}} </span>
                                                     </div>

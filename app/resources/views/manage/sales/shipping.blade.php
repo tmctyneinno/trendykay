@@ -33,8 +33,7 @@
                                                 <th>City</th>
                                                   <th>State</th>
                                                  <th>Postal Code</th>
-                                                 <th>Delivery Method</th>
-                                                 
+                                                 <th>Delivery Company</th>
                                             </tr>
                                             </thead>
                                             <tbody>

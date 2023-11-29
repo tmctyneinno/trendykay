@@ -44,10 +44,10 @@
                             <a href=""> {{_('Change >')}}  </a> </span></p> 
                         <hr>
                         <div class="ps-categogy--ist  p-2">
-                            <p style="color:#322f37">{{$address->name}}</p>
+                            <p style="color:#322f37">{{$address->receiver_name}}</p>
                             <input type="hidden" name="email" value="{{auth()->user()->email}}">
-                            <input type="hidden" name="name" value="{{$address->name}}">
-                            <input type="hidden" name="phone" value="{{$address->phone}}">
+                            <input type="hidden" name="name" value="{{$address->receiver_name}}">
+                            <input type="hidden" name="phone" value="{{$address->receiver_phone}}">
                             <input type="hidden" name="orderNo" value="{{$orderNo}}">
                             <p>{{$address->address}}, {{$address->city}} |  {{$address->state}}, {{$address->country}} 
                                 | {{$address->phone}} </p>

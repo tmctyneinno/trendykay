@@ -2,6 +2,7 @@
 
 namespace App\Listeners;
 
+use App\CourierRates;
 use App\Events\ShipmentEvent;
 use App\Order;
 use App\OrderItem;
@@ -36,6 +37,7 @@ class CreateShipment implements ShouldQueue
         $settings = Settings::latest()->first();
         $destination = Shipping::where(['user_id' => auth()->user()->id, 'is_default' => 1])->first();
 
+
         $data = [
             "platform_name" => $settings->site_name,
             "platform_order_number" => $event->orderNo,
@@ -64,17 +66,18 @@ class CreateShipment implements ShouldQueue
             ]
         ];
 
+ 
 
-        $client = new baseUrl('https://api.easyship.com/shipment/v1/shipments', 'Post', 'sand_7Kq0UOMKfMN25wnc6PWAGpLupRyI2Ee4fOauyItMJkM=', $data);
+        $client = new baseUrl('https://api.easyship.com/shipment/v1/shipments', 'post', 'sand_7Kq0UOMKfMN25wnc6PWAGpLupRyI2Ee4fOauyItMJkM=', $data);
         $res = $client->client();
+        if($res != null) {
         $res = $res['shipment'];
-        //  dd($res);
         if (isset($res)) {
             Shipment::create([
                 'user_id' => auth()->user()->id,
                 'order_No' => $event->orderNo,
-                'shipment_id' => $res['easyship_shipment_id'],
-                'easyship_shipment_id'=> $event->courier_id,
+                'shipment_id' => $event->courier_id,
+                'easyship_shipment_id'=>  $res['easyship_shipment_id'],
                 'courier_id' => $event->courier_id,
                 'courier_name' => $res['rates'][0]['courier_name'],
                 'destination_name'=>$res['destination_name'],
@@ -95,9 +98,10 @@ class CreateShipment implements ShouldQueue
                 'destination_country' => null,
                 'items' => null,
                 'box' => null,
-                'selected_courier' =>null,
+                'selected_courier' =>json_encode($res['selected_courier']),
                 'rates' => null
             ]);
         } 
     }
+}
 }

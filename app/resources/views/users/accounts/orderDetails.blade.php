@@ -98,7 +98,7 @@
                                                             <p> Address:  {{$orders->shipping->address}}</p>
                                                             <p> City: {{$orders->shipping->city . " , " . strtoupper($item->state)}} </p>
                                                             <p> Phone:{{$orders->shipping->receiver_phone}}</p>
-                                                    
+                                                            
                                                             <br><br>
                                                         </div>
                                                     </div>

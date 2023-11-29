@@ -29,7 +29,7 @@ class AdminLoginController extends Controller
      * @var string
      */
     
-    protected $redirectTo = 'manage/index';
+    protected $redirectTo = '/admin';
 /**
      * Create a new controller instance.
      *

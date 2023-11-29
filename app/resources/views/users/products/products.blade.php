@@ -703,7 +703,7 @@
                             $('#alerts').attr('hidden', false); 
                             setTimeout(function() {
                                 $('#alerts').hide();
-                                // location.reload();
+                                 location.reload();
                             }, 5);
                         }else{
                             alert('no');
