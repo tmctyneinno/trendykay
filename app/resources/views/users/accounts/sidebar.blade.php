@@ -18,10 +18,6 @@
                 aria-selected="true"><i class="fi-rs-eyes mr-10"></i>Recently Viewed</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" id="account-detail-tab"  href="{{route('user.transactions')}}"  
-                aria-controls="account-detail" aria-selected="true"><i class="fi-rs-atm mr-10"></i>Card Payments</a>
-            </li>
-            <li class="nav-item">
                 <a class="nav-link" id="account-detail-tab"  href="{{route('user.account.details')}}"  
                 aria-controls="update-detail" aria-selected="true"><i class="fi-rs-atm mr-10"></i>Update Account</a>
             </li>

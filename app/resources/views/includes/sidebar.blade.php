@@ -73,9 +73,6 @@
 								<a class="u-header-collapse__nav-link " href="{{route('users.account')}}">My Account</a>
 							</li>
 							<li class="">
-								<a class="u-header-collapse__nav-link " href="{{route('user.transactions')}}">My Transactions</a>
-							</li>
-							<li class="">
 								<a class="u-header-collapse__nav-link " href="{{route('users.orders')}}">My Orders</a>
 							</li>
 							<li class="">
