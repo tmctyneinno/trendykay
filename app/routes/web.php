@@ -100,8 +100,8 @@ Route::prefix('admin')->group(function(){
        
         Route::get('/website/settings/privacypolicy', 'SettingsController@PrivacyPolicy')->name('admin.settings.privacyPolicy');
         Route::get('/website/settings/privacypolicy/create', 'SettingsController@PrivacyPolicyCreate')->name('admin.settings.createprivacy');
-        Route::post('/website/settings/privacypolicy/create', 'SettingsController@PrivacyPolicyStore')->name('admin.settings.storePrivacy');
-        Route::get('/website/edit/privacypolicy/{id}', 'SettingsController@PrivacyPolicyEdit')->name('admin.settings.privaprivacyEdit');
+        Route::post('/website/settings/privacypolicy/store', 'SettingsController@PrivacyPolicyStore')->name('admin.settings.storePrivacy');
+        Route::get('/website/settings/edit/privacypolicy/{id}', 'SettingsController@PrivacyPolicyEdit')->name('admin.settings.privaprivacyEdit');
         Route::post('/website/update/privacypolicy/{id}', 'SettingsController@PrivaprivacyUpdate')->name('admin.settings.privaprivacyUpdate');
         Route::get('/website/delete/privacypolicy/{id}', 'SettingsController@PrivacyPolicyDelete')->name('admin.settings.privaprivacyDelete');
        
