@@ -46,7 +46,6 @@
             <i class="fa fa-line-chart"></i>&nbsp;Manage Sales</a>
              <ul>
                  <li><a href="{{route('admin.orders')}}">View Orders</a></li>
-                 <li><a href="{{route('admin.transctions')}}">Manage Transactions</a></li>
              </ul>
          </li>
 

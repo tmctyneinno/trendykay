@@ -48,10 +48,10 @@
                                                     <a href="#">{{$sp->order_No}}</a>
                                                 </td>
                                                 <td>
-                                                    <a href="#">{{$sp->payment_ref}}</a>
+                                                    <a href="#">{{$sp->external_ref}}</a>
                                                 </td>
                                                 <td>
-                                                    <a href="#">{{$sp->payment_method == 'card'? 'Card Payment' : 'Cash on Delivery'}}</a>
+                                                    <a href="#">Card</a>
                                                 </td>
                                                  <td>
                                                     <a href="#">C${{number_format($sp->amount,2)}}</a>

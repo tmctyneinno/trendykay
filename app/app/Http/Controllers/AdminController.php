@@ -18,6 +18,7 @@ use Intervention\Image\Facades\Image;
 use App\User;
 use Illuminate\Support\Facades\Validator;
 use App\Admin;
+use App\Shipment;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Symfony\Component\HttpFoundation\Session\Session;
@@ -59,11 +60,20 @@ class AdminController extends Controller
     }
 
     public function Shipping($id){
+        $delivery = [];
         $order = Order::where('order_No', decrypt($id))->first();
+    
+        $shipment = Shipment::where('order_No', $order->order_No)->first();
+        if($shipment){
+            $delivery = json_decode($shipment->selected_courier, true);
+        }
+   
+        
        // dd($cc->user->id);
         return view('manage.sales.shipping')
                 ->with('shipping', Shipping::where('id', $order->shipping_id)->first())
                 ->with('bheading', 'Shipping Address')
+                ->with('delivery', $delivery)
                 ->with('breadcrumb', 'Shipping Address');
     }
 
