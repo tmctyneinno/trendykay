@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Admin;
 use App\Settings;
-use App\PrivacyPolicy;
+use App\Privacypolicy;
 use App\TermsConditions;
 use App\AboutUs;
 use Illuminate\Support\Facades\Session;
