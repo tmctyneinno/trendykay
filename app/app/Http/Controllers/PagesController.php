@@ -6,6 +6,9 @@ use App\ContactUs;
 use App\Menu;
 use App\News;
 use App\Product;
+use App\privacypolicy;
+use App\AboutUs;
+use App\TermsConditions;
 use App\Project;
 use App\Slider;
 use Illuminate\Http\Request;
@@ -108,5 +111,31 @@ class PagesController extends Controller
         ->with('news', News::latest()->get())
         ->with('recent', News::latest()->take(5)->get());
     }
+
+
+    public function privacypolicy(){
+        $news = News::latest()->get();
+        $privacypolicy = Privacypolicy::first();
+        return  view('users.pages..privacy-policy')
+        ->with('privacypolicy', $privacypolicy)
+        ->with('news',$news);
+    }
+
+    public function Terms(){
+        $news = News::latest()->get();
+        $termscondition = TermsConditions::first();
+        return  view('users.pages..termsConditions')
+        ->with('termscondition', $termscondition)
+        ->with('news',$news);
+    }
+
+
+    public function about(){
+        $news = News::latest()->get();
+        return  view('users.pages.about-us')
+                ->with('news',$news)
+                ->with('news',$news);
+    }
+
 
 }

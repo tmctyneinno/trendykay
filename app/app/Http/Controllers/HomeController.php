@@ -405,38 +405,6 @@ class HomeController extends Controller
         }
     }
 
-  
-
-
-    public function privacypolicy(){
-        $news = News::latest()->get();
-        $cat =  Category::inRandomOrder()->get();
-        $privacypolicy = Privacypolicy::first();
-        return  view('users.pages..privacy-policy')
-        ->with('privacypolicy', $privacypolicy)
-        ->with('news',$news)
-        ->with('categories', $cat);
-    }
-
-    public function Terms(){
-        $news = News::latest()->get();
-        $cat =  Category::inRandomOrder()->get();
-        $termscondition = TermsConditions::first();
-        return  view('users.pages..privacy-policy')
-        ->with('termscondition', $termscondition)
-        ->with('news',$news)
-        ->with('categories', $cat);
-    }
-
-
-    public function about(){
-        $news = News::latest()->get();
-        $cat =  Category::inRandomOrder()->get();
-        return  view('users.pages.about-us')
-                ->with('news',$news)
-                ->with('news',$news)
-                ->with('categories', $cat);
-    }
 
 
                

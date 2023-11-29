@@ -47,7 +47,7 @@
                     <ul class="footer-list wow fadeIn animated mb-sm-5 mb-md-0">
                         <li><a href="{{ route('aboutus')}}">About Us</a></li>
                         <li><a href="{{ route('privacypolicy')}}">Privacy Policy</a></li>
-                        <li><a href="{{route('privacypolicy')}}">Terms &amp; Conditions</a></li>
+                        <li><a href="{{route('terms')}}">Terms &amp; Conditions</a></li>
                         <li><a href="{{ url('pages/contacts')}}">Contact Us</a></li>
                         
                     </ul>

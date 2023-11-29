@@ -115,7 +115,6 @@ Route::prefix('admin')->group(function(){
         Route::post('/website/settings/update/socials', 'SettingsController@UpdateSocials')->name('admin.settings.updateSocials');
         Route::post('/website/settings/update/settings', 'SettingsController@UpdateSettings')->name('admin.settings.updateSettings');
     
-        Route::post('/website/settings/update/Aboutus', 'SettingsController@UpdateAboutus')->name('admin.settings.updateAboutus');
         Route::post('/website/settings/termsandconditions', 'SettingsController@termsandconditions')->name('admin.termsandconditions.index');
 
 });
@@ -159,15 +158,10 @@ Route::post('/newaddress', 'CheckoutController@modal');
 Route::post('/checkouts', 'CheckoutController@Add'); 
 
 
-
-//Route::resource('/checkout', 'CheckoutController')->middleware('auth');
 Route::get('/payment/{trxref}', 'CheckoutController@verify')->name('verify.pay');
-//Route::post('/checkout/payments', 'CheckoutController@storeOrder');//
 
 Route::get('/address/checkout', 'CheckoutController@addNew')->name('checkout.addNew');
-// Route::get('/confirm/payment/{id}','CheckoutController@verify')->name('confirm.payment'); 
 Route::post('/confirm/payment/','CheckoutController@verify')->name('confirm.payment'); 
-
 
 Route::get('user/orders', 'HomeController@myOrders')->name('users.orders');
 Route::get('user/transactions', 'HomeController@myTransactions')->name('user.transactions');
@@ -184,9 +178,9 @@ Route::post('/address/store/{id}', 'HomeController@Shipping');
 Route::get('/user-address', 'HomeController@userAddress')->name('users.user-address');
 Route::get('/add-address', 'HomeController@createAddresss')->name('users.add-address');
 Route::get('/address/delete/{id}', 'HomeController@AddressDelete')->name('address.delete');
-Route::get('/aboutus', 'HomeController@about')->name('aboutus');
-Route::get('/privacypolicy', 'HomeController@privacypolicy')->name('privacypolicy');
-
-
 });
+
+Route::get('/about-us', 'PagesController@about')->name('aboutus');
+Route::get('/privacypolicy', 'PagesController@privacypolicy')->name('privacypolicy');
+Route::get('/terms', 'PagesController@Terms')->name('terms');
 

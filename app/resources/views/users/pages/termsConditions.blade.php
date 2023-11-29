@@ -8,7 +8,7 @@
             <div class="breadcrumb">
                 <a href="{{route('index')}}" rel="nofollow">Home</a>
                 <span></span> Pages
-                <span></span> Privacy Policy
+                <span></span> Terms and Conditions
             </div>
         </div>
     </div>
