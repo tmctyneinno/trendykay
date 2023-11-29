@@ -8,6 +8,7 @@ use App\Settings;
 use App\Privacypolicy;
 use App\TermsConditions;
 use App\AboutUs;
+use App\FlashMsg;
 use Illuminate\Support\Facades\Session;
 
 class SettingsController extends Controller
@@ -249,7 +250,7 @@ class SettingsController extends Controller
         if($request->file('image')){
             $image = $request->file('image');
             $ext = $image->getClientOriginalExtension();
-            $fileName = 'logo2'.'.'.$ext;
+            $fileName = 'logo'.'.'.$ext;
             $image->move('assets',$fileName);
             $data['logo'] = $fileName;
         }
@@ -257,8 +258,49 @@ class SettingsController extends Controller
         $testim = Settings::first();
         $testim->update($data);
         Session::flash('alert', 'success');
-        Session::flash('message', 'Logo pdated Successfully');
+        Session::flash('message', 'Logo Updated Successfully');
         return back();
     }
+
+    public function flashMsg(){
+        return view('manage.flashMsg.create')
+        ->with('flashMsg', FlashMsg::latest()->first())
+        ->with('bheading', 'Website Settings')
+        ->with('breadcrumb', 'Website Settings');
+    }
+
+    public function flashMsgUpdate(Request $request){
+
+        
+        $data = [
+            'title' => $request->title,
+            'sub_title' => $request->sub_title,
+            'content' => $request->content,
+        ];
+
+        if($request->file('image')){
+            $image = $request->file('image');
+            $ext = $image->getClientOriginalExtension();
+            $fileName = time().'flash'.'.'.$ext;
+            $image->move('assets',$fileName);
+            $data['image'] = $fileName;
+        }
+
+        FlashMsg::updateOrCreate($data);
+        Session::flash('alert', 'success');
+        Session::flash('message', 'Message Updated Successfully');
+        return back();
+    }
+
+    public function FlashMsgDelete(){
+
+       $flash = FlashMsg::first();
+       $flash->delete();
+       Session::flash('alert', 'error');
+       Session::flash('message', 'Message Deleted Successfully');
+       return back();  
+
+    }
+
 
 }

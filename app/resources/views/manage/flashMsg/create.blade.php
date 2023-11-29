@@ -5,25 +5,46 @@
  <div class="container-fluid">
             <div class="row">
                 <div class="col-md-12">
-                {{Form::open(['action' => 'CategoryController@store', 'method'=>'post', 'enctype' => 'multipart/form-data'])}}
+                {{Form::open(['action' => 'SettingsController@flashMsgUpdate', 'method'=>'post', 'enctype' => 'multipart/form-data'])}}
               @csrf
               <div class="card">
                         <div class="card-body">
-                            <h6 class="card-title">Pop Advert</h6>
+                            <h6 class="card-title">HomePage Flash Message</h6>
                             <div class="row">
                                
                                      <div class="col-md-6">
                                        <div class="form-group">
-                                      <input type="text" name="name" placeholder="category Name" value="{{old('name')}}" class="form-control @error('name') is-invalid @enderror" >
-                                            <small id="emailHelp" class="form-text text-muted">Enter Category Name
+                                      <input type="text" name="title" placeholder="Title" value="{{$flashMsg->title??old('title')}}" class="form-control @error('title') is-invalid @enderror" >
+                                            <small id="emailHelp" class="form-text text-muted">Enter title of the message
                                             </small>
-                                            @error('name')
+                                            @error('title')
                                             <span class="invalid-feedback"> <small> * </small> </span>
                                             @enderror
                                         </div>
                                          </div>
+                                         <div class="col-md-6">
+                                            <div class="form-group">
+                                           <input type="text" name="sub_title" placeholder="Sub Title" value="{{$flashMsg->sub_title??old('sub_title')}}" class="form-control @error('sub_title') is-invalid @enderror" >
+                                                 <small id="emailHelp" class="form-text text-muted">Enter Sub title of the message
+                                                 </small>
+                                                 @error('sub_title')
+                                                 <span class="invalid-feedback"> <small> * </small> </span>
+                                                 @enderror
+                                             </div>
+                                              </div>
+                                              <div class="col-md-6">
+                                                <div class="form-group">
+                                               <input type="text" name="content" placeholder="Sub Title" value="{{$flashMsg->content??old('content')}}" class="form-control @error('content') is-invalid @enderror" >
+                                                     <small id="emailHelp" class="form-text text-muted">Enter Sub title of the message
+                                                     </small>
+                                                     @error('content')
+                                                     <span class="invalid-feedback"> <small> * </small> </span>
+                                                     @enderror
+                                                 </div>
+                                                  </div>
                                        <div class="col-md-6">
                                   <div class="custom-file">
+
                                             <input type="file"name="image" class="custom-file-input  @error('image') is-invalid @enderror" id="customFile">
                                                 <label class="custom-file-label" for="customFile">Choose Image</label>
                                             </div>
@@ -44,9 +65,14 @@
                           </div>
                           <div class="col-md-4">
                         <div class="p-5">
-                             <button type="submit" class="text-center btn btn-primary w-100 p-3 ">Add New Category</button>
+                        
+                           <button type="submit" class="text-center btn btn-primary w-100 p-3 ">Update Flash Message</button>
                            </div>
+                          
                            </div>
+                           @if(isset($flashMsg))
+                           <a href="{{route('admin.FlashMsgDelete')}}"  class=" btn btn-danger btn-sm ">Delete Flash Message</a> 
+                           @endif
                            </div>
                         </div>
                         </div>

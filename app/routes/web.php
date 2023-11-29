@@ -117,6 +117,10 @@ Route::prefix('admin')->group(function(){
     
         Route::post('/website/settings/termsandconditions', 'SettingsController@termsandconditions')->name('admin.termsandconditions.index');
 
+        Route::get('/website/settings/flashmsg', 'SettingsController@flashMsg')->name('admin.settings.flashMsg');
+        Route::post('/website/settings/flashmsg/create', 'SettingsController@flashMsgUpdate')->name('admin.settings.flashMsgUpdate');
+        Route::get('/website/settings/flashmsg/delete', 'SettingsController@FlashMsgDelete')->name('admin.FlashMsgDelete');
+
 });
 }); 
 

@@ -29,6 +29,11 @@
         <i data-feather="image" class="mr-2 width-15 height-15"></i>
         Terms and Conditions 
     </a>
+
+    <a href="{{route('admin.settings.flashMsg')}}" class="list-group-item">
+        <i data-feather="image" class="mr-2 width-15 height-15"></i>
+        Flash Message
+    </a>
   
   
     
