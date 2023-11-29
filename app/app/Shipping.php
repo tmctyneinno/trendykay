@@ -20,7 +20,8 @@ class Shipping extends Model
         'delivery_method',
         'lng',
         'is_default',
-        'lat'
+        'lat',
+        'landmark'
     ];
 
     public function user(){

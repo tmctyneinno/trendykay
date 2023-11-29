@@ -244,8 +244,6 @@
                                                     <button class="button button-add-to-cart " id="add2cart">Add to cart</button>
                                                 </div>
                                             </div>
-                                            <span class="badge-success p-2 border-radius-5" hidden id="alerts"> Item added to cart successfully</span>
-                                
                                             <ul class="product-meta font-xs color-grey mt-50">
                                             </ul>
                                         </div>

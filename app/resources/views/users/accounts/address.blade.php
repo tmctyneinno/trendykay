@@ -26,7 +26,7 @@
                                         <div class="card-header">
                                             <h5 class="mb-0">
                                                 @if($addres->is_default == 1)
-                                                        <th>Billing Address 
+                                                        <th>Billing Address  <a href="{{route('users.update-address', encrypt($addres->id))}}"> <i class="">edit </i></a>
                                                             <a class="" style="float:right; color:chocolate">  Default</a>
                                                         </th>
                                                 @else
@@ -43,6 +43,7 @@
                                             <address style="font-weight: bold">Name: {{$addres->receiver_name}}</address>
                                                 <p> Address: {{$addres->address}}</p>
                                                 <p> City: {{$addres->city . " , " . strtoupper($addres->state)}} </p>
+                                                <p> LandMark: {{$addres->landmark . " , " . strtoupper($addres->country)}} </p>
                                                 <p> Phone: {{$addres->receiver_phone}}</p>
                                             <br><br>
                                           

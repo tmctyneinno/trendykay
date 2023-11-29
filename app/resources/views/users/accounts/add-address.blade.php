@@ -39,37 +39,47 @@
                                            <div class="js-form-message form-group mb-5">
                                                    <label class="form-label" for="RegisterSrEmailExample3">Receiver
                                                    </label>
-                                                   <input type="address"  placeholder="Name" value="{{old('name')}}" name="name" class="form-control @error('name') is-invalid @enderror">
+                                                   <input type="address"  placeholder="Name" value="{{old('name')}}" name="name" class="form-control @error('name') is-invalid @enderror" required>
                                                
                                                 </div>
                                                <div class="js-form-message form-group mb-5">
                                                    <label class="form-label" for="RegisterSrEmailExample3">Address
                                                    </label>
-                                                   <input type="address"  placeholder="full Address" value="{{old('address')}}" name="address" class="form-control @error('address') is-invalid @enderror">
+                                                   <input type="address"  placeholder="full Address" value="{{old('address')}}" name="address" class="form-control @error('address') is-invalid @enderror" required>
                                                </div>
                                                <div class="js-form-message form-group mb-5">
                                                    <label class="form-label" for="RegisterSrEmailExample3">Email
                                                    </label>
-                                                   <input type="email"  placeholder="email" value="{{old('receiver_email')}}" name="email" class="form-control @error('email') is-invalid @enderror" >
+                                                   <input type="email"  placeholder="email" value="{{old('receiver_email')}}" name="email" class="form-control @error('email') is-invalid @enderror" required>
                                                </div>
                                                <div class="js-form-message form-group mb-5">
                                                    <label class="form-label"  for="RegisterSrEmailExample3">Phone
                                                    </label>
-                                                   <input type="text" placeholder="phone" name="phone" value="{{old('phone')}}" class="form-control @error('phone') is-invalid @enderror">
+                                                   <input type="text" placeholder="phone" name="phone" value="{{old('phone')}}" class="form-control @error('phone') is-invalid @enderror"required>
                                                </div>
                                                </div>
                                      <div class="mb-6 col-xl-6">
                                                <div class="js-form-message form-group mb-5">
                                                    <label class="form-label" for="RegisterSrEmailExample3">City
                                                    </label>
-                                                   <input type="text" placeholder="city" name="city" value="{{old('city')}}" class="form-control @error('city') is-invalid @enderror" >
+                                                   <input type="text" placeholder="city" name="city" value="{{old('city')}}" class="form-control @error('city') is-invalid @enderror"required >
                                                </div>
                                                
                                                <div class="js-form-message form-group mb-5">
                                                    <label class="form-label" for="RegisterSrEmailExample3">State
                                                    </label>
-                                                   <input type="text" placeholder="state" value="{{old('state')}}" name="state" class="form-control @error('state') is-invalid @enderror">
+                                                   <input type="text" placeholder="state" value="{{old('state')}}" name="state" class="form-control @error('state') is-invalid @enderror" required>
                                                </div>
+                                               <div class="js-form-message form-group mb-5">
+                                                <label class="form-label" for="RegisterSrEmailExample3">landmark
+                                                </label>
+                                                <input type="text" placeholder="landmark"  name="landmark" class="form-control" required>
+                                            </div>
+                                            <div class="js-form-message form-group mb-5">
+                                                <label class="form-label" for="RegisterSrEmailExample3">Country
+                                                </label>
+                                                <input type="text" placeholder="country"  name="country" class="form-control" required>
+                                            </div>
                                                <div style="display: flex; align-content:center">
                                                    <label  for="RegisterSrEmailExame3 pt-2">
                                                     Set as Default: 

@@ -69,6 +69,16 @@
                                                    </label>
                                                    <input type="text" placeholder="state" value="{{$address->state}}" name="state" class="form-control">
                                                </div>
+                                               <div class="js-form-message form-group mb-5">
+                                                <label class="form-label" for="RegisterSrEmailExample3">landmark
+                                                </label>
+                                                <input type="text" placeholder="landmark" value="{{$address->landmark}}" name="landmark" class="form-control" required>
+                                            </div>
+                                            <div class="js-form-message form-group mb-5">
+                                                <label class="form-label" for="RegisterSrEmailExample3">Country
+                                                </label>
+                                                <input type="text" placeholder="country" value="{{$address->landmark}}" name="country" class="form-control" required>
+                                            </div>
                                                <div style="display: flex; align-content:center">
                                                    <label  for="RegisterSrEmailExame3 pt-2">
                                                     Set as Default: 
@@ -85,10 +95,10 @@
                                         </div>
                                                
                                             {{Form::close()}}
-                                            <a href="{{route('address.delete', encrypt($address->id))}}"  class="btn px-5" style="background:red; color:#fff"> Delete </a>
+
                                                
                                        </div>
-
+                                       <a href="{{route('address.delete', encrypt($address->id))}}"  class="btn px-5" style="background:red; color:#fff"> Delete </a>
 
                                         </div>
                                         

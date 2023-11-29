@@ -266,16 +266,22 @@ class HomeController extends Controller
             $shipping->receiver_email = $request->email;
             if(isset($request->default))
                 {
+                $check = Shipping::where('user_id', auth()->user()->id)->get();
+                if($check > 1){
                 DB::table('shippings')
                 ->where(['user_id'=>  auth()->user()->id, 'is_default' => '1'])
                 ->update(['is_default' => 0]);
-            $shipping->is_default = $request->default;
+                $shipping->is_default = $request->default;
                 }else{
                     $shipping->is_default = 0;
                 }
+            }
             $shipping->zip_code = $request->postal_code;
             $shipping->city = $request->city;
             $shipping->state = $request->state;
+            $shipping->country = $request->country;
+            $shipping->landmark = $request->landmark;
+
             if($shipping->save()){
                 return redirect()->back()->with('success', 'Address updated successfully')->with('news', News::latest()->get());
             }
@@ -295,6 +301,8 @@ class HomeController extends Controller
                 $shipping->zip_code = $request->postal_code;
                 $shipping->city = $request->city;
                 $shipping->state = $request->state;
+                $shipping->country = $request->country;
+                $shipping->landmark = $request->landmark;
                 if($shipping->save()){
                     return redirect()->back()->with('success', 'Address Added successfully');
                 }
