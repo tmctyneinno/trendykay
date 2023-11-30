@@ -13,9 +13,10 @@ use App\Transaction;
 use Illuminate\Support\Facades\Validator;
 use Stripe\Stripe;
 use Stripe\PaymentIntent;
+use App\Traits\notify;
 
 class PaymentController extends Controller
-{
+{ use notify;
    
     public function initiatePayCheckout(Request $request){ 
 
@@ -76,8 +77,8 @@ class PaymentController extends Controller
         $title = 'New Order Completed, Order No '.$orderNo;
         $message = 'Order Completed, payment successfully, thanks you for shopping with us';
         #============== SEND REGISTRATION DETAILS TO USER =======================
-         $this->sendNotify($title, $message);
         \Cart::destroy();
+        $this->sendNotify($title, $message);
         Session::flash('alert', 'success');
         Session::flash('msg', 'Order Completed Successfully');
         return redirect()->intended(route('users.orders'));

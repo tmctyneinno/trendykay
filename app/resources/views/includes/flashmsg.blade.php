@@ -3,7 +3,7 @@
     <div class="modal-content">
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             <div class="modal-body">
-                <div class="deal" style="background-image: url('{{ asset('assets/'.$splash->button) }}'); ">
+                <div class="deal" style="background-image: url('{{ asset('assets/'.$splash->image) }}'); ">
                     <div class="deal-top">
                         <h2 class="text-brand">{{$splash->title}}</h2>
                         <h5>{{$splash->sub_title}}</h5>

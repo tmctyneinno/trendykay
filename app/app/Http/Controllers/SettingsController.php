@@ -250,7 +250,7 @@ class SettingsController extends Controller
         if($request->file('image')){
             $image = $request->file('image');
             $ext = $image->getClientOriginalExtension();
-            $fileName = 'logo'.'.'.$ext;
+            $fileName = 'logo'.time().'.'.$ext;
             $image->move('assets',$fileName);
             $data['logo'] = $fileName;
         }

@@ -12,6 +12,7 @@
                         </ul>
                     </div>
                 </div>
+
                 <div class="col-xl-5 col-lg-4">
                     <div class="text-center">
                         <div id="news-flash" class="d-inline-block">
@@ -60,14 +61,18 @@
                    <a href="{{route('index')}}"><img style="width:200px"  src="{{asset('/assets/'.$settings->logo)}}" alt="logo"></a>
                 </div>
                 <div class="header-right">
-                    <div class="search-style-2">
-                        {{Form::open(['action' => 'HomeController@search', 'method'=>'get', 'class'=>'js-focus-state'])}}
-                           
-                          
-                            <input type="text" name="search" placeholder="Search for items...">
-                            {{-- <button type="submit" value="Search">Search </button> --}}
-                            {{ Form::close()}}
-                    </div>
+                    <div class="search-style-3" style="width: 70%; box-sizing: border-box;">
+						{{ Form::open(['action' => 'HomeController@search', 'method'=>'get']) }}
+						<div class="row">
+							<div class="col-xl-12"> <!-- Adjusted column class -->
+								<input type="text" value="@if(isset($search)) {{$search}} @endif" name="search" id="searchproduct-item" placeholder="Search for Products" aria-label="Search for Products" aria-describedby="searchProduct1"  required>
+							</div>
+							<div class="col-xl-1"> <!-- Adjusted column class -->
+								<button type="submit" class="btn btn-fill-out text-color" style="background:#088178; color:#fff; height: 38px;"><i class="fi-rs-search"></i></button>
+							</div>
+						</div>
+						{{ Form::close()}}
+					</div>
                     <div class="header-action-right">
                         <div class="header-action-2">
                             <div class="header-action-icon-2">
