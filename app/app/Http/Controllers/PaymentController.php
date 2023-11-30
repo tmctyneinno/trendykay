@@ -73,6 +73,10 @@ class PaymentController extends Controller
             'is_paid' => 1,
         ]);
         }
+        $title = 'New Order Completed, Order No '.$orderNo;
+        $message = 'Order Completed, payment successfully, thanks you for shopping with us';
+        #============== SEND REGISTRATION DETAILS TO USER =======================
+         $this->sendNotify($title, $message);
         \Cart::destroy();
         Session::flash('alert', 'success');
         Session::flash('msg', 'Order Completed Successfully');

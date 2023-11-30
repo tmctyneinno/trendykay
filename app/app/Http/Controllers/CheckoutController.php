@@ -115,7 +115,7 @@ class CheckoutController extends Controller
                             $title = 'New Customer Registered';
                             $message = 'Thanks for registrating on our system, do enjoy our services.';
                             #============== SEND REGISTRATION DETAILS TO USER =======================
-                            // $this->sendNotify($title, $message);
+                             $this->sendNotify($title, $message);
                             $data = [
                                 'name' => $request->name,
                                 'email' => $request->email,

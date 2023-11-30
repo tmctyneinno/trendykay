@@ -16,26 +16,12 @@
                                 </div>
                             </div> --}}
 
-                            @php 
-                            $typ = explode('.',$slider->image);
-                            @endphp
-                            @if($typ[1] == "png" || $typ[1] == "jpeg" || $typ[1] == "jpg" || $typ[1]=="gif" )
+
                             <div class="col-lg-12 col-md-12">
                                 <div class="">
                                     <img class="animated" style="width: 100%" src="{{ asset('/images/sliders/' . $slider->image) }}" alt="">
                                 </div>
                             </div>
-                            @else 
-                            <div class="col-lg-12 col-md-12">
-                                <div class="">
-                                    <video width="100%"  autoplay>
-                                        <source src="{{ asset('/images/sliders/' . $slider->image) }}" type="video/mp4">
-                                        <source src="{{ asset('/images/sliders/' . $slider->image) }}" type="video/ogg">
-                                      Your browser does not support the video tag.
-                                      </video>
-                                </div>
-                            </div>
-                            @endif
                         </div>
                     </div>
                 </div>
