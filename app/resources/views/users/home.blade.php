@@ -8,16 +8,14 @@
                 <div class="single-hero-slider single-animation-wrap">
                     <div class="container">
                         <div class="row  slider-animated-1">
-                            <div class="col-lg-5 col-md-6">
+                            {{-- <div class="col-lg-5 col-md-6">
                                 <div class="hero-slider-content-2">
-                                    {{-- <h4 class="animated">{{ $slider->title }}</h4> --}}
                                     <h2 class="animated fw-900">{{ $slider->secondname }}</h2>
-                                    {{-- <h1 class="animated fw-900 text-8">{{ $slider->content }}</h1> --}}
                                     <p class="animated">{{ $slider->thirdname }}.</p>
                                     <a class="animated btn btn-brush btn-brush-1" href="{{ url('pages/products')}}"> Shop Now </a>
                                 </div>
-                            </div>
-                            <div class="col-lg-7 col-md-6">
+                            </div> --}}
+                            <div class="col-lg-12 col-md-12">
                                 <div class="single-slider-img single-slider-img-1">
                                     <img class="animated slider-1-3" src="{{ asset('/images/sliders/' . $slider->image) }}" alt="">
                                 </div>
