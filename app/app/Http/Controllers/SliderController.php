@@ -27,8 +27,6 @@ class SliderController extends Controller
     public function Store(Request $request){
         $request->validate([
             'image' => 'required',
-            'secondname' => 'required',
-            'thirdname' => 'required',
         ]);
 
        //dd(request()->file('images'));
