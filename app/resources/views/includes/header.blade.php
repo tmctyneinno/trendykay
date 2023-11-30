@@ -73,11 +73,7 @@
                             <div class="header-action-icon-2">
                                 <a class="mini-cart-icon" href="{{route('carts.index')}}">
                                     <img alt="Trendy Kay Collection" src="{{ asset('assets/imgs/theme/icons/icon-cart.svg')}}">
-                                    @if(Cart::count()> 0) 
                                         <span class="pro-count blue cartReload">{{Cart::count()}}</span>  
-                                    @else  
-                                        <span class="pro-count blue"> 0 </span>
-                                    @endif
                                 </a>
                                 @if(Cart::count()> 0) 
                                 <div class="cart-dropdown-wrap cart-dropdown-hm2">
