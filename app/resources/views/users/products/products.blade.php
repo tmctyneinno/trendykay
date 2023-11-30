@@ -602,7 +602,7 @@
                                         <img src="{{asset('images/products/'.$prods->image)}}" alt="#">
                                     </div>
                                     <div class="content pt-10">
-                                        <h5><a href="{{route('product-details', $prods->id )}}">{{$prods->name}}</a></h5>
+                                        <h5><a href="{{route('product-details', encrypt($prods->id) )}}">{{$prods->name}}</a></h5>
                                         <p class="price mb-0 mt-5">C${{number_format($prods->price)}}</p>
                                         {{-- <div class="product-rate">
                                             <div class="product-rating" style="width:90%"></div>
