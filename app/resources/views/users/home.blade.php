@@ -2,7 +2,7 @@
 @section('content')
 
 <main class="main">
-    <section class="home-slider position-relative pt-50">
+    <section class="home-slider position-relative pt-10">
         <div class="hero-slider-1 dot-style-1 dot-style-1-position-1">
             @forelse ($sliders as $slider)
                 <div class="single-hero-slider single-animation-wrap">
@@ -15,11 +15,27 @@
                                     <a class="animated btn btn-brush btn-brush-1" href="{{ url('pages/products')}}"> Shop Now </a>
                                 </div>
                             </div> --}}
+
+                            @php 
+                            $typ = explode('.',$slider->image);
+                            @endphp
+                            @if($typ[1] == "png" || $typ[1] == "jpeg" || $typ[1] == "jpg" || $typ[1]=="gif" )
                             <div class="col-lg-12 col-md-12">
-                                <div class="single-slider-img single-slider-img-1">
-                                    <img class="animated slider-1-3" src="{{ asset('/images/sliders/' . $slider->image) }}" alt="">
+                                <div class="">
+                                    <img class="animated" style="width: 100%" src="{{ asset('/images/sliders/' . $slider->image) }}" alt="">
                                 </div>
                             </div>
+                            @else 
+                            <div class="col-lg-12 col-md-12">
+                                <div class="">
+                                    <video width="100%"  autoplay>
+                                        <source src="{{ asset('/images/sliders/' . $slider->image) }}" type="video/mp4">
+                                        <source src="{{ asset('/images/sliders/' . $slider->image) }}" type="video/ogg">
+                                      Your browser does not support the video tag.
+                                      </video>
+                                </div>
+                            </div>
+                            @endif
                         </div>
                     </div>
                 </div>
