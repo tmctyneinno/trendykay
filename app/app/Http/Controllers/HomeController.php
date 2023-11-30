@@ -70,7 +70,7 @@ class HomeController extends Controller
             ->with('bestsallersproducts',  Product::simplePaginate(10))
             ->with('news', News::latest()->get())
             ->with('products', Product::inRandomOrder()->latest()->simplePaginate(9))
-            ->with('sliders', Slider::get())
+            ->with('sliders', Slider::where('status', 1)->get())
             ->with('splash', FlashMsg::latest()->latest()->first())
             ->with('categories', Category::inRandomOrder()->where('name', 'Denim')->orWhere('name', 'Dresses')->orwhere('name', 'Jumpsuit')->orwhere('name', 'Swinwear')->orwhere('name', 'Graphic')->orwhere('name', 'Swinwear')->get());
     } 

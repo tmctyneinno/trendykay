@@ -108,7 +108,7 @@ class SliderController extends Controller
     
     public function Deactivate($id){
         $slid = Slider::where('id', decrypt($id))->first();
-        $slid->update(['status' => null]);
+        $slid->update(['status' => 0]);
         \Session::flash('alert', 'error');
         \Session::flash('alert', 'Slider Deactivated Successfully');
         return back();
