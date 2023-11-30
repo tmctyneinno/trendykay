@@ -200,17 +200,17 @@ class AdminController extends Controller
     }
 
     public function Analytical(){
-        $data['users'] = User::where('updated_at', '>=', Carbon::now()->subMinutes(10))->latest()->get();
+        $data['users'] = User::where('updated_at', '>=', Carbon::now()->subMinutes(100))->latest()->get();
         $data['active'] = count($data['users']);
-        $data['recentActive'] = User::where('updated_at', '>=', Carbon::now()->subMinutes(10))->latest()->get();
+        $data['recentActive'] = User::where('updated_at', '>=', Carbon::now()->subMinutes(20))->latest()->get();
         $data['recent'] = count($data['recentActive']);
-        $data['new_users'] = User::where('created_at', '>=', today()->subMinutes(500))->latest()->get();
-        $data['thisweek'] = User::where('created_at', '>=', today()->subMinutes(500))->latest()->get();
+        $data['new_users'] = User::where('created_at', '>=', today()->addHours(12))->latest()->get();
+        $data['thisweek'] = User::where('created_at', '>=', today()->subDays(7))->latest()->get();
         $data['today'] = count( $data['new_users']);
         $data['week'] = count( $data['thisweek']);
-        $data['orders'] = Order::where('created_at', '>=', Carbon::now()->subMinutes(10))->latest()->get();
+        $data['orders'] = Order::where('created_at', '>=', Carbon::now()->subHours(12))->latest()->get();
         $data['order'] = count($data['orders']);
-        $data['av_orders'] = Order::where('created_at', '>=', Carbon::now()->subMinutes(10))->latest()->get();
+        $data['av_orders'] = Order::where('created_at', '>=', Carbon::now()->subDays(7))->latest()->get();
         $data['tt_order'] = count($data['orders']);
         return view('manage.analytical', $data)
         ->with('bheading', 'Analytics' )
