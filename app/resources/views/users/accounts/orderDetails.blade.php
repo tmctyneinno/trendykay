@@ -45,7 +45,7 @@
                                                         @foreach($items as $item)
                                                             <tr class="cart_item">
                                                                 <td>
-                                                                <a href="#"><img width="100px" height="150"class="img-fluid max-width-100 p-1" src="{{asset('images/products/'.$item->image)}}" alt="Image Description"></a>
+                                                                <a href="{{route('product-details',encrypt($item->id))}}"><img width="100px" height="150"class="img-fluid max-width-100 p-1" src="{{asset('images/products/'.$item->image)}}" alt="Image Description"></a>
                                                                 </td>
                                                                 <td>
                                                                 {{$item->product_name}}<br>

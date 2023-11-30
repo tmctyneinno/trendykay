@@ -504,7 +504,7 @@
                                             @foreach($recent as $recents)
                                             <div class="col-lg-3 col-md-4 col-12 col-sm-6">
                                                 <div class="pro-details-brand">
-                                                    <span> <a href="{{route('user.category',encrypt($recents->category->id))}}">{{$recents->category->name}}</a></span>
+                                                    <span> <a href="{{route('product-details',encrypt($recents->id))}}">{{$recents->category->name}}</a></span>
                                                 </div>
                                                 <div class="product-cart-wrap small hover-up">
                                                     <div class="product-img-action-wrap">
@@ -520,7 +520,7 @@
                                                         </div>
                                                     </div>
                                                     <div class="product-content-wrap">
-                                                        <h2><a href="{{route('user.category', $recents->category->id )}}" tabindex="0">{{$recents->name}}</a></h2>
+                                                        <h2><a href="{{route('product-details',encrypt($recents->id))}}" tabindex="0">{{$recents->name}}</a></h2>
                                                         
                                                         <div class="product-price">
                                                             <span>C${{number_format($recents->sale_price)}}  </span>
@@ -543,12 +543,12 @@
                                             @foreach($related as $related_pro)
                                             <div class="col-lg-3 col-md-4 col-12 col-sm-6">
                                                 <div class="pro-details-brand">
-                                                    <span> <a href="{{route('user.category',encrypt($related_pro->category->id))}}">{{$related_pro->category->name}}</a></span>
+                                                    <span> <a href="{{route('product-details',encrypt($related_pro->id))}}">{{$related_pro->category->name}}</a></span>
                                                 </div>
                                                 <div class="product-cart-wrap small hover-up">
                                                     <div class="product-img-action-wrap">
                                                         <div class="product-img product-img-zoom">
-                                                            <a href="{{route('product-details',$related_pro->id)}}" tabindex="0">
+                                                            <a href="{{route('product-details',encrypt($related_pro->id))}}" tabindex="0">
                                                                 <img class="default-img" src="{{asset('images/products/'.$related_pro->image)}}" alt="">
                                                                 <img class="hover-img" src="{{asset('images/products/'.$related_pro->image)}}" alt="">
                                                             </a>
@@ -558,7 +558,7 @@
                                                         </div>
                                                     </div>
                                                     <div class="product-content-wrap">
-                                                        <h2><a href="{{route('user.category', $related_pro->category->id )}}" tabindex="0">{{$related_pro->name}}</a></h2>
+                                                        <h2><a href="{{route('product-details',encrypt($related_pro->id))}}" tabindex="0">{{$related_pro->name}}</a></h2>
                                                         <div class="rating-result" title="90%">
                                                             <span>
                                                             </span>

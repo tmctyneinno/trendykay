@@ -6,7 +6,7 @@ use App\ContactUs;
 use App\Menu;
 use App\News;
 use App\Product;
-use App\privacypolicy;
+use App\Privacypolicy;
 use App\AboutUs;
 use App\TermsConditions;
 use App\Project;
