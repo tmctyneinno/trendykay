@@ -63,10 +63,9 @@
                     <div class="search-style-2">
                         {{Form::open(['action' => 'HomeController@search', 'method'=>'get', 'class'=>'js-focus-state'])}}
                            
-                            <select class="select-active">
-                                <option>All Categories</option>
-                            </select>
+                          
                             <input type="text" name="search" placeholder="Search for items...">
+                            {{-- <button type="submit" value="Search">Search </button> --}}
                             {{ Form::close()}}
                     </div>
                     <div class="header-action-right">
