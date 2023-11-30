@@ -697,11 +697,11 @@
                            // alert(response.count);
                             toastr.success('Cart item quantity updated successfully');
                             $('.cartReload').html(response.qty); 
-                           // $('.cartReloads').html(thousands_separators(response));
+                            $('.cartReloads').html(thousands_separators(response));
                             $('#alerts').attr('hidden', false); 
                             setTimeout(function() {
                                 $('#alerts').hide();
-                                 location.reload();
+                                //  location.reload();
                             }, 5);
                         }else{
                             alert('no');

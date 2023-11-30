@@ -75,52 +75,24 @@
                                 <a class="mini-cart-icon" href="{{route('carts.index')}}">
                                     <img alt="Trendy Kay Collection" src="{{ asset('assets/imgs/theme/icons/icon-cart.svg')}}">
                                     @if(Cart::count()> 0) 
-                                        <span class="pro-count blue ">{{Cart::count()}}</span>  
+                                        <span class="pro-count blue cartReload">{{Cart::count()}}</span>  
                                     @else  
                                         <span class="pro-count blue"> 0 </span>
                                     @endif
                                 </a>
+                                @if(Cart::count()> 0) 
                                 <div class="cart-dropdown-wrap cart-dropdown-hm2">
-                                    <ul>
-                                        @if (Cart::count() > 0) 
-                                            @foreach (Cart::content()->take(4) as $carts)
-                                                <li> 
-                                                    <div class="shopping-cart-img">
-                                                        <a href="{{route('carts.index')}}">
-                                                            <img alt="Rrendy" src="{{asset('images/products/' .$carts->model->image)}}">
-                                                        </a>
-                                                    </div>
-                                                    <div class="shopping-cart-title">
-                                                        <h4><a href="{{route('carts.index')}}">{{$carts->model->name}}</a></h4>
-                                                        <h4><span>{{$carts->qty}} × </span>C${{number_format($carts->model->sale_price)}}</h4>
-                                                    </div>
-                                                    <div class="shopping-cart-delete">
-                                                        <a href="#"><i class="fi-rs-cross-small"></i></a>
-                                                    </div>
-                                                </li>
-                                             @endforeach
-                                        @else
-                                            <span class="text-danger" style="color: red">No item in cart</span>
-                                        @endif
-                                    </ul>
-                                    @php
-                                    $priceTotal = Cart::priceTotal();
-                                    $tax = $priceTotal * 0.12; // Calculate the tax amount (12% of the subtotal)
-                                    $totalPrice = $priceTotal + $tax; // Add the tax to the subtotal to get the total price
-                                @endphp
                                 <div class="shopping-cart-footer">
-                                    <div class="shopping-cart-total">
-                                        <h4>Subtotal <span>C${{ Cart::subTotal()}}</span></h4>
-                                    </div>
-                                    <div class="shopping-cart-total">
-                                        <h4>Total <span >C${{ number_format($totalPrice, 2)  }}</span></h4>
-                                    </div>
+                                  
                                     <div class="shopping-cart-button">
+                                       
                                         <a href="{{route('carts.index')}}" class="outline">View cart</a>
                                         <a href="{{route('checkout.index')}}">Checkout</a>
+                                        
                                     </div>
                                     </div>
                                 </div>
+                                @endif
                             </div>
                         </div>
                     </div>
