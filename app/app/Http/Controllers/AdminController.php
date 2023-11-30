@@ -117,7 +117,7 @@ class AdminController extends Controller
                 'delivery_method' => $shipping->delivery_method,
                 'order_items' => $order_list,
                 ];
-                $this->sendMail($datas);
+                // $this->sendMail($datas);
                 }
                 \Session::flash('alert', 'success');
                 \Session::flash('message', 'Status Updated Successfully');

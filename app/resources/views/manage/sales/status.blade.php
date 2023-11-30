@@ -15,6 +15,7 @@
                                      <div class="col-md-6">
                                        <div class="form-group">
                                         <select name="delivery" class="form-control" @if($order->is_delivered == 3 || $order->is_delivered == 2) readOnly @endif>
+                                           <option disabled> Select Option </option>
                                         <option value="0" @if($order->is_delivered == 0) selected @endif>Pending</option>
                                         <option value="1"@if($order->is_delivered == 1) selected @endif>Initiated</option>
                                         <option value="2"@if($order->is_delivered == 2) selected @endif>Completed</option>
@@ -30,6 +31,7 @@
                                        <div class="col-md-6">
                                   <div class="custom-file">
                                              <select name="dispatch" class="form-control" @if($order->dispatch_status == 2) readOnly @endif>
+                                          <option disabled> Select Option </option>
                                         <option value="0" @if($order->dispatch_status == 0) selected @endif>Pending</option>
                                         <option value="1" @if($order->dispatch_status == 1) selected @endif>Dispatched</option>
                                         <option value="2" @if($order->dispatch_status == 2) selected @endif>Delivered</option>
@@ -44,6 +46,7 @@
                                <div class="col-md-6">
                                   <div class="custom-file">
                                              <select name="payment" class="form-control" @if($order->is_paid == 1) readOnly @endif>
+                                              <option disabled> Select Option </option>
                                         <option value="0" @if($order->is_paid == 0) selected @endif>Pending</option>
                                         <option value="1" @if($order->is_paid == 1) selected @endif >Paid</option>
                                         </select>
