@@ -46,32 +46,7 @@
                               </li>
                             @endforeach
                             @endif
-                              <li class="text-divider small pb-2 pl-3 pt-3">
-                                  <span>Old notifications</span>
-                              </li>
-                              @if(count($read_notify) > 0)
-                               @foreach ($read_notify as $notif )
-                              <li>
-                                  <a href="#" class="list-group-item d-flex hide-show-toggler">
-                                      <div>
-                                          <figure class="avatar avatar-sm m-r-15">
-                                                  <span class="avatar-title bg-warning-bright text-warning rounded-circle">
-                                                      <i class="ti-bell"></i>
-                                                  </span>
-                                          </figure>
-                                      </div>
-                                      <div class="flex-grow-1">
-                                          <p class="mb-0 line-height-20 d-flex justify-content-between">
-                                             {{$notif->message}}
-                                              <i title="Mark as unread" data-toggle="tooltip"
-                                                 class="hide-show-toggler-item fa fa-check font-size-11"></i>
-                                          </p>
-                                          <span class="text-muted small">{{$notif->created_at->DiffForHumans()}}</span>
-                                      </div>
-                                  </a>
-                              </li>
-                              @endforeach
-                              @endif
+                          
                              @if(count($read_notify) > 0)
                                 <a href="#" class="list-group-item d-flex hide-show-toggler">
                                       <div>
@@ -81,7 +56,7 @@
                                                   </span>
                                           </figure>
                                       </div>
-                                      {{-- {{Form::open(['action' => 'AdminController@AdminNotify_clear', 'method' => 'post'])}} --}}
+                                      {{Form::open(['action' => 'AdminController@AdminNotify_clear', 'method' => 'post'])}}
                                       <div class="flex-grow-1">
                                           <p class="mb-0 line-height-20 d-flex justify-content-between">
                                             <button style="border:none">
@@ -92,7 +67,7 @@
                                           </p>
                                           <span class="text-muted small"></span>
                                       </div>
-                                      {{-- {{Form::close()}} --}}
+                                      {{Form::close()}}
                                   </a>
                                   @endif
                               </li>
