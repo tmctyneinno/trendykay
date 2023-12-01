@@ -8,7 +8,7 @@
                         <div class="card-body">
                             <h6 class="card-title">Recently Loggon Users</h6>
                             <div class="text-center">
-                                <h1 class="font-size-40 font-weight-bold mb-3">{{$active}} 
+                                <h1 class="font-size-40 font-weight-bold mb-3">{{count($users)}} 
                                 <small class="text-success font-weight-bold"> Recent Loggon Users </small></h1> 
                                 <p>User that logged in for the past 24hrs</p>
                                 <div class="row mb-4">
@@ -84,11 +84,11 @@
                         <div class="card-body">
                             <h6 class="card-title">Today's Users</h6>
                             <div class="text-center">
-                                <h1 class="font-size-40 font-weight-bold mb-3">{{$today}} 
+                                <h1 class="font-size-40 font-weight-bold mb-3">{{count($new_users)}} 
                                 <small class="text-success font-weight-bold">Total New Users</small></h1> 
                                 <p>Total new registered users since today  </p>
                                 <div class="row mb-4">
-                                    
+                                     
                                 </div>
                             </div>
                         </div>
@@ -161,7 +161,7 @@
                         <div class="card-body">
                             <h6 class="card-title">Logon Users for the past 7 days</h6>
                             <div class="text-center">
-                                <h1 class="font-size-40 font-weight-bold mb-3">{{$recent}} 
+                                <h1 class="font-size-40 font-weight-bold mb-3">{{count($recentActive)}} 
                                 <small class="text-success font-weight-bold">This week Active Users</small></h1> 
                                 <p>Total User that have logon since the past 7 days  </p>
                                 <div class="row mb-4">
@@ -240,7 +240,7 @@
                         <div class="card-body">
                             <h6 class="card-title">This Week's Users</h6>
                             <div class="text-center">
-                                <h1 class="font-size-40 font-weight-bold mb-3">{{$week}} 
+                                <h1 class="font-size-40 font-weight-bold mb-3">{{count($thisweek)}} 
                                 <small class="text-success font-weight-bold">New this week</small></h1> 
                                 <p>Total new registered users since 7 days ago  </p>
                                 <div class="row mb-4">
@@ -320,7 +320,7 @@
                         <div class="card-body">
                             <h6 class="card-title">Orders Today</h6>
                             <div class="text-center">
-                                <h1 class="font-size-40 font-weight-bold mb-3">{{$order}} 
+                                <h1 class="font-size-40 font-weight-bold mb-3">{{count($orders)}} 
                                 <small class="text-success font-weight-bold">Orders Today</small></h1> 
                                 <p>Total Orders for the past 24 hours </p>
                                 <div class="row mb-4">
@@ -405,7 +405,7 @@
                         <div class="card-body">
                             <h6 class="card-title">7 Days Orders</h6>
                             <div class="text-center">
-                                <h1 class="font-size-40 font-weight-bold mb-3">{{$tt_order}} 
+                                <h1 class="font-size-40 font-weight-bold mb-3">{{count($av_orders)}} 
                                 <small class="text-success font-weight-bold">7 Days Orders</small></h1> 
                                 <p>Total Orders for the past 7 days </p>
                                 <div class="row mb-4">
