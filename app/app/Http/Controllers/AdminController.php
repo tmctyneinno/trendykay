@@ -200,9 +200,9 @@ class AdminController extends Controller
     }
 
     public function Analytical(){
-        $data['users'] = User::where('updated_at', '>=', Carbon::now()->subHours(12))->latest()->get();
+        $data['users'] = User::where('updated_at', '>=', Carbon::now()->subHours(5000))->latest()->get();
         $data['active'] = count($data['users']);
-        $data['recentActive'] = User::where('updated_at', '>=', Carbon::now()->subMinutes(20))->latest()->get();
+        $data['recentActive'] = User::where('updated_at', '>=', Carbon::now()->subMinutes(10))->latest()->get();
         $data['recent'] = count($data['recentActive']);
         $data['new_users'] = User::where('created_at', '>=', today()->subHours(12))->latest()->get();
         $data['thisweek'] = User::where('created_at', '>=', today()->subDays(7))->latest()->get();
