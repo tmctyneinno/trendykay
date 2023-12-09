@@ -78,7 +78,7 @@ class PaymentController extends Controller
         $message = 'Order Completed, payment successfully, thanks you for shopping with us';
         #============== SEND REGISTRATION DETAILS TO USER =======================
         \Cart::destroy();
-        $this->sendNotify($title, $message);
+        // $this->sendNotify($title, $message);
         Session::flash('alert', 'success');
         Session::flash('msg', 'Order Completed Successfully');
         return redirect()->intended(route('users.orders'));

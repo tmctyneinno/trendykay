@@ -330,7 +330,8 @@ class AdminController extends Controller
         }
         \Session::flash('alert', 'success');
         \Session::flash('message','All Products Exchange Rate Updated Successfully');
-        return back();
+        return back(); 
+        
     }
 
 }

@@ -16,6 +16,7 @@ class CategoryController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public $category;
 
     public function __construct()
     {
