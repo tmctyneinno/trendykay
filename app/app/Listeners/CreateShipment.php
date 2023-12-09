@@ -70,7 +70,6 @@ class CreateShipment implements ShouldQueue
 
         $client = new baseUrl('https://api.easyship.com/shipment/v1/shipments', 'post', 'sand_7Kq0UOMKfMN25wnc6PWAGpLupRyI2Ee4fOauyItMJkM=', $data);
         $res = $client->client();
-        dd($res);
         if($res != null) {
         $res = $res['shipment'];
         if (isset($res)) {
