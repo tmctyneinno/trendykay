@@ -32,7 +32,7 @@
                                                 @else
                                                     <th>Billing Address
                                                         <a href="{{route('users.update-address', encrypt($addres->id))}}" class="btn btn-outline btn-sm btn-brand-outline font-weight-bold text-brand bg-white text-hover-white  border-radius-5 
-                                                            btn-shadow-brand " style="float:right"> Edit</a>
+                                                            btn-shadow-brand " style="float:right"> edit</a>
                                                     </th>
                                                 @endif
                                             </h5>

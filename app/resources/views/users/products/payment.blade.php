@@ -41,16 +41,25 @@
                     <div class="mb-2">
                     <div class="mb-25 pt-3 pb-3 pr-2 pl-2" style="background: #fff; border-radius:10px; border:1px solid #0000002d">
                         <p class="m-4" style="color:#777373"> <i class="fa fa-check-square-o" style="color:rgba(77, 129, 77, 0.112)"></i>  Shipping Address <span style="float:right"> 
-                            <a href=""> {{_('Change >')}}  </a> </span></p> 
+                            <a href="{{route('users.address')}}"> {{_('Change >')}}  </a> </span></p> 
                         <hr>
                         <div class="ps-categogy--ist  p-2">
-                            <p style="color:#322f37">{{$address->receiver_name}}</p>
                             <input type="hidden" name="email" value="{{auth()->user()->email}}">
                             <input type="hidden" name="name" value="{{$address->receiver_name}}">
                             <input type="hidden" name="phone" value="{{$address->receiver_phone}}">
                             <input type="hidden" name="orderNo" value="{{$orderNo}}">
-                            <p>{{$address->address}}, {{$address->city}} |  {{$address->state}}, {{$address->country}} 
-                                | {{$address->phone}} </p>
+                            
+                            <table class="table table-responsive" > 
+                                <tr> 
+                                    <td style="border:none">     
+                                    {{-- <input type="radio" checked   /> --}}
+                                 </td>
+                                    <td  style="border:none"><p style="color:#322f37; font-weight:bolder">Name: {{$address->receiver_name}}</p>
+                                        <p> Email: {{$address->receiver_email}} </p><p> Phone: {{$address->receiver_phone}} </p> 
+                                        <p>Address: {{$address->address}}, {{$address->city}}  {{$address->country}}   </p>
+                                    </td>
+                                </tr> 
+                              </table>
                         </div>
                     </div>
                         

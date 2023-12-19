@@ -27,7 +27,7 @@ trait GetRates {
             ]
               ];
 
-      $client =  new baseUrl("https://api.easyship.com/rate/v1/rates", "post", "sand_7Kq0UOMKfMN25wnc6PWAGpLupRyI2Ee4fOauyItMJkM=", $body);
+      $client =  new baseUrl("https://api.easyship.com/rate/v1/rates", "post", "prod_d69UtJ1Ig5+M8l7hMrLDyKKuITMmlJ8afapoLZO4tGM=", $body);
      $req = $client->client();
     return $req;
     }

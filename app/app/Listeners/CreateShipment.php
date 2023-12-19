@@ -20,9 +20,11 @@ class CreateShipment implements ShouldQueue
      *
      * @return void
      */
-    public function __construct()
+   
+    public function __construct( public  $api_key)
     {
         //
+        $this->api_key = 'prod_d69UtJ1Ig5+M8l7hMrLDyKKuITMmlJ8afapoLZO4tGM=';
     }
 
     /**
@@ -68,7 +70,7 @@ class CreateShipment implements ShouldQueue
 
  
 
-        $client = new baseUrl('https://api.easyship.com/shipment/v1/shipments', 'post', 'sand_7Kq0UOMKfMN25wnc6PWAGpLupRyI2Ee4fOauyItMJkM=', $data);
+        $client = new baseUrl('https://api.easyship.com/shipment/v1/shipments', 'post',  $this->api_key, $data);
         $res = $client->client();
         if($res != null) {
         $res = $res['shipment'];

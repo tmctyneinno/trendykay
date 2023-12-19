@@ -161,8 +161,8 @@ class CheckoutController extends Controller
                     return back();
                 }
                 $this->StoreOrders($orderNo);
-                 $res = $this->SendRequest('M4C 4Y7', "CA", $address->zip_code??"M4C 4Y7", "Sender", false, 1.2, 5, 10, 10, "fashion", "CAD", 100);
-
+                 $res = $this->SendRequest('M4C 4Y7', "CA", $address->zip_code??"Y1A 9Z9", "Sender", false, 0.1, 1, 1, 1, "fashion", "CAD", 100);
+                
                  if ($res['rates']) {
                     foreach ($res['rates'] as $ss) {
                         CourierRates::create([

@@ -29,10 +29,7 @@
                                         </div>
                                     </div>
                                     <div class="card-body border">
-                                        <div class="row">
-                                           
-                                           
-                                            {{Form::open(['action'=>['HomeController@Shipping', $address->id], 'method'=>'POST'])}}
+                                            {{Form::open(['action'=>['ShippingController@Shipping', encrypt($address->id)], 'method'=>'POST'])}}
                                             {{csrf_field()}}
                                         <div class="row">
                                      <div class="mb-6 col-xl-6">
@@ -56,8 +53,18 @@
                                                    </label>
                                                    <input type="text" placeholder="phone" name="phone" value="{{$address->receiver_phone}}" class="form-control">
                                                </div>
+                                               <div style="display: flex; align-content:center" >
+                                                <label  for="default_address" class=""  style="display: flex; align-items:center" > 
+                                                    Set as Default Address: <input type="checkbox"  id="default_address" style="width:20px" value="1" name="default" @if($address->is_default == 1) checked @endif>
+                                            </label>
+                                            </div>
                                                </div>
-                                     <div class="mb-6 col-xl-6">
+                                               <div class="mb-6 col-xl-6">
+                                                <div class="js-form-message form-group mb-5">
+                                                    <label class="form-label" for="RegisterSrEmailExample3">Postal Code
+                                                    </label>
+                                                    <input type="text" placeholder="postal code" name="zip_code" value="{{$address->zip_code}}" class="form-control" required >
+                                                </div>
                                                <div class="js-form-message form-group mb-5">
                                                    <label class="form-label" for="RegisterSrEmailExample3">City
                                                    </label>
@@ -79,27 +86,23 @@
                                                 </label>
                                                 <input type="text" placeholder="country" value="{{$address->country}}" name="country" class="form-control" required>
                                             </div>
-                                               <div style="display: flex; align-content:center">
-                                                   <label  for="RegisterSrEmailExame3 pt-2">
-                                                    Set as Default: 
-                                                   </label>
-                                                   <input type="checkbox"  id="RegisterSrEmailExame3" style="width:20px" value="1" name="default" @if($address->is_default == 1) checked @endif>
-                                               </div>
+                                              
                                            
                                                 </div> 
-                                               </div>
                                               
                                             <div class="p-2"></div>
-                                              
                                            <input type="submit" name="update"  value="update Address" class="btn btn-primary  btn-sm w-25 px-5">
-                                        </div>
-                                               
+                                          
+                                           
+                                           {{-- &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp; <a href="{{route('address.delete', encrypt($address->id))}}"  class="btn btn-sm w-25" style="background:red; color:#fff; float:right"> Delete </a> --}}
+                                      
                                             {{Form::close()}}
 
-                                               
-                                       </div>
-                                       <a href="{{route('address.delete', encrypt($address->id))}}"  class="btn px-5" style="background:red; color:#fff"> Delete </a>
+                                            
 
+                                       </div>
+                                    </div>
+                                      
                                         </div>
                                         
                                     </div>

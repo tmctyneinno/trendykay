@@ -32,33 +32,40 @@
                                         <div class="row">
                                            
                                            
-                                            {{Form::open(['action'=>['HomeController@Shipping', encrypt(1)], 'method'=>'POST'])}}
+                                            {{Form::open(['action'=>['ShippingController@Shipping', encrypt(1)], 'method'=>'POST'])}}
                                             {{csrf_field()}}
                                         <div class="row">
                                      <div class="mb-6 col-xl-6">
                                            <div class="js-form-message form-group mb-5">
-                                                   <label class="form-label" for="RegisterSrEmailExample3">Receiver
+                                                   <label class="form-label" for="RegisterSrEmailExample3">Receiver Name
                                                    </label>
                                                    <input type="address"  placeholder="Name" value="{{old('name')}}" name="name" class="form-control @error('name') is-invalid @enderror" required>
                                                
                                                 </div>
                                                <div class="js-form-message form-group mb-5">
-                                                   <label class="form-label" for="RegisterSrEmailExample3">Address
-                                                   </label>
-                                                   <input type="address"  placeholder="full Address" value="{{old('address')}}" name="address" class="form-control @error('address') is-invalid @enderror" required>
-                                               </div>
-                                               <div class="js-form-message form-group mb-5">
                                                    <label class="form-label" for="RegisterSrEmailExample3">Email
                                                    </label>
-                                                   <input type="email"  placeholder="email" value="{{old('receiver_email')}}" name="email" class="form-control @error('email') is-invalid @enderror" required>
+                                                   <input type="email"  placeholder="email" value="{{old('email')}}" name="email" class="form-control @error('email') is-invalid @enderror" required>
                                                </div>
                                                <div class="js-form-message form-group mb-5">
                                                    <label class="form-label"  for="RegisterSrEmailExample3">Phone
                                                    </label>
                                                    <input type="text" placeholder="phone" name="phone" value="{{old('phone')}}" class="form-control @error('phone') is-invalid @enderror"required>
                                                </div>
+
+                                                
+                                               <div class="js-form-message form-group mb-5">
+                                                <label class="form-label" for="RegisterSrEmailExample3">Address
+                                                </label>
+                                                <input type="address"  placeholder="full Address" value="{{old('address')}}" name="address" class="form-control @error('address') is-invalid @enderror" required>
+                                            </div>
+                                            <div class="js-form-message form-group mb-5">
+                                             <label class="form-label" for="RegisterSrEmailExample3">Postal Code
+                                             </label>
+                                             <input type="text" placeholder="postal code" name="zip_code" value="{{old('zip_code')}}" class="form-control" required >
+                                            </div>
                                                </div>
-                                     <div class="mb-6 col-xl-6">
+                                             <div class="mb-6 col-xl-6">
                                                <div class="js-form-message form-group mb-5">
                                                    <label class="form-label" for="RegisterSrEmailExample3">City
                                                    </label>
@@ -73,18 +80,19 @@
                                                <div class="js-form-message form-group mb-5">
                                                 <label class="form-label" for="RegisterSrEmailExample3">landmark
                                                 </label>
-                                                <input type="text" placeholder="landmark"  name="landmark" class="form-control" required>
+                                                <input type="text" placeholder="landmark" value="{{old('landmark')}}"  name="landmark" class="form-control" required>
                                             </div>
                                             <div class="js-form-message form-group mb-5">
                                                 <label class="form-label" for="RegisterSrEmailExample3">Country
                                                 </label>
-                                                <input type="text" placeholder="country"  name="country" class="form-control" required>
+                                                <input type="text" placeholder="country"  value="{{old('country')}}" name="country" class="form-control" required>
                                             </div>
                                                <div style="display: flex; align-content:center">
-                                                   <label  for="RegisterSrEmailExame3 pt-2">
+                                                   <label  for="default" style="display: flex; align-items:center">
                                                     Set as Default: 
-                                                   </label>
-                                                   <input type="checkbox"  id="RegisterSrEmailExame3" style="width:20px" value="1" name="default">
+                                                   <input type="checkbox"  id="default" style="width:20px" value="1" name="default">
+
+                                                </label>
                                                </div>
                                            
                                                 </div> 

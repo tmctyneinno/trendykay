@@ -30,7 +30,7 @@
                                 <h3 class="d-inline-block section-title mb-0 pb-2 font-size-26">My Shipping Address</h3>
                             </div>
                             @foreach($addresses as $address)
-                             {{Form::open(['action'=>['HomeController@Shipping', $address->id], 'method'=>'POST'])}}
+                             {{Form::open(['action'=>['ShippingController@Shipping', $address->id], 'method'=>'POST'])}}
                              {{csrf_field()}}
                          <div class="row">
                       <div class="mb-6 col-xl-6">

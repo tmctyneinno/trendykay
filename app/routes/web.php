@@ -158,7 +158,7 @@ Route::get('success/', 'PaymentController@handlePaymentSuccess')->name('payment.
 Route::get('error', 'PaymentController@errorpayment')->name('payment.cancel');
  
 Route::middleware('auth')->group( function(){
-Route::post('/newaddress', 'CheckoutController@modal');
+Route::post('/add/new/address', 'CheckoutController@modal');
 Route::post('/checkouts', 'CheckoutController@Add'); 
 
 
@@ -166,7 +166,7 @@ Route::get('/payment/{trxref}', 'CheckoutController@verify')->name('verify.pay')
 
 Route::get('/address/checkout', 'CheckoutController@addNew')->name('checkout.addNew');
 Route::post('/confirm/payment/','CheckoutController@verify')->name('confirm.payment'); 
-
+ 
 Route::get('user/orders', 'HomeController@myOrders')->name('users.orders');
 Route::get('user/transactions', 'HomeController@myTransactions')->name('user.transactions');
 Route::get('/users/order/details/{id}', 'HomeController@OrderDetails')->name('users.order-details');
@@ -177,11 +177,11 @@ Route::get('/user/notify/delete/{id}', 'HomeController@notificationDel')->name('
 Route::get('/user/recent/views', 'HomeController@recentViews')->name('users.recentViews');
 Route::get('/user/addresses', 'HomeController@UserAddress')->name('users.address');
 Route::get('/user/account', 'HomeController@Account')->name('users.account');
-Route::get('/update-address/{id}', 'HomeController@UpdateShip')->name('users.update-address');
-Route::post('/address/store/{id}', 'HomeController@Shipping');
-Route::get('/user-address', 'HomeController@userAddress')->name('users.user-address');
-Route::get('/add-address', 'HomeController@createAddresss')->name('users.add-address');
-Route::get('/address/delete/{id}', 'HomeController@AddressDelete')->name('address.delete');
+Route::get('/update-address/{id}', 'ShippingController@UpdateShip')->name('users.update-address');
+Route::post('/address/store/{id}', 'ShippingController@Shipping');
+Route::get('/user-address', 'ShippingController@userAddress')->name('users.user-address');
+Route::get('/add-address', 'ShippingController@createAddresss')->name('users.add-address');
+Route::get('/address/delete/{id}', 'ShippingController@AddressDelete')->name('address.delete');
 });
 
 Route::get('/about-us', 'PagesController@about')->name('aboutus');
