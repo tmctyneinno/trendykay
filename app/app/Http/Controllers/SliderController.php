@@ -31,8 +31,7 @@ class SliderController extends Controller
             $image = $request->file('image');
             $ext = $image->getClientOriginalExtension();
             $fileName = time().'.'.$ext; 
-            dd($fileName);
-            $image->move('/images/sliders/',$fileName);
+            $image->move('images/sliders/',$fileName);
     }
         $data = [
             'image' =>   $fileName,
@@ -66,7 +65,7 @@ class SliderController extends Controller
             $ext = $image->getClientOriginalExtension();
             $name = pathinfo($image, PATHINFO_FILENAME);
             $fileName = $name.time().'.'.$ext;
-            $image->move('/images/sliders/',$fileName);
+            $image->move('images/sliders/',$fileName);
     }else{
         $fileName = $sl->image;
     }
