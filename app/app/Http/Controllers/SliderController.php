@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Slider;
-use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\Validator;
 
 class SliderController extends Controller
@@ -26,6 +25,9 @@ class SliderController extends Controller
     ->with('breadcrumb', 'Website Settings');
     }
     public function Store(Request $request){
+        $request->validate([
+            'image' => 'required',
+        ]);
 
        //dd(request()->file('images'));
 
@@ -33,7 +35,8 @@ class SliderController extends Controller
             $image = $request->file('image');
             $ext = $image->getClientOriginalExtension();
             $fileName = time().'.'.$ext; 
-            Image::make($image)->resize(1100, 1100)->save('/images/sliders/'.$fileName);
+            $image->move('/images/sliders/',$fileName);
+        
     }
         $data = [
             'image' =>   $fileName,
@@ -42,6 +45,7 @@ class SliderController extends Controller
             'status' => 1,
         ];
 
+       //dd($data);
         Slider::create($data);
         \Session::flash('alert', 'success');
         \Session::flash('alert', 'Slider Added Successfully');
@@ -66,8 +70,7 @@ class SliderController extends Controller
             $ext = $image->getClientOriginalExtension();
             $name = pathinfo($image, PATHINFO_FILENAME);
             $fileName = $name.time().'.'.$ext;
-            Image::make($image)->resize(1100, 1100)->save('/images/sliders/'.$fileName);
-            // $image->move('/images/sliders/',$fileName);
+            $image->move('/images/sliders/',$fileName);
     }else{
         $fileName = $sl->image;
     }
