@@ -80,7 +80,7 @@ class PaymentController extends Controller
             'is_paid' => 1,
         ]);
         $shipping = Shipment::where('order_No', $orderNo)->first();
-        $rate = json_decode($shipping->selected_courier);
+        $rate = json_decode($shipping->selected_courier, true);
         $data = [
           'name' => auth()->user()->name,
           'order_No' =>  $orderNo,
@@ -89,11 +89,15 @@ class PaymentController extends Controller
           'phone' => $shipping->receiver_phone, 
           'address' => $shipping->destination_name.' '.$shipping->destination_address_line_1.' '.$shipping->destination_city.' '.$shipping->destination_state,
           'order_items' => Cart::content(),
-          'shipment' => $rate['shipment_charge_total'],
+          'shipment' => $rate['name'],
           'total' => $amount,
         ];
         Cart::destroy();
+        try{
         Mail::to(auth()->user()->email)->send(new OrderMail($data));
+        }catch(\Exception $e){
+            
+        }
         $title = 'New Order Completed, Order No '.$orderNo;
         $message = 'Order Completed, payment successfully, thanks you for shopping with us';
          $this->sendNotify($title, $message);

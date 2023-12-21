@@ -33,11 +33,9 @@ class baseUrl {
   
     $resp = json_decode($res->getBody(),true);
     $resp['error'] = false;
-    dd($resp);
     return $resp;
 }catch(\Exception $e){
     $res['error'] = true;
-    dd($e);
 return $res;
 }
     

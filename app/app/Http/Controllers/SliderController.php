@@ -26,9 +26,6 @@ class SliderController extends Controller
     ->with('breadcrumb', 'Website Settings');
     }
     public function Store(Request $request){
-        $request->validate([
-            'image' => 'required',
-        ]);
 
        //dd(request()->file('images'));
 
