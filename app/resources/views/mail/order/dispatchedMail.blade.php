@@ -10,7 +10,7 @@
                                 <table class="m_8958432110786407146tableheader" width="100%" cellspacing="0" cellpadding="0" style="vertical-align:middle">
                                     <tbody>
                                         <tr bgcolor="#ffffff">
-                                          <td style="padding: 20px 20px; "><a href="#"><img src="{{asset('/images/'.$settings->site_logo)}}" alt="image"
+                                          <td style="padding: 20px 20px; "><a href="#"><img src="{{asset('/assets/'.$settings->logo)}}" alt="image"
                                                                                             style="height: 30px; margin-left: auto; margin-right: auto; display:block;"></a>
                                         </td>
                                     </tr>
@@ -27,7 +27,19 @@
                                             <p>Thank you for shopping on Trendykay! Your order <b>{{$data['order_No']}}</b> has been successfully Dispatched.
                                             </p>
 
-                                                  The package will be delivered by our delivery agent at the following address:{{$data['address']}}.       
+                                            <div style="display:table-row">
+                                                <div style="width:50%;display:table-cell;background-color:#fff;border:1px solid #ddd;border-collapse:collapse;vertical-align:top">
+                                                    <p style="background-color:#f8f8f8;font-weight:bold;margin-top:0;margin-bottom:0px;padding:3px;vertical-align:middle">Recipient details</p>
+                                                    <p style="padding-left:3px;margin-top:1px">{{$data['receiver_name']}} {{$data['phone']}}
+                                                    </p>
+                                                </div>
+                                                <div style="width:50%;display:table-cell;background-color:#fff;border:1px solid #ddd;border-collapse:collapse;vertical-align:top">
+                                                    <p style="background-color:#f8f8f8;font-weight:bold;margin-top:0;margin-bottom:0px;padding:3px;vertical-align:middle">Delivery address</p>
+                                                    <p style="padding-left:3px;margin-top:1px">{{$data['address']}}
+                                                    </p>
+                                                </div>
+
+                                            </div>      
                                                <table class="m_8958432110786407146orderinfotable" style="border:1px solid #ccc;margin:0;padding:0;width:100%;table-layout:fixed">
                                                     <caption class="m_8958432110786407146orderinfocaption" style="font-weight:bold;text-align:left;padding-top:10px">Items on this delivery:</caption>
                                                     <thead class="m_8958432110786407146orderinfohead" style="text-align:center">
@@ -43,13 +55,13 @@
                                                             <tr class="m_8958432110786407146orderinfotr" style="border:1px solid #ddd;text-align:center">
                                                                 <td class="m_8958432110786407146orderinfotd">
                                                                     <center style="overflow:hidden;max-width:100%">
-                                                                        <input type="image" class="m_8958432110786407146itemimage" src="{{asset('/images/products/'.$orders->image)}}" width="100px" height="100px">
+                                                                        <input type="image" class="m_8958432110786407146itemimage" src="{{asset('/images/products/'.$orders->model->image)}}" width="100px" height="100px">
                                                                     </center>
                                                                 </td>
                                                                 <td class="m_8958432110786407146orderinfotd"><span class="m_8958432110786407146itemlabel" style="display:none;overflow:hidden;font-size:0px">Item</span>
-                                                                    {{$orders->product_name}}</td>
+                                                                    {{$orders->model->name}}</td>
                                                                 <td class="m_8958432110786407146orderinfotd"><span class="m_8958432110786407146itemlabel" style="display:none;overflow:hidden;font-size:0px">Quantity</span>{{$orders->qty}}</td>
-                                                                <td class="m_8958432110786407146orderinfotd" style=""><span class="m_8958432110786407146itemlabel" style="display:none;overflow:hidden;font-size:0px">Price</span>C${{number_format($orders->price)}}</td>
+                                                                <td class="m_8958432110786407146orderinfotd" style=""><span class="m_8958432110786407146itemlabel" style="display:none;overflow:hidden;font-size:0px">Price</span>C${{number_format($orders->model->price)}}</td>
                                                             </tr>
                                                             
                                                             @endforeach
