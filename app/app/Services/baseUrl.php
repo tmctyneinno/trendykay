@@ -32,10 +32,13 @@ class baseUrl {
     ]);
   
     $resp = json_decode($res->getBody(),true);
+    $resp['error'] = false;
+    dd($resp);
     return $resp;
 }catch(\Exception $e){
-  $ss = json_encode($e->getMessage());
-    dd($ss['response']);
+    $res['error'] = true;
+    dd($e);
+return $res;
 }
     
 }

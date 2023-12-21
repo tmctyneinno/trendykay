@@ -45,7 +45,7 @@ class CreateShipment implements ShouldQueue
             "platform_name" => $settings->site_name,
             "platform_order_number" => $event->orderNo,
             "selected_courier_id" =>  $event->courier_id,
-            "destination_country_alpha2" => $destination->country,
+            "destination_country_alpha2" => 'CA',
             "destination_city" =>  $destination->city,
             "destination_postal_code" => $destination->zip_code,
             "destination_state" => $destination->state,
@@ -73,8 +73,7 @@ class CreateShipment implements ShouldQueue
 
         $client = new baseUrl('https://api.easyship.com/shipment/v1/shipments', 'post',  $this->api_key, $data);
         $res = $client->client();
-        dd($res);
-        if($res != null) {
+        if($res['error'] != true) {
         if (isset($res)) {
             Shipment::create([
                 'user_id' => auth()->user()->id,
