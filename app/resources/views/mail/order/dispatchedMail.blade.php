@@ -65,10 +65,21 @@
                                                             </tr>
                                                             
                                                             @endforeach
-                                                        <tr> Courier Name : {{$data['shipment']}}</tr>
-                                                       <tr> Total : {{$data['total']}}</tr>
                                                     </tbody>
                                                 </table>
+                                                <div style="display:table-row">
+                                                    <div style="width:50%;display:table-cell;background-color:#fff;border:1px solid #ddd;border-collapse:collapse;vertical-align:top">
+                                                        <p style="background-color:#f8f8f8;font-weight:bold;margin-top:0;margin-bottom:0px;padding:3px;vertical-align:middle">  Courier Name </p>
+                                                        <p style="padding-left:3px;margin-top:1px">{{$data['shipment']}}
+                                                        </p>
+                                                    </div>
+                                                    <div style="width:50%;display:table-cell;background-color:#fff;border:1px solid #ddd;border-collapse:collapse;vertical-align:top">
+                                                        <p style="background-color:#f8f8f8;font-weight:bold;margin-top:0;margin-bottom:0px;padding:3px;vertical-align:middle">Amount Paid</p>
+                                                        <p style="padding-left:3px;margin-top:1px">{{number_format($data['total'],2)}}
+                                                        </p>
+                                                    </div>
+    
+                                                </div>   
 
 
                                                 
