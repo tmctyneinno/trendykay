@@ -30,6 +30,6 @@ class Check2faMail extends Mailable
      */
     public function build()
     {
-        return $this->view('mail.check2fa')->with('data', $this->data)->subject('OTP Verification');
+        return $this->from('support@trendykaycollections.com', 'Trendykaycollections')->view('mail.check2fa')->with('data', $this->data)->subject('OTP Verification');
     }
 }

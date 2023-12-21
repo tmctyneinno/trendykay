@@ -28,6 +28,6 @@ class UserMail extends Mailable
      */
     public function build()
     {
-        return $this->from('Trendykay@tynprints.com')->subject('Registration Details')->view('mail.user.usermail')->with('data', $this->data);
+        return $this->from('support@trendykaycollections.com', 'Trendykaycollections')->subject('Registration Details')->view('mail.user.usermail')->with('data', $this->data);
     }
 }
