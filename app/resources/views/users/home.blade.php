@@ -530,7 +530,7 @@
                 <!--End Col-lg-9-->
             </div>
         </section>
-        @if (count($recents) > 4)
+        {{-- @if (count($recents) > 4)
             <section class="section-padding">
                 <div class="container wow fadeIn animated">
                     <h3 class="section-title mb-20"><span>Recently </span> Viewed</h3>
@@ -599,7 +599,7 @@
             </div>
         </div>
     </section>
-@endif
+@endif --}}
 
 
 
