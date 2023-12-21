@@ -534,12 +534,12 @@
             <section class="section-padding">
                 <div class="container wow fadeIn animated">
                     <h3 class="section-title mb-20"><span>Recently </span> Viewed</h3>
+                    @foreach ($recents as $recent)
                     <div class="carausel-6-columns-cover position-relative">
                         <div class="slider-arrow slider-arrow-2 carausel-6-columns-arrow"
                             id="carausel-6-columns-2-arrows"></div>
 
                         <div class="carausel-6-columns carausel-arrow-center" id="carausel-6-columns-2">
-                            @foreach ($recents as $recent)
                                 <div class="product-cart-wrap small hover-up">
                                     <div class="product-img-action-wrap">
                                         <div class="product-img product-img-zoom">
@@ -590,8 +590,9 @@
                                 </div>
                             </div>
                         </div>
+                        @endforeach
                         <!--End product-cart-wrap-2-->
-                    @endforeach
+                    
 
                 </div>
 
