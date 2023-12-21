@@ -34,7 +34,8 @@ class baseUrl {
     $resp = json_decode($res->getBody(),true);
     return $resp;
 }catch(\Exception $e){
-   return $e;
+  $ss = json_encode($e->getMessage());
+    dd($ss['response']);
 }
     
 }

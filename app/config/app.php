@@ -120,6 +120,7 @@ return [
 
     'key' => env('APP_KEY'),
     'FLUTTERWAVE_KEY' => env('FLUTTERWAVE_KEY', ''),
+    'StripeKey' => env('StripeKey', ''),
     'cipher' => 'AES-256-CBC',
 
     /*

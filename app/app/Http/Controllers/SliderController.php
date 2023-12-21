@@ -35,8 +35,7 @@ class SliderController extends Controller
             $image = $request->file('image');
             $ext = $image->getClientOriginalExtension();
             $fileName = time().'.'.$ext; 
-            $image->move('images/sliders/',$fileName);
-        
+            $image->move('/images/sliders/',$fileName);
     }
         $data = [
             'image' =>   $fileName,
@@ -45,7 +44,7 @@ class SliderController extends Controller
             'status' => 1,
         ];
 
-       //dd($data);
+       dd($data);
         Slider::create($data);
         \Session::flash('alert', 'success');
         \Session::flash('alert', 'Slider Added Successfully');
@@ -70,7 +69,7 @@ class SliderController extends Controller
             $ext = $image->getClientOriginalExtension();
             $name = pathinfo($image, PATHINFO_FILENAME);
             $fileName = $name.time().'.'.$ext;
-            $image->move('images/sliders/',$fileName);
+            $image->move('/images/sliders/',$fileName);
     }else{
         $fileName = $sl->image;
     }

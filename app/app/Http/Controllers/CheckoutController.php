@@ -46,17 +46,8 @@ class CheckoutController extends Controller
 
     public function send($data)
     {
-        //  dd($data);
+     
         Mail::to($data['email'])->send(new UserMail($data));
-    }
-
-    public function sendMail($data)
-    {
-        Mail::to($data['email'],  'orders@Trendykay.ng')->send(new PaymentMail($data));
-    }
-    public function OrderMail($data)
-    {
-        Mail::to($data['email'], 'orders@Trendykay.ng')->send(new OrderMail($data));
     }
 
     public function __construct()
@@ -122,7 +113,7 @@ class CheckoutController extends Controller
                                 'phone'=>$request->phone,
                                 'password'=> $pass,
                              ];
-                            // $this->send($data);
+                             $this->send($data);
                         Shipping::create($this->StoreShippingAddress($request));
                         }
                     }
