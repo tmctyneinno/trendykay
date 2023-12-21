@@ -14,24 +14,24 @@
         Page Sliders
     </a>
     <a href="{{route('admin.news.index')}}" class="list-group-item">
-        <i data-feather="image" class="mr-2 width-15 height-15"></i>
+        <i data-feather="plus-square" class="mr-2 width-15 height-15"></i>
         Blogs
     </a> 
     <a href="{{route('admin.settings.aboutus')}}" class="list-group-item">
-        <i data-feather="image" class="mr-2 width-15 height-15"></i>
+        <i data-feather="user" class="mr-2 width-15 height-15"></i>
         About us 
     </a>
     <a href="{{route('admin.settings.privacyPolicy')}}" class="list-group-item">
-        <i data-feather="image" class="mr-2 width-15 height-15"></i>
+        <i data-feather="box" class="mr-2 width-15 height-15"></i>
         Privacy Policy 
     </a>
     <a href="{{route('admin.settings.termsConditions')}}" class="list-group-item">
-        <i data-feather="image" class="mr-2 width-15 height-15"></i>
+        <i data-feather="alert-circle" class="mr-2 width-15 height-15"></i>
         Terms and Conditions 
     </a>
 
     <a href="{{route('admin.settings.flashMsg')}}" class="list-group-item">
-        <i data-feather="image" class="mr-2 width-15 height-15"></i>
+        <i data-feather="message-square" class="mr-2 width-15 height-15"></i>
         Flash Message
     </a>
   
