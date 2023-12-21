@@ -27,6 +27,16 @@ class SliderController extends Controller
     public function Store(Request $request){
        //dd(request()->file('images'));
 
+       $valid = Validator::make($request->all(), [
+            'image' => 'required|max:5mb'
+       ]);
+      
+       if($valid->fails()){
+        \Session::flash('alert', 'error');
+        \Session::flash('alert', $valid->errors()->first());
+        return back();
+       }
+       
         if($request->file('image')){
             $image = $request->file('image');
             $ext = $image->getClientOriginalExtension();
@@ -57,7 +67,15 @@ class SliderController extends Controller
     }
 
     public function Update(Request $request, $id){
-
+        $valid = Validator::make($request->all(), [
+            'image' => 'required|max:10244'
+       ]);
+        if($valid->fails()){
+            \Session::flash('alert', 'error');
+            \Session::flash('alert', $valid->errors()->first());
+            return back();
+           }
+           
         $sl = Slider::where('id', decrypt($id))->first();
         
         if($request->file('image')){
