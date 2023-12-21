@@ -35,6 +35,7 @@ class SliderController extends Controller
             $fileName = time().'.'.$ext; 
             Image::make($image)->resize(1100, 1100)->save('/images/sliders/'.$fileName);
     }
+    dd($fileName);
         $data = [
             'image' =>   $fileName,
             'secondname' => $request->secondname,
