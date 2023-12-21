@@ -74,8 +74,8 @@
                                                         </p>
                                                     </div>
                                                     <div style="width:50%;display:table-cell;background-color:#fff;border:1px solid #ddd;border-collapse:collapse;vertical-align:top">
-                                                        <p style="background-color:#f8f8f8;font-weight:bold;margin-top:0;margin-bottom:0px;padding:3px;vertical-align:middle">Amount Paid</p>
-                                                        <p style="padding-left:3px;margin-top:1px">{{number_format($data['total'],2)}}
+                                                        <p style="background-color:#f8f8f8;font-weight:bold;margin-top:0;margin-bottom:0px;padding:3px;vertical-align:middle">Total Amount Paid</p>
+                                                        <p style="padding-left:3px;margin-top:1px">C${{number_format($data['total'],2)}}
                                                         </p>
                                                     </div>
     
