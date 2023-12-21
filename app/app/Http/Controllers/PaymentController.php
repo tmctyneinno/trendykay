@@ -80,13 +80,14 @@ class PaymentController extends Controller
             'is_paid' => 1,
         ]);
         $shipping = Shipment::where('order_No', $orderNo)->first();
+        $sp = Shipping::where(['user_id' => auth()->user()->id, 'is_default' => 1])->first();
         $rate = json_decode($shipping->selected_courier, true);
         $data = [
           'name' => auth()->user()->name,
           'order_No' =>  $orderNo,
           'delivery_method' => 'Home_delivery',
-          'receiver_name' => $shipping->receiver_name, 
-          'phone' => $shipping->receiver_phone, 
+          'receiver_name' => $sp->receiver_name, 
+          'phone' => $sp->receiver_phone, 
           'address' => $shipping->destination_name.' '.$shipping->destination_address_line_1.' '.$shipping->destination_city.' '.$shipping->destination_state,
           'order_items' => Cart::content(),
           'shipment' => $rate['name'],

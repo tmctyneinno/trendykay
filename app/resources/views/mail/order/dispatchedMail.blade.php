@@ -61,7 +61,7 @@
                                                                 <td class="m_8958432110786407146orderinfotd"><span class="m_8958432110786407146itemlabel" style="display:none;overflow:hidden;font-size:0px">Item</span>
                                                                     {{$orders->model->name}}</td>
                                                                 <td class="m_8958432110786407146orderinfotd"><span class="m_8958432110786407146itemlabel" style="display:none;overflow:hidden;font-size:0px">Quantity</span>{{$orders->qty}}</td>
-                                                                <td class="m_8958432110786407146orderinfotd" style=""><span class="m_8958432110786407146itemlabel" style="display:none;overflow:hidden;font-size:0px">Price</span>C${{number_format($orders->model->price)}}</td>
+                                                                <td class="m_8958432110786407146orderinfotd" style=""><span class="m_8958432110786407146itemlabel" style="display:none;overflow:hidden;font-size:0px">Price</span>C${{number_format($orders->model->sale_price)}}</td>
                                                             </tr>
                                                             
                                                             @endforeach
