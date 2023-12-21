@@ -10,7 +10,7 @@
                                 <table class="m_8958432110786407146tableheader" width="100%" cellspacing="0" cellpadding="0" style="vertical-align:middle">
                                     <tbody>
                                         <tr bgcolor="#ffffff">
-                                          <td style="padding: 20px 20px; "><a href="#"><img src="http://staging.Trendykay.ng/frontend/images/logo.png" alt="image"
+                                          <td style="padding: 20px 20px; "><a href="#"><img src="{{asset('/images/'.$settings->site_logo)}}" alt="image"
                                                                                             style="height: 30px; margin-left: auto; margin-right: auto; display:block;"></a>
                                         </td>
                                     </tr>
@@ -27,12 +27,7 @@
                                             <p>Thank you for shopping on Trendykay! Your order <b>{{$data['order_No']}}</b> has been successfully Dispatched.
                                             </p>
 
-                                                  @if($data['delivery_method'] == 'home_delivery')
-                                                  The package will be delivered by our delivery agent at the following address:{{$data['address']}}.
-                                                   @else
-                                                   Please visit our Address at 1 Adeola Adeoye Street, Off Olowu Street or Toyin Street, Ikeja, Lagos Nigeria to pickup your packages.
-                                                   @endif
-                                                You will receive an SMS on {{$data['phone']}}..        
+                                                  The package will be delivered by our delivery agent at the following address:{{$data['address']}}.       
                                                <table class="m_8958432110786407146orderinfotable" style="border:1px solid #ccc;margin:0;padding:0;width:100%;table-layout:fixed">
                                                     <caption class="m_8958432110786407146orderinfocaption" style="font-weight:bold;text-align:left;padding-top:10px">Items on this delivery:</caption>
                                                     <thead class="m_8958432110786407146orderinfohead" style="text-align:center">
@@ -54,10 +49,12 @@
                                                                 <td class="m_8958432110786407146orderinfotd"><span class="m_8958432110786407146itemlabel" style="display:none;overflow:hidden;font-size:0px">Item</span>
                                                                     {{$orders->product_name}}</td>
                                                                 <td class="m_8958432110786407146orderinfotd"><span class="m_8958432110786407146itemlabel" style="display:none;overflow:hidden;font-size:0px">Quantity</span>{{$orders->qty}}</td>
-                                                                <td class="m_8958432110786407146orderinfotd" style="text-align:right"><span class="m_8958432110786407146itemlabel" style="display:none;overflow:hidden;font-size:0px">Price</span>₦{{number_format($orders->price)}}</td>
+                                                                <td class="m_8958432110786407146orderinfotd" style=""><span class="m_8958432110786407146itemlabel" style="display:none;overflow:hidden;font-size:0px">Price</span>C${{number_format($orders->price)}}</td>
                                                             </tr>
+                                                            
                                                             @endforeach
-                                                       
+                                                        <tr> Courier Name : {{$data['shipment']}}</tr>
+                                                       <tr> Total : {{$data['total']}}</tr>
                                                     </tbody>
                                                 </table>
 

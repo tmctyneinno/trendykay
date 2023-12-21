@@ -84,7 +84,7 @@ class PaymentController extends Controller
         $data = [
           'name' => auth()->user()->name,
           'order_No' =>  $orderNo,
-          'delivery_method' => 'Home Delivery',
+          'delivery_method' => 'Home_delivery',
           'receiver_name' => $shipping->receiver_name, 
           'phone' => $shipping->receiver_phone, 
           'address' => $shipping->destination_name.' '.$shipping->destination_address_line_1.' '.$shipping->destination_city.' '.$shipping->destination_state,
@@ -96,7 +96,7 @@ class PaymentController extends Controller
         try{
         Mail::to(auth()->user()->email)->send(new OrderMail($data));
         }catch(\Exception $e){
-            
+
         }
         $title = 'New Order Completed, Order No '.$orderNo;
         $message = 'Order Completed, payment successfully, thanks you for shopping with us';
