@@ -72,8 +72,8 @@ class CategoryController extends Controller
             $time = md5(time() . $FileName);
             $fileName = $time . '.' . $ext;
             //$image->move('images/category/', $fileName);
-            Image::make($request->file('image'))->resize(600, 334)->save('images/category/' . $fileName);
-            // $ff = Image::make($request->file('image'))->resize(440, 440)->save('images/category/' . $fileName);
+            // Image::make($request->file('image'))->resize(600, 334)->save('images/category/' . $fileName);
+            $ff = Image::make($request->file('image'))->resize(440, 440)->save('images/category/' . $fileName);
         }
         //  dd($fileName);
         $data = [
@@ -136,8 +136,8 @@ class CategoryController extends Controller
             $time = md5(time().$FileName);
             $fileName = $time.'.'.$ext;
             // $file->move('images/category/', $fileName);
-            Image::make($request->file('image'))->resize(600, 334)->save('images/category/' . $fileName);
-        //    Image::make($request->file('image'))->resize(440, 440)->save('images/category/' . $fileName);
+            // Image::make($request->file('image'))->resize(600, 334)->save('images/category/' . $fileName);
+           Image::make($request->file('image'))->resize(440, 440)->save('images/category/' . $fileName);
             $category->image = $fileName;
         }else{
             $category->image =  $category->image;  
